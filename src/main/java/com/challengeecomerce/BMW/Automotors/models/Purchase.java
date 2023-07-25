@@ -28,8 +28,8 @@ public class Purchase {
     public Purchase() {
     }
 
-    public Purchase(Long id, LocalDate date, double totalAmount, List<Integer> payments) {
-        this.id = id;
+    public Purchase( LocalDate date, double totalAmount, List<Integer> payments) {
+
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
