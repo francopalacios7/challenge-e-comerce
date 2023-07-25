@@ -20,8 +20,8 @@ public class Client {
     public Client() {
     }
 
-    public Client(Long id, String firstName, String lastName, String email, String password, String address, String phone) {
-        this.id = id;
+    public Client( String firstName, String lastName, String email, String password, String address, String phone) {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -34,9 +34,6 @@ public class Client {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;

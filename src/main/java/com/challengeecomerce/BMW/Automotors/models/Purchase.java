@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,12 +23,12 @@ public class Purchase {
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private Set<Car> carSet = new HashSet<>();
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
-    private Set<Mods> modsSet = new HashSet<>();
+    private Set<Mod> modSet = new HashSet<>();
     public Purchase() {
     }
 
-    public Purchase(Long id, LocalDate date, double totalAmount, List<Integer> payments) {
-        this.id = id;
+    public Purchase(LocalDate date, double totalAmount, List<Integer> payments) {
+
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
@@ -39,9 +38,6 @@ public class Purchase {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public LocalDate getDate() {
         return date;
@@ -83,11 +79,11 @@ public class Purchase {
         this.carSet = carSet;
     }
     @JsonIgnore
-    public Set<Mods> getModsSet() {
-        return modsSet;
+    public Set<Mod> getModsSet() {
+        return modSet;
     }
 
-    public void setModsSet(Set<Mods> modsSet) {
-        this.modsSet = modsSet;
+    public void setModsSet(Set<Mod> modSet) {
+        this.modSet = modSet;
     }
 }
