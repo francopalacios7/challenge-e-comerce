@@ -10,7 +10,7 @@ public class CarDTO {
 
     private String model;
 
-    private LocalDate year;
+    private LocalDate date;
 
     private CarColor carColor;
 
@@ -24,7 +24,7 @@ public class CarDTO {
     public CarDTO(Car car) {
         this.id = car.getId();
         this.model = car.getModel();
-        this.year = car.getYear();
+        this.date = car.getDate();
         this.carColor = car.getCarColor();
         this.price = car.getPrice();
         this.packM = car.getPackM();
@@ -34,8 +34,8 @@ public class CarDTO {
         return model;
     }
 
-    public LocalDate getYear() {
-        return year;
+    public LocalDate getDate() {
+        return date;
     }
 
     public CarColor getCarColor() {

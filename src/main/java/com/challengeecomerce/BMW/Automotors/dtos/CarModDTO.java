@@ -8,11 +8,8 @@ import com.challengeecomerce.BMW.Automotors.models.Mod;
 public class CarModDTO {
 
     private Long id;
-
     private Double price;
-
     private Integer payment;
-
     private Car car;
     private Mod mod;
 

@@ -13,7 +13,7 @@ public class Car {
 
     private String model;
 
-    private LocalDate year;
+    private LocalDate date;
 
     private CarColor carColor;
 
@@ -28,9 +28,9 @@ public class Car {
     public Car() {
     }
 
-    public Car(String model, LocalDate year, CarColor carColor, Double price, Boolean packM, Purchase purchase) {
+    public Car(String model, LocalDate date, CarColor carColor, Double price, Boolean packM, Purchase purchase) {
         this.model = model;
-        this.year = year;
+        this.date = date;
         this.carColor = carColor;
         this.price = price;
         this.packM = packM;
@@ -50,12 +50,12 @@ public class Car {
         this.model = model;
     }
 
-    public LocalDate getYear() {
-        return year;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setYear(LocalDate year) {
-        this.year = year;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public CarColor getCarColor() {
