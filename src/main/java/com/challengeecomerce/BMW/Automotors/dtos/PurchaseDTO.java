@@ -29,11 +29,11 @@ public class PurchaseDTO {
         this.payments = purchase.getPayments();
         this.carSet = purchase.getCarSet()
                 .stream()
-                .map(car -> new CarDTO(car))
+                .map(CarDTO::new)
                 .collect(Collectors.toSet());
         this.modSet = purchase.getModsSet()
                 .stream()
-                .map(mod -> new ModDTO(mod))
+                .map(ModDTO::new)
                 .collect(Collectors.toSet());
     }
 
