@@ -8,10 +8,8 @@ public class CarMod {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
-
      private Double price;
-
-//     private Integer payments;
+     private Integer payments;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn
