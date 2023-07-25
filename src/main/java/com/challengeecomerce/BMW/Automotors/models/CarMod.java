@@ -11,7 +11,7 @@ public class CarMod {
 
      private Double price;
 
-//     private Integer payments;
+     private Integer payment;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn
@@ -24,8 +24,9 @@ public class CarMod {
     public CarMod() {
     }
 
-    public CarMod(Double price, Car car, Mod mod) {
+    public CarMod(Double price, Integer payment, Car car, Mod mod) {
         this.price = price;
+        this.payment = payment;
         this.car = car;
         this.mod = mod;
     }
@@ -36,6 +37,14 @@ public class CarMod {
 
     public Double getPrice() {
         return price;
+    }
+
+    public Integer getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Integer payment) {
+        this.payment = payment;
     }
 
     public void setPrice(Double price) {
@@ -50,11 +59,11 @@ public class CarMod {
         this.car = car;
     }
 
-    public Mod getMods() {
+    public Mod getMod() {
         return mod;
     }
 
-    public void setMods(Mod mod) {
+    public void setMod(Mod mod) {
         this.mod = mod;
     }
 }
