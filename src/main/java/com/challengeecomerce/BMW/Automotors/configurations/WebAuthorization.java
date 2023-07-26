@@ -29,11 +29,7 @@ class WebAuthorization {
                 .antMatchers("/web/htmlPages/**", "/api/clients/current","/api/accounts/**").hasAuthority("CLIENT")
                 .anyRequest().denyAll();
 
-
-
-
         http.formLogin()
-
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .loginPage("/api/login");
