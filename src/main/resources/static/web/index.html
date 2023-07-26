@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TroisJS</title>
+  <style>
+    html, body { margin:0; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+
+<!--   <div id="app">
+    <renderer ref="renderer" antialias orbit-ctrl resize="window">
+      <camera :position="{ z: 10 }"></camera>
+      <scene>
+        <point-light :position="{ y: 50, z: 50 }"></point-light>
+        <box ref="box" :rotation="{ y: Math.PI / 4, z: Math.PI / 4 }">
+          <lambert-material></lambert-material>
+        </box>
+      </scene>
+    </renderer>
+  </div> -->
+<!--   <div id="app">
+    <renderer ref="renderer" antialias orbit-ctrl resize="window">
+      <camera :position="{ z: 10 }"></camera>
+      <scene>
+
+      </scene>
+    </renderer>
+  </div> --> 
+
+  <GltfModel
+    src="../images/Futuristic_Car_2.1_fbx.fbx"
+    load="onReady"
+    progress="onProgress"
+    error="onError"
+  />
+  <!-- FBX Model has the same props and events but loads FBX files -->
+  <!-- <FbxModel
+    src="/path/to/your/model.fbx"
+    @load="onReady"
+    @progress="onProgress"
+    @error="onError"
+  /> -->
+
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/troisjs@0.3.3/build/trois.module.cdn.min.js';
+    createApp({
+      mounted() {
+
+      }
+    }).mount('#app')
+  </script>
+
+</body>
+</html>
