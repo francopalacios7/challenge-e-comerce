@@ -16,7 +16,6 @@ public class ClientDTO {
     private String password;
     private String address;
     private String phone;
-
     private Set<PurchaseDTO> purchaseSet;
     public ClientDTO() {
     }
@@ -31,23 +30,18 @@ public class ClientDTO {
                 .collect(Collectors.toSet());
         this.password = client.getPassword();
     }
-
     public Long getId() {
         return id;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public String getEmail() {
         return email;
     }
-
     public Set<PurchaseDTO> getPurchaseSet() {
         return purchaseSet;
     }
