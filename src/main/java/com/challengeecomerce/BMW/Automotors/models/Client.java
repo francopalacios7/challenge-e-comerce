@@ -19,9 +19,7 @@ public class Client {
     private Set<Purchase> purchaseSet = new HashSet<>();
     public Client() {
     }
-
     public Client( String firstName, String lastName, String email, String password, String address, String phone) {
-
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

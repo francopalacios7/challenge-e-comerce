@@ -28,7 +28,6 @@ public class Purchase {
     }
 
     public Purchase(LocalDate date, double totalAmount, List<Integer> payments) {
-
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;

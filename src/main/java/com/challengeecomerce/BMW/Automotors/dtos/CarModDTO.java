@@ -12,12 +12,14 @@ public class CarModDTO {
     private Integer payment;
     private Car car;
     private Mod mod;
+    private Long modId;
 
     public CarModDTO() {
     }
 
     public CarModDTO(CarMod carMod) {
         this.id = carMod.getId();
+        this.modId = carMod.getMod().getId(); // lo agregue para poder acceder al ID del mod, como en clientLoan
         this.price = carMod.getPrice();
         this.payment = carMod.getPayment();
         this.car = carMod.getCar();
@@ -42,5 +44,9 @@ public class CarModDTO {
 
     public Mod getMod() {
         return mod;
+    }
+
+    public Long getModId() {
+        return modId;
     }
 }

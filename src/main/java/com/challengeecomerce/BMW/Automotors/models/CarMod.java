@@ -8,10 +8,8 @@ public class CarMod {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
-
      private Double price;
-
-     private Integer payment;
+     private Integer payments;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn
@@ -26,7 +24,7 @@ public class CarMod {
 
     public CarMod(Double price, Integer payment, Car car, Mod mod) {
         this.price = price;
-        this.payment = payment;
+        this.payments = payment;
         this.car = car;
         this.mod = mod;
     }
@@ -40,11 +38,11 @@ public class CarMod {
     }
 
     public Integer getPayment() {
-        return payment;
+        return payments;
     }
 
     public void setPayment(Integer payment) {
-        this.payment = payment;
+        this.payments = payment;
     }
 
     public void setPrice(Double price) {

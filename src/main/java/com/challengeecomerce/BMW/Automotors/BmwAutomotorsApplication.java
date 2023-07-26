@@ -11,5 +11,8 @@ public class BmwAutomotorsApplication {
 	}
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 771c958f5221329e07f41c475213def18f7ab244
 }
