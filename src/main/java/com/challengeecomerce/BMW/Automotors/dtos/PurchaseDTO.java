@@ -1,7 +1,10 @@
 package com.challengeecomerce.BMW.Automotors.dtos;
 
-import com.challengeecomerce.BMW.Automotors.models.Purchase;
+import com.challengeecomerce.BMW.Automotors.models.*;
+
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,41 +13,61 @@ public class PurchaseDTO {
     private Long id;
     private LocalDate date;
     private Double totalAmount;
+
     private List<Integer> payments;
-    private Set<CarDTO> carSet;
-    private Set<ModDTO> modSet;
+
+    private Set<CarPurchaseDTO> carPurchaseDTO;
+
+    private Set<ModPurchaseDTO> modPurchaseDTO;
+
+    private Set<CarModPurchaseDTO> carModPurchaseDTO;
+
     public PurchaseDTO() {
     }
+
     public PurchaseDTO(Purchase purchase) {
         this.id = purchase.getId();
         this.date = purchase.getDate();
         this.totalAmount = purchase.getTotalAmount();
         this.payments = purchase.getPayments();
-        this.carSet = purchase.getCarSet()
+        this.carPurchaseDTO = purchase.getCarPurchaseSet()
                 .stream()
-                .map(CarDTO::new)
+                .map(CarPurchaseDTO::new)
                 .collect(Collectors.toSet());
-        this.modSet = purchase.getModsSet()
+        this.modPurchaseDTO = purchase.getModPurchaseSet() .stream()
+                .map(ModPurchaseDTO::new)
+                .collect(Collectors.toSet());
+        this.carModPurchaseDTO = purchase.getCarModPurchaseSet()
                 .stream()
-                .map(ModDTO::new)
+                .map(CarModPurchaseDTO::new)
                 .collect(Collectors.toSet());
     }
+
     public Long getId() {
         return id;
     }
+
     public LocalDate getDate() {
         return date;
     }
+
     public Double getTotalAmount() {
         return totalAmount;
     }
+
     public List<Integer> getPayments() {
         return payments;
     }
-    public Set<CarDTO> getCarSet() {
-        return carSet;
+
+    public Set<CarPurchaseDTO> getCarPurchaseDTO() {
+        return carPurchaseDTO;
     }
-    public Set<ModDTO> getModSet() {
-        return modSet;
+
+    public Set<ModPurchaseDTO> getModPurchaseDTO() {
+        return modPurchaseDTO;
+    }
+
+    public Set<CarModPurchaseDTO> getCarModPurchaseDTO() {
+        return carModPurchaseDTO;
     }
 }

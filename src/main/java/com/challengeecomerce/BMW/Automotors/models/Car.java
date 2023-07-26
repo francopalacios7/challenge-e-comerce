@@ -23,20 +23,23 @@ public class Car {
 
     private Boolean packM;
 
-   @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
-   private Set<CarPurchase> carPurchaseSet = new HashSet<>();
+    private Integer stock;
+
+    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
+    private Set<CarPurchase> carPurchaseSet = new HashSet<>();
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
     private Set<CarMod> carModSet = new HashSet<>();
 
     public Car() {
     }
 
-    public Car(String model, LocalDate date, CarColor carColor, Double price, Boolean packM, Set<CarPurchase> carPurchaseSet, Set<CarMod> carModSet) {
+    public Car(String model, LocalDate date, CarColor carColor, Double price, Boolean packM, Set<CarPurchase> carPurchaseSet, Set<CarMod> carModSet, Integer stock) {
         this.model = model;
         this.date = date;
         this.carColor = carColor;
         this.price = price;
         this.packM = packM;
+        this.stock = stock;
         this.carPurchaseSet = carPurchaseSet;
         this.carModSet = carModSet;
     }
@@ -100,5 +103,13 @@ public class Car {
 
     public void setCarModSet(Set<CarMod> carModSet) {
         this.carModSet = carModSet;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }

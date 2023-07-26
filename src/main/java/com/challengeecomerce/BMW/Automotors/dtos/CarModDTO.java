@@ -1,30 +1,27 @@
 package com.challengeecomerce.BMW.Automotors.dtos;
 
-import com.challengeecomerce.BMW.Automotors.models.Car;
-import com.challengeecomerce.BMW.Automotors.models.CarMod;
-import com.challengeecomerce.BMW.Automotors.models.Mod;
+import com.challengeecomerce.BMW.Automotors.models.*;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class CarModDTO {
+        private Long id;
+        private Double price;
+        private Integer payments;
 
-    private Long id;
-    private Double price;
-    private Integer payment;
-    private Car car;
-    private Mod mod;
-    private Long modId;
 
-    public CarModDTO() {
-    }
+        public CarModDTO() {
+        }
 
-    public CarModDTO(CarMod carMod) {
-        this.id = carMod.getId();
-        this.modId = carMod.getMod().getId(); // lo agregue para poder acceder al ID del mod, como en clientLoan
-        this.price = carMod.getPrice();
-        this.payment = carMod.getPayment();
-        this.car = carMod.getCar();
-        this.mod = carMod.getMod();
-    }
+        public CarModDTO(CarMod carMod) {
+            this.id = carMod.getId();
+            this.price = carMod.getPrice();
+            this.payments = carMod.getPayment();
+
+        }
 
     public Long getId() {
         return id;
@@ -34,19 +31,9 @@ public class CarModDTO {
         return price;
     }
 
-    public Integer getPayment() {
-        return payment;
+    public Integer getPayments() {
+        return payments;
     }
 
-    public Car getCar() {
-        return car;
-    }
 
-    public Mod getMod() {
-        return mod;
-    }
-
-    public Long getModId() {
-        return modId;
-    }
 }

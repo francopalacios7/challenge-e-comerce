@@ -3,6 +3,8 @@ package com.challengeecomerce.BMW.Automotors.models;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Mod {
@@ -17,18 +19,23 @@ public class Mod {
 
     private CarColor carColor;
 
-    @ManyToOne
-    @JoinColumn(name= "purchase_id")
-    private Purchase purchase;
+    private Integer stock;
+
+    @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
+    private Set<ModPurchase> modPurchaseSet = new HashSet<>();
+    @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
+    private Set<CarModDos> carModDosSet = new HashSet<>();
 
     public Mod() {
     }
 
-    public Mod(String name, Double price, CarColor carColor, Purchase purchase) {
+    public Mod(String name, Double price, CarColor carColor, Integer stock, Set<ModPurchase> modPurchaseSet, Set<CarModDos> carModDosSet) {
         this.name = name;
         this.price = price;
         this.carColor = carColor;
-        this.purchase = purchase;
+        this.stock = stock;
+        this.modPurchaseSet = modPurchaseSet;
+        this.carModDosSet = carModDosSet;
     }
 
     public Long getId() {
@@ -59,11 +66,27 @@ public class Mod {
         this.carColor = carColor;
     }
 
-    public Purchase getPurchase() {
-        return purchase;
+    public Integer getStock() {
+        return stock;
     }
 
-    public void setPurchase(Purchase purchase) {
-        this.purchase = purchase;
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public Set<ModPurchase> getModPurchaseSet() {
+        return modPurchaseSet;
+    }
+
+    public void setModPurchaseSet(Set<ModPurchase> modPurchaseSet) {
+        this.modPurchaseSet = modPurchaseSet;
+    }
+
+    public Set<CarModDos> getCarModDosSet() {
+        return carModDosSet;
+    }
+
+    public void setCarModDosSet(Set<CarModDos> carModDosSet) {
+        this.carModDosSet = carModDosSet;
     }
 }
