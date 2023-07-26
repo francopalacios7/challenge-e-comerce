@@ -13,6 +13,10 @@ public class ClientDTO {
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
+    private String address;
+    private String phone;
+
     private Set<PurchaseDTO> purchaseSet;
     public ClientDTO() {
     }
@@ -25,6 +29,7 @@ public class ClientDTO {
                 .stream()
                 .map(PurchaseDTO::new)
                 .collect(Collectors.toSet());
+        this.password = client.getPassword();
     }
 
     public Long getId() {
@@ -46,4 +51,7 @@ public class ClientDTO {
     public Set<PurchaseDTO> getPurchaseSet() {
         return purchaseSet;
     }
+    public String getPassword(){return password;}
+    public String getAddress() {return address;}
+    public String getPhone() {return phone;}
 }
