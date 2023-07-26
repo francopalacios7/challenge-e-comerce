@@ -1,0 +1,18 @@
+main{
+    min-height: 20rem;
+}
+
+#logo{
+    width: 150px;
+    height: 150px;
+}
+
+.shadow {
+    box-Shadow:'0px 0px 20px rgba(0, 0, 0, 0.2)';
+  }
+  
+
+  #logoFooter{
+    width: 120px;
+    height: 120px;
+}
