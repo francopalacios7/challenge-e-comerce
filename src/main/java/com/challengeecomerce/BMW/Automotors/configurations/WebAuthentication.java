@@ -1,6 +1,7 @@
 package com.challengeecomerce.BMW.Automotors.configurations;
 
 import com.challengeecomerce.BMW.Automotors.models.Client;
+import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +30,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
         auth.userDetailsService(inputName -> {
 
-            Client client = clientService.findClientByEmail(inputName);
+            Client client = clientService.findByEmail(inputName);
 
             if ( client != null) {
 

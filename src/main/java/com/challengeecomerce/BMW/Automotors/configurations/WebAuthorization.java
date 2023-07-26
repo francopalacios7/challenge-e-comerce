@@ -1,4 +1,4 @@
-package com.mindhub.homebanking.configurations;
+package com.challengeecomerce.BMW.Automotors.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
