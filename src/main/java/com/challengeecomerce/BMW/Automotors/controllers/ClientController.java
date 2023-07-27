@@ -1,6 +1,7 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
+import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,12 @@ public class ClientController {
         clientService.save(client);
         return new ResponseEntity<>("Registered with success", HttpStatus.CREATED);
     }
-}
 
+    @PostMapping("/clients/purchase")
+    public ResponseEntity<Object> purchase(@RequestBody PurchaseDTO purchaseDTO){
+        if (purchaseDTO.getTotalAmount().isNaN()){
+
+        }
+        return new ResponseEntity<>("Purchase successful", HttpStatus.ACCEPTED);
+    }
+}

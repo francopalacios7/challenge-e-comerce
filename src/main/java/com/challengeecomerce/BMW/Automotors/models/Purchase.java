@@ -14,7 +14,7 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate date;
-    private double totalAmount;
+    private Double totalAmount;
     @ElementCollection
     private List<Integer> payments;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -26,62 +26,45 @@ public class Purchase {
     private Set<Mod> modSet = new HashSet<>();
     public Purchase() {
     }
-
     public Purchase(LocalDate date, double totalAmount, List<Integer> payments) {
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
     }
-
     public Long getId() {
         return id;
     }
-
-
     public LocalDate getDate() {
         return date;
     }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public double getTotalAmount() {
+    public void setDate(LocalDate date) {this.date = date;}
+    public Double getTotalAmount() {
         return totalAmount;
     }
-
-    public void setTotalAmount(double totalAmount) {
+    public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
-
     public List<Integer> getPayments() {
         return payments;
     }
-
     public void setPayments(List<Integer> payments) {
         this.payments = payments;
     }
-    @JsonIgnore
     public Client getClient() {
         return client;
     }
-
     public void setClient(Client client) {
         this.client = client;
     }
-    @JsonIgnore
     public Set<Car> getCarSet() {
         return carSet;
     }
-
     public void setCarSet(Set<Car> carSet) {
         this.carSet = carSet;
     }
-    @JsonIgnore
     public Set<Mod> getModsSet() {
         return modSet;
     }
-
     public void setModsSet(Set<Mod> modSet) {
         this.modSet = modSet;
     }

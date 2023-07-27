@@ -3,56 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TroisJS</title>
-  <style>
-    html, body { margin:0; }
-    canvas { display: block; }
-  </style>
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="./../styles/home.css">
 </head>
 <body>
+  
+  <div class="banner banner-home">
+    <nav class="navbar navbar-expand-md bg-transparent px-5">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse d-md-flex justify-content-md-between navbar-collapse" id="navbarNav">
+          <div>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <a href="">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <main>
+    <div class="container py-4">
+      <div class="row text-center py-2">
+        <p class="text-muted fw-bold">HERRAMIENTAS DE COMPRAS</p>
+        <p class="mb-5 display-6">CONTACTANOS.</p>
+        <section class="col-12 col-md-4 px-0 px-md-3 py-3 py-md-3">
+          <i class="bi bi-chat-left-dots fs-1"></i>
+          <p class="fs-6 mb-4">Agendá tu Cita de Servicio</p>
+          <button>Buscar ahora</button>
+        </section>
+        <section class="col-12 col-md-4 px-0 px-md-3 py-3 py-md-3">
+          <i class="bi bi-chat-left-dots fs-1"></i>
+          <p class="fs-6 mb-4">Agendá tu Cita de Servicio</p>
+          <button>Buscar ahora</button>
+        </section>
+        <section class="col-12 col-md-4 px-0 px-md-3 py-3 py-md-3">
+          <i class="bi bi-chat-left-dots fs-1"></i>
+          <p class="fs-6 mb-4">Agendá tu Cita de Servicio</p>
+          <button>Buscar ahora</button>
+        </section>
+      </div>
+    </div>
+    <!-- segundo banner -->
+    <div class="banner banner-second">
 
-<!--   <div id="app">
-    <renderer ref="renderer" antialias orbit-ctrl resize="window">
-      <camera :position="{ z: 10 }"></camera>
-      <scene>
-        <point-light :position="{ y: 50, z: 50 }"></point-light>
-        <box ref="box" :rotation="{ y: Math.PI / 4, z: Math.PI / 4 }">
-          <lambert-material></lambert-material>
-        </box>
-      </scene>
-    </renderer>
-  </div> -->
-<!--   <div id="app">
-    <renderer ref="renderer" antialias orbit-ctrl resize="window">
-      <camera :position="{ z: 10 }"></camera>
-      <scene>
+    </div>
 
-      </scene>
-    </renderer>
-  </div> --> 
+    <div class="container">
+      <div class="row py-4">
+        <div class="col-12 col-md-6">
+          <img src="./../images/home_3.jpg" class="img-fluid" alt="">
+        </div>
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
+          <h5 class="text-muted fs-6">ACCESORIOS BMW</h5>
+          <h4 class="display-6">BMW M Performance.</h4>
+          <p>Los Accesorios BMW M Performance trasladan ese conocimiento de la pista a la carretera: Con componentes pertenecientes a las categorías de aerodinámica, tren de rodaje, puesto de conducción y mecánica, mejorarás aún más la deportividad sin concesiones de tu BMW.</p>
+          <button>Más información</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="container pt-5 pb-2">
+    <!-- desktop -->
+    <div class="gap-5 flex-wrap d-none d-md-flex">
+      <div class="px-5">
+        <p class="fs-6">CONTACTO</p>
+        <div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          
+        </div>
+      </div>
+      <div class="px-5">
+        <p class="fs-6">CONTACTO</p>
+        <div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          
+        </div>
+      </div>
+      <div class="px-5">
+        <p class="fs-6">CONTACTO</p>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>                   
+      </div>
+    </div>
+    <!-- mobile -->
+    <div></div>
+    <div class="d-flex gap-2 px-5 py-4">
+      <a class="me-2">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a class="me-2">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a class="me-2">
+        <i class="bi bi-youtube"></i>
+      </a>
+    </div>
+    <div class="d-flex justify-content-between">
+      <span class="small text-muted">&copy; MindHub</span>
+      <div>
+        <a href="" class="text-decoration-none text-muted me-2"><i class="bi bi-linkedin me-1"></i><span class="text-body fw-bold small">Franco</span></a>
+        <a href="" class="text-decoration-none text-muted me-2"><i class="bi bi-linkedin me-1"></i><span class="text-body fw-bold small">Mica</span></a>
+        <a href="" class="text-decoration-none text-muted me-2"><i class="bi bi-linkedin me-1"></i><span class="text-body fw-bold small">Lucas</span></a>
+        <a href="" class="text-decoration-none text-muted me-2"><i class="bi bi-linkedin me-1"></i><span class="text-body fw-bold small">Mauri</span></a>
+        <a href="" class="text-decoration-none text-muted me-2"><i class="bi bi-linkedin me-1"></i><span class="text-body fw-bold small">Fede</span></a>
+      </div>
+    </div>
+  </footer>
 
-  <GltfModel
-    src="../images/Futuristic_Car_2.1_fbx.fbx"
-    load="onReady"
-    progress="onProgress"
-    error="onError"
-  />
-  <!-- FBX Model has the same props and events but loads FBX files -->
-  <!-- <FbxModel
-    src="/path/to/your/model.fbx"
-    @load="onReady"
-    @progress="onProgress"
-    @error="onError"
-  /> -->
 
-  <script type="module">
-    import { createApp } from 'https://unpkg.com/troisjs@0.3.3/build/trois.module.cdn.min.js';
-    createApp({
-      mounted() {
-
-      }
-    }).mount('#app')
-  </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
