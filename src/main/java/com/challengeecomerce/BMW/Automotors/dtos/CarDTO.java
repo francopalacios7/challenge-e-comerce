@@ -51,6 +51,7 @@ CarDTO {
 
 
     public CarDTO(Car car) {
+        this.id= car.getId();
         this.model = car.getModel();
         this.date = car.getDate();
         this.carColor = car.getCarColor();
@@ -60,6 +61,10 @@ CarDTO {
         this.stock = car.getStock();
         this.images = car.getImages();
         this.modType = car.getModType();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getModel() {
@@ -95,9 +100,7 @@ CarDTO {
 //    }
 
 
-    public Long getId() {
-        return id;
-    }
+
 
     public List<String> getImages() {
         return images;
