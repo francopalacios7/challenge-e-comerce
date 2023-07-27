@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,8 @@ import java.util.List;
 public class ClientController {
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @GetMapping("/clients")
     public List<ClientDTO> getAllClients(){
         return clientService.getAllClients();
@@ -26,12 +29,12 @@ public class ClientController {
                                            @RequestParam String email, @RequestParam String address,
                                            @RequestParam String phone, @RequestParam String password){
         if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || address.isBlank() || phone.isBlank() || password.isBlank()){
-            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN); //ACOMODAR
         }
         if (clientService.findByEmail(email) != null){
             return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
         }
-        Client client = new Client(firstName, lastName, email, password, address, phone);
+        Client client = new Client(firstName, lastName, email, passwordEncoder.encode(password), address, phone);
         clientService.save(client);
         return new ResponseEntity<>("Registered with success", HttpStatus.CREATED);
     }
