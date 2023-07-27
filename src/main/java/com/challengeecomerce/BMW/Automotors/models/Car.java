@@ -36,8 +36,7 @@ public class Car {
 
     public Car() {
     }
-
-    public Car(String model, LocalDate date, CarColor carColor, Double price, List<Integer> payments, Boolean packM, Set<CarPurchase> carPurchaseSet, Set<CarMod> carModSet, Integer stock) {
+    public Car(String model, LocalDate date, CarColor carColor, Double price, List<Integer> payments, Boolean packM, Integer stock) {
         this.model = model;
         this.date = date;
         this.carColor = carColor;
@@ -45,7 +44,15 @@ public class Car {
         this.payments = payments;
         this.packM = packM;
         this.stock = stock;
-        this.carPurchaseSet = carPurchaseSet;
+    }
+    public Car(String model, LocalDate date, CarColor carColor, Double price, List<Integer> payments, Boolean packM, Set<CarMod> carModSet, Integer stock) {
+        this.model = model;
+        this.date = date;
+        this.carColor = carColor;
+        this.price = price;
+        this.payments = payments;
+        this.packM = packM;
+        this.stock = stock;
         this.carModSet = carModSet;
     }
 
