@@ -1,9 +1,11 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
+import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,15 +31,25 @@ public class Car {
 
     private Integer stock;
 
+    @ElementCollection
+    @CollectionTable(name = "car_images", joinColumns = @JoinColumn(name = "car_id"))
+    @Column(name = "image")
+    private List<String> images;
+
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
     private Set<CarPurchase> carPurchaseSet = new HashSet<>();
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
     private Set<CarMod> carModSet = new HashSet<>();
 
+    @ElementCollection
+    @CollectionTable(name = "carMod", joinColumns = @JoinColumn(name = "mod_id"))
+    @Column(name = "mod")
+    private List<ModType> modType;
+
     public Car() {
     }
 
-    public Car(String model, LocalDate date, CarColor carColor, Double price, List<Integer> payments, Boolean packM, Set<CarPurchase> carPurchaseSet, Set<CarMod> carModSet, Integer stock) {
+    public Car(String model, LocalDate date, CarColor carColor, Double price, List<Integer> payments, Boolean packM, Integer stock, List<String> images, List<ModType>  modType) {
         this.model = model;
         this.date = date;
         this.carColor = carColor;
@@ -45,8 +57,8 @@ public class Car {
         this.payments = payments;
         this.packM = packM;
         this.stock = stock;
-        this.carPurchaseSet = carPurchaseSet;
-        this.carModSet = carModSet;
+        this.images = images;
+        this.modType = modType;
     }
 
     public Long getId() {
@@ -102,6 +114,22 @@ public class Car {
         this.packM = packM;
     }
 
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
     public Set<CarPurchase> getCarPurchaseSet() {
         return carPurchaseSet;
     }
@@ -118,11 +146,13 @@ public class Car {
         this.carModSet = carModSet;
     }
 
-    public Integer getStock() {
-        return stock;
+    public List<ModType> getModType() {
+        return modType;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setModType(List<ModType> modType) {
+        this.modType = modType;
     }
+
+
 }

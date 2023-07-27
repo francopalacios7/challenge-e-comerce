@@ -4,6 +4,7 @@ import com.challengeecomerce.BMW.Automotors.models.Car;
 import com.challengeecomerce.BMW.Automotors.models.CarMod;
 import com.challengeecomerce.BMW.Automotors.models.CarPurchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
+import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
 
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -32,13 +33,32 @@ public class CarDTO {
 
     //private Set<CarPurchaseDTO> carPurchaseDTOS;
 
-    private Set<CarModDTO> carModDTO;
+    private List<ModType> modType;
 
     public CarDTO() {
     }
 
+//    public CarDTO(Car car) {
+//        this.id = car.getId();
+//        this.model = car.getModel();
+//        this.date = car.getDate();
+//        this.carColor = car.getCarColor();
+//        this.price = car.getPrice();
+//        this.payments = car.getPayments();
+//        this.packM = car.getPackM();
+//        this.stock = car.getStock();
+////        this.carPurchaseDTOS = car.getCarPurchaseSet()
+////                .stream()
+////                .map(carPurchase -> new CarPurchaseDTO(carPurchase))
+////                .collect(Collectors.toSet());
+//        this.modType = car.getModType()
+//                .stream()
+//                .map(modType -> new ModDTO(modType))
+//                .collect(Collectors.toSet());;
+//    }
+
+
     public CarDTO(Car car) {
-        this.id = car.getId();
         this.model = car.getModel();
         this.date = car.getDate();
         this.carColor = car.getCarColor();
@@ -46,14 +66,7 @@ public class CarDTO {
         this.payments = car.getPayments();
         this.packM = car.getPackM();
         this.stock = car.getStock();
-//        this.carPurchaseDTOS = car.getCarPurchaseSet()
-//                .stream()
-//                .map(carPurchase -> new CarPurchaseDTO(carPurchase))
-//                .collect(Collectors.toSet());
-        this.carModDTO = car.getCarModSet()
-                .stream()
-                .map(carMod -> new CarModDTO(carMod))
-                .collect(Collectors.toSet());;
+        this.modType = car.getModType();
     }
 
     public String getModel() {
@@ -88,7 +101,8 @@ public class CarDTO {
 //        return carPurchaseDTOS;
 //    }
 
-    public Set<CarModDTO> getCarModDTO() {
-        return carModDTO;
+
+    public List<ModType> getModType() {
+        return modType;
     }
 }
