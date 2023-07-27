@@ -47,13 +47,13 @@ public class BmwAutomotorsApplication {
 			Car car2 = new Car("BMW M340i", LocalDate.of(2023, 2, 10), CarColor.BLUE, 50000.0,
 					Arrays.asList(24, 36, 48), false,
 					8,
-					Arrays.asList("./static/images/Bmw images/bmw-m340i/1.jpg", "./static/images/Bmw images/bmw-m340i/2.jpg", "./static/images/Bmw images/bmw-m340i/3.jpg"),
+					Arrays.asList("./static/images/Bmw images/bmw-m340i/1.jpg", "./static/images/Bmw images/bmw-m340i/2.jpg", "./static/images/Bmw images/bmw-m340i/3.jpg", "./static/images/Bmw images/bmw-m340i/4.jpg",  "./static/images/Bmw images/bmw-m340i/5.jpg"),
 					Arrays.asList(ModType.SUNROOF, ModType.PERFORMANCE_EXHAUST));
 
 			Car car3 = new Car("BMW 140i", LocalDate.of(2023, 1, 5), CarColor.WHITE, 95000.0,
 					Arrays.asList(12, 24, 36, 60), true,
 					3,
-					Arrays.asList("./static/images/Bmw images/BMW 140i/1.jpg"),
+					Arrays.asList( "./static/images/Bmw images/BMW 140i/1.jpg", "./static/images/Bmw images/BMW 140i/2.jpg", "./static/images/Bmw images/BMW 140i/3.jpg", "./static/images/Bmw images/BMW 140i/4.jpg", "./static/images/Bmw images/BMW 140i/5.jpg"),
 					Arrays.asList(ModType.SPOILER, ModType.TINTED_WINDOWS));
 
 				carRepository.saveAll(Arrays.asList(car1, car2,car3));
