@@ -6,6 +6,8 @@ createApp({
       registerClient:{
         firstName: '',
         lastName: '',
+        address: '',
+        phone: '',
         email: '',
         password:''
       },

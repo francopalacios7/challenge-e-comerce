@@ -25,15 +25,21 @@ class WebAuthorization {
                 .antMatchers(HttpMethod.POST,"/api/clients").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/clients").permitAll()
 //                .antMatchers(HttpMethod.PATCH, "/api/clients/current/cards/{id}", "/api/clients/current/accounts/{id}").hasAuthority("CLIENT")
-                .antMatchers("/api/login", "/web/htmlPages/index.html", "/web/JsPages/**", "/web/stylePages/**", "/web/resources/**", "/web/htmlPages/login.html", "/api/logout").permitAll()
-
-                .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients","/web/htmlPages/adminLoans.html", "/h2-console/**" ).hasAuthority("ADMIN")
-                .antMatchers("/web/htmlPages/**", "/api/clients/current","/api/accounts/**").hasAuthority("CLIENT");
-//                .anyRequest().denyAll();
+                .antMatchers("/api/login", "/web/htmlPages/index.html", "/web/JsPages/**", "/web/stylePages/**", "/web/resources/**", "/web/htmlPages/login.html", "/api/logout").permitAll();
+//<<<<<<< HEAD
+//
+//                .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients","/web/htmlPages/adminLoans.html", "/h2-console/**" ).hasAuthority("ADMIN")
+//                .antMatchers("/web/htmlPages/**", "/api/clients/current","/api/accounts/**").hasAuthority("CLIENT");
+////                .anyRequest().denyAll();
 
 //                .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients","/web/htmlPages/adminLoans.html", "/h2-console/**").permitAll()
 //                .antMatchers("/web/htmlPages/**", "/api/clients/current","/api/accounts/**").hasAuthority("CLIENT");
                // .anyRequest().denyAll();
+//=======
+//                .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients","/web/htmlPages/adminLoans.html", "/h2-console/**" ).hasAuthority("ADMIN")
+//                .antMatchers("/web/htmlPages/**", "/api/clients/current","/api/accounts/**").hasAuthority("CLIENT");
+//                /*.anyRequest().denyAll();*/
+//>>>>>>> c1d8ed6c15a994f999ea36f6d9a553830cf00fb1
 
 
         http.formLogin()

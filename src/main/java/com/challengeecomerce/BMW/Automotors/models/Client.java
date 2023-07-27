@@ -69,7 +69,8 @@ public class Client {
     public Set<Purchase> getPurchaseSet() {
         return purchaseSet;
     }
-    public void setPurchaseSet(Set<Purchase> purchaseSet) {
-        this.purchaseSet = purchaseSet;
+    public void addPurchase(Purchase purchase) {
+        purchase.setClient(this);
+        this.purchaseSet.add(purchase);
     }
 }
