@@ -1,31 +1,27 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.*;
 
 @Entity
-public class CarPurchase {
+public class ModPurchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer quantity;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "purchase_id")
     private Purchase purchase;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "car_id")
-    private Car car;
+    @JoinColumn(name = "mod_id")
+    private Mod mod;
 
-    public CarPurchase() {
+    public ModPurchase() {
     }
 
-    public CarPurchase(Integer quantity, Purchase purchase, Car car) {
+    public ModPurchase(Integer quantity, Purchase purchase, Mod mod) {
         this.quantity = quantity;
         this.purchase = purchase;
-        this.car = car;
+        this.mod = mod;
     }
 
     public Long getId() {
@@ -48,12 +44,11 @@ public class CarPurchase {
         this.purchase = purchase;
     }
 
-    public Car getCar() {
-        return car;
+    public Mod getMod() {
+        return mod;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setMod(Mod mod) {
+        this.mod = mod;
     }
-
 }

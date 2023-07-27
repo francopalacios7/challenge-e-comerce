@@ -21,9 +21,12 @@ public class Purchase {
     @JoinColumn(name = "client_id")
     private Client client;
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
-    private Set<Car> carSet = new HashSet<>();
+    private Set<CarPurchase> carPurchaseSet = new HashSet<>();
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
-    private Set<Mod> modSet = new HashSet<>();
+    private Set<ModPurchase> modPurchaseSet = new HashSet<>();
+    @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
+    private Set<CarModPurchase> carModPurchaseSet = new HashSet<>();
+
     public Purchase() {
     }
     public Purchase(LocalDate date, double totalAmount, List<Integer> payments) {
@@ -56,16 +59,30 @@ public class Purchase {
     public void setClient(Client client) {
         this.client = client;
     }
-    public Set<Car> getCarSet() {
-        return carSet;
+
+    public Set<CarPurchase> getCarPurchaseSet() {
+        return carPurchaseSet;
     }
-    public void setCarSet(Set<Car> carSet) {
-        this.carSet = carSet;
+
+    public void setCarPurchaseSet(Set<CarPurchase> carPurchaseSet) {
+        this.carPurchaseSet = carPurchaseSet;
     }
-    public Set<Mod> getModsSet() {
-        return modSet;
+
+    public Set<ModPurchase> getModPurchaseSet() {
+        return modPurchaseSet;
     }
-    public void setModsSet(Set<Mod> modSet) {
-        this.modSet = modSet;
+
+    public void setModPurchaseSet(Set<ModPurchase> modPurchaseSet) {
+        this.modPurchaseSet = modPurchaseSet;
     }
+
+    public Set<CarModPurchase> getCarModPurchaseSet() {
+        return carModPurchaseSet;
+    }
+
+    public void setCarModPurchaseSet(Set<CarModPurchase> carModPurchaseSet) {
+        this.carModPurchaseSet = carModPurchaseSet;
+    }
+
+
 }

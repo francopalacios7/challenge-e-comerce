@@ -1,8 +1,16 @@
 package com.challengeecomerce.BMW.Automotors.dtos;
 
+import com.challengeecomerce.BMW.Automotors.models.CarModDos;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
+import com.challengeecomerce.BMW.Automotors.models.ModPurchase;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
+
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ModDTO {
 
@@ -13,7 +21,9 @@ public class ModDTO {
 
     private CarColor carColor;
 
-    private Purchase purchase;
+    //private Set<ModPurchase> modPurchaseSet = new HashSet<>();
+
+    private Set<CarModDosDTO> carModDosDTO;
 
     public ModDTO() {
     }
@@ -23,7 +33,10 @@ public class ModDTO {
         this.name = mod.getName();
         this.price = mod.getPrice();
         this.carColor = mod.getCarColor();
-        this.purchase = mod.getPurchase();
+        this.carModDosDTO = mod.getCarModDosSet()
+                .stream()
+                .map(carModDos -> new CarModDosDTO(carModDos))
+                .collect(Collectors.toSet());
     }
 
     public String getName() {
@@ -38,7 +51,7 @@ public class ModDTO {
         return carColor;
     }
 
-    public Purchase getPurchase() {
-        return purchase;
+    public Set<CarModDosDTO> getCarModDosDTO() {
+        return carModDosDTO;
     }
 }

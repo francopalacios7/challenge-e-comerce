@@ -4,6 +4,8 @@ import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Car {
@@ -21,20 +23,25 @@ public class Car {
 
     private Boolean packM;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name= "purchase_id")
-    private Purchase purchase;
+    private Integer stock;
+
+    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
+    private Set<CarPurchase> carPurchaseSet = new HashSet<>();
+    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
+    private Set<CarMod> carModSet = new HashSet<>();
 
     public Car() {
     }
 
-    public Car(String model, LocalDate date, CarColor carColor, Double price, Boolean packM, Purchase purchase) {
+    public Car(String model, LocalDate date, CarColor carColor, Double price, Boolean packM, Set<CarPurchase> carPurchaseSet, Set<CarMod> carModSet, Integer stock) {
         this.model = model;
         this.date = date;
         this.carColor = carColor;
         this.price = price;
         this.packM = packM;
-        this.purchase = purchase;
+        this.stock = stock;
+        this.carPurchaseSet = carPurchaseSet;
+        this.carModSet = carModSet;
     }
 
     public Long getId() {
@@ -82,11 +89,27 @@ public class Car {
         this.packM = packM;
     }
 
-    public Purchase getPurchase() {
-        return purchase;
+    public Set<CarPurchase> getCarPurchaseSet() {
+        return carPurchaseSet;
     }
 
-    public void setPurchase(Purchase purchase) {
-        this.purchase = purchase;
+    public void setCarPurchaseSet(Set<CarPurchase> carPurchaseSet) {
+        this.carPurchaseSet = carPurchaseSet;
+    }
+
+    public Set<CarMod> getCarModSet() {
+        return carModSet;
+    }
+
+    public void setCarModSet(Set<CarMod> carModSet) {
+        this.carModSet = carModSet;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }
