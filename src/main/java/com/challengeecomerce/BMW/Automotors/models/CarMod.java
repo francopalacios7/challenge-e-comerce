@@ -1,6 +1,8 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class CarMod {
@@ -8,25 +10,33 @@ public class CarMod {
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
+
      private Double price;
+
      private Integer payments;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn
-    private Car car;
+    // private Integer stock;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn
-    private Mod mod;
+//     @OneToMany(mappedBy = "carMod", fetch = FetchType.EAGER)
+//     private Set<CarModPurchase> carModPurchaseSet = new HashSet<>();
+//
+//     @OneToMany(mappedBy = "carMod", fetch = FetchType.EAGER)
+//     private Set<CarModDos> carModDosSet = new HashSet<>();
 
-    public CarMod() {
-    }
+     @ManyToOne(fetch = FetchType.EAGER)
+     @JoinColumn(name = "car_id")
+     private Car car;
 
-    public CarMod(Double price, Integer payment, Car car, Mod mod) {
+     public CarMod() {
+     }
+
+    public CarMod(Double price, Integer payments, Set<CarModPurchase> carModPurchaseSet, Set<CarModDos> carModDosSet, Integer stock, Car car) {
         this.price = price;
-        this.payments = payment;
+        this.payments = payments;
         this.car = car;
-        this.mod = mod;
+        // this.stock = stock;
+//        this.carModPurchaseSet = carModPurchaseSet;
+//        this.carModDosSet = carModDosSet;
     }
 
     public Long getId() {
@@ -49,6 +59,14 @@ public class CarMod {
         this.price = price;
     }
 
+    public Integer getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Integer payments) {
+        this.payments = payments;
+    }
+
     public Car getCar() {
         return car;
     }
@@ -57,11 +75,29 @@ public class CarMod {
         this.car = car;
     }
 
-    public Mod getMod() {
-        return mod;
-    }
+//    public Set<CarModPurchase> getCarModPurchaseSet() {
+//        return carModPurchaseSet;
+//    }
+//
+//    public void setCarModPurchaseSet(Set<CarModPurchase> carModPurchaseSet) {
+//        this.carModPurchaseSet = carModPurchaseSet;
+//    }
 
-    public void setMod(Mod mod) {
-        this.mod = mod;
-    }
+//    public Set<CarModDos> getCarModDosSet() {
+//        return carModDosSet;
+//    }
+//
+//    public void setCarModDosSet(Set<CarModDos> carModDosSet) {
+//        this.carModDosSet = carModDosSet;
+//    }
+
+//    public Integer getStock() {
+//        return stock;
+//    }
+//
+//    public void setStock(Integer stock) {
+//        this.stock = stock;
+//    }
+
+
 }

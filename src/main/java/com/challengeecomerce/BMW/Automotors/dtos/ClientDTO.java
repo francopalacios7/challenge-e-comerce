@@ -24,6 +24,8 @@ public class ClientDTO {
         this.firstName = client.getFirstName();
         this.lastName = client.getLastName();
         this.email = client.getEmail();
+        this.address = client.getAddress();
+        this.phone = client.getPhone();
         this.purchaseSet = client.getPurchaseSet()
                 .stream()
                 .map(PurchaseDTO::new)
