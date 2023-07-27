@@ -4,6 +4,7 @@ import com.challengeecomerce.BMW.Automotors.models.Car;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
+import com.challengeecomerce.BMW.Automotors.repositories.CarRepository;
 import com.challengeecomerce.BMW.Automotors.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,8 +24,10 @@ public class BmwAutomotorsApplication {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+
 	@Bean // cada vez q se crea la app
-	public CommandLineRunner initData(ClientRepository clientRepository){ // declaro la var
+	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository){ // declaro la var
 		return (args -> {
 			Client Pepe = new Client("Pepe", "Honguito","pepe@gmail.com", passwordEncoder.encode("melba456"),"direccion","23456");
 			clientRepository.save(Pepe);
@@ -53,12 +56,8 @@ public class BmwAutomotorsApplication {
 					Arrays.asList("./static/images/Bmw images/BMW 140i/1.jpg"),
 					Arrays.asList(ModType.SPOILER, ModType.TINTED_WINDOWS));
 
-			// Puedes crear más objetos Car según tus necesidades.
+				carRepository.saveAll(Arrays.asList(car1, car2,car3));
 
-			// Imprimir la información de los autos
-			System.out.println(car1.toString());
-			System.out.println(car2.toString());
-			System.out.println(car3.toString());
 		});
 	}}
 
