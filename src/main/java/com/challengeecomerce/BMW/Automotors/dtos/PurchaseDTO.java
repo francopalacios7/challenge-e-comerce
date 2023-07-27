@@ -23,17 +23,6 @@ public class PurchaseDTO {
         this.date = purchase.getDate();
         this.totalAmount = purchase.getTotalAmount();
         this.payments = purchase.getPayments();
-        this.carPurchaseDTO = purchase.getCarPurchaseSet()
-                .stream()
-                .map(CarPurchaseDTO::new)
-                .collect(Collectors.toSet());
-        this.modPurchaseDTO = purchase.getModPurchaseSet() .stream()
-                .map(ModPurchaseDTO::new)
-                .collect(Collectors.toSet());
-        this.carModPurchaseDTO = purchase.getCarModPurchaseSet()
-                .stream()
-                .map(CarModPurchaseDTO::new)
-                .collect(Collectors.toSet());
         this.purchaseType = purchase.getPurchaseType();
     }
     public Long getId() {

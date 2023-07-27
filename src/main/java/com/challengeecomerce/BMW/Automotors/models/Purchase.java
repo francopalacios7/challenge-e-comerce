@@ -30,7 +30,7 @@ public class Purchase {
     private Set<CarModPurchase> carModPurchaseSet = new HashSet<>();
     public Purchase() {
     }
-    public Purchase(LocalDate date, double totalAmount, List<Integer> payments, PurchaseType type) {
+    public Purchase(LocalDate date, Double totalAmount, List<Integer> payments, PurchaseType type) {
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
