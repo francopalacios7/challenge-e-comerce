@@ -38,15 +38,7 @@ public class CarDTO {
     public CarDTO() {
     }
 
-//    public CarDTO(Car car) {
-//        this.id = car.getId();
-//        this.model = car.getModel();
-//        this.date = car.getDate();
-//        this.carColor = car.getCarColor();
-//        this.price = car.getPrice();
-//        this.payments = car.getPayments();
-//        this.packM = car.getPackM();
-//        this.stock = car.getStock();
+
 ////        this.carPurchaseDTOS = car.getCarPurchaseSet()
 ////                .stream()
 ////                .map(carPurchase -> new CarPurchaseDTO(carPurchase))
@@ -55,7 +47,6 @@ public class CarDTO {
 //                .stream()
 //                .map(modType -> new ModDTO(modType))
 //                .collect(Collectors.toSet());;
-//    }
 
 
     public CarDTO(Car car) {
