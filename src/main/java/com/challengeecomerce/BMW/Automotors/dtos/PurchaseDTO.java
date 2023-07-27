@@ -12,7 +12,7 @@ public class PurchaseDTO {
     private LocalDate date;
     private Double totalAmount;
     private PurchaseType purchaseType;
-    private List<Integer> payments;
+    private Integer payments;
     private Set<CarPurchaseDTO> carPurchaseDTO;
     private Set<ModPurchaseDTO> modPurchaseDTO;
     private Set<CarModPurchaseDTO> carModPurchaseDTO;
@@ -34,7 +34,7 @@ public class PurchaseDTO {
     public Double getTotalAmount() {
         return totalAmount;
     }
-    public List<Integer> getPayments() {
+    public Integer getPayments() {
         return payments;
     }
     public Set<CarPurchaseDTO> getCarPurchaseDTO() {

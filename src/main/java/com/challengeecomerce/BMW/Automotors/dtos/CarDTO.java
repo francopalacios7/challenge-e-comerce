@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,8 @@ public class CarDTO {
     private CarColor carColor;
 
     private Double price;
+
+    private List<Integer> payments;
 
     private Boolean packM;
 
@@ -40,6 +43,7 @@ public class CarDTO {
         this.date = car.getDate();
         this.carColor = car.getCarColor();
         this.price = car.getPrice();
+        this.payments = car.getPayments();
         this.packM = car.getPackM();
         this.stock = car.getStock();
 //        this.carPurchaseDTOS = car.getCarPurchaseSet()
@@ -66,6 +70,10 @@ public class CarDTO {
 
     public Double getPrice() {
         return price;
+    }
+
+    public List<Integer> getPayments() {
+        return payments;
     }
 
     public Boolean getPackM() {

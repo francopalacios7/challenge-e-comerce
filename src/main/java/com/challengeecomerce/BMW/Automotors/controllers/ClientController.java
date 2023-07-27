@@ -4,6 +4,7 @@ import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
+import com.challengeecomerce.BMW.Automotors.models.enums.PurchaseType;
 import com.challengeecomerce.BMW.Automotors.services.CarService;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import com.challengeecomerce.BMW.Automotors.services.PurchaseService;
@@ -59,7 +60,6 @@ public class ClientController {
     }
     @PostMapping("/clients/purchase")
     public ResponseEntity<Object> purchase(@RequestBody PurchaseDTO purchaseDTO, Authentication authentication){
-        System.out.println(purchaseDTO.getPayments());
         Client client = clientService.findByEmail(authentication.getName());
         if(client == null){
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
@@ -67,18 +67,17 @@ public class ClientController {
         if (purchaseDTO.getTotalAmount().isNaN()){
             return new ResponseEntity<>("The amount cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if(purchaseDTO.getDate().toString().isBlank()){
-            return new ResponseEntity<>("The date cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
-        }
-        if(purchaseDTO.getPayments().isEmpty()){
+        if(purchaseDTO.getPayments().toString().isBlank()){
             return new ResponseEntity<>("The payments cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if (purchaseDTO.getPurchaseType().equals("CAR") || purchaseDTO.getPurchaseType().equals("MOD") || purchaseDTO.getPurchaseType().equals("CARMOD")){
+        if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.CARMOD) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)){
+
             Purchase purchase = new Purchase(LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
             client.addPurchase(purchase);
             purchaseService.save(purchase);
-            return new ResponseEntity<>( purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
         }
-        return new ResponseEntity<>("Purchase successful.", HttpStatus.ACCEPTED);
+
+            return new ResponseEntity<>( purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
+
     }
 }

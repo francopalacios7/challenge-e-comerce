@@ -5,6 +5,7 @@ import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,9 @@ public class Car {
 
     private Double price;
 
+    @ElementCollection
+    private List<Integer> payments;
+
     private Boolean packM;
 
     private Integer stock;
@@ -33,11 +37,12 @@ public class Car {
     public Car() {
     }
 
-    public Car(String model, LocalDate date, CarColor carColor, Double price, Boolean packM, Set<CarPurchase> carPurchaseSet, Set<CarMod> carModSet, Integer stock) {
+    public Car(String model, LocalDate date, CarColor carColor, Double price, List<Integer> payments, Boolean packM, Set<CarPurchase> carPurchaseSet, Set<CarMod> carModSet, Integer stock) {
         this.model = model;
         this.date = date;
         this.carColor = carColor;
         this.price = price;
+        this.payments = payments;
         this.packM = packM;
         this.stock = stock;
         this.carPurchaseSet = carPurchaseSet;
@@ -79,6 +84,14 @@ public class Car {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<Integer> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Integer> payments) {
+        this.payments = payments;
     }
 
     public Boolean getPackM() {
