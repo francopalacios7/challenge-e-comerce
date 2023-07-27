@@ -27,9 +27,9 @@ public class ClientDTO {
         this.address = client.getAddress();
         this.phone = client.getPhone();
         this.purchaseSet = client.getPurchaseSet()
-                .stream()
-                .map(PurchaseDTO::new)
-                .collect(Collectors.toSet());
+               .stream()
+               .map(PurchaseDTO::new)
+              .collect(Collectors.toSet());
         this.password = client.getPassword();
     }
     public Long getId() {
