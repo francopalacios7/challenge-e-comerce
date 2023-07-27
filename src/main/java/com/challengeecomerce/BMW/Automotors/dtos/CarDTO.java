@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CarDTO {
+public class
+CarDTO {
     private Long id;
 
     private String model;
