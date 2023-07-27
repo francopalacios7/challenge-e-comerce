@@ -33,7 +33,7 @@ CarDTO {
     private Integer stock;
 
     //private Set<CarPurchaseDTO> carPurchaseDTOS;
-
+    private List<String> images;
     private List<ModType> modType;
 
     public CarDTO() {
@@ -58,6 +58,7 @@ CarDTO {
         this.payments = car.getPayments();
         this.packM = car.getPackM();
         this.stock = car.getStock();
+        this.images = car.getImages();
         this.modType = car.getModType();
     }
 
@@ -93,6 +94,14 @@ CarDTO {
 //        return carPurchaseDTOS;
 //    }
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
 
     public List<ModType> getModType() {
         return modType;
