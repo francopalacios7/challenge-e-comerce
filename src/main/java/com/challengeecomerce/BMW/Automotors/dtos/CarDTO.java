@@ -52,7 +52,7 @@ public class CarDTO {
 //                .collect(Collectors.toSet());
         this.carModDTO = car.getCarModSet()
                 .stream()
-                .map(carMod -> new CarModDTO(carMod))
+                .map(CarModDTO::new)
                 .collect(Collectors.toSet());;
     }
 

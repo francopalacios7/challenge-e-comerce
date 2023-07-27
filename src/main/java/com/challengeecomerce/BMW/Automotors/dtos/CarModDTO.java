@@ -20,7 +20,6 @@ public class CarModDTO {
             this.id = carMod.getId();
             this.price = carMod.getPrice();
             this.payments = carMod.getPayment();
-
         }
 
     public Long getId() {
