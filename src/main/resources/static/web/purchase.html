@@ -13,11 +13,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
     <link rel="stylesheet" href="./../styles/style.css" />
-    <link rel="stylesheet" href="./../styles/index.css" />
+    <link rel="stylesheet" href="./../styles/purchase.css" />
   </head>
 
   <body>
-    <div class="banner banner-home">
       <nav class="navbar navbar-expand-md bg-transparent px-0 px-md-5 align-self-start">
         <div class="container-fluid">
           <a class="navbar-brand"></a>
@@ -39,96 +38,98 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a
-                  class="nav-link fw-bold text-light active"
+                  class="nav-link fw-bold text-body active"
                   aria-current="page"
                   href="#"
                   >Home</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link fw-bold text-light" href="#">Features</a>
+                <a class="nav-link fw-bold text-body" href="#">Features</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link fw-bold text-light" href="#">Pricing</a>
+                <a class="nav-link fw-bold text-body" href="#">Pricing</a>
               </li>
               <li class="nav-item">
                 <a
-                  class="nav-link fw-bold text-light disabled"
+                  class="nav-link fw-bold text-body disabled"
                   aria-disabled="true"
                   >Disabled</a
                 >
               </li>
             </ul>
-
+    
             <div>
               <a href="">Login</a>
             </div>
           </div>
         </div>
       </nav>
-      <div class="container p-3 bg-dark-subtle">
-        <p class="text-light small"><span class="fw-bold">The pleasure</span> of driving</p>
-        <div class="ps-3">
-          <p class="text-light small fw-bold mb-0">THE X3</p>
-          <h1 class="display-1 text-light">X3</h1>
-          <h4 class="text-light">New BMW X3.</h4>
-          <button>More Info</button>
+    <main class="container">
+      <h4 class="me-5 pe-5">Configurá tu BMW</h4>
+      <!-- filter desktop -->
+      <div class="d-flex justify-content-between d-md-none">
+        <div><span class="fw-bold">5</span> Models</div>
+        <button><i class="bi bi-sliders2-vertical me-2"></i>Filter</button>
+      </div>
+      <div class="row">
+          <!-- filter mobile -->
+        <div class="col-3 d-none d-md-flex flex-wrap py-3 align-items-start">
+            <div>
+                <div class="col-12 mb-3"><span class="fw-bold">5</span> Models</div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Default checkbox
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Default checkbox
+                    </label>
+                </div>
+            </div>
+            
         </div>
-      </div>
-      
-
-    </div>
-    <main>
-      <div class="container py-3">
-        <div class="row text-center mb-3">
-          <p class="text-muted fw-bold ">SHOPPING TOOLS</p>
-          <p class="mb-5 display-6">CONTACT US.</p>
-          <section class="col-12 col-md-4 px-0 px-md-3 py-3 py-md-3">
-            <i class="bi bi-chat-left-dots fs-1"></i>
-            <p class="fs-6 mb-4 mt-3">Schedule your Service Appointment</p>
-            <button>Search now</button>
-          </section>
-          <section class="col-12 col-md-4 px-0 px-md-3 py-3 py-md-3">
-            <i class="bi bi-chat-left-dots fs-1"></i>
-            <p class="fs-6 mb-4 mt-3">Request information</p>
-            <button>Search now</button>
-          </section>
-          <section class="col-12 col-md-4 px-0 px-md-3 py-3 py-md-3">
-            <i class="bi bi-chat-left-dots fs-1"></i>
-            <p class="fs-6 mb-4 mt-3">Request a Quote</p>
-            <button>Search now</button>
-          </section>
-        </div>
-      </div>
-      <!-- segundo banner -->
-      <div class="banner banner-second">
-
-      </div>
-
-      <div class="container py-5">
-        <div class="row">
-          <div
-            class="col-12 col-md-6 image-accessory position-relative overflow-hidden"
-          >
-            <img
-              src="./../images/home_3.jpg"
-              class="img-fluid"
-              alt="bmw image accessory"
-            />
-          </div>
-          <div
-            class="col-12 col-md-6 d-flex flex-column justify-content-center mt-3 mt-md-0"
-          >
-            <h5 class="text-muted fs-6">BMW ACCESSORIES</h5>
-            <h4 class="display-6">BMW M Performance.</h4>
-            <p>
-              BMW M Performance Accessories transfer this know-how from the
-              track to the road: With components from the aerodynamics,
-              suspension, cockpit and mechanical categories, you further enhance
-              the uncompromising sportiness of your BMW.
-            </p>
-            <button>More information</button>
-          </div>
+        <div class="col-12 col-md-9 d-flex flex-wrap gap-4 py-3">
+            <div class="col-12 d-none d-md-block"><span class="fw-bold">5</span> Models</div>
+            <div class="car-container">
+                <h3 class="ms-3 fw-bold text-capitalize">Titulo</h3>
+                <div class="car-container--img mb-3">
+                    <img src="./../images/home_2.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="px-3">
+                    <button class="w-100 button-primary">Lorem, ipsum.</button>
+                </div>
+            </div>
+            <div class="car-container">
+                <h3 class="ms-3 fw-bold text-capitalize">Titulo</h3>
+                <div class="car-container--img mb-3">
+                    <img src="./../images/home_2.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="px-3">
+                    <button class="w-100 button-primary">Lorem, ipsum.</button>
+                </div>
+            </div>
+            <div class="car-container">
+                <h3 class="ms-3 fw-bold text-capitalize">Titulo</h3>
+                <div class="car-container--img mb-3">
+                    <img src="./../images/home_2.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="px-3">
+                    <button class="w-100 button-primary">Lorem, ipsum.</button>
+                </div>
+            </div>
+            <div class="car-container">
+                <h3 class="ms-3 fw-bold text-capitalize">Titulo</h3>
+                <div class="car-container--img mb-3">
+                    <img src="./../images/home_2.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="px-3">
+                    <button class="w-100 button-primary">Lorem, ipsum.</button>
+                </div>
+            </div>
         </div>
       </div>
     </main>

@@ -1,3 +1,7 @@
+:root{
+    --color-asd: rgb(0,102,177),
+}
+
 body, html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -7,4 +11,33 @@ body, html {
     font-weight: 300;
     line-height: 1.5rem;
     text-rendering: optimizeSpeed;
+}
+
+
+
+.button-primary{
+    border-radius: 20px!important;
+    border: 1px solid rgb(0,102,177);
+    padding: .295rem 0;
+    background-color:transparent!important;
+    text-align: center;
+    font-weight: 600;
+    color: rgb(0,102,177);
+    transition: .5s ease-in-out;
+}
+
+.button-primary:hover{
+    background-color: rgb(0,102,177)!important;
+    color: #fff;
+}
+
+.btn-secondary{
+    
+}
+
+.footer-line{
+    margin: 0rem 1.755rem;
+    height: .5px;
+    width: 100%;
+    background-color: #000;
 }
