@@ -17,11 +17,11 @@ public class CarMod {
 
     // private Integer stock;
 
-//     @OneToMany(mappedBy = "carMod", fetch = FetchType.EAGER)
-//     private Set<CarModPurchase> carModPurchaseSet = new HashSet<>();
-//
-//     @OneToMany(mappedBy = "carMod", fetch = FetchType.EAGER)
-//     private Set<CarModDos> carModDosSet = new HashSet<>();
+     @OneToMany(mappedBy = "carMod", fetch = FetchType.EAGER)
+     private Set<CarModPurchase> carModPurchaseSet = new HashSet<>();
+
+     @OneToMany(mappedBy = "carMod", fetch = FetchType.EAGER)
+     private Set<CarModDos> carModDosSet = new HashSet<>();
 
      @ManyToOne(fetch = FetchType.EAGER)
      @JoinColumn(name = "car_id")

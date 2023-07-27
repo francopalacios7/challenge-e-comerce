@@ -73,8 +73,10 @@ public class ClientController {
         if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.CARMOD) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)){
 
             Purchase purchase = new Purchase(LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
-            client.addPurchase(purchase);
             purchaseService.save(purchase);
+            client.addPurchase(purchase);
+
+            clientService.save(client);
         }
 
             return new ResponseEntity<>( purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
