@@ -24,13 +24,9 @@ public class ClientDTO {
         this.firstName = client.getFirstName();
         this.lastName = client.getLastName();
         this.email = client.getEmail();
+        this.password = client.getPassword();
         this.address = client.getAddress();
         this.phone = client.getPhone();
-        this.purchaseSet = client.getPurchaseSet()
-                .stream()
-                .map(PurchaseDTO::new)
-                .collect(Collectors.toSet());
-        this.password = client.getPassword();
     }
     public Long getId() {
         return id;

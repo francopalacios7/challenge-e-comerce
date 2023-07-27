@@ -23,6 +23,7 @@ class WebAuthorization {
 //                .antMatchers(HttpMethod.POST, ).hasAuthority("CLIENT")
 //                .antMatchers(HttpMethod.POST,  ).hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST,"/api/clients").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/clients").permitAll()
 //                .antMatchers(HttpMethod.PATCH, "/api/clients/current/cards/{id}", "/api/clients/current/accounts/{id}").hasAuthority("CLIENT")
                 .antMatchers("/api/login", "/web/htmlPages/index.html", "/web/JsPages/**", "/web/stylePages/**", "/web/resources/**", "/web/htmlPages/login.html", "/api/logout").permitAll()
                 .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients","/web/htmlPages/adminLoans.html", "/h2-console/**" ).hasAuthority("ADMIN")

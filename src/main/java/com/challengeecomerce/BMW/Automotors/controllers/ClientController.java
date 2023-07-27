@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import java.time.LocalDate;
 
@@ -27,34 +27,36 @@ public class ClientController {
     private CarService carService;
     @Autowired
     private PurchaseService purchaseService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @PostMapping("/clients")
-    public ResponseEntity<Object> register(@RequestBody ClientDTO clientDTO){
-        if (clientDTO.getEmail().isBlank()){
+    public ResponseEntity<Object> register(@RequestBody ClientDTO clientDTO) {
+        if (clientDTO.getEmail().isBlank()) {
             return new ResponseEntity<>("The email cannot be blank.", HttpStatus.FORBIDDEN);
         }
-        if (clientDTO.getPassword().isBlank()){
+        if (clientDTO.getPassword().isBlank()) {
             return new ResponseEntity<>("The password cannot be blank.", HttpStatus.FORBIDDEN);
         }
-        if (clientDTO.getLastName().isBlank()){
+        if (clientDTO.getLastName().isBlank()) {
             return new ResponseEntity<>("The last name cannot be blank.", HttpStatus.FORBIDDEN);
         }
-        if (clientDTO.getFirstName().isBlank()){
+        if (clientDTO.getFirstName().isBlank()) {
             return new ResponseEntity<>("The first name cannot be blank.", HttpStatus.FORBIDDEN);
         }
-        if (clientDTO.getPhone().isBlank()){
+        if (clientDTO.getPhone().isBlank()) {
             return new ResponseEntity<>("The phone cannot be blank.", HttpStatus.FORBIDDEN);
         }
-        if (clientDTO.getAddress().isBlank()){
+        if (clientDTO.getAddress().isBlank()) {
             return new ResponseEntity<>("The address cannot be blank.", HttpStatus.FORBIDDEN);
         }
-        if (clientService.findByEmail(clientDTO.getEmail()) != null){
-            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
-        }
-        Client client = new Client(clientDTO.getFirstName(), clientDTO.getLastName(), clientDTO.getEmail(), clientDTO.getPassword(), clientDTO.getAddress(), clientDTO.getPhone());
+        Client client = new Client(clientDTO.getFirstName(), clientDTO.getLastName(), clientDTO.getEmail(), passwordEncoder.encode(clientDTO.getPassword()), clientDTO.getAddress(), clientDTO.getPhone());
         clientService.save(client);
         return new ResponseEntity<>("Registered with success", HttpStatus.CREATED);
     }
-
+    @GetMapping("/clients")
+    public List<ClientDTO> getAllClients(){
+        return clientService.getAllClients();
+    }
     @PostMapping("/clients/purchase")
     public ResponseEntity<Object> purchase(@RequestBody PurchaseDTO purchaseDTO, Authentication authentication){
         System.out.println(purchaseDTO.getPayments());
