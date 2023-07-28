@@ -3,24 +3,48 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      registerClient:{
-        firstName: '',
-        lastName: '',
-        address: '',
-        phone: '',
-        email: '',
-        password:''
-      },
+      cars:[],
       showConfirmation: false,
-      err: ''
+      err: '',
+      carImages:[],
+      params: ''
     }
   },
+
+  created(){
+    this.getCars();
+    this.loadData();
+
+    this.params = new URLSearchParams(location.search).get("id");
+    console.log("ID from URL:", this.params);
+  },
   methods: {
+    getCars(){
+        axios.get("/api/car")
+        .then(response => {
+                  
+        const filteredCars = response.data.filter(car => car.model === this.params);
+        console.log("filtered cars:", filteredCars);
+
+        // Asignar el resultado al array de cars para mostrarlo en la interfaz
+        this.cars = filteredCars;
+        this.carImages = this.cars[0].images;
+        console.log("filtered Images:",this.carImages );
+        }).catch(err => console.error(err))
+    },
+
+    loadData(){
+      axios.get('/api/clients/current')
+      .then(res => {
+        console.log(res.data);
+      });
+    },
 
 
     register() {
       this.showConfirmation = true
     },
+
     confirmRegister() {
       this.showConfirmation = false;
   
@@ -41,6 +65,8 @@ createApp({
 
       });
     },
+
+
     cancelRegister() {
       this.showConfirmation = false;
     },
