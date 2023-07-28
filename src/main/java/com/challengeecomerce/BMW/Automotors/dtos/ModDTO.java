@@ -9,21 +9,21 @@ import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ModDTO {
 
     private Long id;
-    private String name;
+    private String name, description;
 
     private Double price;
 
     private CarColor carColor;
+    private Integer stock;
 
-    //private Set<ModPurchase> modPurchaseSet = new HashSet<>();
-
-    private Set<CarModDosDTO> carModDosDTO;
+    private List<String> images;
 
     public ModDTO() {
     }
@@ -31,16 +31,23 @@ public class ModDTO {
     public ModDTO(Mod mod) {
         this.id = mod.getId();
         this.name = mod.getName();
+        this.description = mod.getDescription();
         this.price = mod.getPrice();
         this.carColor = mod.getCarColor();
-        this.carModDosDTO = mod.getCarModDosSet()
-                .stream()
-                .map(carModDos -> new CarModDosDTO(carModDos))
-                .collect(Collectors.toSet());
+        this.stock = mod.getStock();
+        this.images = mod.getImages();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public Double getPrice() {
@@ -51,7 +58,11 @@ public class ModDTO {
         return carColor;
     }
 
-    public Set<CarModDosDTO> getCarModDosDTO() {
-        return carModDosDTO;
+    public Integer getStock() {
+        return stock;
+    }
+
+    public List<String> getImages() {
+        return images;
     }
 }
