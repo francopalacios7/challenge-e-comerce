@@ -23,6 +23,8 @@ public class Car {
 
     private Double price;
 
+    private String description;
+
     @ElementCollection
     private List<Integer> payments;
 
@@ -49,17 +51,19 @@ public class Car {
     public Car() {
     }
 
-    public Car(String model, LocalDate date, CarColor carColor, Double price, List<Integer> payments, Boolean packM, Integer stock, List<String> images, List<ModType>  modType) {
+    public Car(String model, LocalDate date, CarColor carColor, Double price, String description, List<Integer> payments, Boolean packM, Integer stock, List<String> images, List<ModType>  modType) {
         this.model = model;
         this.date = date;
         this.carColor = carColor;
         this.price = price;
+        this.description = description;
         this.payments = payments;
         this.packM = packM;
         this.stock = stock;
         this.images = images;
         this.modType = modType;
     }
+
 
     public Long getId() {
         return id;
@@ -96,6 +100,14 @@ public class Car {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Integer> getPayments() {

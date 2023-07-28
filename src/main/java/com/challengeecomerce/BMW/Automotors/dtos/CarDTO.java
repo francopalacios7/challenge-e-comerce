@@ -14,6 +14,7 @@ public class CarDTO {
     private LocalDate date;
     private CarColor carColor;
     private Double price;
+    private String description;
     private List<Integer> payments;
     private Boolean packM;
     private Integer stock;
@@ -26,6 +27,7 @@ public class CarDTO {
         this.date = car.getDate();
         this.carColor = car.getCarColor();
         this.price = car.getPrice();
+        this.description = car.getDescription();
         this.payments = car.getPayments();
         this.packM = car.getPackM();
         this.stock = car.getStock();
@@ -51,6 +53,10 @@ public class CarDTO {
     }
     public CarType getCarType() {return carType;}
     public List<Integer> getPayments() {return payments;}
+
+    public String getDescription() {
+        return description;
+    }
     public Long getId() {return id;}
     public List<String> getImages() {return images;}
     public List<ModType> getModType() {return modType;}
