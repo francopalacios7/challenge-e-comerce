@@ -1,7 +1,11 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
+<<<<<<< HEAD
+import com.challengeecomerce.BMW.Automotors.models.enums.CarType;
+=======
 import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
+>>>>>>> 85fc05683b20aa5d6724fad114a0a2ad8d81446f
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -28,6 +32,7 @@ public class Car {
     private List<Integer> payments;
 
     private Boolean packM;
+    private CarType carType;
 
     private Integer stock;
 
@@ -49,7 +54,11 @@ public class Car {
     public Car() {
     }
 
+<<<<<<< HEAD
+    public Car(String model, LocalDate date, CarColor carColor, Double price, Boolean packM, Set<CarPurchase> carPurchaseSet, Set<CarMod> carModSet, Integer stock, CarType carType) {
+=======
     public Car(String model, LocalDate date, CarColor carColor, Double price, List<Integer> payments, Boolean packM, Integer stock, List<String> images, List<ModType>  modType) {
+>>>>>>> 85fc05683b20aa5d6724fad114a0a2ad8d81446f
         this.model = model;
         this.date = date;
         this.carColor = carColor;
@@ -57,8 +66,14 @@ public class Car {
         this.payments = payments;
         this.packM = packM;
         this.stock = stock;
+<<<<<<< HEAD
+        this.carPurchaseSet = carPurchaseSet;
+        this.carModSet = carModSet;
+        this.carType = carType;
+=======
         this.images = images;
         this.modType = modType;
+>>>>>>> 85fc05683b20aa5d6724fad114a0a2ad8d81446f
     }
 
     public Long getId() {
@@ -154,5 +169,10 @@ public class Car {
         this.modType = modType;
     }
 
+<<<<<<< HEAD
+    public CarType getCarType() {return carType;}
+    public void setCarType(CarType carType) {this.carType = carType;}
+=======
 
+>>>>>>> 85fc05683b20aa5d6724fad114a0a2ad8d81446f
 }
