@@ -22,13 +22,14 @@ public class CarController {
     CarService carService;
     @GetMapping("/car")
     public Set<CarDTO> getAll() {
-    return carService.getAllCarsDTO();
+        return carService.getAllCarsDTO();
     }
 
     @PostMapping("/admin/cars")
     public ResponseEntity<Object> addCar(@RequestBody CarDTO car, Authentication authentication){
 
-       // Client client = clientService.findByEmail(authentication.getName());
+// Client client = clientService.findByEmail(authentication.getName());
+
 
 //        if(!client.getEmail().contains("admin")){
 //            return new ResponseEntity<>("Only tre admin can add cars.", HttpStatus.FORBIDDEN);

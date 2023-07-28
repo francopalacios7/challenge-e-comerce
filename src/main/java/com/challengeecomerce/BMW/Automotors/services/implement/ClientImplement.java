@@ -26,4 +26,5 @@ public class ClientImplement implements ClientService{
                 .map(ClientDTO::new)
                 .collect(Collectors.toList());
     }
+
 }

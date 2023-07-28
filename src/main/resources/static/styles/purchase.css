@@ -3,7 +3,18 @@ a.navbar-brand{
     content: url("./../images/BMW_Grey-Colour_RGB.SVG.asset.1605107718514.SVG");
 }
 
+.filter-container{
+    position: sticky;
+    top: 0;
+}
+
 .car-container{
     padding: 1.10rem 0rem;
-    width: 20rem!important;
+    width: 24.5rem!important;
+}
+.car-container--img img{
+    width: 100%;
+    height: 14rem;
+    object-fit: cover;
+    object-position: 50% 100%;
 }
