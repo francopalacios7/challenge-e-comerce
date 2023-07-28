@@ -22,13 +22,13 @@ public class CarController {
     CarService carService;
     @GetMapping("/car")
     public Set<CarDTO> getAll() {
-    return carService.getAllCarsDTO();
+        return carService.getAllCarsDTO();
     }
 
     @PostMapping("/admin/cars")
     public ResponseEntity<Object> addCar(@RequestBody Car car, Authentication authentication){
 
-       // Client client = clientService.findByEmail(authentication.getName());
+        // Client client = clientService.findByEmail(authentication.getName());
 
 //        if(!client.getEmail().contains("admin")){
 //            return new ResponseEntity<>("Only tre admin can add cars.", HttpStatus.FORBIDDEN);
@@ -54,14 +54,8 @@ public class CarController {
         if(car.getPackM().toString().isBlank()){
             return new ResponseEntity<>("PackM must be selected, please try again.", HttpStatus.FORBIDDEN);
         }
-        if(!car.getCarModSet().isEmpty()){
-            Car car1 = new Car(car.getModel(), car.getDate(), car.getCarColor(), car.getPrice(), car.getPayments(), car.getPackM(), car.getCarModSet(), car.getStock());
-            carService.saveCar(car);
-        }
-
-        Car car1 = new Car(car.getModel(), car.getDate(), car.getCarColor(), car.getPrice(), car.getPayments(), car.getPackM(), car.getStock());
-        carService.saveCar(car);
-
+        Car car1 = new Car(car.getModel(), car.getDate(), car.getCarColor(), car.getPrice(), car.getPayments(), car.getPackM(), car.getStock(), car.getImages(), car.getModType());
+        carService.saveCar(car1);
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
 
     }
