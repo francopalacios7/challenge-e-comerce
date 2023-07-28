@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
 public class ClientImplement implements ClientService{
     @Autowired
@@ -25,4 +26,5 @@ public class ClientImplement implements ClientService{
                 .map(ClientDTO::new)
                 .collect(Collectors.toList());
     }
+
 }

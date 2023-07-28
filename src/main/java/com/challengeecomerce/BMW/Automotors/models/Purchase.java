@@ -17,8 +17,7 @@ public class Purchase {
     private LocalDate date;
     private Double totalAmount;
     private PurchaseType purchaseType;
-    @ElementCollection
-    private List<Integer> payments;
+    private Integer payments;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
@@ -30,7 +29,7 @@ public class Purchase {
     private Set<CarModPurchase> carModPurchaseSet = new HashSet<>();
     public Purchase() {
     }
-    public Purchase(LocalDate date, Double totalAmount, List<Integer> payments, PurchaseType type) {
+    public Purchase(LocalDate date, Double totalAmount, Integer payments, PurchaseType type) {
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
@@ -49,10 +48,10 @@ public class Purchase {
     public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
-    public List<Integer> getPayments() {
+    public Integer getPayments() {
         return payments;
     }
-    public void setPayments(List<Integer> payments) {
+    public void setPayments(Integer payments) {
         this.payments = payments;
     }
     public Client getClient() {

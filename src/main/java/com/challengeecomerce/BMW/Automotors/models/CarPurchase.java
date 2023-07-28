@@ -1,5 +1,8 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.*;
 
 @Entity
@@ -52,4 +55,5 @@ public class CarPurchase {
     public void setCar(Car car) {
         this.car = car;
     }
+
 }

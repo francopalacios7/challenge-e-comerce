@@ -1,0 +1,16 @@
+
+body, html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #262626;
+    font-family: bmwTypeNextWeb,Arial,Helvetica,Roboto,sans-serif;
+    font-size: 1pc;
+    font-weight: 300;
+    line-height: 1.5rem;
+    text-rendering: optimizeSpeed;
+}
+
+a.navbar-brand{
+    width: 3rem!important;
+    content: url("./../images/BMW_Grey-Colour_RGB.SVG.asset.1605107718514.SVG");
+}

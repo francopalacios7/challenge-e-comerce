@@ -2,6 +2,7 @@ package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
+import com.challengeecomerce.BMW.Automotors.dtos.TurnReservationDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.PurchaseType;
@@ -11,13 +12,16 @@ import com.challengeecomerce.BMW.Automotors.services.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-
 import java.time.LocalDate;
+
 
 @RestController
 @RequestMapping("/api")
@@ -30,6 +34,13 @@ public class ClientController {
     private PurchaseService purchaseService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @GetMapping("/clients/current")
+    public ClientDTO getAuthenticatedClient(Authentication authentication) {
+        return new ClientDTO(clientService.findByEmail(authentication.getName()));
+    }
+    @Autowired
+    private JavaMailSender javaMailSender;
+
     @PostMapping("/clients")
     public ResponseEntity<Object> register(@RequestBody ClientDTO clientDTO) {
         if (clientDTO.getEmail().isBlank()) {
@@ -60,7 +71,6 @@ public class ClientController {
     }
     @PostMapping("/clients/purchase")
     public ResponseEntity<Object> purchase(@RequestBody PurchaseDTO purchaseDTO, Authentication authentication){
-        System.out.println(purchaseDTO.getPayments());
         Client client = clientService.findByEmail(authentication.getName());
         if(client == null){
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
@@ -68,15 +78,41 @@ public class ClientController {
         if (purchaseDTO.getTotalAmount().isNaN()){
             return new ResponseEntity<>("The amount cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if(purchaseDTO.getPayments().isEmpty()){
+        if(purchaseDTO.getPayments().toString().isBlank()){
             return new ResponseEntity<>("The payments cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD) || purchaseDTO.getPurchaseType().equals(PurchaseType.CARMOD)){
+        if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.CARMOD) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)){
             Purchase purchase = new Purchase(LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
-            client.addPurchase(purchase);
             purchaseService.save(purchase);
-            return new ResponseEntity<>( purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
+            client.addPurchase(purchase);
+            clientService.save(client);
         }
-        return new ResponseEntity<>("Purchase successful.", HttpStatus.ACCEPTED);
+            return new ResponseEntity<>( purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }
+    @PostMapping("/client/sendemail")
+    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody TurnReservationDTO turnReservationDTO) {
+
+        Client client = clientService.findByEmail(authentication.getName());
+        if (client == null) {
+            return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
+        }
+        String emailToSend = turnReservationDTO.getEmail();
+        LocalDateTime turn = turnReservationDTO.getTurReservation();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = turn.format(formatter);
+
+        SimpleMailMessage email = new SimpleMailMessage();
+
+        email.setTo(emailToSend);
+        email.setFrom("bmwcohortfs047@hotmail.com");
+        email.setSubject("Turn Reservation");
+        email.setText("You have a shift reservation for the day " + formattedDateTime);
+
+        javaMailSender.send(email);
+
+        return new ResponseEntity<>(true,HttpStatus.OK);
+
+    }
+
 }
