@@ -1,11 +1,10 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
+import com.challengeecomerce.BMW.Automotors.models.enums.CarType;
 import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +29,7 @@ public class Car {
     private List<Integer> payments;
 
     private Boolean packM;
+    private CarType carType;
 
     private Integer stock;
 
@@ -63,6 +63,7 @@ public class Car {
         this.images = images;
         this.modType = modType;
     }
+
 
     public Long getId() {
         return id;
@@ -165,5 +166,10 @@ public class Car {
         this.modType = modType;
     }
 
-
+    public CarType getCarType() {
+        return carType;
+    }
+    public void setCarType(CarType carType) {
+        this.carType = carType;
+    }
 }

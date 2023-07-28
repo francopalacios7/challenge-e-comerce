@@ -78,8 +78,6 @@ public class BmwAutomotorsApplication {
 			Mod alloyWheel5 = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 2500.0, CarColor.BLACK, 20, Arrays.asList(""));
 
 			Mod performanceExhaustBlack = new Mod("Performance Exhaust", "Enhances the car's exhaust system for better performance", 250.0, CarColor.BLACK, 10,Arrays.asList(""));
-			Mod performanceExhaustBlue = new Mod("Performance Exhaust", "Enhances the car's exhaust system for better performance", 250.0, CarColor.BLUE, 8, Arrays.asList(""));
-			Mod performanceExhaustWhite = new Mod("Performance Exhaust", "Enhances the car's exhaust system for better performance", 250.0, CarColor.WHITE, 8, Arrays.asList(""));
 
 		});
 	}

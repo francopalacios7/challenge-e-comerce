@@ -32,7 +32,7 @@ public class CarController {
 
 
 //        if(!client.getEmail().contains("admin")){
-//            return new ResponseEntity<>("Only tre admin can add cars.", HttpStatus.FORBIDDEN);
+//            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
 //        }
         if(carDTO.getModel().isBlank()){
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
@@ -43,13 +43,21 @@ public class CarController {
         if(carDTO.getCarColor().toString().isBlank()){
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
+<<<<<<< HEAD
         if(carDTO.getPrice() == 0 || carDTO.getPrice() < 70000){
+=======
+        if(carDTO.getPrice() < 70000){
+>>>>>>> 41bc94647970dfc8b2e468b8866425998abba737
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPayments().isEmpty()){
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
+<<<<<<< HEAD
         if(carDTO.getStock() == 0 || carDTO.getStock() < 0 ){
+=======
+        if(carDTO.getStock() <= 0 ){
+>>>>>>> 41bc94647970dfc8b2e468b8866425998abba737
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPackM().toString().isBlank()){
@@ -58,7 +66,6 @@ public class CarController {
         Car car1 = new Car(carDTO.getModel(), carDTO.getDate(), carDTO.getCarColor(), carDTO.getPrice(), carDTO.getDescription(), carDTO.getPayments(), carDTO.getPackM(), carDTO.getStock(), carDTO.getImages(), carDTO.getModType());
         carService.saveCar(car1);
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
-
     }
 
 }
