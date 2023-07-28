@@ -36,6 +36,7 @@ public class CarDTO {
 //                .map(modType -> new ModDTO(modType))
 //                .collect(Collectors.toSet());;
     public CarDTO(Car car) {
+        this.id= car.getId();
         this.model = car.getModel();
         this.date = car.getDate();
         this.carColor = car.getCarColor();
@@ -46,6 +47,7 @@ public class CarDTO {
         this.images = car.getImages();
         this.modType = car.getModType();
     }
+
     public String getModel() {return model;}
     public LocalDate getDate() {return date;}
     public CarColor getCarColor() {return carColor;}

@@ -3,31 +3,29 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      registerClient:{
-        firstName: '',
-        lastName: '',
-        address: '',
-        phone: '',
-        email: '',
-        password:''
-      },
+      turReservation: '',
+      email: '',
       showConfirmation: false,
       err: ''
     }
   },
   methods: {
 
-
-    register() {
+    requestTurn() {
       this.showConfirmation = true
     },
-    confirmRegister() {
+    confirmTurn() {
       this.showConfirmation = false;
   
-      axios.post('/api/clients', this.registerClient)
+      const transferData = {
+        turReservation: this.turReservation,
+        email: "correalucasmatias98@gmail.com"
+      };
+
+      axios.post('/api/client/sendemail',transferData)
         .then((res) => {
-          if (res.status === 201) {
-            this.showNotification('Account Created', 'success');
+          if (res.status === 200) {
+            this.showNotification('Requested shift', 'success');
             setTimeout(() => {
               window.location.href = './index.html';
             }, 700);
@@ -41,7 +39,7 @@ createApp({
 
       });
     },
-    cancelRegister() {
+    cancelTurn() {
       this.showConfirmation = false;
     },
 
