@@ -4,6 +4,7 @@ import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
+import com.challengeecomerce.BMW.Automotors.models.enums.PurchaseType;
 import com.challengeecomerce.BMW.Automotors.services.CarService;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import com.challengeecomerce.BMW.Automotors.services.PurchaseService;
@@ -67,13 +68,10 @@ public class ClientController {
         if (purchaseDTO.getTotalAmount().isNaN()){
             return new ResponseEntity<>("The amount cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if(purchaseDTO.getDate().toString().isBlank()){
-            return new ResponseEntity<>("The date cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
-        }
         if(purchaseDTO.getPayments().isEmpty()){
             return new ResponseEntity<>("The payments cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if (purchaseDTO.getPurchaseType().equals("CAR") || purchaseDTO.getPurchaseType().equals("MOD") || purchaseDTO.getPurchaseType().equals("CARMOD")){
+        if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD) || purchaseDTO.getPurchaseType().equals(PurchaseType.CARMOD)){
             Purchase purchase = new Purchase(LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
             client.addPurchase(purchase);
             purchaseService.save(purchase);

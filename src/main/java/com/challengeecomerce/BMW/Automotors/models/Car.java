@@ -1,6 +1,7 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
+import com.challengeecomerce.BMW.Automotors.models.enums.CarType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class Car {
     private Double price;
 
     private Boolean packM;
+    private CarType carType;
 
     private Integer stock;
 
@@ -33,7 +35,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(String model, LocalDate date, CarColor carColor, Double price, Boolean packM, Set<CarPurchase> carPurchaseSet, Set<CarMod> carModSet, Integer stock) {
+    public Car(String model, LocalDate date, CarColor carColor, Double price, Boolean packM, Set<CarPurchase> carPurchaseSet, Set<CarMod> carModSet, Integer stock, CarType carType) {
         this.model = model;
         this.date = date;
         this.carColor = carColor;
@@ -42,6 +44,7 @@ public class Car {
         this.stock = stock;
         this.carPurchaseSet = carPurchaseSet;
         this.carModSet = carModSet;
+        this.carType = carType;
     }
 
     public Long getId() {
@@ -112,4 +115,7 @@ public class Car {
     public void setStock(Integer stock) {
         this.stock = stock;
     }
+
+    public CarType getCarType() {return carType;}
+    public void setCarType(CarType carType) {this.carType = carType;}
 }

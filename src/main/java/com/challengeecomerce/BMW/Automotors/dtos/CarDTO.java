@@ -4,6 +4,7 @@ import com.challengeecomerce.BMW.Automotors.models.Car;
 import com.challengeecomerce.BMW.Automotors.models.CarMod;
 import com.challengeecomerce.BMW.Automotors.models.CarPurchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
+import com.challengeecomerce.BMW.Automotors.models.enums.CarType;
 
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class CarDTO {
     private Long id;
-
+    private CarType carType;
     private String model;
 
     private LocalDate date;
@@ -42,14 +43,11 @@ public class CarDTO {
         this.price = car.getPrice();
         this.packM = car.getPackM();
         this.stock = car.getStock();
-//        this.carPurchaseDTOS = car.getCarPurchaseSet()
-//                .stream()
-//                .map(carPurchase -> new CarPurchaseDTO(carPurchase))
-//                .collect(Collectors.toSet());
+        this.carType = car.getCarType();
         this.carModDTO = car.getCarModSet()
                 .stream()
                 .map(carMod -> new CarModDTO(carMod))
-                .collect(Collectors.toSet());;
+                .collect(Collectors.toSet());
     }
 
     public String getModel() {
@@ -76,9 +74,7 @@ public class CarDTO {
         return stock;
     }
 
-//    public Set<CarPurchaseDTO> getCarPurchaseDTOS() {
-//        return carPurchaseDTOS;
-//    }
+    public CarType getCarType(){return carType;}
 
     public Set<CarModDTO> getCarModDTO() {
         return carModDTO;
