@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -30,6 +31,16 @@ public class ClientController {
     private PurchaseService purchaseService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+
+    @GetMapping("/clients/current")
+
+    public ClientDTO getAuthenticatedClient(Authentication authentication) {
+
+        return new ClientDTO(clientService.findByEmail(authentication.getName()));
+
+    }
+
     @PostMapping("/clients")
     public ResponseEntity<Object> register(@RequestBody ClientDTO clientDTO) {
         if (clientDTO.getEmail().isBlank()) {
