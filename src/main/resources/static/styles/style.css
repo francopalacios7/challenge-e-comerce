@@ -1,6 +1,9 @@
 :root{
     --color-primario: rgb(0,102,177);
+    --color-bg: #dee2e6;
 }
+
+
 
 body, html {
     -webkit-font-smoothing: antialiased;
@@ -11,6 +14,10 @@ body, html {
     font-weight: 300;
     line-height: 1.5rem;
     text-rendering: optimizeSpeed;
+}
+
+.bgc-fondo{
+    background-color: var(--color-bg);
 }
 
 .button-primary{
@@ -27,7 +34,7 @@ body, html {
 
 .button-primary--active{
     background-color: var(--color-primario)!important;
-    color: #fff;
+    color: #fff!important;
 }
 
 .button-primary:hover{

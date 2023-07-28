@@ -23,13 +23,13 @@ createApp({
         axios.get("/api/car")
         .then(response => {
                   
-        const filteredCars = response.data.filter(car => car.model === this.params);
-        console.log("filtered cars:", filteredCars);
+          const filteredCars = response.data.filter(car => car.model === this.params);
+          console.log("filtered cars:", filteredCars);
 
-        // Asignar el resultado al array de cars para mostrarlo en la interfaz
-        this.cars = filteredCars;
-        this.carImages = this.cars[0].images;
-        console.log("filtered Images:",this.carImages );
+          // Asignar el resultado al array de cars para mostrarlo en la interfaz
+          this.cars = filteredCars;
+          this.carImages = this.cars[0].images;
+          console.log("filtered Images:",this.carImages );
         }).catch(err => console.error(err))
     },
 
