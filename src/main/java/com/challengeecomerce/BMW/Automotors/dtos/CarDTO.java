@@ -67,6 +67,7 @@ CarDTO {
         return id;
     }
 
+
     public String getModel() {
         return model;
     }
@@ -98,8 +99,6 @@ CarDTO {
 //    public Set<CarPurchaseDTO> getCarPurchaseDTOS() {
 //        return carPurchaseDTOS;
 //    }
-
-
 
 
     public List<String> getImages() {
