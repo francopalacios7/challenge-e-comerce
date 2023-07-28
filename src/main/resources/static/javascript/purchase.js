@@ -14,7 +14,7 @@ createApp({
         axios.get("/api/car")
         .then(response => {
             console.log(response)
-            this.cars = response.data;
+            this.cars = response.data.sort((a, b) => a.id - b.id)
             console.log("cars: " + this.cars)
         }).catch(err => console.error(err))
     }
