@@ -26,39 +26,38 @@ public class CarController {
     }
 
     @PostMapping("/admin/cars")
-    public ResponseEntity<Object> addCar(@RequestBody Car car, Authentication authentication){
+    public ResponseEntity<Object> addCar(@RequestBody CarDTO carDTO, Authentication authentication){
 
 // Client client = clientService.findByEmail(authentication.getName());
 
 
 //        if(!client.getEmail().contains("admin")){
-//            return new ResponseEntity<>("Only tre admin can add cars.", HttpStatus.FORBIDDEN);
+//            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
 //        }
-        if(car.getModel().isBlank()){
+        if(carDTO.getModel().isBlank()){
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-        if(car.getDate().toString().isBlank()){
+        if(carDTO.getDate().toString().isBlank()){
             return new ResponseEntity<>("Date is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-        if(car.getCarColor().toString().isBlank()){
+        if(carDTO.getCarColor().toString().isBlank()){
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-        if(car.getPrice() == 0 || car.getPrice() < 70000){
+        if(carDTO.getPrice() < 70000){
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-        if(car.getPayments().isEmpty()){
+        if(carDTO.getPayments().isEmpty()){
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-        if(car.getStock() == 0 || car.getStock() < 0 ){
+        if(carDTO.getStock() <= 0 ){
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-        if(car.getPackM().toString().isBlank()){
+        if(carDTO.getPackM().toString().isBlank()){
             return new ResponseEntity<>("PackM must be selected, please try again.", HttpStatus.FORBIDDEN);
         }
-        Car car1 = new Car(car.getModel(), car.getDate(), car.getCarColor(), car.getPrice(), car.getPayments(), car.getPackM(), car.getStock(), car.getImages(), car.getModType());
+        Car car1 = new Car(carDTO.getModel(), carDTO.getDate(), carDTO.getCarColor(), carDTO.getPrice(), carDTO.getDescription(), carDTO.getPayments(), carDTO.getPackM(), carDTO.getStock(), carDTO.getImages(), carDTO.getModType());
         carService.saveCar(car1);
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
-
     }
 
 }
