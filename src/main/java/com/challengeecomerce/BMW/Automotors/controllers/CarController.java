@@ -27,7 +27,6 @@ public class CarController {
 
     @PostMapping("/admin/cars")
     public ResponseEntity<Object> addCar(@RequestBody Car car, Authentication authentication){
-
        // Client client = clientService.findByEmail(authentication.getName());
 
 //        if(!client.getEmail().contains("admin")){

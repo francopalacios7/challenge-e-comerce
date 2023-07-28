@@ -18,7 +18,8 @@ body, html {
 .button-primary{
     border-radius: 20px!important;
     border: 1px solid rgb(0,102,177);
-    padding: .295rem 0;
+    padding: .495rem 5.75rem;
+    text-decoration: none;
     background-color:transparent!important;
     text-align: center;
     font-weight: 600;
@@ -26,9 +27,18 @@ body, html {
     transition: .5s ease-in-out;
 }
 
+.button-primary--active{
+    background-color: rgb(0,102,177)!important;
+    color: #fff;
+}
+
 .button-primary:hover{
     background-color: rgb(0,102,177)!important;
     color: #fff;
+}
+
+.button-primary--active:hover{
+    background-color: transparent!important;
 }
 
 .btn-secondary{
