@@ -16,6 +16,7 @@ public class PurchaseDTO {
     private Set<CarPurchaseDTO> carPurchaseDTO;
     private Set<ModPurchaseDTO> modPurchaseDTO;
     private Set<CarModPurchaseDTO> carModPurchaseDTO;
+    private DuesPlan duesPlan;
     public PurchaseDTO() {
     }
     public PurchaseDTO(Purchase purchase) {
@@ -47,4 +48,5 @@ public class PurchaseDTO {
     public Set<CarModPurchaseDTO> getCarModPurchaseDTO() {
         return carModPurchaseDTO;
     }
+    public DuesPlan getDuesPlan() {return duesPlan;}
 }
