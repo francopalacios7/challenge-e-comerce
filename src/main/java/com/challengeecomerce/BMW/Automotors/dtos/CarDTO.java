@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CarDTO {
+public class
+CarDTO {
     private Long id;
 
     private String model;
@@ -32,7 +33,7 @@ public class CarDTO {
     private Integer stock;
 
     //private Set<CarPurchaseDTO> carPurchaseDTOS;
-
+    private List<String> images;
     private List<ModType> modType;
 
     public CarDTO() {
@@ -50,6 +51,7 @@ public class CarDTO {
 
 
     public CarDTO(Car car) {
+        this.id= car.getId();
         this.model = car.getModel();
         this.date = car.getDate();
         this.carColor = car.getCarColor();
@@ -57,8 +59,14 @@ public class CarDTO {
         this.payments = car.getPayments();
         this.packM = car.getPackM();
         this.stock = car.getStock();
+        this.images = car.getImages();
         this.modType = car.getModType();
     }
+
+    public Long getId() {
+        return id;
+    }
+
 
     public String getModel() {
         return model;
@@ -92,6 +100,10 @@ public class CarDTO {
 //        return carPurchaseDTOS;
 //    }
 
+
+    public List<String> getImages() {
+        return images;
+    }
 
     public List<ModType> getModType() {
         return modType;
