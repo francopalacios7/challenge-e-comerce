@@ -27,13 +27,16 @@ public class Purchase {
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private Set<CarModPurchase> carModPurchaseSet = new HashSet<>();
+    @OneToOne(mappedBy = "purchase",fetch = FetchType.EAGER)
+    private DuesPlan duesPlan;
     public Purchase() {
     }
-    public Purchase(LocalDate date, Double totalAmount, Integer payments, PurchaseType type) {
+    public Purchase(LocalDate date, Double totalAmount, Integer payments, PurchaseType type, DuesPlan duesPlan) {
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
         this.purchaseType = type;
+        this.duesPlan = duesPlan;
     }
     public Long getId() {
         return id;
@@ -78,4 +81,6 @@ public class Purchase {
     public void setCarModPurchaseSet(Set<CarModPurchase> carModPurchaseSet) {this.carModPurchaseSet = carModPurchaseSet;}
     public PurchaseType getPurchaseType() {return purchaseType;}
     public void setPurchaseType(PurchaseType purchaseType) {this.purchaseType = purchaseType;}
+    public DuesPlan getDuesPlan() {return duesPlan;}
+    public void setDuesPlan(DuesPlan duesPlan) {this.duesPlan = duesPlan;}
 }
