@@ -12,10 +12,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import com.tinify.Source;
-import com.tinify.Tinify;
-
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -33,8 +29,6 @@ public class BmwAutomotorsApplication {
 	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository) {
 		return (args -> {
 
-
-			Tinify.setKey("CfW4BKk4S0N3Cr2CQ150HzrWj1PlTxS7");
 
 			Client pepe = new Client("Pepe", "Honguito", "pepe@gmail.com", passwordEncoder.encode("melba456"), "direccion", "23456");
 			clientRepository.save(pepe);
@@ -62,19 +56,6 @@ public class BmwAutomotorsApplication {
 							"https://i.postimg.cc/TwVbJNJt/3.webp", "https://i.postimg.cc/hPPmVrz0/4.webp",
 							"https://i.postimg.cc/D0cqnpWS/5.webp"),
 					Arrays.asList(ModType.SPOILER, ModType.TINTED_WINDOWS));
-
-			String imageUrl = "https://i.postimg.cc/Z5TJsKh8/1.jpg";
-			String outputFileName = "compressed_image.jpg";
-
-			try {
-				Source source = Tinify.fromUrl(imageUrl);
-				source.toFile(outputFileName);
-				System.out.println("Image compressed and saved to: " + outputFileName);
-			} catch (IOException e) {
-				System.out.println("Error compressing image from URL: " + imageUrl);
-				e.printStackTrace();
-			}
-
 
 
 			carRepository.saveAll(Arrays.asList(car1, car2, car3));
