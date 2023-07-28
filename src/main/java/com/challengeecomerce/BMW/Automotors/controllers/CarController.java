@@ -31,7 +31,7 @@ public class CarController {
        // Client client = clientService.findByEmail(authentication.getName());
 
 //        if(!client.getEmail().contains("admin")){
-//            return new ResponseEntity<>("Only tre admin can add cars.", HttpStatus.FORBIDDEN);
+//            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
 //        }
         if(car.getModel().isBlank()){
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
@@ -42,13 +42,13 @@ public class CarController {
         if(car.getCarColor().toString().isBlank()){
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-        if(car.getPrice() == 0 || car.getPrice() < 70000){
+        if(car.getPrice() < 70000){
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(car.getPayments().isEmpty()){
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-        if(car.getStock() == 0 || car.getStock() < 0 ){
+        if(car.getStock() <= 0 ){
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(car.getPackM().toString().isBlank()){
@@ -57,7 +57,6 @@ public class CarController {
         Car car1 = new Car(car.getModel(), car.getDate(), car.getCarColor(), car.getPrice(), car.getPayments(), car.getPackM(), car.getStock(), car.getImages(), car.getModType());
         carService.saveCar(car1);
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
-
     }
 
 }
