@@ -51,6 +51,7 @@ CarDTO {
 
 
     public CarDTO(Car car) {
+        this.id = car.getId();
         this.model = car.getModel();
         this.date = car.getDate();
         this.carColor = car.getCarColor();
