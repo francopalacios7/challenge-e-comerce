@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="./../styles/purchase.css" />
   </head>
 
-  <body>
+  <body class="bgc-fondo">
       <nav class="navbar navbar-expand-md bg-transparent px-0 px-md-5 align-self-start">
         <div class="container-fluid">
           <a class="navbar-brand"></a>
@@ -93,16 +93,28 @@
             
         </div>
         <div class="col-12 col-md-9 d-flex flex-wrap gap-4 py-3">
-            <div class="col-12 d-none d-md-block"><span class="fw-bold">{{cars.length}}</span> Models</div>
+            <div class="col-12  d-none d-md-block"><span class="fw-bold">{{cars.length}}</span> Models</div>
             <!-- dynamic car -->
-            <div class="car-container" v-for="car in cars">
-                <h3 class="ms-3 fw-bold text-capitalize">{{car.model}}</h3>
-                <div class="car-container--img mb-3">
-                    <img :src="car.images" class="img-fluid" alt="">
+            <div class="row d-flex w-100 border border-dark rounded-3 py-2" v-for="car in cars">
+              <div class="col-12 col-md-8">
+                <div class="car-container">
+                  
+                  <div class="car-container--img">
+                      <img :src="car.images" class="img-fluid d-block" alt="">
+                  </div>
                 </div>
-                <div class="px-0 px-md-3">
-                    <a class="w-100 button-primary" :href="'./details.html?id=' + car.model">Lorem, ipsum.</a>
-                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                
+                  <h3 class="ms-3 mb-3 fw-bold text-capitalize">{{car.model}}</h3>                  
+                  <p>{{car.description}}</p>                  
+                  <div class="px-0">
+                      <a class="w-100 button-primary" :href="'./details.html?id=' + car.model">Lorem, ipsum.</a>
+                  </div>
+              
+              </div>
+              
+                
             </div>
         </div>
       </div>

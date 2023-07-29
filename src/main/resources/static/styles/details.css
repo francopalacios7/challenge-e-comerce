@@ -11,12 +11,12 @@ a.navbar-brand{
 
 .button-primary.active{
     background-color: var(--color-primario)!important;
-    padding: .320rem .8rem;
+    padding: .495rem 1.25rem;
     color: #fff!important;
 }
 
 .button-primary:hover{
     background-color: var(--color-primario)!important;
-    padding: .320rem .8rem;
+    padding: .495rem 1.25rem;
     color: #fff;
 }
