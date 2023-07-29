@@ -86,7 +86,7 @@ public class BmwAutomotorsApplication {
 			Car moto1 = new Car ("BMW S1000RR", LocalDate.of(2023, 2, 20), CarColor.BLACK, 18000.0,
 					"The BMW S1000RR is a high-performance sportbike known for its powerful engine and advanced technology.",
 					Arrays.asList(6, 12, 18, 24), true, CarType.MOTORCYCLE, 15,
-					Arrays.asList("https://i.postimg.cc/XqC4nCHm/1000rr-0.webp",
+					Arrays.asList("https://i.postimg.cc/sXPsx0kz/1000rr-0.png",
 							"https://i.postimg.cc/1tN3324v/1000rr-1.webp",
 			"https://i.postimg.cc/rsXF0jrM/1000rr-2.webp",
 			"https://i.postimg.cc/FKCYR0pH/1000rr-3.webp"),
