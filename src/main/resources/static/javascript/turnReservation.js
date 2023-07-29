@@ -9,7 +9,21 @@ createApp({
       err: ''
     }
   },
+
+  created(){
+  this.loadData();
+
+},
   methods: {
+
+    loadData(){
+      axios.get('/api/clients/current')
+      .then(res => {
+        console.log(res)
+        console.log("Email: "+res.data.email);
+        this.email = res.data.email;
+      });
+    },
 
     requestTurn() {
       this.showConfirmation = true
@@ -19,7 +33,7 @@ createApp({
   
       const transferData = {
         turReservation: this.turReservation,
-        email: "correalucasmatias98@gmail.com"
+        email: this.email
       };
 
       axios.post('/api/client/sendemail',transferData)
