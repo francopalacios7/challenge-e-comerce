@@ -110,7 +110,6 @@ public class ClientController {
         email.setText("You have a shift reservation for the day " + formattedDateTime);
 
         javaMailSender.send(email);
-
         return new ResponseEntity<>(true,HttpStatus.OK);
 
     }

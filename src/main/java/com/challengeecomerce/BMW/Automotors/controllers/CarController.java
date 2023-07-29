@@ -59,5 +59,4 @@ public class CarController {
         carService.saveCar(car1);
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
     }
-
 }
