@@ -30,8 +30,8 @@ public class CarDTO {
         this.description = car.getDescription();
         this.payments = car.getPayments();
         this.packM = car.getPackM();
-        this.stock = car.getStock();
         this.carType = car.getCarType();
+        this.stock = car.getStock();
         this.images =car.getImages();
         this.modType =car.getModType();
     }
@@ -48,10 +48,11 @@ public class CarDTO {
     public Boolean getPackM() {
         return packM;
     }
+    public CarType getCarType() {return carType;}
     public Integer getStock() {
         return stock;
     }
-    public CarType getCarType() {return carType;}
+
     public List<Integer> getPayments() {return payments;}
 
     public String getDescription() {

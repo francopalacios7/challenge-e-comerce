@@ -43,27 +43,23 @@ public class CarController {
         if(carDTO.getCarColor().toString().isBlank()){
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-<<<<<<< HEAD
+
         if(carDTO.getPrice() == 0 || carDTO.getPrice() < 70000){
-=======
-        if(carDTO.getPrice() < 70000){
->>>>>>> 41bc94647970dfc8b2e468b8866425998abba737
+
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPayments().isEmpty()){
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-<<<<<<< HEAD
+
         if(carDTO.getStock() == 0 || carDTO.getStock() < 0 ){
-=======
-        if(carDTO.getStock() <= 0 ){
->>>>>>> 41bc94647970dfc8b2e468b8866425998abba737
+
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPackM().toString().isBlank()){
             return new ResponseEntity<>("PackM must be selected, please try again.", HttpStatus.FORBIDDEN);
         }
-        Car car1 = new Car(carDTO.getModel(), carDTO.getDate(), carDTO.getCarColor(), carDTO.getPrice(), carDTO.getDescription(), carDTO.getPayments(), carDTO.getPackM(), carDTO.getStock(), carDTO.getImages(), carDTO.getModType());
+        Car car1 = new Car(carDTO.getModel(), carDTO.getDate(), carDTO.getCarColor(), carDTO.getPrice(), carDTO.getDescription(), carDTO.getPayments(), carDTO.getPackM(), carDTO.getCarType(), carDTO.getStock(), carDTO.getImages(), carDTO.getModType());
         carService.saveCar(car1);
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
     }

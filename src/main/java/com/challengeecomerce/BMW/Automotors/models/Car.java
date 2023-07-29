@@ -51,7 +51,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(String model, LocalDate date, CarColor carColor, Double price, String description, List<Integer> payments, Boolean packM, Integer stock, List<String> images, List<ModType>  modType) {
+    public Car(String model, LocalDate date, CarColor carColor, Double price, String description, List<Integer> payments, Boolean packM, CarType carType, Integer stock, List<String> images, List<ModType>  modType) {
         this.model = model;
         this.date = date;
         this.carColor = carColor;
@@ -59,6 +59,7 @@ public class Car {
         this.description = description;
         this.payments = payments;
         this.packM = packM;
+        this.carType = carType;
         this.stock = stock;
         this.images = images;
         this.modType = modType;
@@ -126,6 +127,13 @@ public class Car {
         this.packM = packM;
     }
 
+    public CarType getCarType() {
+        return carType;
+    }
+    public void setCarType(CarType carType) {
+        this.carType = carType;
+    }
+
     public Integer getStock() {
         return stock;
     }
@@ -166,10 +174,5 @@ public class Car {
         this.modType = modType;
     }
 
-    public CarType getCarType() {
-        return carType;
-    }
-    public void setCarType(CarType carType) {
-        this.carType = carType;
-    }
+
 }
