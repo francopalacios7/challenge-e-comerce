@@ -15,6 +15,11 @@ public class ModServiceImplement implements ModService {
 
     @Autowired
     ModRepository modRepository;
+
+    @Override
+    public Mod findById(Long id) {
+        return modRepository.findById(id).orElse(null);
+    }
     @Override
     public Set<ModDTO> getAllModsDTO() {
         return modRepository.findAll().stream().map(ModDTO::new).collect(Collectors.toSet());
@@ -24,4 +29,6 @@ public class ModServiceImplement implements ModService {
     public void saveMod(Mod mod) {
         modRepository.save((mod));
     }
+
+
 }

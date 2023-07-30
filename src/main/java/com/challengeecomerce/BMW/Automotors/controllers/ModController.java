@@ -1,6 +1,7 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.ModDTO;
+import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import com.challengeecomerce.BMW.Automotors.services.ModService;
@@ -24,11 +25,9 @@ public class ModController {
     private ClientService clientService;
 
     @GetMapping("/mods")
-    public Set<ModDTO> getAll () { return modService.getAllModsDTO();
+    public Set<ModDTO> getAll() { return modService.getAllModsDTO();  }
 
-    }
-
-    @PostMapping("/admin/mods")
+    @PostMapping("/admin/addMods")
     public ResponseEntity<Object> addMod(Authentication authentication, @RequestBody ModDTO modDTO) {
 
 //        Client client = clientService.findByEmail(authentication.getName());
@@ -67,5 +66,48 @@ public class ModController {
 
         return new ResponseEntity<>("Mod Created", HttpStatus.CREATED);
     }
+
+        @PatchMapping("/admin/updateMods")
+        public ResponseEntity <Object> updateMods(Authentication authentication, @RequestBody ModDTO modDTO){
+
+//        Client client = clientService.findByEmail(authentication.getName());
+        Mod mod = modService.findById(modDTO.getId());
+
+//        if(!client.getEmail().contains("admin")){
+//            return new ResponseEntity<>("Only admins can change the mods properties", HttpStatus.FORBIDDEN);
+//        }
+
+        if(modDTO.getDescription().isBlank()){
+            return new ResponseEntity<>("Please add a description", HttpStatus.FORBIDDEN);
+        }
+
+        if (modDTO.getName().isBlank()){
+            return new ResponseEntity<>("Please add a name", HttpStatus.FORBIDDEN);
+        }
+
+        if (modDTO.getPrice() <= 0){
+            return new ResponseEntity<>("Please set a price", HttpStatus.FORBIDDEN);
+        }
+
+        if(modDTO.getStock() <= 0){
+            return new ResponseEntity<>("Price must be greater than 0", HttpStatus.FORBIDDEN);
+        }
+
+        if (modDTO.getCarColor().toString().isBlank()){
+            return new ResponseEntity<>("Color can't be blank", HttpStatus.FORBIDDEN);
+        }
+
+
+        mod.setDescription(modDTO.getDescription());
+        mod.setName(modDTO.getName());
+        mod.setPrice(modDTO.getPrice());
+        mod.setPrice(modDTO.getPrice());
+        mod.setCarColor(modDTO.getCarColor());
+
+        modService.saveMod(mod);
+
+        return new ResponseEntity<>("Modified successfully", HttpStatus.OK);
+
+        }
 
 }
