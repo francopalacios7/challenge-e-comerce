@@ -103,12 +103,18 @@
 
 
         <div class="card mt-4">
-            <div class="card-body">
-                <h2>Request your turn</h2>
+          <h2 class="d-flex justify-content-center">Request your turn</h2>
+            <div class="card-body d-flex justify-content-around">
+
                 <div class="filter-container">
                     <input type="datetime-local" v-model="turReservation" id="tur">
                     <button class="btn btn-success filter-btn" @click="requestTurn">Request</button>
                 </div>
+
+                <div class="filter-container">
+                  <input type="datetime-local" v-model="turReservation" id="tur">
+                  <button class="btn btn-success filter-btn" @click="requestTurn">Request</button>
+              </div>
             </div>
         </div>
     </main>
