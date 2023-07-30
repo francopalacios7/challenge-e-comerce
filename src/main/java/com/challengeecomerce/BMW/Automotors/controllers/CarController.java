@@ -34,6 +34,14 @@ public class CarController {
 //        if(!client.getEmail().contains("admin")){
 //            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
 //        }
+
+        if(carDTO.getDetails().isBlank()){
+            return new ResponseEntity<>("Please add the vehicle details", HttpStatus.FORBIDDEN);
+        }
+
+        if(carDTO.getImages().isEmpty()){
+            return new ResponseEntity<>("Please add images to the vehicle", HttpStatus.FORBIDDEN);
+        }
         if(carDTO.getModel().isBlank()){
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
