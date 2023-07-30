@@ -59,7 +59,7 @@ public class CarController {
         if(carDTO.getPackM().toString().isBlank()){
             return new ResponseEntity<>("PackM must be selected, please try again.", HttpStatus.FORBIDDEN);
         }
-        Car car1 = new Car(carDTO.getModel(), carDTO.getDate(), carDTO.getCarColor(), carDTO.getPrice(), carDTO.getDescription(), carDTO.getPayments(), carDTO.getPackM(), carDTO.getCarType(), carDTO.getStock(), carDTO.getImages(), carDTO.getModType());
+        Car car1 = new Car(carDTO.getDetails(), carDTO.getModel(), carDTO.getDate(), carDTO.getCarColor(), carDTO.getPrice(), carDTO.getDescription(), carDTO.getPayments(), carDTO.getPackM(), carDTO.getCarType(), carDTO.getStock(), carDTO.getImages(), carDTO.getModType());
         carService.saveCar(car1);
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
     }

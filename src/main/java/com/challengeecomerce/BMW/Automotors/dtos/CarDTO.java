@@ -9,6 +9,7 @@ import java.util.List;
 
 public class CarDTO {
     private Long id;
+    private String details;
     private CarType carType;
     private String model;
     private LocalDate date;
@@ -23,6 +24,7 @@ public class CarDTO {
     public CarDTO() {}
     public CarDTO(Car car) {
         this.id = car.getId();
+        this.details = car.getDetails();
         this.model = car.getModel();
         this.date = car.getDate();
         this.carColor = car.getCarColor();
@@ -35,6 +37,13 @@ public class CarDTO {
         this.images =car.getImages();
         this.modType =car.getModType();
     }
+
+    public Long getId() {return id;}
+
+    public String getDetails() {
+        return details;
+    }
+
     public String getModel() {
         return model;
     }
@@ -58,7 +67,7 @@ public class CarDTO {
     public String getDescription() {
         return description;
     }
-    public Long getId() {return id;}
+
     public List<String> getImages() {return images;}
     public List<ModType> getModType() {return modType;}
 }
