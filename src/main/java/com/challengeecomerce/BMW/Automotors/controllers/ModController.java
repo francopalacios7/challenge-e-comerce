@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
-@RequestMapping
-        ("/api")
+@RequestMapping("/api")
 public class ModController {
 
     @Autowired
