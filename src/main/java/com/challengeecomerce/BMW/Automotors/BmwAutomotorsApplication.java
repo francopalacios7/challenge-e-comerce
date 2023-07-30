@@ -31,7 +31,6 @@ public class BmwAutomotorsApplication {
 	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository ) {
 		return (args -> {
 
-
 			Client pepe = new Client("Pepe", "Honguito", "pepe@gmail.com", passwordEncoder.encode("melba456"), "direccion", "23456");
 			clientRepository.save(pepe);
 
