@@ -17,6 +17,8 @@ public class Client {
     private String phone;
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Purchase> purchaseSet = new HashSet<>();
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<MeetingReservation> meetingReservationSet = new HashSet<>();
     public Client() {
     }
     public Client( String firstName, String lastName, String email, String password, String address, String phone) {
@@ -72,5 +74,11 @@ public class Client {
     public void addPurchase(Purchase purchase) {
         purchase.setClient(this);
         this.purchaseSet.add(purchase);
+    }
+    public void setPurchaseSet(Set<Purchase> purchaseSet) {this.purchaseSet = purchaseSet;}
+    public Set<MeetingReservation> getMeetingReservationSet() {return meetingReservationSet;}
+    public void addMeetingReservation(MeetingReservation meetingReservation) {
+        meetingReservation.setClient(this);
+        this.meetingReservationSet.add(meetingReservation);
     }
 }

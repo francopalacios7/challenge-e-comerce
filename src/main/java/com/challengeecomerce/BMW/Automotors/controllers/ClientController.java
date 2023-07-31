@@ -2,7 +2,7 @@ package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
-import com.challengeecomerce.BMW.Automotors.dtos.TurnReservationDTO;
+import com.challengeecomerce.BMW.Automotors.dtos.MeetingReservationDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.PurchaseType;
@@ -81,7 +81,7 @@ public class ClientController {
         if(purchaseDTO.getPayments().toString().isBlank()){
             return new ResponseEntity<>("The payments cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.CARMOD) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)){
+        if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)){
             Purchase purchase = new Purchase(LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType(), purchaseDTO.getDuesPlan());
             purchaseService.save(purchase);
             client.addPurchase(purchase);
@@ -89,15 +89,15 @@ public class ClientController {
         }
             return new ResponseEntity<>( purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }
-    @PostMapping("/client/sendemail")
-    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody TurnReservationDTO turnReservationDTO) {
+    @PostMapping("/client/sendEmail")
+    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO turnReservationDTO) {
 
         Client client = clientService.findByEmail(authentication.getName());
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
         }
         String emailToSend = turnReservationDTO.getEmail();
-        LocalDateTime turn = turnReservationDTO.getTurReservation();
+        LocalDateTime turn = turnReservationDTO.getMeetingReservation();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedDateTime = turn.format(formatter);

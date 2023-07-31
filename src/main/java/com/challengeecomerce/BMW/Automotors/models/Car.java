@@ -41,13 +41,13 @@ public class Car {
 
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
     private Set<CarPurchase> carPurchaseSet = new HashSet<>();
-    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
-    private Set<CarMod> carModSet = new HashSet<>();
 
     @ElementCollection
     @CollectionTable(name = "carMod", joinColumns = @JoinColumn(name = "mod_id"))
     @Column(name = "mod")
     private List<ModType> modType;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private MeetingReservation meetingReservation;
 
     public Car() {
     }
@@ -167,14 +167,6 @@ public class Car {
         this.carPurchaseSet = carPurchaseSet;
     }
 
-    public Set<CarMod> getCarModSet() {
-        return carModSet;
-    }
-
-    public void setCarModSet(Set<CarMod> carModSet) {
-        this.carModSet = carModSet;
-    }
-
     public List<ModType> getModType() {
         return modType;
     }
@@ -182,6 +174,6 @@ public class Car {
     public void setModType(List<ModType> modType) {
         this.modType = modType;
     }
-
-
+    public MeetingReservation getMeetingReservation() {return meetingReservation;}
+    public void setMeetingReservation(MeetingReservation meetingReservation) {this.meetingReservation = meetingReservation;}
 }
