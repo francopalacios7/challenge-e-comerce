@@ -30,8 +30,6 @@ public class Mod {
 
     @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
-    @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
-    private Set<CarModDos> carModDosSet = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "modType")
