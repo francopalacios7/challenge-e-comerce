@@ -14,7 +14,9 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long ticketNumber;
     private LocalDate date;
+
     private Double totalAmount;
     private PurchaseType purchaseType;
     private Integer payments;
@@ -27,7 +29,8 @@ public class Purchase {
     private DuesPlan duesPlan;
     public Purchase() {
     }
-    public Purchase(LocalDate date, Double totalAmount, Integer payments, PurchaseType type, DuesPlan duesPlan) {
+    public Purchase(Long ticketNumber,LocalDate date, Double totalAmount, Integer payments, PurchaseType type, DuesPlan duesPlan) {
+        this.ticketNumber = ticketNumber;
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
@@ -37,6 +40,15 @@ public class Purchase {
     public Long getId() {
         return id;
     }
+
+    public Long getTicketNumber() {
+        return ticketNumber;
+    }
+
+    public void setTicketNumber(Long ticketNumber) {
+        this.ticketNumber = ticketNumber;
+    }
+
     public LocalDate getDate() {
         return date;
     }
