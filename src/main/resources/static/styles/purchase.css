@@ -1,11 +1,33 @@
+/*  Scrollbar  */
+  /* Firefox */
+  .car-container--description {
+    scrollbar-width: auto;
+    scrollbar-color: var(--color-primario) var(--color-bg);
+  }
+
+  /* Chrome, Edge, and Safari */
+  .car-container--description::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .car-container--description::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+
+  .car-container--description::-webkit-scrollbar-thumb {
+    background-color: var(--color-bg);
+    border-radius: 10px;
+    border: 3px solid var(--color-primario);
+  }
+
 a.navbar-brand{
     width: 3rem!important;
     content: url("./../images/BMW_Grey-Colour_RGB.SVG.asset.1605107718514.SVG");
 }
 
 .filter-container{
-    position: sticky;
-    top: 0;
+    position: sticky!important;
+    top: 0!important;
 }
 
 .car-container{
@@ -13,8 +35,12 @@ a.navbar-brand{
     height: 20rem;
     box-shadow: black 0.5px;
 }
+.car-container--img{
+    height: 100%;
+}
 .car-container--img img{
     width: 100%;
+<<<<<<< HEAD
     height: 25rem;
     object-fit: contain;
     object-position: 50% 50%;
@@ -24,4 +50,12 @@ a.navbar-brand{
 
 #card{
     box-shadow: 0 4px 8px #0000005e !important;
+=======
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 75%;
+}
+.car-container--description{
+    height: 11.5rem;
+>>>>>>> eb1398993777bf7e093b581da4e72a8764e66a2d
 }
