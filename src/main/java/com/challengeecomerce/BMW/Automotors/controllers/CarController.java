@@ -3,6 +3,7 @@ package com.challengeecomerce.BMW.Automotors.controllers;
 import com.challengeecomerce.BMW.Automotors.dtos.CarDTO;
 import com.challengeecomerce.BMW.Automotors.models.Car;
 import com.challengeecomerce.BMW.Automotors.models.Client;
+import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 import com.challengeecomerce.BMW.Automotors.services.CarService;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,10 @@ public class CarController {
     public Set<CarDTO> getAll() {
         return carService.getAllCarsDTO();
     }
-
+    @GetMapping("/car/color")
+    public CarColor[] getAllColors(){
+        return CarColor.values();
+    }
     @PostMapping("/admin/cars")
     public ResponseEntity<Object> addCar(@RequestBody CarDTO carDTO, Authentication authentication){
 
@@ -43,6 +47,7 @@ public class CarController {
             return new ResponseEntity<>("Please add images to the vehicle", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getModel().isBlank()){
+
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getDate().toString().isBlank()){
@@ -71,8 +76,6 @@ public class CarController {
         carService.saveCar(car1);
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
     }
-
-
 
     @PatchMapping(path = "/admin/car/update")
     public ResponseEntity<Object> updateCar(Authentication authentication, @RequestBody CarDTO carDTO){
@@ -133,4 +136,5 @@ public class CarController {
 //        }
 //Eliminar auto, cliente asociado, modificaciones,la compra que realizo.
 //}
+
 }

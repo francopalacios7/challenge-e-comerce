@@ -5,6 +5,7 @@ import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.models.ModPurchase;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
+import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
 
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -25,6 +26,8 @@ public class ModDTO {
 
     private List<String> images;
 
+    private ModType modtype;
+
     public ModDTO() {
     }
 
@@ -36,6 +39,7 @@ public class ModDTO {
         this.carColor = mod.getCarColor();
         this.stock = mod.getStock();
         this.images = mod.getImages();
+        this.modtype = mod.getModType();
     }
 
     public Long getId() {
@@ -64,5 +68,9 @@ public class ModDTO {
 
     public List<String> getImages() {
         return images;
+    }
+
+    public ModType getModtype() {
+        return modtype;
     }
 }

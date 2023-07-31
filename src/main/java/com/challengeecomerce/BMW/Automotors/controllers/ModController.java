@@ -9,8 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Set;
+import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/api")
@@ -21,9 +25,6 @@ public class ModController {
 
     @Autowired
     private ClientService clientService;
-
-    @GetMapping("/mods")
-    public Set<ModDTO> getAll() { return modService.getAllModsDTO();  }
 
     @PostMapping("/admin/addMods")
     public ResponseEntity<Object> addMod(Authentication authentication, @RequestBody ModDTO modDTO) {
@@ -59,7 +60,7 @@ public class ModController {
             return new ResponseEntity<>("Please add images for the item", HttpStatus.FORBIDDEN);
         }
 
-        Mod mod = new Mod(modDTO.getName(), modDTO.getDescription(), modDTO.getPrice(), modDTO.getCarColor(), modDTO.getStock(), modDTO.getImages());
+        Mod mod = new Mod(modDTO.getName(), modDTO.getDescription(), modDTO.getPrice(), modDTO.getCarColor(), modDTO.getStock(), modDTO.getImages(), modDTO.getModtype());
         modService.saveMod(mod);
 
         return new ResponseEntity<>("Mod Created", HttpStatus.CREATED);
@@ -107,5 +108,8 @@ public class ModController {
         return new ResponseEntity<>("Modified successfully", HttpStatus.OK);
 
         }
-
+    @GetMapping("/mods")
+    public ModType[] getAllMods(){
+        return ModType.values();
+    }
 }

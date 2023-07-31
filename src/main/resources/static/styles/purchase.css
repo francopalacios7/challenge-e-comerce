@@ -40,7 +40,6 @@ a.navbar-brand{
 }
 .car-container--img img{
     width: 100%;
-<<<<<<< HEAD
     height: 25rem;
     object-fit: contain;
     object-position: 50% 50%;
@@ -50,12 +49,16 @@ a.navbar-brand{
 
 #card{
     box-shadow: 0 4px 8px #0000005e !important;
-=======
+
+}
+
+#card{
+
     height: 100%;
     object-fit: cover;
     object-position: 50% 75%;
 }
 .car-container--description{
     height: 11.5rem;
->>>>>>> eb1398993777bf7e093b581da4e72a8764e66a2d
+
 }

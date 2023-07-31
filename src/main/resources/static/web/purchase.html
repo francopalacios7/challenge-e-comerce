@@ -104,64 +104,7 @@
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-      </nav>
-    <main id="app" class="container">
-      <h1 class="bi-text-paragraph fs-3 me-5 pe-5 py-4">Configurá tu BMW</h1>
-      <!-- filter desktop -->
-      <div class="d-flex align-items-center justify-content-between d-md-none">
-        <div><span class="fw-bold">{{cars.length}}</span> Models</div>
-        <a class="button-primary button-primary--active" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-sliders2-vertical me-2"></i>Filter</a>
-      </div>
-      <div class="row">
-          <!-- filter mobile -->
-        <div class="col-3 d-none d-md-flex flex-wrap py-3 align-items-start">
-            <div class="filter-container py-2">
-                <div class="col-12 mb-3 fw-bold">Filter by</div>
-                <div class="form-check mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Default checkbox
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Default checkbox
-                    </label>
-                </div>
-            </div>
-            
-        </div>
-        <div class="col-12 col-md-9 d-flex flex-wrap gap-4 py-3 " >
-            <div class="col-12  d-none d-md-block "><span class="fw-bold">{{cars.length}}</span> Models</div>
-            <!-- dynamic car -->
-            <div class="row d-flex w-100 rounded-3 py-2 bg-light" id="card" v-for="car in cars">
-              <div class="col-12 col-md-8">
-                <div class="car-container">
-                  
-                  <div class="car-container--img">
-                      <img :src="car.images" class="img-fluid d-block" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-4">
-                
-                  <h3 class="ms-3 mb-3 fw-bold text-capitalize">{{car.model}}</h3>                  
-                  <p>{{car.description}}</p>                  
-                  <div class="px-0">
-                      <a class="w-100 button-primary" :href="'./details.html?id=' + car.model">Lorem, ipsum.</a>
-                  </div>
-              
-              </div>
-              
-                
-            </div>
-        </div>
-      </div>
-      <!-- modal -->
-=======
->>>>>>> eb1398993777bf7e093b581da4e72a8764e66a2d
+
 
       </div>
       <div class="col-12 col-md-10 d-flex flex-wrap gap-4 py-3">
@@ -202,6 +145,7 @@
                 </div>
               </div>
             </div>
+
            
           <!-- Car Grid -->
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">              
@@ -209,6 +153,7 @@
                 <div class="col-sm-6 mb-4 " v-for="car in filteredCars" :key="car.id">                  
                   <div class="card card-hover h-100">
                     <div class="car-container--img">
+
                       <img :src="car.images" class="img-fluid d-block" alt="">
                     </div>
                     <div class="card-body">

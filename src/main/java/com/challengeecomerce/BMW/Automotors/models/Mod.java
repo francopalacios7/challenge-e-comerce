@@ -1,6 +1,7 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
+import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -33,16 +34,19 @@ public class Mod {
     @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
     private Set<CarModDos> carModDosSet = new HashSet<>();
 
+    private ModType modType;
+
     public Mod() {
     }
 
-    public Mod(String name, String description, Double price, CarColor carColor, Integer stock, List <String> images) {
+    public Mod(String name, String description, Double price, CarColor carColor, Integer stock, List <String> images, ModType modType) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.carColor = carColor;
         this.stock = stock;
         this.images = images;
+        this.modType = modType;
     }
 
     public Long getId() {
@@ -95,5 +99,13 @@ public class Mod {
 
     public void setImages(List<String> images) {
         this.images = images;
+    }
+
+    public ModType getModType() {
+        return modType;
+    }
+
+    public void setModType(ModType modType) {
+        this.modType = modType;
     }
 }
