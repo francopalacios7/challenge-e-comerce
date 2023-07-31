@@ -27,7 +27,7 @@ public class Purchase {
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
 
 
-    @OneToOne(mappedBy = "purchase",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private DuesPlan duesPlan;
 
     @ManyToOne(fetch = FetchType.EAGER)

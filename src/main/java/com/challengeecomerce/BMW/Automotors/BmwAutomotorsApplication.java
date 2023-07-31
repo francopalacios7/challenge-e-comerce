@@ -45,8 +45,8 @@ public class BmwAutomotorsApplication {
 			Client pepe = new Client("Pepe", "Honguito", "pepe@gmail.com", passwordEncoder.encode("melba456"), "direccion", "23456");
 			clientRepository.save(pepe);
 
-			Car car1 = new Car("Weight: 2,310 kg" +
-					"Fuel Capacity: 80 liters" +
+			Car car1 = new Car("Weight: 2,310kg\n" +
+					"Fuel Capacity: 80 liters\n" +
 					"Acceleration: 0 to 100 km/h in 6.5 seconds)\n" +
 					"Final Speed: 250 km/h","BMW X5", Year.of(2022), CarColor.BLUE, 75000.0, "The BMW X5 is a luxury mid-size SUV known for its premium features, powerful performance, and spacious interior. As part of BMW's X-series lineup, the X5 offers a blend of comfort, technology, and driving dynamics. ",
 					Arrays.asList(12, 24, 36), true, CarType.SUV,
@@ -56,9 +56,9 @@ public class BmwAutomotorsApplication {
 							"https://hips.hearstapps.com/hmg-prod/images/bmw-x5-m-competition-2020-1600-35-1570006295.jpg"),
 					Arrays.asList(ModType.ALLOY_WHEELS, ModType.NAVIGATION_SYSTEM));
 
-			Car car2 = new Car("Weight: 1,680kg" +
-					"Fuel Capacity: 60 liters" +
-					"Acceleration: 0 to 100 km/h in 5.1 seconds" +
+			Car car2 = new Car("Weight: 1,680kg\n" +
+					"Fuel Capacity: 60 liters\n" +
+					"Acceleration: 0 to 100 km/h in 5.1 seconds\n" +
 					"Final Speed: 250 km/h","BMW M340i", Year.of(2023), CarColor.BLUE, 50000.0,"The BMW M340i is a high-performance variant of the popular 3 Series sedan. As part of BMW's M Performance lineup, the M340i focuses on delivering sportier driving dynamics and increased power.",
 					Arrays.asList(24, 36, 48), false, CarType.CAR,
 					8,
@@ -67,9 +67,9 @@ public class BmwAutomotorsApplication {
 							"https://i.postimg.cc/yYvFG545/5-3.webp"),
 					Arrays.asList(ModType.SUNROOF, ModType.PERFORMANCE_EXHAUST));
 
-			Car car3 = new Car("Weight: 1,510 kg" +
-					"Fuel Capacity: 52 liters" +
-					"Acceleration: 0 to 100 km/h in 5.1 seconds" +
+			Car car3 = new Car("Weight: 1,510kg\n" +
+					"Fuel Capacity: 52 liters\n" +
+					"Acceleration: 0 to 100 km/h in 5.1 seconds\n" +
 					"Final Speed: 250 km/h","BMW 140i", Year.of(2023), CarColor.WHITE, 95000.0,"The BMW 140i, specifically the 1 Series (F20/F21) 140i, is a compact luxury hatchback (3-door or 5-door) or coupe manufactured by BMW. It is part of the 1 Series lineup and is recognized for its agile handling and peppy performance.",
 					Arrays.asList(12, 24, 36, 60), true, CarType.CAR,
 					3,
@@ -78,9 +78,9 @@ public class BmwAutomotorsApplication {
 							"https://i.postimg.cc/D0cqnpWS/5.webp"),
 					Arrays.asList(ModType.NONE));
 
-			Car car4 = new Car("Weight: 2,370 kg" +
-					"Fuel Capacity: 85 liters" +
-					"Acceleration: 0 to 100 km/h in 6.5 seconds" +
+			Car car4 = new Car("Weight: 2,370kg\n" +
+					"Fuel Capacity: 85 liters\n" +
+					"Acceleration: 0 to 100 km/h in 6.5 seconds\n" +
 					"Final Speed: 250 km/h","BMW X6", Year.of(2022), CarColor.BLACK, 120000.0,
 					"The BMW M5 is a high-performance luxury sedan known for its powerful engine and precise handling.",
 					Arrays.asList(12, 24, 36, 48), true, CarType.SUV,
@@ -93,9 +93,9 @@ public class BmwAutomotorsApplication {
 					Arrays.asList(ModType.PERFORMANCE_EXHAUST, ModType.NAVIGATION_SYSTEM));
 
 
-			Car car5 = new Car("Weight: 2,000 kg" +
-					"Fuel Capacity: 68 liters" +
-					"Acceleration: 0 to 100 km/h in 4.3 seconds" +
+			Car car5 = new Car("Weight: 2,000kg\n" +
+					"Fuel Capacity: 68 liters\n" +
+					"Acceleration: 0 to 100 km/h in 4.3 seconds\n" +
 					"Final Speed: 250 km/h", "BMW M5", Year.of(2021), CarColor.WHITE, 135000.0,
 					"The BMW i8 is a plug-in hybrid sports car known for its futuristic design and impressive performance.",
 					Arrays.asList(12, 24, 36, 60), true, CarType.CAR,
@@ -107,9 +107,9 @@ public class BmwAutomotorsApplication {
 							"https://i.postimg.cc/Jzc7yjrW/m5-4.webp"),
 					Arrays.asList(ModType.SUNROOF, ModType.ALLOY_WHEELS));
 
-			Car moto1 = new Car ("Weight: 208 kg" +
-					"Fuel Capacity: 16.5 liters" +
-					"Acceleration: 0 to 100 km/h in around 3 seconds" +
+			Car moto1 = new Car ("Weight: 208kg\n" +
+					"Fuel Capacity: 16.5 liters\n" +
+					"Acceleration: 0 to 100 km/h in around 3 seconds\n" +
 					"Final Speed: Exceeds 300 km/h", "BMW S1000RR", Year.of(2023), CarColor.BLACK, 18000.0,
 					"The BMW S1000RR is a high-performance sportbike known for its powerful engine and advanced technology.",
 					Arrays.asList(6, 12, 18, 24), true, CarType.MOTORCYCLE, 15,
@@ -120,9 +120,9 @@ public class BmwAutomotorsApplication {
 					Arrays.asList(ModType.NONE));
 
 // Crear moto2 (BMW R1250GS)
-			Car moto2 = new Car("Weight: 268 kg" +
-					"Fuel Capacity: 20 liters" +
-					"Acceleration: 0 to 100 km/h in around 4 seconds" +
+			Car moto2 = new Car("Weight: 268 kg\n" +
+					"Fuel Capacity: 20 liters\n" +
+					"Acceleration: 0 to 100 km/h in around 4 seconds\n" +
 					"Final Speed: Over 200 km/h", "BMW R1250GS", Year.of(2020), CarColor.BLUE, 23000.0,
 					"The BMW R1250GS is a premium adventure motorcycle designed for long-distance touring and off-road adventures.",
 					Arrays.asList(6, 12, 24, 36), true, CarType.MOTORCYCLE,23,
@@ -133,9 +133,9 @@ public class BmwAutomotorsApplication {
 					Arrays.asList(ModType.NONE));
 
 // Crear moto3 (BMW G310GS)
-			Car moto3 = new Car("Weight: 169.5 kg" +
-					"Fuel Capacity: 11 liters" +
-					"Acceleration: 0 to 100 km/h in around 4 seconds" +
+			Car moto3 = new Car("Weight: 169.5kg\n" +
+					"Fuel Capacity: 11 liters\n" +
+					"Acceleration: 0 to 100 km/h in around 4 seconds\n" +
 					"Final Speed: Up to 150 km/h", "BMW G310GS", Year.of(2024), CarColor.WHITE, 9000.0,
 					"The BMW G310GS is an entry-level adventure motorcycle perfect for urban commuting and light off-road use.",
 					Arrays.asList(6, 12, 18, 24), true, CarType.MOTORCYCLE, 17,
