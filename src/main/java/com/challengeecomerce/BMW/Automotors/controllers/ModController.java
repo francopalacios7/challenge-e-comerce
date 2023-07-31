@@ -1,7 +1,6 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.ModDTO;
-import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import com.challengeecomerce.BMW.Automotors.services.ModService;
@@ -89,7 +88,7 @@ public class ModController {
         }
 
         if(modDTO.getStock() <= 0){
-            return new ResponseEntity<>("Price must be greater than 0", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Stock must be greater than 0", HttpStatus.FORBIDDEN);
         }
 
         if (modDTO.getCarColor().toString().isBlank()){
