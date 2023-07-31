@@ -22,11 +22,7 @@ public class Purchase {
     @JoinColumn(name = "client_id")
     private Client client;
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
-    private Set<CarPurchase> carPurchaseSet = new HashSet<>();
-    @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
-    @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
-    private Set<CarModPurchase> carModPurchaseSet = new HashSet<>();
     @OneToOne(mappedBy = "purchase",fetch = FetchType.EAGER)
     private DuesPlan duesPlan;
     public Purchase() {
@@ -63,22 +59,12 @@ public class Purchase {
     public void setClient(Client client) {
         this.client = client;
     }
-    public Set<CarPurchase> getCarPurchaseSet() {
-        return carPurchaseSet;
-    }
-    public void setCarPurchaseSet(Set<CarPurchase> carPurchaseSet) {
-        this.carPurchaseSet = carPurchaseSet;
-    }
     public Set<ModPurchase> getModPurchaseSet() {
         return modPurchaseSet;
     }
     public void setModPurchaseSet(Set<ModPurchase> modPurchaseSet) {
         this.modPurchaseSet = modPurchaseSet;
     }
-    public Set<CarModPurchase> getCarModPurchaseSet() {
-        return carModPurchaseSet;
-    }
-    public void setCarModPurchaseSet(Set<CarModPurchase> carModPurchaseSet) {this.carModPurchaseSet = carModPurchaseSet;}
     public PurchaseType getPurchaseType() {return purchaseType;}
     public void setPurchaseType(PurchaseType purchaseType) {this.purchaseType = purchaseType;}
     public DuesPlan getDuesPlan() {return duesPlan;}
