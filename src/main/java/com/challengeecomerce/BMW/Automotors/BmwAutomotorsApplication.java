@@ -9,6 +9,7 @@ import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
 import com.challengeecomerce.BMW.Automotors.repositories.CarRepository;
 import com.challengeecomerce.BMW.Automotors.repositories.ClientRepository;
 import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
+import com.challengeecomerce.BMW.Automotors.services.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.Arrays;
+import java.util.Random;
 
 @SpringBootApplication
 public class BmwAutomotorsApplication {
@@ -28,6 +30,8 @@ public class BmwAutomotorsApplication {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	PurchaseService purchaseService;
 
 	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository ) {
@@ -162,7 +166,15 @@ public class BmwAutomotorsApplication {
 			Mod performanceExhaustBlack = new Mod("Performance Exhaust", "Enhances the car's exhaust system for better performance", 250.0, CarColor.BLACK, 10,Arrays.asList("https://i.postimg.cc/1XKsPpMJ/performance-exhaust.webp"), ModType.PERFORMANCE_EXHAUST);
 
 			modRepository.saveAll(Arrays.asList(navigationSystem,sunroof,tintedWindows,alloyWheel3,alloyWheel4,alloyWheel2,alloyWheels1,alloyWheels,spoilerWhite,spoilerBlue,spoilerBlack,performanceExhaustBlack));
+			Random random = new Random();
+			Long ticketNumber;
 
+
+			do {
+				ticketNumber = random.nextLong();
+			} while (purchaseService.findByTicketNumber(ticketNumber) != null);
+
+			System.out.println("ticketNumber = " + ticketNumber);
 		});
 	}
 }

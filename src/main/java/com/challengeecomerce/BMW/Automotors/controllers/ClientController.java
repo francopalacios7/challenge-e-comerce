@@ -88,8 +88,10 @@ public class ClientController {
             Long ticketNumber;
 
             do {
-                ticketNumber = random.nextLong() + 100000;
+                ticketNumber = random.nextLong();
             } while (purchaseService.findByTicketNumber(ticketNumber) != null);
+
+            System.out.println("ticketNumber = " + ticketNumber);
 
 
 
