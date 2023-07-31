@@ -13,7 +13,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
     <link rel="stylesheet" href="./../styles/style.css" />
-    <link rel="stylesheet" href="./../styles/purchase.css" />
+    <link rel="stylesheet" href="./../styles/mods.css" />
   </head>
 
   <body class="bgc-fondo">
@@ -69,7 +69,6 @@
       <h1 class="bi-text-paragraph fs-3 me-5 pe-5 py-4">Mods</h1>
       <!-- filter desktop -->
       <div class="d-flex align-items-center justify-content-between d-md-none">
-        <div><span class="fw-bold">{{cars.length}}</span> Models</div>
         <a class="button-primary button-primary--active" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-sliders2-vertical me-2"></i>Filter</a>
       </div>
       <div class="row">
@@ -93,15 +92,14 @@
             
         </div>
         <div class="col-12 col-md-9 d-flex flex-wrap gap-4 py-3">
-            <div class="col-12 d-none d-md-block"><span class="fw-bold">{{cars.length}}</span> Models</div>
-            <!-- dynamic car -->
-            <div class="car-container" v-for="car in cars">
-                <h3 class="ms-3 fw-bold text-capitalize">{{car.model}}</h3>
-                <div class="car-container--img mb-3">
-                    <img :src="car.images" class="img-fluid" alt="">
-                </div>
+            <!-- dynamic mod -->
+            <div class="mod-container" v-for="mod of mods">
+              <div class="mod-container--img mb-3">
+                <img :src="mod.images[0]" class="img-fluid" alt="">
+              </div>
+              <h3 class="ms-3 fw-bold text-capitalize">{{mod.name}}</h3>
                 <div class="px-0 px-md-3">
-                    <a class="w-100 button-primary" :href="'./details.html?id=' + car.model">Lorem, ipsum.</a>
+                   <!--  <a class="w-100 button-primary" :href="'./details.html?id=' + ">Lorem, ipsum.</a> -->
                 </div>
             </div>
         </div>
@@ -132,7 +130,7 @@
 
             </div>
             <div class="modal-footer border-top-0">
-              <button type="button" class="button-primary button-primary--active w-100" data-bs-dismiss="modal">{{cars.length}} Results</button>
+              <button type="button" class="button-primary button-primary--active w-100" data-bs-dismiss="modal">{{mods.length}} Results</button>
             </div>
           </div>
         </div>
@@ -380,7 +378,7 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./../javascript/purchase.js"></script>
+    <script src="./../javascript/mods.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

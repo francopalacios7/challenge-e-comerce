@@ -1,23 +1,14 @@
 /*  Scrollbar  */
   /* Firefox */
-  .car-container--description {
-    scrollbar-width: auto;
-    scrollbar-color: var(--color-primario) var(--color-bg);
-  }
 
   /* Chrome, Edge, and Safari */
   .car-container--description::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  .car-container--description::-webkit-scrollbar-track {
-    background: var(--color-bg);
+    width: 7px;
   }
 
   .car-container--description::-webkit-scrollbar-thumb {
-    background-color: var(--color-bg);
-    border-radius: 10px;
-    border: 3px solid var(--color-primario);
+    background: var(--color-primario);
+    border-radius: 5px;
   }
 
 a.navbar-brand{
@@ -31,7 +22,6 @@ a.navbar-brand{
 }
 
 .car-container{
-    padding: 1.10rem 0rem;
     height: 20rem;
 }
 .car-container--img{
@@ -39,10 +29,10 @@ a.navbar-brand{
 }
 .car-container--img img{
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 50% 75%;
+    height: 100%; 
+    object-fit: contain;
 }
 .car-container--description{
-    height: 11.5rem;
+    height: 9.5rem;
 }
+

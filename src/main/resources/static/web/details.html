@@ -55,25 +55,21 @@
       <div class="row py-4">
         <!-- tabs -->
         <div class="col-12">
-          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link button-primary active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link button-primary" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link button-primary" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
-            </li>
-          </ul>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item primary-color"><a href="./index.html">Home</a></li>
+              <li class="breadcrumb-item primary-color"><a href="./purchase.html">Cars</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Details</li>
+            </ol>
+          </nav>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-lg-6 my-4 my-lg-2">
 
            <!-- Carousel -->
-           <div id="demo" class="carousel slide" data-bs-ride="carousel">
+      <!--      <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-            <!-- Indicators/dots -->
+         
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
               <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
@@ -82,7 +78,7 @@
               <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
             </div>
 
-            <!-- The slideshow/carousel -->
+            
             <div class="carousel-inner">
               <div class="carousel-item" v-for="(img, index) in carImages" :key="index"
                 :class="{ 'active': index === 0 }">
@@ -91,31 +87,52 @@
             </div>
 
 
-            <!-- Left and right controls/icons -->
+         
             <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
               <span class="carousel-control-prev-icon"></span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
               <span class="carousel-control-next-icon"></span>
             </button>
+          </div> -->
+
+          
+          <div class="selected-img-container d-flex justify-content-center">
+            <img class="img-fluid px-auto" :src="selectedImg ? selectedImg : carImages[0]" alt="" style="height: 22rem;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          </div>
+          <div class="d-flex justify-content-center flex-nowrap overflow-auto gap-2 list-car-img py-2" >
+            <img class="img-fluid" :src="img" alt="" @click="chooseImg(img)" style="width: 6rem;" v-for="img of carImages">
           </div>
 
-        </div>        
-        <div class="col-12 col-md-6">
-          <h1 class="fw-bold">{{params}}</h1>
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-              <p >Descripción del botón Model. Aquí puedes agregar más contenido.</p>
+          <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">              
+              <div class="modal-body p-0">
+                <div class="row">
+                  <img :src="selectedImg" alt="">
+                </div>
+              </div>              
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-
-              <h4>acá irian cosas de colores</h4>
-
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, quod quia laborum ab distinctio dolore, autem dolorem magnam provident, soluta optio consequatur aperiam? Nihil, distinctio! Harum, libero impedit. At, totam!
-            </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
           </div>
+        </div>
 
+        </div>
+        <div class="col-12 col-lg-6 px-3 px-md-4 px-lg-5" v-for="car in cars">        
+          <div class="d-flex justify-content-between">
+            <h1 class="fw-bold">{{params}}</h1>
+            <div>
+              <span v-show="car.packM" class="badge bgc-primary">PackM</span>
+
+            </div>
+          </div>  
+          <p class=" text-muted">{{car.date}}</p>
+          <p>{{car.description}}</p>
+          <h3 class="ms-2">Details</h3>
+          <p>{{car.details}}</p>
+          <div class="d-flex justify-content-between">
+            <a class="button-primary" :href="'./promotionPage.html?price=' + car.price">Get a promotion</a>
+          </div>
         </div>
       </div>
     </div>

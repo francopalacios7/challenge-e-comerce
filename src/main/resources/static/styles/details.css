@@ -1,3 +1,26 @@
+/*  Scrollbar  */
+  /* Firefox */
+  .list-car-img {
+    scrollbar-width: auto;
+    scrollbar-color: var(--color-primario) var(--color-bg);
+  }
+
+  /* Chrome, Edge, and Safari */
+  .list-car-img::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .list-car-img::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+
+  .list-car-img::-webkit-scrollbar-thumb {
+    background-color: var(--color-bg);
+    border-radius: 10px;
+    border: 3px solid var(--color-primario);
+  }
+
+
 a.navbar-brand{
     width: 3rem!important;
     content: url("./../images/BMW_Grey-Colour_RGB.SVG.asset.1605107718514.SVG");
@@ -9,14 +32,29 @@ a.navbar-brand{
     object-fit: cover;
 }
 
-.button-primary.active{
+button.active{
+    border: 1px solid var(--color-primario);
+    text-decoration: none;
     background-color: var(--color-primario)!important;
-    padding: .495rem 1.25rem;
     color: #fff!important;
+    text-align: center;
+    font-weight: 600;
+    transition: .5s ease-in-out;
 }
 
-.button-primary:hover{
-    background-color: var(--color-primario)!important;
-    padding: .495rem 1.25rem;
-    color: #fff;
+.selected-img-container{
+    margin: auto;
+    width: 100%;
+}
+
+.selected-img-container img{
+    object-fit: cover;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.list-car-img img{
+    object-fit: cover;
+    height: 4.20rem;
+    cursor: pointer;
 }

@@ -7,13 +7,14 @@ createApp({
       showConfirmation: false,
       err: '',
       carImages:[],
-      params: ''
+      params: '',
+      selectedImg: "",
     }
   },
 
   created(){
     this.getCars();
-    this.loadData();
+  /*   this.loadData(); */
 
     this.params = new URLSearchParams(location.search).get("id");
     console.log("ID from URL:", this.params);
@@ -23,48 +24,22 @@ createApp({
         axios.get("/api/car")
         .then(response => {
                   
-          const filteredCars = response.data.filter(car => car.model === this.params);
-          console.log("filtered cars:", filteredCars);
-
-          // Asignar el resultado al array de cars para mostrarlo en la interfaz
-          this.cars = filteredCars;
+          this.cars = response.data.filter(car => car.model === this.params);
+          console.log("this cars: ", this.cars);
           this.carImages = this.cars[0].images;
           console.log("filtered Images:",this.carImages );
         }).catch(err => console.error(err))
     },
-
-    loadData(){
+    chooseImg(img){
+      console.log(img)
+      this.selectedImg = img
+    },
+    /* loadData(){
       axios.get('/api/clients/current')
       .then(res => {
         console.log(res.data);
       });
-    },
-
-
-    register() {
-      this.showConfirmation = true
-    },
-
-    confirmRegister() {
-      this.showConfirmation = false;
-  
-      axios.post('/api/clients', this.registerClient)
-        .then((res) => {
-          if (res.status === 201) {
-            this.showNotification('Account Created', 'success');
-            setTimeout(() => {
-              window.location.href = './index.html';
-            }, 700);
-          }
-        })
-      .catch(error => {
-        console.error(error);
-        this.err = error.response.data;
-        console.log(this.err)
-          this.showNotification(this.err, 'error');
-
-      });
-    },
+    }, */
 
 
     cancelRegister() {

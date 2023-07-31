@@ -41,20 +41,20 @@
       </div>
     </div>
   </nav>
-  <main id="app" class="container">
+  <main id="app" class="container-fluid">
     <h1 class="bi-text-paragraph fs-3 me-5 pe-5 py-4">Configurá tu BMW</h1>
     <!-- filter mobile -->
 
-    <div class="d-flex align-items-center justify-content-between d-md-none filter-container bgc py-1">
-      <div><span class="fw-bold">{{cars.length}}</span> Models</div>
+    <div class="d-flex align-items-center justify-content-between d-lg-none filter-container bgc py-1">
+      <div><span class="fw-bold">{{filteredCars.length}}</span> Models</div>
       <a class="button-primary button-primary--active" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i
           class="bi bi-sliders2-vertical me-2"></i>Filter</a>
     </div>
     <div class="row">
       <!-- filter desktop -->
 
-      <div class="col-2 d-none d-md-flex py-3 rounded">
-        <div class="filter-container py-2 w-100">
+      <div class="col-lg-3 col-xl-2 d-none d-lg-block py-3 rounded">
+        <div class="filter-container px-3 w-100">
           <div class="col-12 mb-3 fw-bold">Filter by</div>
           <div class="pb-3 mb-2">
             <h5 class="fw-bold">Type</h5>
@@ -70,10 +70,8 @@
       
           <div class="pb-3 mb-2">
             <h5 class="fw-bold">Price</h5>
-            <div class="d-flex justify-content-between mb-2">
-              <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="number" style="width: 68px;" v-model.number="priceRange[0]">
-              <span class="mx-2">-</span>
-              <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="number" style="width: 68px;" v-model.number="priceRange[1]">
+            <div class="d-flex  mb-2">
+              <input class="rounded-3 px-2" min="1990" max="2023" type="number" style="width: 12rem;" v-model.number="priceRange[0]">
             </div>
             <div class="form-check ms-2">
               <input class="form-check-input" type="checkbox" value="true" id="packm" v-model="packM">
@@ -97,7 +95,7 @@
           </div>
           <div class="pb-3 mb-2">
             <h5 class="fw-bold">Year</h5>
-            <div class="d-flex justify-content-between ms-2">
+            <div class="d-flex justify-content-between">
               <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="date"  v-model.number="yearRange[0]">
               <span class="mx-2">-</span>
               <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="date"  v-model.number="yearRange[1]">
@@ -106,10 +104,11 @@
         </div>
 
       </div>
-      <div class="col-12 col-md-10 d-flex flex-wrap gap-4 py-3">
-        <div class=" col-12 d-none d-md-flex justify-content-between">
+
+      <div class="col-12 col-lg-9 col-xl-10 d-flex flex-wrap gap-4 py-3">
+        <div class=" col-12 d-none d-lg-flex justify-content-between">
           <div class=""><span class="fw-bold">{{ filteredCars.length }}</span> Models</div>
-          <div >
+          <div>
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><i class="bi bi-list"></i></button>
@@ -125,8 +124,8 @@
            <!-- Car List  -->
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-              <div class="d-flex w-100 justify-content-center rounded bgc" v-for="car in filteredCars" :key="car.id">                
-                <div class="col-12 col-lg-8 d-fle">
+              <div class="d-flex w-100 justify-content-center flex-wrap rounded-3 bg-body mb-3" v-for="car in filteredCars" :key="car.id">                
+                <div class="col-12 col-lg-8">
                   <div class="car-container w-100">
                     <div class="car-container--img p-2">
                       <img :src="car.images[0]" class="img-fluid" alt="">
@@ -136,10 +135,10 @@
                 <div class="col-12 col-lg-4 p-2">
                   <h3 class="ms-3 mb-3 fw-bold text-capitalize">{{car.model}}</h3>
                   <div class="car-container--description overflow-auto mb-4">
-                    <p class="">{{car.description}}</p>
+                    <p class="lh-lg">{{car.details}}</p>
                   </div>
                   <div class="px-0">
-                    <a class="w-100 button-primary" :href="'./details.html?id=' + car.id">Details</a>
+                    <a class="w-100 button-primary" :href="'./details.html?id=' + car.model">Details</a>
                   </div>
                 </div>
               </div>
@@ -148,17 +147,17 @@
           <!-- Car Grid -->
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">              
               <div class="row" >
-                <div class="col-sm-6 mb-4 " v-for="car in filteredCars" :key="car.id">                  
+                <div class="col-sm-6 mb-4" v-for="car in filteredCars" :key="car.id">                  
                   <div class="card card-hover h-100">
                     <div class="car-container--img">
                       <img :src="car.images" class="img-fluid d-block" alt="">
                     </div>
                     <div class="card-body">
                       <span class="fs-sm">{{car.date}}</span>
-                      <h3 class="mb-1 h6 fw-bold">{{car.model}}</h3>
+                      <h3 class="mb-1 fw-bold">{{car.model}}</h3>
                     </div>
                     <div class="card-footer d-flex justify-content-center">
-                      <a class="w-100 button-primary" :href="'./details.html?id=' + car.id">Details</a>
+                      <a class="w-100 button-primary" :href="'./details.html?id=' + car.model">Details</a>
                     </div>
                   </div>
                 </div>
@@ -182,23 +181,60 @@
           </div>
           <div class="modal-body ">
 
-            <div class="form-check mb-2">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
+            <div class="filter-container py-2 w-100">
+              <div class="pb-3 mb-2">
+                <h5 class="fw-bold">Type</h5>
+                <div class="form-check ms-2 mb-2">
+                  <input class="form-check-input" type="checkbox" value="CAR" id="car" v-model="selectedType">
+                  <label class="form-check-label" for="car">Car</label>
+                </div>
+                <div class="form-check ms-2">
+                  <input class="form-check-input" type="checkbox" value="SUV" id="suv" v-model="selectedType">
+                  <label class="form-check-label" for="suv">Suv</label>
+                </div>
+              </div>
+          
+              <div class="pb-3 mb-2">
+                <h5 class="fw-bold">Price</h5>
+                <div class="d-flex justify-content-between mb-2">
+                  <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="number" style="width: 68px;" v-model.number="priceRange[0]">
+                  <span class="mx-2">-</span>
+                  <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="number" style="width: 68px;" v-model.number="priceRange[1]">
+                </div>
+                <div class="form-check ms-2">
+                  <input class="form-check-input" type="checkbox" value="true" id="packm" v-model="packM">
+                  <label class="form-check-label" for="packm">Pack-M</label>
+                </div>
+              </div>
+              <div class="pb-3 mb-2 ">
+                <h5 class="fw-bold">Color</h5>
+                <div class="form-check ms-2">
+                  <input class="form-check-input" type="checkbox" value="BLACK" id="black" v-model="selectedColors">
+                  <label class="form-check-label" for="black">Black</label>
+                </div>
+                <div class="form-check ms-2">
+                  <input class="form-check-input" type="checkbox" value="WHITE" id="white" v-model="selectedColors">
+                  <label class="form-check-label" for="white">White</label>
+                </div>
+                <div class="form-check ms-2">
+                  <input class="form-check-input" type="checkbox" value="BLUE" id="blue" v-model="selectedColors">
+                  <label class="form-check-label" for="blue">Blue</label>
+                </div>
+              </div>
+              <div class="pb-3 mb-2">
+                <h5 class="fw-bold">Year</h5>
+                <div class="d-flex justify-content-between ms-2">
+                  <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="date"  v-model.number="yearRange[0]">
+                  <span class="mx-2">-</span>
+                  <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="date"  v-model.number="yearRange[1]">
+                </div>
+              </div>
             </div>
 
           </div>
           <div class="modal-footer border-top-0">
             <button type="button" class="button-primary button-primary--active w-100"
-              data-bs-dismiss="modal">{{cars.length}} Results</button>
+              data-bs-dismiss="modal">{{filteredCars.length}} Results</button>
           </div>
         </div>
       </div>

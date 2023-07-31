@@ -18,8 +18,12 @@ body, html {
     background-color: var(--color-bg);
 }
 
+.bgc-primary{
+    background-color: var(--color-primario)!important;
+}
+
 .primary-color{
-    color: var(--color-primario);
+    color: var(--color-primario)!important;
 }
 
 .button-primary{
