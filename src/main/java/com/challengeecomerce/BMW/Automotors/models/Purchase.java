@@ -27,8 +27,6 @@ public class Purchase {
     private Set<CarPurchase> carPurchaseSet = new HashSet<>();
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
-    @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
-    private Set<CarModPurchase> carModPurchaseSet = new HashSet<>();
     @OneToOne(mappedBy = "purchase",fetch = FetchType.EAGER)
     private DuesPlan duesPlan;
     public Purchase() {
@@ -87,10 +85,6 @@ public class Purchase {
     public void setModPurchaseSet(Set<ModPurchase> modPurchaseSet) {
         this.modPurchaseSet = modPurchaseSet;
     }
-    public Set<CarModPurchase> getCarModPurchaseSet() {
-        return carModPurchaseSet;
-    }
-    public void setCarModPurchaseSet(Set<CarModPurchase> carModPurchaseSet) {this.carModPurchaseSet = carModPurchaseSet;}
     public PurchaseType getPurchaseType() {return purchaseType;}
     public void setPurchaseType(PurchaseType purchaseType) {this.purchaseType = purchaseType;}
     public DuesPlan getDuesPlan() {return duesPlan;}

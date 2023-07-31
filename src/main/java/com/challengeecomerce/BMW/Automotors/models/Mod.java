@@ -31,8 +31,6 @@ public class Mod {
 
     @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
-    @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
-    private Set<CarModDos> carModDosSet = new HashSet<>();
 
     private ModType modType;
 

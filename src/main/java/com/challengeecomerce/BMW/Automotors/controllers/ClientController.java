@@ -2,7 +2,7 @@ package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
-import com.challengeecomerce.BMW.Automotors.dtos.TurnReservationDTO;
+import com.challengeecomerce.BMW.Automotors.dtos.MeetingReservationDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.PurchaseType;
@@ -71,19 +71,18 @@ public class ClientController {
         return clientService.getAllClients();
     }
     @PostMapping("/clients/purchase")
-    public ResponseEntity<Object> purchase(@RequestBody PurchaseDTO purchaseDTO, Authentication authentication){
+    public ResponseEntity<Object> purchase(@RequestBody PurchaseDTO purchaseDTO, Authentication authentication) {
         Client client = clientService.findByEmail(authentication.getName());
-        if(client == null){
+        if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if (purchaseDTO.getTotalAmount().isNaN()){
+        if (purchaseDTO.getTotalAmount().isNaN()) {
             return new ResponseEntity<>("The amount cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if(purchaseDTO.getPayments().toString().isBlank()){
+        if (purchaseDTO.getPayments().toString().isBlank()) {
             return new ResponseEntity<>("The payments cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.CARMOD) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)){
-
+        if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)) {
             Random random = new Random();
             Long ticketNumber;
 
@@ -91,26 +90,26 @@ public class ClientController {
                 ticketNumber = random.nextLong();
             } while (purchaseService.findByTicketNumber(ticketNumber) != null);
 
-            System.out.println("ticketNumber = " + ticketNumber);
+
+            Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType(), purchaseDTO.getDuesPlan());
 
 
-
-            Purchase purchase = new Purchase(ticketNumber,LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType(), purchaseDTO.getDuesPlan());
             purchaseService.save(purchase);
             client.addPurchase(purchase);
             clientService.save(client);
         }
-            return new ResponseEntity<>( purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }
-    @PostMapping("/client/sendemail")
-    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody TurnReservationDTO turnReservationDTO) {
+
+    @PostMapping("/client/sendEmail")
+    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO turnReservationDTO) {
 
         Client client = clientService.findByEmail(authentication.getName());
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
         }
         String emailToSend = turnReservationDTO.getEmail();
-        LocalDateTime turn = turnReservationDTO.getTurReservation();
+        LocalDateTime turn = turnReservationDTO.getMeetingReservation();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedDateTime = turn.format(formatter);

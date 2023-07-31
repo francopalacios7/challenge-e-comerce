@@ -1,18 +1,10 @@
 package com.challengeecomerce.BMW.Automotors.dtos;
 
-import com.challengeecomerce.BMW.Automotors.models.CarModDos;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
-import com.challengeecomerce.BMW.Automotors.models.ModPurchase;
-import com.challengeecomerce.BMW.Automotors.models.Purchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
 
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class ModDTO {
 
