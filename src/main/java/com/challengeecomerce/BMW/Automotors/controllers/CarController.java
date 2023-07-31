@@ -38,6 +38,14 @@ public class CarController {
 //        if(!client.getEmail().contains("admin")){
 //            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
 //        }
+
+        if(carDTO.getDetails().isBlank()){
+            return new ResponseEntity<>("Please add the vehicle details", HttpStatus.FORBIDDEN);
+        }
+
+        if(carDTO.getImages().isEmpty()){
+            return new ResponseEntity<>("Please add images to the vehicle", HttpStatus.FORBIDDEN);
+        }
         if(carDTO.getModel().isBlank()){
 
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
@@ -64,7 +72,7 @@ public class CarController {
         if(carDTO.getPackM().toString().isBlank()){
             return new ResponseEntity<>("PackM must be selected, please try again.", HttpStatus.FORBIDDEN);
         }
-        Car car1 = new Car(carDTO.getModel(), carDTO.getDate(), carDTO.getCarColor(), carDTO.getPrice(), carDTO.getDescription(), carDTO.getPayments(), carDTO.getPackM(), carDTO.getCarType(), carDTO.getStock(), carDTO.getImages(), carDTO.getModType());
+        Car car1 = new Car(carDTO.getDetails(), carDTO.getModel(), carDTO.getDate(), carDTO.getCarColor(), carDTO.getPrice(), carDTO.getDescription(), carDTO.getPayments(), carDTO.getPackM(), carDTO.getCarType(), carDTO.getStock(), carDTO.getImages(), carDTO.getModType());
         carService.saveCar(car1);
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
     }
