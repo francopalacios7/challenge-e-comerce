@@ -22,8 +22,6 @@ public class Purchase {
     @JoinColumn(name = "client_id")
     private Client client;
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
-    private Set<CarPurchase> carPurchaseSet = new HashSet<>();
-    @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
     @OneToOne(mappedBy = "purchase",fetch = FetchType.EAGER)
     private DuesPlan duesPlan;
@@ -60,12 +58,6 @@ public class Purchase {
     }
     public void setClient(Client client) {
         this.client = client;
-    }
-    public Set<CarPurchase> getCarPurchaseSet() {
-        return carPurchaseSet;
-    }
-    public void setCarPurchaseSet(Set<CarPurchase> carPurchaseSet) {
-        this.carPurchaseSet = carPurchaseSet;
     }
     public Set<ModPurchase> getModPurchaseSet() {
         return modPurchaseSet;

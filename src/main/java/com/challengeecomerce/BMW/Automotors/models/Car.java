@@ -14,34 +14,21 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String details;
     private String model;
-
     private LocalDate date;
-
     private CarColor carColor;
-
     private Double price;
-
     private String description;
-
     @ElementCollection
     private List<Integer> payments;
-
     private Boolean packM;
     private CarType carType;
-
     private Integer stock;
-
     @ElementCollection
     @CollectionTable(name = "car_images", joinColumns = @JoinColumn(name = "car_id"))
     @Column(name = "image")
     private List<String> images;
-
-    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
-    private Set<CarPurchase> carPurchaseSet = new HashSet<>();
-
     @ElementCollection
     @CollectionTable(name = "carMod", joinColumns = @JoinColumn(name = "mod_id"))
     @Column(name = "mod")
@@ -66,111 +53,78 @@ public class Car {
         this.images = images;
         this.modType = modType;
     }
-
-
     public Long getId() {
         return id;
     }
-
     public String getDetails() {
         return details;
     }
-
     public void setDetails(String details) {
         this.details = details;
     }
-
     public String getModel() {
         return model;
     }
-
     public void setModel(String model) {
         this.model = model;
     }
-
     public LocalDate getDate() {
         return date;
     }
-
     public void setDate(LocalDate date) {
         this.date = date;
     }
-
     public CarColor getCarColor() {
         return carColor;
     }
-
     public void setCarColor(CarColor carColor) {
         this.carColor = carColor;
     }
-
     public Double getPrice() {
         return price;
     }
-
     public void setPrice(Double price) {
         this.price = price;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
     public List<Integer> getPayments() {
         return payments;
     }
-
     public void setPayments(List<Integer> payments) {
         this.payments = payments;
     }
-
     public Boolean getPackM() {
         return packM;
     }
-
     public void setPackM(Boolean packM) {
         this.packM = packM;
     }
-
     public CarType getCarType() {
         return carType;
     }
     public void setCarType(CarType carType) {
         this.carType = carType;
     }
-
     public Integer getStock() {
         return stock;
     }
-
     public void setStock(Integer stock) {
         this.stock = stock;
     }
-
     public List<String> getImages() {
         return images;
     }
-
     public void setImages(List<String> images) {
         this.images = images;
     }
-
-    public Set<CarPurchase> getCarPurchaseSet() {
-        return carPurchaseSet;
-    }
-
-    public void setCarPurchaseSet(Set<CarPurchase> carPurchaseSet) {
-        this.carPurchaseSet = carPurchaseSet;
-    }
-
     public List<ModType> getModType() {
         return modType;
     }
-
     public void setModType(List<ModType> modType) {
         this.modType = modType;
     }
