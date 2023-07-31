@@ -162,13 +162,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="mod of modsFiltrados" :key="mod.id">
-                        <td>{{ mod.id }}</td>
+                    <tr v-for="mod of mods" :key="mod.id">
+                        
+                        <td>{{mod.id}}</td>
                         <td>{{ mod.name }}</td>
-                        <td>{{ mod.description }}</td>
+                        <td>{{mod.description}}</td>
+                        <td>{{mod.carColor}}</td>
+                        <td>${{mod.price.toFixed(2)}}</td>
+                        <td>{{mod.stock}}</td>
+                        
+                       <!--  <td>{{ mod.description }}</td>
                         <td>{{ mod.carColor }}</td>
                         <td>{{ mod.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
-                        <td>{{ mod.stock }}</td>
+                        <td>{{ mod.stock }}</td> -->
 
                         <td>
                             <a :href="'./updateMod.html?id='+mod.id">

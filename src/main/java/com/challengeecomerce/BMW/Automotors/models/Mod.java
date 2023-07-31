@@ -1,7 +1,6 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
-import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,7 +31,10 @@ public class Mod {
     @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
 
-    private ModType modType;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "modType")
+    private com.challengeecomerce.BMW.Automotors.models.ModType modType;
+
 
     public Mod() {
     }

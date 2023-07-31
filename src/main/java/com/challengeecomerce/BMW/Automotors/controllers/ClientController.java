@@ -92,15 +92,12 @@ public class ClientController {
 
 
             Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType(), purchaseDTO.getDuesPlan());
-
-
             purchaseService.save(purchase);
             client.addPurchase(purchase);
             clientService.save(client);
         }
         return new ResponseEntity<>(purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }
-
     @PostMapping("/client/sendEmail")
     public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO turnReservationDTO) {
 

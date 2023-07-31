@@ -14,7 +14,6 @@ public class PurchaseDTO {
     private Double totalAmount;
     private PurchaseType purchaseType;
     private Integer payments;
-    private Set<CarPurchaseDTO> carPurchaseDTO;
     private Set<ModPurchaseDTO> modPurchaseDTO;
 
     private DuesPlan duesPlan;
@@ -44,9 +43,6 @@ public class PurchaseDTO {
     }
     public Integer getPayments() {
         return payments;
-    }
-    public Set<CarPurchaseDTO> getCarPurchaseDTO() {
-        return carPurchaseDTO;
     }
     public Set<ModPurchaseDTO> getModPurchaseDTO() {
         return modPurchaseDTO;
