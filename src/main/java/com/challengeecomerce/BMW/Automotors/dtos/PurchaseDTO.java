@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class PurchaseDTO {
     private Long id;
+    private Long ticketNumber;
     private LocalDate date;
     private Double totalAmount;
     private PurchaseType purchaseType;
@@ -21,6 +22,7 @@ public class PurchaseDTO {
     }
     public PurchaseDTO(Purchase purchase) {
         this.id = purchase.getId();
+        this.ticketNumber = purchase.getTicketNumber();
         this.date = purchase.getDate();
         this.totalAmount = purchase.getTotalAmount();
         this.payments = purchase.getPayments();
@@ -29,6 +31,11 @@ public class PurchaseDTO {
     public Long getId() {
         return id;
     }
+
+    public Long getTicketNumber() {
+        return ticketNumber;
+    }
+
     public LocalDate getDate() {
         return date;
     }

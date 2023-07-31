@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Random;
 
 
 @RestController
@@ -82,7 +83,17 @@ public class ClientController {
             return new ResponseEntity<>("The payments cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
         if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.CARMOD) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)){
-            Purchase purchase = new Purchase(LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType(), purchaseDTO.getDuesPlan());
+
+            Random random = new Random();
+            Long ticketNumber;
+
+            do {
+                ticketNumber = random.nextLong() + 100000;
+            } while (purchaseService.findByTicketNumber(ticketNumber) != null);
+
+
+
+            Purchase purchase = new Purchase(ticketNumber,LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType(), purchaseDTO.getDuesPlan());
             purchaseService.save(purchase);
             client.addPurchase(purchase);
             clientService.save(client);
