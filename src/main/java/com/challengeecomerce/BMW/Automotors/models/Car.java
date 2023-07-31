@@ -4,7 +4,7 @@ import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarType;
 import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.Year;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +16,7 @@ public class Car {
     private Long id;
     private String details;
     private String model;
-    private LocalDate date;
+    private Year date;
     private CarColor carColor;
     private Double price;
     private String description;
@@ -39,7 +39,7 @@ public class Car {
     private Set<PlanDuesCar> planDuesCarSet = new HashSet<>();
     public Car() {
     }
-    public Car(String details, String model, LocalDate date, CarColor carColor, Double price, String description, List<Integer> payments, Boolean packM, CarType carType, Integer stock, List<String> images, List<ModType>  modType) {
+    public Car(String details, String model, Year date, CarColor carColor, Double price, String description, List<Integer> payments, Boolean packM, CarType carType, Integer stock, List<String> images, List<ModType>  modType) {
         this.details = details;
         this.model = model;
         this.date = date;
@@ -68,10 +68,12 @@ public class Car {
     public void setModel(String model) {
         this.model = model;
     }
-    public LocalDate getDate() {
+
+    public Year getDate() {
         return date;
     }
-    public void setDate(LocalDate date) {
+
+    public void setDate(Year date) {
         this.date = date;
     }
     public CarColor getCarColor() {
