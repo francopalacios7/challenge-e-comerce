@@ -3,6 +3,7 @@ package com.challengeecomerce.BMW.Automotors.controllers;
 import com.challengeecomerce.BMW.Automotors.dtos.CarDTO;
 import com.challengeecomerce.BMW.Automotors.models.Car;
 import com.challengeecomerce.BMW.Automotors.models.Client;
+import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 import com.challengeecomerce.BMW.Automotors.services.CarService;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +25,12 @@ public class CarController {
     public Set<CarDTO> getAll() {
         return carService.getAllCarsDTO();
     }
-
+    @GetMapping("/car/color")
+    public CarColor[] getAllColors(){
+        return CarColor.values();
+    }
     @PostMapping("/admin/cars")
     public ResponseEntity<Object> addCar(@RequestBody CarDTO carDTO, Authentication authentication){
-
-// Client client = clientService.findByEmail(authentication.getName());
-
-
-//        if(!client.getEmail().contains("admin")){
-//            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
-//        }
 
         if(carDTO.getDetails().isBlank()){
             return new ResponseEntity<>("Please add the vehicle details", HttpStatus.FORBIDDEN);
@@ -42,7 +39,9 @@ public class CarController {
         if(carDTO.getImages().isEmpty()){
             return new ResponseEntity<>("Please add images to the vehicle", HttpStatus.FORBIDDEN);
         }
+
         if(carDTO.getModel().isBlank()){
+
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getDate().toString().isBlank()){
@@ -123,6 +122,7 @@ public class CarController {
         return new ResponseEntity<>("Car Updated successfully.", HttpStatus.OK);
     }
 
+}
 
 //    @PostMapping(path = "/admin/car/delete")
 //    public ResponseEntity<Object> updateCar(Authentication authentication,  @RequestParam long id){
@@ -133,4 +133,3 @@ public class CarController {
 //        }
 //Eliminar auto, cliente asociado, modificaciones,la compra que realizo.
 //}
-}
