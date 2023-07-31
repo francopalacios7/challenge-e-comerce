@@ -3,7 +3,9 @@ package com.challengeecomerce.BMW.Automotors.models;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,13 +15,18 @@ public class Mod {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String name, description;
 
     private Double price;
 
     private CarColor carColor;
 
     private Integer stock;
+
+    @ElementCollection
+    @CollectionTable(name = "mod_images", joinColumns = @JoinColumn(name = "mod_id"))
+    @Column(name = "images")
+    private List<String> images;
 
     @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
@@ -29,13 +36,13 @@ public class Mod {
     public Mod() {
     }
 
-    public Mod(String name, Double price, CarColor carColor, Integer stock, Set<ModPurchase> modPurchaseSet, Set<CarModDos> carModDosSet) {
+    public Mod(String name, String description, Double price, CarColor carColor, Integer stock, List <String> images) {
         this.name = name;
+        this.description = description;
         this.price = price;
         this.carColor = carColor;
         this.stock = stock;
-        this.modPurchaseSet = modPurchaseSet;
-        this.carModDosSet = carModDosSet;
+        this.images = images;
     }
 
     public Long getId() {
@@ -44,6 +51,14 @@ public class Mod {
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setName(String name) {
@@ -74,19 +89,11 @@ public class Mod {
         this.stock = stock;
     }
 
-    public Set<ModPurchase> getModPurchaseSet() {
-        return modPurchaseSet;
+    public List<String> getImages() {
+        return images;
     }
 
-    public void setModPurchaseSet(Set<ModPurchase> modPurchaseSet) {
-        this.modPurchaseSet = modPurchaseSet;
-    }
-
-    public Set<CarModDos> getCarModDosSet() {
-        return carModDosSet;
-    }
-
-    public void setCarModDosSet(Set<CarModDos> carModDosSet) {
-        this.carModDosSet = carModDosSet;
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }
