@@ -2,6 +2,8 @@ package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.ModDTO;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
+import com.challengeecomerce.BMW.Automotors.models.ModType;
+import com.challengeecomerce.BMW.Automotors.repositories.ModTypeRepository;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import com.challengeecomerce.BMW.Automotors.services.ModService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Set;
-import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +27,8 @@ public class ModController {
     @Autowired
     private ModService modService;
 
+    @Autowired
+    private ModTypeRepository modTypeRepository;
     @Autowired
     private ClientService clientService;
 
@@ -60,8 +66,12 @@ public class ModController {
             return new ResponseEntity<>("Please add images for the item", HttpStatus.FORBIDDEN);
         }
 
+
+        com.challengeecomerce.BMW.Automotors.models.ModType modType = new ModType( String.valueOf(modDTO.getModtype()));
+        modTypeRepository.save(modType);
         Mod mod = new Mod(modDTO.getName(), modDTO.getDescription(), modDTO.getPrice(), modDTO.getCarColor(), modDTO.getStock(), modDTO.getImages(), modDTO.getModtype());
         modService.saveMod(mod);
+
 
         return new ResponseEntity<>("Mod Created", HttpStatus.CREATED);
     }
@@ -109,7 +119,7 @@ public class ModController {
 
         }
     @GetMapping("/mods")
-    public ModType[] getAllMods(){
-        return ModType.values();
+    public List<ModType> getAllMods(){
+        return modTypeRepository.findAll();
     }
 }

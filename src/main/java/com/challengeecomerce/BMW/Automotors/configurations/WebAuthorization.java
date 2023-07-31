@@ -24,6 +24,7 @@ class WebAuthorization {
 //               .antMatchers(HttpMethod.POST,  ).hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST,"/api/clients").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/admin/cars").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/admin/addMods").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/clients").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/car", "/h2-console").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/email").permitAll()
@@ -34,7 +35,9 @@ class WebAuthorization {
                 .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients","/web/htmlPages/adminLoans.html" ).hasAuthority("ADMIN")
                 .antMatchers("/web/htmlPages/**", "/api/clients/current","/api/accounts/**").hasAuthority("CLIENT");
                 /*.anyRequest().denyAll();*/
-
+                /*.and()
+                .exceptionHandling()
+                .accessDeniedPage("/error/404");*/
 
         http.formLogin()
                 .usernameParameter("email")

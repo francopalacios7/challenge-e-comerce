@@ -17,6 +17,6 @@ public enum ModType {
 
     PERFORMANCE_EXHAUST,
 
-        NONE
+    NONE
 
 }

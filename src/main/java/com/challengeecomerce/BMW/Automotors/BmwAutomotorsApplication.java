@@ -9,6 +9,7 @@ import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
 import com.challengeecomerce.BMW.Automotors.repositories.CarRepository;
 import com.challengeecomerce.BMW.Automotors.repositories.ClientRepository;
 import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
+import com.challengeecomerce.BMW.Automotors.repositories.ModTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,7 +31,7 @@ public class BmwAutomotorsApplication {
 	private PasswordEncoder passwordEncoder;
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository ) {
+	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository, ModTypeRepository modTypeRepository) {
 		return (args -> {
 			Client Pepe = new Client("Pepe", "Honguito","micagpili@gmail.com", passwordEncoder.encode("melba456"),"direccion","23456");
 			clientRepository.save(Pepe);
@@ -145,21 +146,32 @@ public class BmwAutomotorsApplication {
 
 			carRepository.saveAll(Arrays.asList(car1, car2, car3, car4,car5, moto1,moto2,moto3));
 
-			Mod navigationSystem = new Mod("Navigation System", "Installs a GPS navigation system", 300.0, CarColor.BLACK, 5, Arrays.asList("https://i.postimg.cc/W3gsYRZR/navigation-system.webp"), ModType.NAVIGATION_SYSTEM);
-			Mod sunroof = new Mod("Sunroof", "Adds a sunroof for an open-air experience", 150.0, CarColor.BLACK, 12, Arrays.asList("https://i.postimg.cc/FK29xF7g/sun-roof.webp"), ModType.SUNROOF);
-			Mod tintedWindows = new Mod("Tinted Windows", "Adds tint to the car windows for privacy", 50.0, CarColor.BLACK, 15, Arrays.asList("https://i.postimg.cc/x18nDNm3/tinted-windows.webp"), ModType.TINTED_WINDOWS);
+			com.challengeecomerce.BMW.Automotors.models.ModType navigationSystem1 = new com.challengeecomerce.BMW.Automotors.models.ModType("Navigation System");
+			com.challengeecomerce.BMW.Automotors.models.ModType sunroof1 = new com.challengeecomerce.BMW.Automotors.models.ModType("Sunroof");
+			com.challengeecomerce.BMW.Automotors.models.ModType tintedWindows1 = new com.challengeecomerce.BMW.Automotors.models.ModType("Tinted Windows");
+			com.challengeecomerce.BMW.Automotors.models.ModType spoilerBlack1 = new com.challengeecomerce.BMW.Automotors.models.ModType("Spoiler Black");
+			com.challengeecomerce.BMW.Automotors.models.ModType spoilerBlue1 = new com.challengeecomerce.BMW.Automotors.models.ModType("Spoiler Blue");
+			com.challengeecomerce.BMW.Automotors.models.ModType spoilerWhite1 = new com.challengeecomerce.BMW.Automotors.models.ModType("Spoiler White");
+			com.challengeecomerce.BMW.Automotors.models.ModType alloyWheels5 = new com.challengeecomerce.BMW.Automotors.models.ModType("Alloy Wheels");
+			com.challengeecomerce.BMW.Automotors.models.ModType performanceExhaustBlack1 = new com.challengeecomerce.BMW.Automotors.models.ModType("Performance Exhaust Black");
 
-			Mod spoilerBlack = new Mod("Spoiler", "Adds a sporty spoiler to the car", 100.0, CarColor.BLACK, 10, Arrays.asList("https://i.postimg.cc/T2jRr6Gg/black-spoiler.webp"), ModType.SPOILER);
-			Mod spoilerBlue = new Mod("Spoiler", "Adds a sporty spoiler to the car", 100.0, CarColor.BLUE, 10, Arrays.asList("https://i.postimg.cc/Bv8SDPQn/blue-spoiler.webp"), ModType.SPOILER);
-			Mod spoilerWhite = new Mod("Spoiler", "Adds a sporty spoiler to the car", 100.0, CarColor.WHITE, 10, Arrays.asList("https://i.postimg.cc/MKdqFmnG/white-spoiler.webp"), ModType.SPOILER);
+			modTypeRepository.saveAll(Arrays.asList( navigationSystem1, sunroof1, tintedWindows1, spoilerBlue1, spoilerBlack1, spoilerWhite1, alloyWheels5, performanceExhaustBlack1));
 
-			Mod alloyWheels = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 800.0, CarColor.BLACK, 12, Arrays.asList("https://i.postimg.cc/cC74Cq17/alloy-wheels1.webp"), ModType.ALLOY_WHEELS);
-			Mod alloyWheels1 = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 1600.0, CarColor.BLACK, 8, Arrays.asList("https://i.postimg.cc/1RDzJF0g/alloy-wheels2.webp"),ModType.ALLOY_WHEELS);
-			Mod alloyWheel2 = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 2000.0, CarColor.BLACK, 16, Arrays.asList("https://i.postimg.cc/WzVTQ9md/alloy-wheels3.webp"),ModType.ALLOY_WHEELS);
-			Mod alloyWheel3 = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 4000.0, CarColor.BLACK, 32, Arrays.asList("https://i.postimg.cc/kgYMBvCH/alloy-wheels4.webp"),ModType.ALLOY_WHEELS);
-			Mod alloyWheel4 = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 3300.0, CarColor.BLACK, 26, Arrays.asList("https://i.postimg.cc/SxxNStB8/alloy-wheels5.webp"),ModType.ALLOY_WHEELS);
+			Mod navigationSystem = new Mod("Navigation System", "Installs a GPS navigation system", 300.0, CarColor.BLACK, 5, Arrays.asList("https://i.postimg.cc/W3gsYRZR/navigation-system.webp"), navigationSystem1);
+			Mod sunroof = new Mod("Sunroof", "Adds a sunroof for an open-air experience", 150.0, CarColor.BLACK, 12, Arrays.asList("https://i.postimg.cc/FK29xF7g/sun-roof.webp"), sunroof1);
+			Mod tintedWindows = new Mod("Tinted Windows", "Adds tint to the car windows for privacy", 50.0, CarColor.BLACK, 15, Arrays.asList("https://i.postimg.cc/x18nDNm3/tinted-windows.webp"), tintedWindows1);
 
-			Mod performanceExhaustBlack = new Mod("Performance Exhaust", "Enhances the car's exhaust system for better performance", 250.0, CarColor.BLACK, 10,Arrays.asList("https://i.postimg.cc/1XKsPpMJ/performance-exhaust.webp"), ModType.PERFORMANCE_EXHAUST);
+			Mod spoilerBlack = new Mod("Spoiler", "Adds a sporty spoiler to the car", 100.0, CarColor.BLACK, 10, Arrays.asList("https://i.postimg.cc/T2jRr6Gg/black-spoiler.webp"), spoilerBlack1);
+			Mod spoilerBlue = new Mod("Spoiler", "Adds a sporty spoiler to the car", 100.0, CarColor.BLUE, 10, Arrays.asList("https://i.postimg.cc/Bv8SDPQn/blue-spoiler.webp"), spoilerBlue1);
+			Mod spoilerWhite = new Mod("Spoiler", "Adds a sporty spoiler to the car", 100.0, CarColor.WHITE, 10, Arrays.asList("https://i.postimg.cc/MKdqFmnG/white-spoiler.webp"), spoilerWhite1);
+
+			Mod alloyWheels = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 800.0, CarColor.BLACK, 12, Arrays.asList("https://i.postimg.cc/cC74Cq17/alloy-wheels1.webp"), alloyWheels5);
+			Mod alloyWheels1 = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 1600.0, CarColor.BLACK, 8, Arrays.asList("https://i.postimg.cc/1RDzJF0g/alloy-wheels2.webp"),alloyWheels5);
+			Mod alloyWheel2 = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 2000.0, CarColor.BLACK, 16, Arrays.asList("https://i.postimg.cc/WzVTQ9md/alloy-wheels3.webp"),alloyWheels5);
+			Mod alloyWheel3 = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 4000.0, CarColor.BLACK, 32, Arrays.asList("https://i.postimg.cc/kgYMBvCH/alloy-wheels4.webp"),alloyWheels5);
+			Mod alloyWheel4 = new Mod("Alloy Wheels", "Upgrades the wheels to stylish alloy wheels", 3300.0, CarColor.BLACK, 26, Arrays.asList("https://i.postimg.cc/SxxNStB8/alloy-wheels5.webp"),alloyWheels5);
+
+			Mod performanceExhaustBlack = new Mod("Performance Exhaust", "Enhances the car's exhaust system for better performance", 250.0, CarColor.BLACK, 10,Arrays.asList("https://i.postimg.cc/1XKsPpMJ/performance-exhaust.webp"), performanceExhaustBlack1);
 
 			modRepository.saveAll(Arrays.asList(navigationSystem,sunroof,tintedWindows,alloyWheel3,alloyWheel4,alloyWheel2,alloyWheels1,alloyWheels,spoilerWhite,spoilerBlue,spoilerBlack,performanceExhaustBlack));
 

@@ -44,9 +44,9 @@
         </nav>
     </header>
     <main>
-        <section class="d-flex justify-content-center mt-5 ">
-
-            <div class="card mb-3 col-12 col-md-8 col-lg-6 shadow">
+        <section class="d-flex justify-content-center mt-5 col-12">
+          <!-- FORM PARA AGREGAR AUTOS -->
+            <div class="card mb-3 col-6 col-md-8 col-lg-6 shadow">
               <div class="row g-0 d-flex align-items-center shadow">
                 <div>
                   <div class="card-body py-5 px-md-5 shadow">
@@ -124,7 +124,70 @@
                 </div>
               </div>
             </div>
+             <!-- FORM PARA AGREGAR MODS -->
+            <div class="card mb-3 col-6 col-md-8 col-lg-6 shadow">
+              <div class="row g-0 d-flex align-items-center shadow">
+                <div>
+                  <div class="card-body py-5 px-md-5 shadow">
+                    <form @submit.prevent="addMod">
+                      <h1 class="d-flex justify-content-center">Add Mods</h1>
+                      
+                      <!-- NAME -->
+                     
+                      <div class="form-outline mb-4 mt-3">
+                        <input v-model="modName" type="text" id="modName" name="modName" class="form-control shadow" placeholder="Name" />
+                      </div>
+
+                      <!-- DESCRIPTION -->
+                    
+                      <div class="form-outline mb-4 mt-3">
+                        <input v-model="modDescription" type="text" id="modDescription" class="form-control shadow" placeholder="Description" />
+                      </div>
+
+                      <!-- CAR COLOR -->
+                      <div class="form-outline mb-4 mt-3 d-flex flex-column gap-2">
+                        <!-- {{color}} -->
+                        <label for="color" class="fw-bold"> Car color:</label>
+                        <div class="d-flex gap-2" v-for="color in allColors" :key="color">
+                          <label :for="color">{{ color }}</label>
+                          <input type="radio" name="color" :id="color" :value="color" @change="updateCarColorArray($event, color)">
+                        </div>
+
+                      <!-- PRICE -->
+                     
+                      <div class="form-outline mb-4 mt-3">
+                        <label for="modPrice" class="fw-bold ms- mb-2">Price:</label>
+                        <input v-model="modPrice" type="number" id="modPrice" class="form-control shadow" placeholder="Price" />
+                      </div>
+                      
+                      <!-- STOCK -->
+                      <!-- {{stock}} -->
+                      <div class="form-outline mb-4 mt-3">
+                        <label for="price" class="fw-bold ms- mb-2">Stock:</label>
+                        <input v-model="stock" type="number" id="stock" class="form-control shadow" placeholder="Stock" />
+                      </div>
+
+                      <!-- IMAGES -->
+                     <!--  {{images}} -->
+                      <div class="form-outline d-flex flex-column mb-4 mt-3 gap-2">
+                        <input type="text" v-model="images[0]" class="form-control shadow" placeholder="Image 1">
+                        <input type="text" v-model="images[1]" class="form-control shadow" placeholder="Image 2">
+                        <input type="text" v-model="images[2]" class="form-control shadow" placeholder="Image 3">
+                      </div>
+                      
+                      <div class="row mb-4">
+                        <div class="col d-flex justify-content-center">
+                          <button type="submit">Add</button>
+                        </div>
+                      </div>
+          
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
+          
     </main>
 
 
