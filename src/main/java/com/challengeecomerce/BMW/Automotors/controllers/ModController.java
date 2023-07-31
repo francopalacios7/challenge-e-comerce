@@ -1,6 +1,7 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.ModDTO;
+import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.models.ModType;
 import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
@@ -127,8 +128,21 @@ public class ModController {
 
         }
 
-//        @PatchMapping("admin/deleteMods/{id}")
-//        public ResponseEntity<Object> deleteMod(Authentication authentication, @PathVariable)
+        @PatchMapping("/admin/deleteMods/{id}")
+        public ResponseEntity<Object> deleteMod(Authentication authentication, @PathVariable Long id){
+
+//            Client client = clientService.findByEmail(authentication.getName());
+            Mod mod = modService.findById(id);
+
+//            if(!client.getEmail().contains("admin")){
+//                return new ResponseEntity<>("Only admins can delete mods", HttpStatus.FORBIDDEN);
+//            }
+
+            mod.setActive(false);
+            modService.saveMod(mod);
+            return  new ResponseEntity<>("Mod Deleted", HttpStatus.OK);
+
+        }
 
 
 
