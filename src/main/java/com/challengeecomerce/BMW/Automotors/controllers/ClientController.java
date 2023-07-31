@@ -4,9 +4,11 @@ import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.MeetingReservationDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
+import com.challengeecomerce.BMW.Automotors.models.ClientPurchase;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.PurchaseType;
 import com.challengeecomerce.BMW.Automotors.services.CarService;
+import com.challengeecomerce.BMW.Automotors.services.ClientPurchaseService;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import com.challengeecomerce.BMW.Automotors.services.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +37,18 @@ public class ClientController {
     private PurchaseService purchaseService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ClientPurchaseService clientPurchaseService;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
     @GetMapping("/clients/current")
     public ClientDTO getAuthenticatedClient(Authentication authentication) {
         return new ClientDTO(clientService.findByEmail(authentication.getName()));
     }
-    @Autowired
-    private JavaMailSender javaMailSender;
+
 
     @PostMapping("/clients")
     public ResponseEntity<Object> register(@RequestBody ClientDTO clientDTO) {
@@ -91,10 +99,13 @@ public class ClientController {
             } while (purchaseService.findByTicketNumber(ticketNumber) != null);
 
 
-            Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType(), purchaseDTO.getDuesPlan());
+            Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
+            ClientPurchase clientPurchase = new ClientPurchase(purchaseDTO.getTotalAmount());
             purchaseService.save(purchase);
-            client.addPurchase(purchase);
+
+            client.addClientPurchase(clientPurchase);
             clientService.save(client);
+            clientPurchaseService.saveClientPurchase(clientPurchase);
         }
         return new ResponseEntity<>(purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }

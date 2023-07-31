@@ -16,6 +16,8 @@ public class PurchaseDTO {
     private Integer payments;
     private Set<ModPurchaseDTO> modPurchaseDTO;
 
+    private ClientPurchase clientPurchase;
+
     private DuesPlan duesPlan;
     public PurchaseDTO() {
     }
@@ -26,6 +28,8 @@ public class PurchaseDTO {
         this.totalAmount = purchase.getTotalAmount();
         this.payments = purchase.getPayments();
         this.purchaseType = purchase.getPurchaseType();
+        this.clientPurchase = purchase.getClientPurchase();
+        this.duesPlan = purchase.getDuesPlan();
     }
     public Long getId() {
         return id;
@@ -49,4 +53,6 @@ public class PurchaseDTO {
     }
     public PurchaseType getPurchaseType() {return purchaseType;}
     public DuesPlan getDuesPlan() {return duesPlan;}
+
+
 }

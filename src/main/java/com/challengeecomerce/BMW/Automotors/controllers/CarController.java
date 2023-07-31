@@ -105,7 +105,7 @@ public class CarController {
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
 
-        if(carDTO.getStock() == 0 || carDTO.getStock() < 0 ){
+        if(carDTO.getStock() <= 0 ){
 
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }

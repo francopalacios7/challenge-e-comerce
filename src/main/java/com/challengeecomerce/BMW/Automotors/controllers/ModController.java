@@ -14,7 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -127,6 +126,12 @@ public class ModController {
         return new ResponseEntity<>("Modified successfully", HttpStatus.OK);
 
         }
+
+//        @PatchMapping("admin/deleteMods/{id}")
+//        public ResponseEntity<Object> deleteMod(Authentication authentication, @PathVariable)
+
+
+
     @GetMapping("/modstype")
     public List<ModType> getAllModsType(){
         return modTypeRepository.findAll();

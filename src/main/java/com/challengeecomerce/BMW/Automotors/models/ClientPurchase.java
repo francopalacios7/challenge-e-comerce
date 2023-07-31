@@ -1,6 +1,7 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,19 +14,20 @@ public class ClientPurchase {
 
     private Double totalAmount;
 
+    private LocalDate creationDate;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Client client;
 
-    @OneToMany(mappedBy = "purchase", fetch= FetchType.EAGER)
+    @OneToMany(mappedBy = "clientPurchase", fetch= FetchType.EAGER)
     private Set<Purchase> purchaseSet = new HashSet<>();
 
     public ClientPurchase() {
     }
 
-    public ClientPurchase(Double totalAmount, Client client, Set<Purchase> purchaseSet) {
+    public ClientPurchase(Double totalAmount) {
         this.totalAmount = totalAmount;
-        this.client = client;
-        this.purchaseSet = purchaseSet;
+        this.creationDate = LocalDate.now();
     }
 
 
