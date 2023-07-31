@@ -12,4 +12,10 @@ public class DuesPlanImplement implements DuesPlanService {
     private DuesPlanRepository duesPlanRepository;
     @Override
     public void save(DuesPlan duesPlan) {duesPlanRepository.save(duesPlan);}
+
+    @Override
+    public DuesPlan findById(Long id) {return duesPlanRepository.findById(id).orElse(null);}
+
+    @Override
+    public void delete(DuesPlan duesPlan) {duesPlanRepository.delete(duesPlan);}
 }

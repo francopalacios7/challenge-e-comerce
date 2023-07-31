@@ -77,8 +77,6 @@ public class CarController {
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
     }
 
-
-
     @PatchMapping(path = "/admin/car/update")
     public ResponseEntity<Object> updateCar(Authentication authentication, @RequestBody CarDTO carDTO){
 //        Client client = clientService.findByEmail(authentication.getName());
@@ -138,4 +136,5 @@ public class CarController {
 //        }
 //Eliminar auto, cliente asociado, modificaciones,la compra que realizo.
 //}
+
 }
