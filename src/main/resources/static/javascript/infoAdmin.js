@@ -40,10 +40,14 @@ createApp({
 
         axios.get("/api/mods")
         .then(response => {
-            this.mods = response.data;
-            this.modsFiltrados = this.mods.slice(0, this.itemsPerPageMods); // Set to first 5 elements initially
+          console.log(response);
+          this.mods = response.data;
+          console.log(this.mods);
+          this.modsFiltrados = this.mods.map(mod => mod.name)
+          console.log(this.modsFiltrados);
+            //this.modsFiltrados = this.mods.slice(0, this.itemsPerPageMods); // Set to first 5 elements initially
             console.log("Mods:", this.mods);
-            console.log("Mods Filtrados:", this.modsFiltrados);
+            console.log("Mods Filtrados:", this.modsFiltrados);  
             // ...
         }).catch(error => {
           console.error(error);

@@ -3,6 +3,7 @@ package com.challengeecomerce.BMW.Automotors.controllers;
 import com.challengeecomerce.BMW.Automotors.dtos.ModDTO;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.models.ModType;
+import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
 import com.challengeecomerce.BMW.Automotors.repositories.ModTypeRepository;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import com.challengeecomerce.BMW.Automotors.services.ModService;
@@ -29,6 +30,9 @@ public class ModController {
 
     @Autowired
     private ModTypeRepository modTypeRepository;
+
+    @Autowired
+    private ModRepository modRepository;
     @Autowired
     private ClientService clientService;
 
@@ -123,8 +127,12 @@ public class ModController {
         return new ResponseEntity<>("Modified successfully", HttpStatus.OK);
 
         }
-    @GetMapping("/mods")
-    public List<ModType> getAllMods(){
+    @GetMapping("/modstype")
+    public List<ModType> getAllModsType(){
         return modTypeRepository.findAll();
+    }
+    @GetMapping("/mods")
+    public List<Mod> getAllMods(){
+        return modRepository.findAll();
     }
 }
