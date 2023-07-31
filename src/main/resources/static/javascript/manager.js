@@ -16,7 +16,6 @@ createApp({
       packM: false,
       allMods: [],
       carMod: []
-
     }
   },
 

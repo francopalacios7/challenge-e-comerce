@@ -33,12 +33,16 @@ a.navbar-brand{
 .car-container{
     padding: 1.10rem 0rem;
     height: 20rem;
+    box-shadow: black 0.5px;
 }
 .car-container--img{
     height: 100%;
 }
 .car-container--img img{
     width: 100%;
+}
+
+#card{
     height: 100%;
     object-fit: cover;
     object-position: 50% 75%;
