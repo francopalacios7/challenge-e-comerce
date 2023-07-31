@@ -17,7 +17,7 @@ public class ModDTO {
 
     private List<String> images;
 
-    private com.challengeecomerce.BMW.Automotors.models.ModType modtype;
+    private String modType;
 
     public ModDTO() {
     }
@@ -30,7 +30,7 @@ public class ModDTO {
         this.carColor = mod.getCarColor();
         this.stock = mod.getStock();
         this.images = mod.getImages();
-        this.modtype = mod.getModType();
+        this.modType = mod.getModType().getName();
     }
 
     public Long getId() {
@@ -61,7 +61,7 @@ public class ModDTO {
         return images;
     }
 
-    public ModType getModtype() {
-        return modtype;
+    public String getModType() {
+        return modType;
     }
 }

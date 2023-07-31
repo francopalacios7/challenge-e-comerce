@@ -6,4 +6,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface ModTypeRepository extends JpaRepository<ModType, Long> {
+    ModType findByName(String name);
 }

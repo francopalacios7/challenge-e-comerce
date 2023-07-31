@@ -66,11 +66,16 @@ public class ModController {
             return new ResponseEntity<>("Please add images for the item", HttpStatus.FORBIDDEN);
         }
 
+        ModType modType = modTypeRepository.findByName(modDTO.getModType());
 
-        com.challengeecomerce.BMW.Automotors.models.ModType modType = new ModType( String.valueOf(modDTO.getModtype()));
-        modTypeRepository.save(modType);
-        Mod mod = new Mod(modDTO.getName(), modDTO.getDescription(), modDTO.getPrice(), modDTO.getCarColor(), modDTO.getStock(), modDTO.getImages(), modDTO.getModtype());
+        if(modType == null){
+            modType = new ModType(modDTO.getModType());
+            modTypeRepository.save(modType);
+        }
+
+        Mod mod = new Mod(modDTO.getName(), modDTO.getDescription(), modDTO.getPrice(), modDTO.getCarColor(), modDTO.getStock(), modDTO.getImages(), modType);
         modService.saveMod(mod);
+
 
 
         return new ResponseEntity<>("Mod Created", HttpStatus.CREATED);
