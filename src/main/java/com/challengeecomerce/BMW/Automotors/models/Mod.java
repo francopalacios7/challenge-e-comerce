@@ -31,16 +31,22 @@ public class Mod {
     @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "modType")
+    private com.challengeecomerce.BMW.Automotors.models.ModType modType;
+
+
     public Mod() {
     }
 
-    public Mod(String name, String description, Double price, CarColor carColor, Integer stock, List <String> images) {
+    public Mod(String name, String description, Double price, CarColor carColor, Integer stock, List <String> images, ModType modType) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.carColor = carColor;
         this.stock = stock;
         this.images = images;
+        this.modType = modType;
     }
 
     public Long getId() {
@@ -93,5 +99,13 @@ public class Mod {
 
     public void setImages(List<String> images) {
         this.images = images;
+    }
+
+    public ModType getModType() {
+        return modType;
+    }
+
+    public void setModType(ModType modType) {
+        this.modType = modType;
     }
 }

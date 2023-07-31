@@ -13,4 +13,11 @@ public class PurchaseImplement implements PurchaseService {
     private PurchaseRepository purchaseRepository;
     @Override
     public void save(Purchase purchase) { purchaseRepository.save(purchase);}
+
+    @Override
+    public Purchase findByTicketNumber(Long ticketNumber) {
+        return purchaseRepository.findByTicketNumber(ticketNumber);
+    }
+
+
 }

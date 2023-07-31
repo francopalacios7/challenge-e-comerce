@@ -2,7 +2,6 @@ package com.challengeecomerce.BMW.Automotors.dtos;
 
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
-
 import java.util.List;
 
 public class ModDTO {
@@ -17,6 +16,8 @@ public class ModDTO {
 
     private List<String> images;
 
+    private String modType;
+
     public ModDTO() {
     }
 
@@ -28,6 +29,7 @@ public class ModDTO {
         this.carColor = mod.getCarColor();
         this.stock = mod.getStock();
         this.images = mod.getImages();
+        this.modType = mod.getModType().getName();
     }
 
     public Long getId() {
@@ -56,5 +58,9 @@ public class ModDTO {
 
     public List<String> getImages() {
         return images;
+    }
+
+    public String getModType() {
+        return modType;
     }
 }

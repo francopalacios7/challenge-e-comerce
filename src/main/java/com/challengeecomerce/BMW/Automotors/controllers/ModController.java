@@ -2,6 +2,9 @@ package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.ModDTO;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
+import com.challengeecomerce.BMW.Automotors.models.ModType;
+import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
+import com.challengeecomerce.BMW.Automotors.repositories.ModTypeRepository;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import com.challengeecomerce.BMW.Automotors.services.ModService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Set;
-import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +28,11 @@ public class ModController {
     @Autowired
     private ModService modService;
 
+    @Autowired
+    private ModTypeRepository modTypeRepository;
+
+    @Autowired
+    private ModRepository modRepository;
     @Autowired
     private ClientService clientService;
 
@@ -60,8 +70,17 @@ public class ModController {
             return new ResponseEntity<>("Please add images for the item", HttpStatus.FORBIDDEN);
         }
 
-        Mod mod = new Mod(modDTO.getName(), modDTO.getDescription(), modDTO.getPrice(), modDTO.getCarColor(), modDTO.getStock(), modDTO.getImages());
+        ModType modType = modTypeRepository.findByName(modDTO.getModType());
+
+        if(modType == null){
+            modType = new ModType(modDTO.getModType());
+            modTypeRepository.save(modType);
+        }
+
+        Mod mod = new Mod(modDTO.getName(), modDTO.getDescription(), modDTO.getPrice(), modDTO.getCarColor(), modDTO.getStock(), modDTO.getImages(), modType);
         modService.saveMod(mod);
+
+
 
         return new ResponseEntity<>("Mod Created", HttpStatus.CREATED);
     }
@@ -108,8 +127,12 @@ public class ModController {
         return new ResponseEntity<>("Modified successfully", HttpStatus.OK);
 
         }
+    @GetMapping("/modstype")
+    public List<ModType> getAllModsType(){
+        return modTypeRepository.findAll();
+    }
     @GetMapping("/mods")
-    public ModType[] getAllMods(){
-        return ModType.values();
+    public List<Mod> getAllMods(){
+        return modRepository.findAll();
     }
 }
