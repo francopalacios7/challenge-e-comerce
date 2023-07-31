@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ClientDTO {
+public class    ClientDTO {
     private Long id;
     private String firstName;
     private String lastName;
@@ -19,6 +19,7 @@ public class ClientDTO {
     private Set<PurchaseDTO> purchaseSet;
     public ClientDTO() {
     }
+
     public ClientDTO(Client client) {
         this.id = client.getId();
         this.firstName = client.getFirstName();

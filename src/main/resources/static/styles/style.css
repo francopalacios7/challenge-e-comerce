@@ -3,8 +3,6 @@
     --color-bg: #dee2e6;
 }
 
-
-
 body, html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -16,8 +14,12 @@ body, html {
     text-rendering: optimizeSpeed;
 }
 
-.bgc-fondo{
+.bgc{
     background-color: var(--color-bg);
+}
+
+.primary-color{
+    color: var(--color-primario);
 }
 
 .button-primary{
@@ -46,8 +48,8 @@ body, html {
     background-color: transparent!important;
 }
 
-.btn-secondary{
-    
+.button-secondary:hover{
+    color: var(--color-primario)!important;
 }
 
 .footer-line{

@@ -6,7 +6,7 @@ createApp({
       //Propiedades Reactivas
       model: "",
       date: null,
-      allColors: ["BLACK", "WHITE", "BLUE"],
+      allColors: [],
       color: null,
       price: 0,
       paymentsInput: '',
@@ -14,14 +14,14 @@ createApp({
       stock: 0,
       images: ["", "", ""],
       packM: false,
-      allMods: ["SPOILER", "ALLOY_WHEELS", "TINTED_WINDOWS", "NAVIGATION_SYSTEM", "SUNROOF", "PERFORMANCE_EXHAUST", "OTHER"],
+      allMods: [],
       carMod: []
-
     }
   },
 
   created() {
-
+    this.getCarColors()
+    this.getAllMods()
   },
   methods: {
     updateCarModArray(event, mod) {
@@ -45,6 +45,28 @@ createApp({
         console.log(response);
       })
       .catch(error =>{
+        console.log(error);
+      })
+    },
+    getCarColors(){
+      axios.get('/api/car/color')
+      .then(response => {
+       // console.log(response.data);
+        this.allColors = response.data
+        console.log(this.allColors);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
+    getAllMods(){
+      axios.get('/api/mods')
+      .then(response => {
+        console.log(response.data);
+        this.allMods = response.data
+        
+      })
+      .catch(error => {
         console.log(error);
       })
     },
