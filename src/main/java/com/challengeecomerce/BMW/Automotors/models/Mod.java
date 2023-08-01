@@ -39,17 +39,9 @@ public class Mod {
         this.images = images;
         this.modType = modType;
     }
-    public Long getId() {
-        return id;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
+    public Long getId() {return id;}
+    public Boolean getActive() {return isActive;}
+    public void setActive(Boolean active) {isActive = active;}
     public String getName() {
         return name;
     }
