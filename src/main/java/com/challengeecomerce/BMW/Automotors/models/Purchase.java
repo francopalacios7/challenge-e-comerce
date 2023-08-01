@@ -28,18 +28,23 @@ public class Purchase {
     private ClientPurchase clientPurchase;
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
+    @OneToOne(mappedBy = "purchase",fetch = FetchType.EAGER)
+    private DuesPlan duesPlan;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "purchase")
-    private ClientPurchase clientPurchase;
+    @OneToMany(mappedBy = "purchase", fetch = FetchType.EAGER)
+    private Set<PurchaseDuesPlan> purchaseDuesPlans = new HashSet<>();
+
+
+
     public Purchase() {
     }
-    public Purchase(Long ticketNumber,LocalDate date, Double totalAmount, Integer payments, PurchaseType type) {
+    public Purchase(Long ticketNumber,LocalDate date, Double totalAmount, Integer payments, PurchaseType type, DuesPlan duesPlan) {
         this.ticketNumber = ticketNumber;
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
         this.purchaseType = type;
+        this.duesPlan = duesPlan;
     }
     public Long getId() {
         return id;
@@ -80,8 +85,18 @@ public class Purchase {
     public void setClientPurchase(ClientPurchase clientPurchase) {this.clientPurchase = clientPurchase;}
     public Set<ModPurchase> getModPurchaseSet() {return modPurchaseSet;}
     public void setModPurchaseSet(Set<ModPurchase> modPurchaseSet) {this.modPurchaseSet = modPurchaseSet;}
+
+    public Set<PurchaseDuesPlan> getPurchaseDuesPlans() { return purchaseDuesPlans; }
+
+    public void setPurchaseDuesPlans(Set<PurchaseDuesPlan> purchaseDuesPlans) { this.purchaseDuesPlans = purchaseDuesPlans; }
+
     public void addModPurchaseSet(ModPurchase modPurchase){
         modPurchase.setPurchase(this);
         this.modPurchaseSet.add(modPurchase);
+    }
+
+    public void addPurchaseDuesPlan(PurchaseDuesPlan purchaseDuesPlan){
+        purchaseDuesPlan.setPurchase(this);
+        this.purchaseDuesPlans.add(purchaseDuesPlan);
     }
 }
