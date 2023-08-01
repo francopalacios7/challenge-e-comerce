@@ -5,4 +5,7 @@ import com.challengeecomerce.BMW.Automotors.models.Purchase;
 public interface PurchaseService {
     void save(Purchase purchase);
 
+    Purchase findByTicketNumber(Long ticketNumber);
+
+
 }

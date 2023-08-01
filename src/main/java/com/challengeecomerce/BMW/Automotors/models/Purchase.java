@@ -14,7 +14,9 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long ticketNumber;
     private LocalDate date;
+
     private Double totalAmount;
     private PurchaseType purchaseType;
     private Integer payments;
@@ -22,25 +24,36 @@ public class Purchase {
     @JoinColumn(name = "client_id")
     private Client client;
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
-    private Set<CarPurchase> carPurchaseSet = new HashSet<>();
-    @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
+
+
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
-    private Set<CarModPurchase> carModPurchaseSet = new HashSet<>();
-    @OneToOne(mappedBy = "purchase",fetch = FetchType.EAGER)
     private DuesPlan duesPlan;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "purchase")
+    private ClientPurchase clientPurchase;
     public Purchase() {
     }
-    public Purchase(LocalDate date, Double totalAmount, Integer payments, PurchaseType type, DuesPlan duesPlan) {
+    public Purchase(Long ticketNumber,LocalDate date, Double totalAmount, Integer payments, PurchaseType type) {
+        this.ticketNumber = ticketNumber;
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
         this.purchaseType = type;
-        this.duesPlan = duesPlan;
     }
     public Long getId() {
         return id;
     }
+
+    public Long getTicketNumber() {
+        return ticketNumber;
+    }
+
+    public void setTicketNumber(Long ticketNumber) {
+        this.ticketNumber = ticketNumber;
+    }
+
     public LocalDate getDate() {
         return date;
     }
@@ -63,24 +76,23 @@ public class Purchase {
     public void setClient(Client client) {
         this.client = client;
     }
-    public Set<CarPurchase> getCarPurchaseSet() {
-        return carPurchaseSet;
-    }
-    public void setCarPurchaseSet(Set<CarPurchase> carPurchaseSet) {
-        this.carPurchaseSet = carPurchaseSet;
-    }
     public Set<ModPurchase> getModPurchaseSet() {
         return modPurchaseSet;
     }
     public void setModPurchaseSet(Set<ModPurchase> modPurchaseSet) {
         this.modPurchaseSet = modPurchaseSet;
     }
-    public Set<CarModPurchase> getCarModPurchaseSet() {
-        return carModPurchaseSet;
-    }
-    public void setCarModPurchaseSet(Set<CarModPurchase> carModPurchaseSet) {this.carModPurchaseSet = carModPurchaseSet;}
     public PurchaseType getPurchaseType() {return purchaseType;}
     public void setPurchaseType(PurchaseType purchaseType) {this.purchaseType = purchaseType;}
+
+    public ClientPurchase getClientPurchase() {
+        return clientPurchase;
+    }
+
+    public void setClientPurchase(ClientPurchase clientPurchase) {
+        this.clientPurchase = clientPurchase;
+    }
+
     public DuesPlan getDuesPlan() {return duesPlan;}
     public void setDuesPlan(DuesPlan duesPlan) {this.duesPlan = duesPlan;}
 }

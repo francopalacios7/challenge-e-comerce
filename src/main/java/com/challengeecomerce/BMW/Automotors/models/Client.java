@@ -16,7 +16,9 @@ public class Client {
     private String address;
     private String phone;
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    private Set<Purchase> purchaseSet = new HashSet<>();
+    private Set<ClientPurchase> clientPurchaseSet = new HashSet<>();
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<MeetingReservation> meetingReservationSet = new HashSet<>();
     public Client() {
     }
     public Client( String firstName, String lastName, String email, String password, String address, String phone) {
@@ -66,11 +68,17 @@ public class Client {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public Set<Purchase> getPurchaseSet() {
-        return purchaseSet;
+    public Set<ClientPurchase> getClientPurchaseSet() {
+        return clientPurchaseSet;
     }
-    public void addPurchase(Purchase purchase) {
-        purchase.setClient(this);
-        this.purchaseSet.add(purchase);
+    public void addClientPurchase(ClientPurchase clientPurchase) {
+        clientPurchase.setClient(this);
+        this.clientPurchaseSet.add(clientPurchase);
+    }
+    public void setClientPurchaseSet(Set<ClientPurchase> clientPurchaseSet) {this.clientPurchaseSet = clientPurchaseSet;}
+    public Set<MeetingReservation> getMeetingReservationSet() {return meetingReservationSet;}
+    public void addMeetingReservation(MeetingReservation meetingReservation) {
+        meetingReservation.setClient(this);
+        this.meetingReservationSet.add(meetingReservation);
     }
 }

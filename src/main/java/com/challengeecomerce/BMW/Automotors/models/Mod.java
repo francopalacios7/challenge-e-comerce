@@ -15,6 +15,7 @@ public class Mod {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Boolean isActive;
     private String name, description;
 
     private Double price;
@@ -30,23 +31,36 @@ public class Mod {
 
     @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
-    @OneToMany(mappedBy = "mod", fetch = FetchType.EAGER)
-    private Set<CarModDos> carModDosSet = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "modType")
+    private com.challengeecomerce.BMW.Automotors.models.ModType modType;
+
 
     public Mod() {
     }
 
-    public Mod(String name, String description, Double price, CarColor carColor, Integer stock, List <String> images) {
+    public Mod( String name, String description, Double price, CarColor carColor, Integer stock, List <String> images, ModType modType) {
+        this.isActive = true;
         this.name = name;
         this.description = description;
         this.price = price;
         this.carColor = carColor;
         this.stock = stock;
         this.images = images;
+        this.modType = modType;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     public String getName() {
@@ -95,5 +109,13 @@ public class Mod {
 
     public void setImages(List<String> images) {
         this.images = images;
+    }
+
+    public ModType getModType() {
+        return modType;
+    }
+
+    public void setModType(ModType modType) {
+        this.modType = modType;
     }
 }

@@ -3,6 +3,9 @@ package com.challengeecomerce.BMW.Automotors.controllers;
 import com.challengeecomerce.BMW.Automotors.dtos.ModDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
+import com.challengeecomerce.BMW.Automotors.models.ModType;
+import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
+import com.challengeecomerce.BMW.Automotors.repositories.ModTypeRepository;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import com.challengeecomerce.BMW.Automotors.services.ModService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/api")
@@ -21,10 +29,12 @@ public class ModController {
     private ModService modService;
 
     @Autowired
-    private ClientService clientService;
+    private ModTypeRepository modTypeRepository;
 
-    @GetMapping("/mods")
-    public Set<ModDTO> getAll() { return modService.getAllModsDTO();  }
+    @Autowired
+    private ModRepository modRepository;
+    @Autowired
+    private ClientService clientService;
 
     @PostMapping("/admin/addMods")
     public ResponseEntity<Object> addMod(Authentication authentication, @RequestBody ModDTO modDTO) {
@@ -60,8 +70,17 @@ public class ModController {
             return new ResponseEntity<>("Please add images for the item", HttpStatus.FORBIDDEN);
         }
 
-        Mod mod = new Mod(modDTO.getName(), modDTO.getDescription(), modDTO.getPrice(), modDTO.getCarColor(), modDTO.getStock(), modDTO.getImages());
+        ModType modType = modTypeRepository.findByName(modDTO.getModType());
+
+        if(modType == null){
+            modType = new ModType(modDTO.getModType());
+            modTypeRepository.save(modType);
+        }
+
+        Mod mod = new Mod(modDTO.getName(), modDTO.getDescription(), modDTO.getPrice(), modDTO.getCarColor(), modDTO.getStock(), modDTO.getImages(), modType);
         modService.saveMod(mod);
+
+
 
         return new ResponseEntity<>("Mod Created", HttpStatus.CREATED);
     }
@@ -89,7 +108,7 @@ public class ModController {
         }
 
         if(modDTO.getStock() <= 0){
-            return new ResponseEntity<>("Price must be greater than 0", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Stock must be greater than 0", HttpStatus.FORBIDDEN);
         }
 
         if (modDTO.getCarColor().toString().isBlank()){
@@ -109,4 +128,30 @@ public class ModController {
 
         }
 
+        @PatchMapping("/admin/deleteMods/{id}")
+        public ResponseEntity<Object> deleteMod(Authentication authentication, @PathVariable Long id){
+
+//            Client client = clientService.findByEmail(authentication.getName());
+            Mod mod = modService.findById(id);
+
+//            if(!client.getEmail().contains("admin")){
+//                return new ResponseEntity<>("Only admins can delete mods", HttpStatus.FORBIDDEN);
+//            }
+
+            mod.setActive(false);
+            modService.saveMod(mod);
+            return  new ResponseEntity<>("Mod Deleted", HttpStatus.OK);
+
+        }
+
+
+
+    @GetMapping("/modstype")
+    public List<ModType> getAllModsType(){
+        return modTypeRepository.findAll();
+    }
+    @GetMapping("/mods")
+    public List<Mod> getAllMods(){
+        return modRepository.findAll();
+    }
 }

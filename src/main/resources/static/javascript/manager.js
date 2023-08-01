@@ -6,7 +6,7 @@ createApp({
       //Propiedades Reactivas
       model: "",
       date: null,
-      allColors: ["BLACK", "WHITE", "BLUE"],
+      allColors: [],
       color: null,
       price: 0,
       paymentsInput: '',
@@ -14,14 +14,20 @@ createApp({
       stock: 0,
       images: ["", "", ""],
       packM: false,
-      allMods: ["SPOILER", "ALLOY_WHEELS", "TINTED_WINDOWS", "NAVIGATION_SYSTEM", "SUNROOF", "PERFORMANCE_EXHAUST", "OTHER"],
-      carMod: []
-
+      allMods: [],
+      carMod: [],
+      modName: "",
+      modDescription: "",
+      modPrice: 0,
+      modStock: 0,
+      images2: ["", "", ""],
+      modType: null
     }
   },
 
   created() {
-
+    this.getCarColors()
+    this.getAllMods()
   },
   methods: {
     updateCarModArray(event, mod) {
@@ -35,7 +41,7 @@ createApp({
           this.carMod.splice(index, 1);
         }
       }
-    },
+    },    
     updateCarColorArray(event, color) {
       this.color = color;
     },
@@ -48,6 +54,30 @@ createApp({
         console.log(error);
       })
     },
+    getCarColors(){
+      axios.get('/api/car/color')
+      .then(response => {
+       // console.log(response.data);
+        this.allColors = response.data
+        console.log(this.allColors);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
+    getAllMods(){
+      axios.get('/api/mods')
+      .then(response => {
+        console.log(response.data);
+        //this.allMods = response.data
+        this.allMods = response.data.map(mod => mod.name)
+        console.log(this.allMods);
+        
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
     convertToNumbers() {
       this.payments = this.paymentsInput.split(',').map(Number);
     },
@@ -56,6 +86,23 @@ createApp({
       'price': this.price, 'payments': this.payments, 'packM': this.packM, 'stock': this.stock, 'images': this.images, 'modType': this.carMod })
         .then(response => {
           console.log("Car added!!");
+       
+        })
+        .catch(
+          error => {
+            console.log(error);
+            Swal.fire(
+              'Oops..',
+              `${error.response.data} Please try again.`,
+              'error'
+            )
+          })
+    },
+    addMod(){
+      axios.post('/api/admin/addMods', { 'name': this.modName, 'description': this.modDescription, 'price': this.modPrice, 
+      'carColor': this.color, 'stock': this.modStock, 'images': this.images2, 'modType': this.modType})
+        .then(response => {
+          console.log("Mod added!!");
        
         })
         .catch(
