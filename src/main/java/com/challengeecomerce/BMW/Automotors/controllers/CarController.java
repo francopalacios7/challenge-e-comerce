@@ -97,16 +97,14 @@ public class CarController {
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
 
-        if(carDTO.getPrice() == 0 || carDTO.getPrice() < 70000){
-
+        if(carDTO.getPrice() <= 70000){
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPayments().isEmpty()){
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
 
-        if(carDTO.getStock() == 0 || carDTO.getStock() < 0 ){
-
+        if(carDTO.getStock() <= 0 ){
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPackM().toString().isBlank()){
@@ -127,14 +125,24 @@ public class CarController {
     }
 
 
-//    @PostMapping(path = "/admin/car/delete")
-//    public ResponseEntity<Object> updateCar(Authentication authentication,  @RequestParam long id){
-//        Client client = clientService.findByEmail(authentication.getName());
+    @PatchMapping("/admin/car/delete/{id}")
+    public ResponseEntity<Object> deleteCard(@PathVariable Long id, Authentication authentication){
+        //        Client client = clientService.findByEmail(authentication.getName());
 
 //        if(!client.getEmail().contains("admin")){
-//            return new ResponseEntity<>("Only the admin can Delete cars.", HttpStatus.FORBIDDEN);
+//            return new ResponseEntity<>("Only the admin can Update cars.", HttpStatus.FORBIDDEN);
 //        }
-//Eliminar auto, cliente asociado, modificaciones,la compra que realizo.
-//}
+
+        Car car = carService.findById(id);
+        if(car == null){
+            return new ResponseEntity<>("Car invalid, please try again.", HttpStatus.FORBIDDEN);
+        }
+        if(car.getActive()){
+            car.setActive(false);
+            carService.saveCar(car);
+        }
+        return new ResponseEntity<>("Car deleted succesfully.", HttpStatus.ACCEPTED);
+    }
+
 
 }
