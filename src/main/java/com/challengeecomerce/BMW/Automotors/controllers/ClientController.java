@@ -90,7 +90,7 @@ public class ClientController {
             do {
                 ticketNumber = random.nextLong();
             } while (purchaseService.findByTicketNumber(ticketNumber) != null);
-            Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType(), purchaseDTO.getDuesPlan());
+            Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
             ClientPurchase clientPurchase = new ClientPurchase(purchaseDTO.getTotalAmount());
             purchaseService.save(purchase);
             client.addClientPurchase(clientPurchase);
