@@ -21,6 +21,7 @@ public class CarDTO {
     private Integer stock;
     private List<String> images;
     private List<ModType> modType;
+    private Boolean active;
     public CarDTO() {}
     public CarDTO(Car car) {
         this.id = car.getId();
@@ -36,6 +37,7 @@ public class CarDTO {
         this.stock = car.getStock();
         this.images =car.getImages();
         this.modType =car.getModType();
+        this.active= car.getActive();
     }
 
     public Long getId() {return id;}
@@ -70,4 +72,8 @@ public class CarDTO {
 
     public List<String> getImages() {return images;}
     public List<ModType> getModType() {return modType;}
+
+    public Boolean getActive() {
+        return active;
+    }
 }
