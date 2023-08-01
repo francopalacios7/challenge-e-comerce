@@ -14,7 +14,7 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String details;
+    private List<String> details;
     private String model;
     private Year date;
     private CarColor carColor;
@@ -25,11 +25,16 @@ public class Car {
     private Boolean packM;
     private CarType carType;
     private Integer stock;
+    private Boolean active;
+
     @ElementCollection
     @CollectionTable(name = "car_images", joinColumns = @JoinColumn(name = "car_id"))
     @Column(name = "image")
     private List<String> images;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5339db8755d300024da4206e88eef18b0ee3072a
     @ElementCollection
     @CollectionTable(name = "carMod", joinColumns = @JoinColumn(name = "mod_id"))
     @Column(name = "mod")
@@ -41,7 +46,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(String details, String model, Year date, CarColor carColor, Double price, String description, List<Integer> payments, Boolean packM, CarType carType, Integer stock, List<String> images, List<ModType>  modType) {
+    public Car(List<String> details, String model, Year date, CarColor carColor, Double price, String description, List<Integer> payments, Boolean packM, CarType carType, Integer stock, List<String> images, List<ModType>  modType) {
 
         this.details = details;
         this.model = model;
@@ -55,14 +60,15 @@ public class Car {
         this.stock = stock;
         this.images = images;
         this.modType = modType;
+        this.active = true;
     }
     public Long getId() {
         return id;
     }
-    public String getDetails() {
+    public List<String> getDetails() {
         return details;
     }
-    public void setDetails(String details) {
+    public void setDetails(List <String> details) {
         this.details = details;
     }
     public String getModel() {
@@ -127,7 +133,6 @@ public class Car {
     public void setImages(List<String> images) {
         this.images = images;
     }
-
     public List<ModType> getModType() {
         return modType;
     }
@@ -140,5 +145,13 @@ public class Car {
     public void addPlanDuesCar(PlanDuesCar planDuesCar) {
         planDuesCar.setCar(this);
         this.planDuesCarSet.add(planDuesCar);
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

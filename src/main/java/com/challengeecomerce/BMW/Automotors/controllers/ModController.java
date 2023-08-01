@@ -85,8 +85,8 @@ public class ModController {
         return new ResponseEntity<>("Mod Created", HttpStatus.CREATED);
     }
 
-        @PatchMapping("/admin/updateMods")
-        public ResponseEntity <Object> updateMods(Authentication authentication, @RequestBody ModDTO modDTO){
+    @PatchMapping("/admin/updateMods")
+    public ResponseEntity <Object> updateMods(Authentication authentication, @RequestBody ModDTO modDTO){
 
 //        Client client = clientService.findByEmail(authentication.getName());
         Mod mod = modService.findById(modDTO.getId());
@@ -125,6 +125,7 @@ public class ModController {
         modService.saveMod(mod);
 
         return new ResponseEntity<>("Modified successfully", HttpStatus.OK);
+
 
         }
 

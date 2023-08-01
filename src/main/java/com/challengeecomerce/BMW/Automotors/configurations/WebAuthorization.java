@@ -31,6 +31,7 @@ class WebAuthorization {
                 .antMatchers(HttpMethod.GET, "/api/car/color").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/mods").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/modstype").permitAll()
+                .antMatchers(HttpMethod.PATCH,"/api/admin/car/delete/{id}").permitAll()
 //              .antMatchers(HttpMethod.PATCH, "/api/clients/current/cards/{id}", "/api/clients/current/accounts/{id}").hasAuthority("CLIENT")
                 .antMatchers("/api/login", "/web/htmlPages/index.html", "/web/JsPages/**", "/web/stylePages/**", "/web/resources/**", "/web/htmlPages/login.html", "/api/logout").permitAll()
                 .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients","/web/htmlPages/adminLoans.html" ).hasAuthority("ADMIN")

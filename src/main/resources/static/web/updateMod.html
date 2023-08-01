@@ -79,6 +79,56 @@
 
 
 
+    <section class="d-flex justify-content-center mt-5 ">
+{{modToSend}}
+        <div class="card mb-3 col-12 col-md-8 col-lg-6 shadow">
+          <div class="row g-0 d-flex align-items-center shadow">
+            <div>
+              <div class="card-body py-5 px-md-5 shadow">
+                <form @submit.prevent="update()">
+                  <h1 class="d-flex justify-content-center">Update changes</h1>
+
+                  <div class="form-outline mb-4 mt-3">
+                    <input v-model="modToSend.name" type="text" id="model" name="model" class="form-control shadow" placeholder="Name" />
+                  </div>
+    
+
+                  <div class="form-outline mb-4 mt-3">
+                    <input v-model="modToSend.description" type="text" id="date" class="form-control shadow" placeholder="description" />
+                  </div>
+
+                  <label for="color" class="fw-bold">Color:</label>
+                  <div class="d-flex gap-2" v-for="color in carColor" :key="color">
+                    <label :for="color">{{ color }}</label>
+                    <input v-model="modToSend.carColor" type="radio" name="color" :id="color" :value="color">
+                  </div>
+
+                  <div class="form-outline mb-4 mt-3 d-flex flex-column gap-2">
+
+                  <div class="form-outline mb-4 mt-3">
+                    <label for="price" class="fw-bold ms- mb-2">Price:</label>
+                    <input v-model="modToSend.price" type="number" id="price" class="form-control shadow" placeholder="Price" />
+                  </div>
+
+
+                  <div class="form-outline mb-4 mt-3">
+                    <label for="price" class="fw-bold ms- mb-2">Stock:</label>
+                    <input v-model="modToSend.stock" type="number" id="stock" class="form-control shadow" placeholder="Stock" />
+                  </div>
+     
+
+                  <div class="row mb-4">
+                    <div class="col d-flex justify-content-center">
+                      <button type="submit">Add</button>
+                    </div>
+                  </div>
+      
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
 
 
@@ -91,8 +141,8 @@
     <div v-cloak v-if="showConfirmation" class="confirmation-message mt-3">
         <p>¿Estás seguro de que deseas continuar?</p>
         <div class="btn-wrapper">
-            <button v-cloak @click="confirmRegister" class="btn confirm-btn">Confirmar</button>
-            <button v-cloak @click="cancelRegister" class="btn cancel-btn">Cancelar</button>
+            <button v-cloak @click="confirmUpdate" class="btn confirm-btn">Confirmar</button>
+            <button v-cloak @click="cancelUpdate" class="btn cancel-btn">Cancelar</button>
         </div>
       </div>
 </main>

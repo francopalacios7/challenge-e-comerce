@@ -1,4 +1,5 @@
 package com.challengeecomerce.BMW.Automotors.services.implement;
+
 import com.challengeecomerce.BMW.Automotors.dtos.ModDTO;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
@@ -11,11 +12,13 @@ import java.util.stream.Collectors;
 public class ModServiceImplement implements ModService {
 
     @Autowired
-    ModRepository modRepository;
+    private ModRepository modRepository;
 
     @Override
     public Mod findById(Long id) {
         return modRepository.findById(id).orElse(null);
+
+
     }
 
     @Override
