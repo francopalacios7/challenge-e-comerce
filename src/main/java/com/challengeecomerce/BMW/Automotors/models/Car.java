@@ -29,7 +29,6 @@ public class Car {
     @CollectionTable(name = "car_images", joinColumns = @JoinColumn(name = "car_id"))
     @Column(name = "image")
     private List<String> images;
-
     @ElementCollection
     @CollectionTable(name = "carMod", joinColumns = @JoinColumn(name = "mod_id"))
     @Column(name = "mod")
@@ -127,7 +126,6 @@ public class Car {
     public void setImages(List<String> images) {
         this.images = images;
     }
-
     public List<ModType> getModType() {
         return modType;
     }

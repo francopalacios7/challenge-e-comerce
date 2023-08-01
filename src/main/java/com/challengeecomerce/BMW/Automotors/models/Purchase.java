@@ -23,6 +23,9 @@ public class Purchase {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "clientPurchase_id")
+    private ClientPurchase clientPurchase;
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
 
@@ -41,15 +44,12 @@ public class Purchase {
     public Long getId() {
         return id;
     }
-
     public Long getTicketNumber() {
         return ticketNumber;
     }
-
     public void setTicketNumber(Long ticketNumber) {
         this.ticketNumber = ticketNumber;
     }
-
     public LocalDate getDate() {
         return date;
     }
@@ -72,21 +72,16 @@ public class Purchase {
     public void setClient(Client client) {
         this.client = client;
     }
-    public Set<ModPurchase> getModPurchaseSet() {
-        return modPurchaseSet;
-    }
-    public void setModPurchaseSet(Set<ModPurchase> modPurchaseSet) {
-        this.modPurchaseSet = modPurchaseSet;
-    }
     public PurchaseType getPurchaseType() {return purchaseType;}
     public void setPurchaseType(PurchaseType purchaseType) {this.purchaseType = purchaseType;}
-
-    public ClientPurchase getClientPurchase() {
-        return clientPurchase;
+    public DuesPlan getDuesPlan() {return duesPlan;}
+    public void setDuesPlan(DuesPlan duesPlan) {this.duesPlan = duesPlan;}
+    public ClientPurchase getClientPurchase() {return clientPurchase;}
+    public void setClientPurchase(ClientPurchase clientPurchase) {this.clientPurchase = clientPurchase;}
+    public Set<ModPurchase> getModPurchaseSet() {return modPurchaseSet;}
+    public void setModPurchaseSet(Set<ModPurchase> modPurchaseSet) {this.modPurchaseSet = modPurchaseSet;}
+    public void addModPurchaseSet(ModPurchase modPurchase){
+        modPurchase.setPurchase(this);
+        this.modPurchaseSet.add(modPurchase);
     }
-
-    public void setClientPurchase(ClientPurchase clientPurchase) {
-        this.clientPurchase = clientPurchase;
-    }
-
 }

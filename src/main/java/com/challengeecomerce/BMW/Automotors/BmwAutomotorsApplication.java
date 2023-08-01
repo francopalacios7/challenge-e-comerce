@@ -39,13 +39,13 @@ public class BmwAutomotorsApplication {
 	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository, ModTypeRepository modTypeRepository) {
 		return (args -> {
+
 			Client Pepe = new Client("Pepe", "Honguito","micagpili@gmail.com", passwordEncoder.encode("melba456"),"direccion","23456");
 			clientRepository.save(Pepe);
 			Client Lucas = new Client("Pepe", "Honguito","correalucasmatias98@gmail.com", passwordEncoder.encode("melba456"),"direccion","23456");
 			clientRepository.save(Lucas);
 			//Client admin = new Client());
-			Client pepe = new Client("Pepe", "Honguito", "pepe@gmail.com", passwordEncoder.encode("melba456"), "direccion", "23456");
-			clientRepository.save(pepe);
+
 
 			Car car1 = new Car(Arrays.asList("Weight: 2,310kg",
 					"Fuel Capacity: 80 liters",
@@ -148,8 +148,6 @@ public class BmwAutomotorsApplication {
 					Arrays.asList(ModType.NONE));
 
 
-
-
 			carRepository.saveAll(Arrays.asList(car1, car2, car3, car4,car5, moto1,moto2,moto3));
 
 			com.challengeecomerce.BMW.Automotors.models.ModType navigationSystem1 = new com.challengeecomerce.BMW.Automotors.models.ModType("Navigation System");
@@ -183,12 +181,9 @@ public class BmwAutomotorsApplication {
 			Random random = new Random();
 			Long ticketNumber;
 
-
 			do {
 				ticketNumber = random.nextLong() +10000;
 			} while (purchaseService.findByTicketNumber(ticketNumber) != null);
-
-			System.out.println("ticketNumber = " + ticketNumber);
 		});
 	}
 }

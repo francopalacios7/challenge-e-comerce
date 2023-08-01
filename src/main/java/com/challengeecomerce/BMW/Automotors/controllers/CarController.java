@@ -31,21 +31,20 @@ public class CarController {
     }
     @PostMapping("/admin/cars")
     public ResponseEntity<Object> addCar(@RequestBody CarDTO carDTO, Authentication authentication){
-
 // Client client = clientService.findByEmail(authentication.getName());
 
 
 //        if(!client.getEmail().contains("admin")){
 //            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
 //        }
-
-        if(carDTO.getDetails().isEmpty()){
+        if(carDTO.getDetails().isBlank()){
             return new ResponseEntity<>("Please add the vehicle details", HttpStatus.FORBIDDEN);
         }
 
         if(carDTO.getImages().isEmpty()){
             return new ResponseEntity<>("Please add images to the vehicle", HttpStatus.FORBIDDEN);
         }
+
         if(carDTO.getModel().isBlank()){
 
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
@@ -56,17 +55,13 @@ public class CarController {
         if(carDTO.getCarColor().toString().isBlank()){
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-
-        if(carDTO.getPrice() == 0 || carDTO.getPrice() < 70000){
-
+        if(carDTO.getPrice() < 70000){
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-        if(carDTO.getPayments().isEmpty()){
+        if(carDTO.getPayments().isEmpty()) {
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-
-        if(carDTO.getStock() == 0 || carDTO.getStock() < 0 ){
-
+        if(carDTO.getStock() <= 0 ){
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPackM().toString().isBlank()){
@@ -96,17 +91,13 @@ public class CarController {
         if(carDTO.getCarColor().toString().isBlank()){
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-
-        if(carDTO.getPrice() == 0 || carDTO.getPrice() < 70000){
-
+        if(carDTO.getPrice() < 70000){
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPayments().isEmpty()){
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-
         if(carDTO.getStock() <= 0 ){
-
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPackM().toString().isBlank()){
@@ -126,6 +117,7 @@ public class CarController {
         return new ResponseEntity<>("Car Updated successfully.", HttpStatus.OK);
     }
 
+}
 
 //    @PostMapping(path = "/admin/car/delete")
 //    public ResponseEntity<Object> updateCar(Authentication authentication,  @RequestParam long id){
@@ -135,6 +127,4 @@ public class CarController {
 //            return new ResponseEntity<>("Only the admin can Delete cars.", HttpStatus.FORBIDDEN);
 //        }
 //Eliminar auto, cliente asociado, modificaciones,la compra que realizo.
-//}
 
-}

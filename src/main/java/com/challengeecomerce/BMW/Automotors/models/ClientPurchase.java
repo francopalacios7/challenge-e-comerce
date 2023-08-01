@@ -11,7 +11,7 @@ public class ClientPurchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private LocalDate creationDate;
     private Double totalAmount;
 
     private LocalDate creationDate;
@@ -29,32 +29,26 @@ public class ClientPurchase {
         this.totalAmount = totalAmount;
         this.creationDate = LocalDate.now();
     }
-
-
     public Long getId() {
         return id;
     }
-
     public Double getTotalAmount() {
         return totalAmount;
     }
-
     public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
-
     public Client getClient() {
         return client;
     }
-
     public void setClient(Client client) {
         this.client = client;
     }
-
     public Set<Purchase> getPurchaseSet() {
         return purchaseSet;
     }
-
+    public LocalDate getCreationDate() {return creationDate;}
+    public void setCreationDate(LocalDate creationDate) {this.creationDate = creationDate;}
     public void setPurchaseSet(Set<Purchase> purchaseSet) {
         this.purchaseSet = purchaseSet;
     }

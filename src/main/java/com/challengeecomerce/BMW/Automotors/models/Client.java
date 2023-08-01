@@ -68,17 +68,17 @@ public class Client {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public Set<ClientPurchase> getClientPurchaseSet() {
-        return clientPurchaseSet;
-    }
     public void addClientPurchase(ClientPurchase clientPurchase) {
         clientPurchase.setClient(this);
         this.clientPurchaseSet.add(clientPurchase);
     }
-    public void setClientPurchaseSet(Set<ClientPurchase> clientPurchaseSet) {this.clientPurchaseSet = clientPurchaseSet;}
+
     public Set<MeetingReservation> getMeetingReservationSet() {return meetingReservationSet;}
     public void addMeetingReservation(MeetingReservation meetingReservation) {
         meetingReservation.setClient(this);
         this.meetingReservationSet.add(meetingReservation);
     }
+    public Set<ClientPurchase> getClientPurchaseSet() {return clientPurchaseSet;}
+    public void setClientPurchaseSet(Set<ClientPurchase> clientPurchaseSet) {this.clientPurchaseSet = clientPurchaseSet;}
+    public void setMeetingReservationSet(Set<MeetingReservation> meetingReservationSet) {this.meetingReservationSet = meetingReservationSet;}
 }
