@@ -26,10 +26,6 @@ public class Purchase {
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
 
-
-    @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
-    private DuesPlan duesPlan;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "purchase")
     private ClientPurchase clientPurchase;
@@ -93,6 +89,4 @@ public class Purchase {
         this.clientPurchase = clientPurchase;
     }
 
-    public DuesPlan getDuesPlan() {return duesPlan;}
-    public void setDuesPlan(DuesPlan duesPlan) {this.duesPlan = duesPlan;}
 }

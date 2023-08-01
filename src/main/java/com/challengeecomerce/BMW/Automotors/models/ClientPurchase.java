@@ -58,4 +58,12 @@ public class ClientPurchase {
     public void setPurchaseSet(Set<Purchase> purchaseSet) {
         this.purchaseSet = purchaseSet;
     }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
 }

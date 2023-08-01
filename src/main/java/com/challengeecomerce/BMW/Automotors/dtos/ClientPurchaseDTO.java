@@ -3,6 +3,8 @@ package com.challengeecomerce.BMW.Automotors.dtos;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.ClientPurchase;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
+
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,17 +14,14 @@ public class ClientPurchaseDTO {
 
     private Double totalAmount;
 
-    private Client client;
-
-    private Set<Purchase> purchaseSet = new HashSet<>();
+    private LocalDate creationDate;
 
     public ClientPurchaseDTO() {
     }
 
     public ClientPurchaseDTO(ClientPurchase clientPurchase) {
         this.totalAmount = clientPurchase.getTotalAmount();
-        this.client = clientPurchase.getClient();
-        this.purchaseSet = clientPurchase.getPurchaseSet();
+        this.creationDate = clientPurchase.getCreationDate();
     }
 
 
@@ -34,11 +33,5 @@ public class ClientPurchaseDTO {
         return totalAmount;
     }
 
-    public Client getClient() {
-        return client;
-    }
 
-    public Set<Purchase> getPurchaseSet() {
-        return purchaseSet;
-    }
 }

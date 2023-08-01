@@ -34,7 +34,7 @@ public class Mod {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "modType")
-    private com.challengeecomerce.BMW.Automotors.models.ModType modType;
+    private ModType modType;
 
 
     public Mod() {

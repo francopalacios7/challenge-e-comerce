@@ -39,7 +39,7 @@ public class CarController {
 //            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
 //        }
 
-        if(carDTO.getDetails().isBlank()){
+        if(carDTO.getDetails().isEmpty()){
             return new ResponseEntity<>("Please add the vehicle details", HttpStatus.FORBIDDEN);
         }
 

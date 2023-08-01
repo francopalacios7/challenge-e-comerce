@@ -14,7 +14,7 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String details;
+    private List<String> details;
     private String model;
     private Year date;
     private CarColor carColor;
@@ -41,7 +41,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(String details, String model, Year date, CarColor carColor, Double price, String description, List<Integer> payments, Boolean packM, CarType carType, Integer stock, List<String> images, List<ModType>  modType) {
+    public Car(List<String> details, String model, Year date, CarColor carColor, Double price, String description, List<Integer> payments, Boolean packM, CarType carType, Integer stock, List<String> images, List<ModType>  modType) {
 
         this.details = details;
         this.model = model;
@@ -59,10 +59,10 @@ public class Car {
     public Long getId() {
         return id;
     }
-    public String getDetails() {
+    public List<String> getDetails() {
         return details;
     }
-    public void setDetails(String details) {
+    public void setDetails(List <String> details) {
         this.details = details;
     }
     public String getModel() {
