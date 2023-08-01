@@ -21,55 +21,53 @@ public class CarController {
     ClientService clientService;
     @Autowired
     CarService carService;
+
     @GetMapping("/car")
     public Set<CarDTO> getAll() {
         return carService.getAllCarsDTO();
     }
+
     @GetMapping("/car/color")
-    public CarColor[] getAllColors(){
+    public CarColor[] getAllColors() {
         return CarColor.values();
     }
-    @PostMapping("/admin/cars")
-    public ResponseEntity<Object> addCar(@RequestBody CarDTO carDTO, Authentication authentication){
 
+    @PostMapping("/admin/cars")
+    public ResponseEntity<Object> addCar(@RequestBody CarDTO carDTO, Authentication authentication) {
 // Client client = clientService.findByEmail(authentication.getName());
 
 
 //        if(!client.getEmail().contains("admin")){
 //            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
 //        }
-
-        if(carDTO.getDetails().isBlank()){
+        if (carDTO.getDetails().isEmpty()) {
             return new ResponseEntity<>("Please add the vehicle details", HttpStatus.FORBIDDEN);
         }
 
-        if(carDTO.getImages().isEmpty()){
+        if (carDTO.getImages().isEmpty()) {
             return new ResponseEntity<>("Please add images to the vehicle", HttpStatus.FORBIDDEN);
         }
-        if(carDTO.getModel().isBlank()){
+
+        if (carDTO.getModel().isBlank()) {
 
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-        if(carDTO.getDate().toString().isBlank()){
+        if (carDTO.getDate().toString().isBlank()) {
             return new ResponseEntity<>("Date is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-        if(carDTO.getCarColor().toString().isBlank()){
+        if (carDTO.getCarColor().toString().isBlank()) {
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-
-        if(carDTO.getPrice() == 0 || carDTO.getPrice() < 70000){
-
+        if (carDTO.getPrice() < 70000) {
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-        if(carDTO.getPayments().isEmpty()){
+        if (carDTO.getPayments().isEmpty()) {
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-
-        if(carDTO.getStock() == 0 || carDTO.getStock() < 0 ){
-
+        if (carDTO.getStock() <= 0) {
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-        if(carDTO.getPackM().toString().isBlank()){
+        if (carDTO.getPackM().toString().isBlank()) {
             return new ResponseEntity<>("PackM must be selected, please try again.", HttpStatus.FORBIDDEN);
         }
         Car car1 = new Car(carDTO.getDetails(), carDTO.getModel(), carDTO.getDate(), carDTO.getCarColor(), carDTO.getPrice(), carDTO.getDescription(), carDTO.getPayments(), carDTO.getPackM(), carDTO.getCarType(), carDTO.getStock(), carDTO.getImages(), carDTO.getModType());
@@ -78,7 +76,7 @@ public class CarController {
     }
 
     @PatchMapping(path = "/admin/car/update")
-    public ResponseEntity<Object> updateCar(Authentication authentication, @RequestBody CarDTO carDTO){
+    public ResponseEntity<Object> updateCar(Authentication authentication, @RequestBody CarDTO carDTO) {
 //        Client client = clientService.findByEmail(authentication.getName());
 
 //        if(!client.getEmail().contains("admin")){
@@ -87,46 +85,51 @@ public class CarController {
         Car carToUpdate = carService.findById(carDTO.getId());
 
 
-        if(carDTO.getModel().isBlank()){
+        if (carDTO.getModel().isBlank()) {
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-        if(carDTO.getDate().toString().isBlank()){
+        if (carDTO.getDate().toString().isBlank()) {
             return new ResponseEntity<>("Date is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-        if(carDTO.getCarColor().toString().isBlank()){
+        if (carDTO.getCarColor().toString().isBlank()) {
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
 
-        if(carDTO.getPrice() <= 70000){
-            return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
-        }
-        if(carDTO.getPayments().isEmpty()){
-            return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
-        }
-
-        if(carDTO.getStock() <= 0 ){
-            return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
-        }
-        if(carDTO.getPackM().toString().isBlank()){
-            return new ResponseEntity<>("PackM must be selected, please try again.", HttpStatus.FORBIDDEN);
-        }
-
-        carToUpdate.setModel(carDTO.getModel());
-        carToUpdate.setDate(carDTO.getDate());
-        carToUpdate.setCarColor(carDTO.getCarColor());
-        carToUpdate.setPrice(carDTO.getPrice());
-        carToUpdate.setPayments(carDTO.getPayments());
-        carToUpdate.setStock(carDTO.getStock());
-        carToUpdate.setPackM(carDTO.getPackM());
-        carService.saveCar(carToUpdate);
 
 
-        return new ResponseEntity<>("Car Updated successfully.", HttpStatus.OK);
-    }
+
+            if (carDTO.getPrice() < 70000) {
+
+                return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
+            }
+            if (carDTO.getPayments().isEmpty()) {
+                return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
+            }
+
+            if (carDTO.getStock() <= 0) {
+                return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
+            }
+            if (carDTO.getPackM().toString().isBlank()) {
+                return new ResponseEntity<>("PackM must be selected, please try again.", HttpStatus.FORBIDDEN);
+            }
+
+            carToUpdate.setModel(carDTO.getModel());
+            carToUpdate.setDate(carDTO.getDate());
+            carToUpdate.setCarColor(carDTO.getCarColor());
+            carToUpdate.setPrice(carDTO.getPrice());
+            carToUpdate.setPayments(carDTO.getPayments());
+            carToUpdate.setStock(carDTO.getStock());
+            carToUpdate.setPackM(carDTO.getPackM());
+            carService.saveCar(carToUpdate);
+
+
+            return new ResponseEntity<>("Car Updated successfully.", HttpStatus.OK);
+        }
+
 
 
     @PatchMapping("/admin/car/delete/{id}")
-    public ResponseEntity<Object> deleteCard(@PathVariable Long id, Authentication authentication){
+    public ResponseEntity<Object> deleteCard(@PathVariable Long id, Authentication authentication) {
         //        Client client = clientService.findByEmail(authentication.getName());
 
 //        if(!client.getEmail().contains("admin")){
@@ -134,15 +137,15 @@ public class CarController {
 //        }
 
         Car car = carService.findById(id);
-        if(car == null){
+        if (car == null) {
             return new ResponseEntity<>("Car invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-        if(car.getActive()){
+        if (car.getActive()) {
             car.setActive(false);
             carService.saveCar(car);
         }
         return new ResponseEntity<>("Car deleted succesfully.", HttpStatus.ACCEPTED);
     }
-
-
 }
+
+

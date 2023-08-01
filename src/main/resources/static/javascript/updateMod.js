@@ -8,6 +8,14 @@ createApp({
       showConfirmation: false,
       err: '',
       params: '',
+      carColor:["BLACK","WHITE","BLUE"],
+      modToSend:{
+        name: '',
+        description: '',
+        carColor: '',
+        price: null,
+        stock: null
+      }
       /* Update */
      
     }
@@ -53,8 +61,8 @@ createApp({
     confirmUpdate() {
       this.showConfirmation = false;
 
-      axios.patch('/api/admin/car/update',  {'id': this.params, 'model': this.model, 'date': this.date, 'carColor': this.color, 
-      'price': this.price, 'payments': this.payments, 'packM': this.packM, 'stock': this.stock, 'images': this.images, 'modType': this.carMod })
+      axios.patch('/api/admin/updateMods',  {'id': this.params, 'name': this.modToSend.name, 'description': this.modToSend.description, 
+      'price': this.modToSend.price, 'carColor': this.modToSend.carColor, 'stock': this.modToSend.stock })
         .then((res) => {
           if (res.status === 200) {
             this.showNotification('Car Updated', 'success');
