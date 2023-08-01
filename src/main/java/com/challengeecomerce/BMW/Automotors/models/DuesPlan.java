@@ -18,7 +18,6 @@ public class DuesPlan {
     private Purchase purchase;
     @OneToMany(mappedBy = "duesPlan", fetch = FetchType.EAGER)
     private Set<PlanDuesCar> planDuesCarSet = new HashSet<>();
-
     public DuesPlan() {
     }
 
@@ -45,5 +44,4 @@ public class DuesPlan {
         planDuesCar.setDuesPlan(this);
         this.planDuesCarSet.add(planDuesCar);
     }
-
 }
