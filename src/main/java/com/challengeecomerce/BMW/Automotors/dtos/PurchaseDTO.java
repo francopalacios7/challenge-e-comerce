@@ -9,18 +9,19 @@ import java.util.stream.Collectors;
 
 public class PurchaseDTO {
     private Long id;
+    private Long ticketNumber;
     private LocalDate date;
     private Double totalAmount;
     private PurchaseType purchaseType;
     private Integer payments;
-    private Set<CarPurchaseDTO> carPurchaseDTO;
     private Set<ModPurchaseDTO> modPurchaseDTO;
-    private Set<CarModPurchaseDTO> carModPurchaseDTO;
+
     private DuesPlan duesPlan;
     public PurchaseDTO() {
     }
     public PurchaseDTO(Purchase purchase) {
         this.id = purchase.getId();
+        this.ticketNumber = purchase.getTicketNumber();
         this.date = purchase.getDate();
         this.totalAmount = purchase.getTotalAmount();
         this.payments = purchase.getPayments();
@@ -29,6 +30,11 @@ public class PurchaseDTO {
     public Long getId() {
         return id;
     }
+
+    public Long getTicketNumber() {
+        return ticketNumber;
+    }
+
     public LocalDate getDate() {
         return date;
     }
@@ -38,15 +44,9 @@ public class PurchaseDTO {
     public Integer getPayments() {
         return payments;
     }
-    public Set<CarPurchaseDTO> getCarPurchaseDTO() {
-        return carPurchaseDTO;
-    }
     public Set<ModPurchaseDTO> getModPurchaseDTO() {
         return modPurchaseDTO;
     }
     public PurchaseType getPurchaseType() {return purchaseType;}
-    public Set<CarModPurchaseDTO> getCarModPurchaseDTO() {
-        return carModPurchaseDTO;
-    }
     public DuesPlan getDuesPlan() {return duesPlan;}
 }

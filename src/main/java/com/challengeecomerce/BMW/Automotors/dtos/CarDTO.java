@@ -4,7 +4,7 @@ import com.challengeecomerce.BMW.Automotors.models.Car;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarType;
 import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
-import java.time.LocalDate;
+import java.time.Year;
 import java.util.List;
 
 public class CarDTO {
@@ -12,7 +12,7 @@ public class CarDTO {
     private String details;
     private CarType carType;
     private String model;
-    private LocalDate date;
+    private Year date;
     private CarColor carColor;
     private Double price;
     private String description;
@@ -47,7 +47,7 @@ public class CarDTO {
     public String getModel() {
         return model;
     }
-    public LocalDate getDate() {return date;}
+    public Year getDate() {return date;}
     public CarColor getCarColor() {
         return carColor;
     }
