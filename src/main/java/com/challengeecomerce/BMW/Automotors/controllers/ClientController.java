@@ -23,7 +23,6 @@ import java.util.List;
 import java.time.LocalDate;
 import java.util.Random;
 
-
 @RestController
 @RequestMapping("/api")
 public class ClientController {
@@ -35,13 +34,12 @@ public class ClientController {
     private PurchaseService purchaseService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private JavaMailSender javaMailSender;
     @GetMapping("/clients/current")
     public ClientDTO getAuthenticatedClient(Authentication authentication) {
         return new ClientDTO(clientService.findByEmail(authentication.getName()));
     }
-    @Autowired
-    private JavaMailSender javaMailSender;
-
     @PostMapping("/clients")
     public ResponseEntity<Object> register(@RequestBody ClientDTO clientDTO) {
         if (clientDTO.getEmail().isBlank()) {
@@ -85,12 +83,9 @@ public class ClientController {
         if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)) {
             Random random = new Random();
             Long ticketNumber;
-
             do {
                 ticketNumber = random.nextLong();
             } while (purchaseService.findByTicketNumber(ticketNumber) != null);
-
-
             Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType(), purchaseDTO.getDuesPlan());
             purchaseService.save(purchase);
             client.addPurchase(purchase);
@@ -100,27 +95,20 @@ public class ClientController {
     }
     @PostMapping("/client/sendEmail")
     public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO turnReservationDTO) {
-
         Client client = clientService.findByEmail(authentication.getName());
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
         }
         String emailToSend = turnReservationDTO.getEmail();
         LocalDateTime turn = turnReservationDTO.getMeetingReservation();
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedDateTime = turn.format(formatter);
-
         SimpleMailMessage email = new SimpleMailMessage();
-
         email.setTo(emailToSend);
         email.setFrom("bmwcohortfs047@hotmail.com");
         email.setSubject("Turn Reservation");
         email.setText("You have a shift reservation for the day " + formattedDateTime);
-
         javaMailSender.send(email);
         return new ResponseEntity<>(true,HttpStatus.OK);
-
     }
-
 }

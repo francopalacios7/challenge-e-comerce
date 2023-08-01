@@ -56,17 +56,13 @@ public class CarController {
         if(carDTO.getCarColor().toString().isBlank()){
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-
-        if(carDTO.getPrice() == 0 || carDTO.getPrice() < 70000){
-
+        if(carDTO.getPrice() <= 70000){
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-        if(carDTO.getPayments().isEmpty()){
+        if(carDTO.getPayments().isEmpty()) {
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-
-        if(carDTO.getStock() == 0 || carDTO.getStock() < 0 ){
-
+        if(carDTO.getStock() <= 0 ){
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPackM().toString().isBlank()){
@@ -96,17 +92,13 @@ public class CarController {
         if(carDTO.getCarColor().toString().isBlank()){
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
-
-        if(carDTO.getPrice() == 0 || carDTO.getPrice() < 70000){
-
+        if(carDTO.getPrice() < 70000){
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPayments().isEmpty()){
             return new ResponseEntity<>("Payments invalid, please try again.", HttpStatus.FORBIDDEN);
         }
-
-        if(carDTO.getStock() == 0 || carDTO.getStock() < 0 ){
-
+        if(carDTO.getStock() <= 0 ){
             return new ResponseEntity<>("Stock invalid, please try again.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getPackM().toString().isBlank()){
