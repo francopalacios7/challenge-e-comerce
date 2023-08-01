@@ -1,6 +1,7 @@
 package com.challengeecomerce.BMW.Automotors.models;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class ModPurchase {
@@ -8,6 +9,8 @@ public class ModPurchase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer quantity;
+
+    private LocalDateTime modPurchaseDate;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "purchase_id")
     private Purchase purchase;
@@ -16,8 +19,9 @@ public class ModPurchase {
     private Mod mod;
     public ModPurchase() {
     }
-    public ModPurchase(Integer quantity, Purchase purchase, Mod mod) {
+    public ModPurchase(Integer quantity, LocalDateTime modPurchaseDate, Purchase purchase, Mod mod) {
         this.quantity = quantity;
+        this.modPurchaseDate = LocalDateTime.now();
         this.purchase = purchase;
         this.mod = mod;
     }

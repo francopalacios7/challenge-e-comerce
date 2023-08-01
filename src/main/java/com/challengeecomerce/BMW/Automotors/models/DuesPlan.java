@@ -22,6 +22,9 @@ public class DuesPlan {
     @OneToMany(mappedBy = "duesPlan", fetch = FetchType.EAGER)
     private Set<PurchaseDuesPlan> purchaseDuesPlans = new HashSet<>();
 
+    public DuesPlan() {
+    }
+
     public DuesPlan(String planDescription, String dues, Double interest, boolean isActive) {
         this.planDescription = planDescription;
         this.dues = dues;

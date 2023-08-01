@@ -34,17 +34,15 @@ public class Purchase {
     @OneToMany(mappedBy = "purchase", fetch = FetchType.EAGER)
     private Set<PurchaseDuesPlan> purchaseDuesPlans = new HashSet<>();
 
-
-
     public Purchase() {
     }
-    public Purchase(Long ticketNumber,LocalDate date, Double totalAmount, Integer payments, PurchaseType type, DuesPlan duesPlan) {
+
+    public Purchase(Long ticketNumber,LocalDate date, Double totalAmount, Integer payments, PurchaseType type) {
         this.ticketNumber = ticketNumber;
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
         this.purchaseType = type;
-        this.duesPlan = duesPlan;
     }
     public Long getId() {
         return id;
