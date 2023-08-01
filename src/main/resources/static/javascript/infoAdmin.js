@@ -26,7 +26,7 @@ createApp({
                   
           this.cars = response.data;
           this.paginateCars();
-          this.carsFiltrados = this.cars.slice(0, this.itemsPerPage)
+          this.carsFiltrados = this.cars.filter(car => car.active == true)/* this.cars.slice(0, this.itemsPerPage) */
           console.log("Cars:", this.cars);
           console.log("Cars Filtrados:", this.carsFiltrados);
 
@@ -110,6 +110,17 @@ createApp({
       this.currentPage = page;
       this.paginateCars();
     },
+
+    deleteCar(id){
+      axios.patch(`/api/admin/car/delete/${id}`)
+      .then(response => {
+        console.log("car deleted!!");
+        window.location.reload();
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
 
   }
 }).mount('#app');

@@ -106,9 +106,12 @@
                             </a>
                         </td>
                         <td>
-                            <a :href="'./deleteCard.html?id='+car.id">
+                            <button @click="deleteCar(car.id)">
+                               <a href="#">
                                 <i class="fas fa-trash-alt fa-lg" style="cursor: pointer; color: red;"></i>
-                            </a>
+                            </a> 
+                            </button>
+                            
                         </td>
                     </tr>
                 </tbody>
