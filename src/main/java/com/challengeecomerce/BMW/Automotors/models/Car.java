@@ -29,10 +29,6 @@ public class Car {
     @CollectionTable(name = "car_images", joinColumns = @JoinColumn(name = "car_id"))
     @Column(name = "image")
     private List<String> images;
-
-    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
-    private Set<CarPurchase> carPurchaseSet = new HashSet<>();
-
     @ElementCollection
     @CollectionTable(name = "carMod", joinColumns = @JoinColumn(name = "mod_id"))
     @Column(name = "mod")
@@ -130,14 +126,6 @@ public class Car {
     public void setImages(List<String> images) {
         this.images = images;
     }
-    public Set<CarPurchase> getCarPurchaseSet() {
-        return carPurchaseSet;
-    }
-
-    public void setCarPurchaseSet(Set<CarPurchase> carPurchaseSet) {
-        this.carPurchaseSet = carPurchaseSet;
-    }
-
     public List<ModType> getModType() {
         return modType;
     }
