@@ -24,17 +24,21 @@ class WebAuthorization {
 //               .antMatchers(HttpMethod.POST,  ).hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST,"/api/clients").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/admin/cars").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/admin/addMods").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/clients").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/car", "/h2-console").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/email").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/car/color").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/mods").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/modstype").permitAll()
 //              .antMatchers(HttpMethod.PATCH, "/api/clients/current/cards/{id}", "/api/clients/current/accounts/{id}").hasAuthority("CLIENT")
                 .antMatchers("/api/login", "/web/htmlPages/index.html", "/web/JsPages/**", "/web/stylePages/**", "/web/resources/**", "/web/htmlPages/login.html", "/api/logout").permitAll()
                 .antMatchers("/web/htmlPages/", "/rest/**", "/web/htmlPages/manager.html","/api/clients","/web/htmlPages/adminLoans.html" ).hasAuthority("ADMIN")
                 .antMatchers("/web/htmlPages/**", "/api/clients/current","/api/accounts/**").hasAuthority("CLIENT");
                 /*.anyRequest().denyAll();*/
-
+                /*.and()
+                .exceptionHandling()
+                .accessDeniedPage("/error/404");*/
 
         http.formLogin()
                 .usernameParameter("email")

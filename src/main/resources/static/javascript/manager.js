@@ -15,8 +15,13 @@ createApp({
       images: ["", "", ""],
       packM: false,
       allMods: [],
-      carMod: []
-
+      carMod: [],
+      modName: "",
+      modDescription: "",
+      modPrice: 0,
+      modStock: 0,
+      images2: ["", "", ""],
+      modType: null
     }
   },
 
@@ -36,7 +41,7 @@ createApp({
           this.carMod.splice(index, 1);
         }
       }
-    },
+    },    
     updateCarColorArray(event, color) {
       this.color = color;
     },
@@ -64,7 +69,9 @@ createApp({
       axios.get('/api/mods')
       .then(response => {
         console.log(response.data);
-        this.allMods = response.data
+        //this.allMods = response.data
+        this.allMods = response.data.map(mod => mod.name)
+        console.log(this.allMods);
         
       })
       .catch(error => {
@@ -79,6 +86,23 @@ createApp({
       'price': this.price, 'payments': this.payments, 'packM': this.packM, 'stock': this.stock, 'images': this.images, 'modType': this.carMod })
         .then(response => {
           console.log("Car added!!");
+       
+        })
+        .catch(
+          error => {
+            console.log(error);
+            Swal.fire(
+              'Oops..',
+              `${error.response.data} Please try again.`,
+              'error'
+            )
+          })
+    },
+    addMod(){
+      axios.post('/api/admin/addMods', { 'name': this.modName, 'description': this.modDescription, 'price': this.modPrice, 
+      'carColor': this.color, 'stock': this.modStock, 'images': this.images2, 'modType': this.modType})
+        .then(response => {
+          console.log("Mod added!!");
        
         })
         .catch(
