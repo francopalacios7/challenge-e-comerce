@@ -14,6 +14,7 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ElementCollection
     private List<String> details;
     private String model;
     private Year date;
@@ -31,10 +32,7 @@ public class Car {
     @CollectionTable(name = "car_images", joinColumns = @JoinColumn(name = "car_id"))
     @Column(name = "image")
     private List<String> images;
-<<<<<<< HEAD
 
-=======
->>>>>>> 5339db8755d300024da4206e88eef18b0ee3072a
     @ElementCollection
     @CollectionTable(name = "carMod", joinColumns = @JoinColumn(name = "mod_id"))
     @Column(name = "mod")

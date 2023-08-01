@@ -28,18 +28,18 @@ public class Purchase {
     private ClientPurchase clientPurchase;
     @OneToMany(mappedBy = "purchase",fetch = FetchType.EAGER)
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
+    @OneToOne(mappedBy = "purchase",fetch = FetchType.EAGER)
+    private DuesPlan duesPlan;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "purchase")
-    private ClientPurchase clientPurchase;
     public Purchase() {
     }
-    public Purchase(Long ticketNumber,LocalDate date, Double totalAmount, Integer payments, PurchaseType type) {
+    public Purchase(Long ticketNumber,LocalDate date, Double totalAmount, Integer payments, PurchaseType type, DuesPlan duesPlan) {
         this.ticketNumber = ticketNumber;
         this.date = date;
         this.totalAmount = totalAmount;
         this.payments = payments;
         this.purchaseType = type;
+        this.duesPlan = duesPlan;
     }
     public Long getId() {
         return id;
