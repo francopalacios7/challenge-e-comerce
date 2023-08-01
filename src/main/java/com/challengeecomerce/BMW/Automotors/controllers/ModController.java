@@ -1,6 +1,5 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
-<<<<<<< HEAD
 import com.challengeecomerce.BMW.Automotors.dtos.ModDTO;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
@@ -10,20 +9,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 import java.util.Set;
-=======
 import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
->>>>>>> cd42151eef4bf8910bbfca607ce7bcadf4247b05
+
 
 @RestController
 @RequestMapping("/api")
 public class ModController {
-<<<<<<< HEAD
 
     @Autowired
     private ModService modService;
@@ -31,10 +26,7 @@ public class ModController {
     @Autowired
     private ClientService clientService;
 
-    @GetMapping("/mods")
-    public Set<ModDTO> getAll() { return modService.getAllModsDTO();}
-
-    @PostMapping("/admin/mods")
+    @PostMapping("/admin/addMods")
     public ResponseEntity<Object> addMod(Authentication authentication, @RequestBody ModDTO modDTO) {
 
 //        Client client = clientService.findByEmail(authentication.getName());
@@ -116,11 +108,8 @@ public class ModController {
         return new ResponseEntity<>("Modified successfully", HttpStatus.OK);
 
     }
-
-=======
     @GetMapping("/mods")
     public ModType[] getAllMods(){
         return ModType.values();
     }
->>>>>>> cd42151eef4bf8910bbfca607ce7bcadf4247b05
 }

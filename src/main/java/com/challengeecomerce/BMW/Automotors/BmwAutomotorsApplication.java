@@ -31,18 +31,13 @@ public class BmwAutomotorsApplication {
 	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository ) {
 		return (args -> {
-<<<<<<< HEAD
-=======
+
 			Client Pepe = new Client("Pepe", "Honguito","micagpili@gmail.com", passwordEncoder.encode("melba456"),"direccion","23456");
 			clientRepository.save(Pepe);
 			Client Lucas = new Client("Pepe", "Honguito","correalucasmatias98@gmail.com", passwordEncoder.encode("melba456"),"direccion","23456");
 			clientRepository.save(Lucas);
 			//Client admin = new Client());
->>>>>>> cd42151eef4bf8910bbfca607ce7bcadf4247b05
 
-
-			Client pepe = new Client("Pepe", "Honguito", "pepe@gmail.com", passwordEncoder.encode("melba456"), "direccion", "23456");
-			clientRepository.save(pepe);
 
 			Car car1 = new Car("Weight: 2,310 kg" +
 					"Fuel Capacity: 80 liters" +
@@ -55,7 +50,7 @@ public class BmwAutomotorsApplication {
 							"https://hips.hearstapps.com/hmg-prod/images/bmw-x5-m-competition-2020-1600-35-1570006295.jpg"),
 					Arrays.asList(ModType.ALLOY_WHEELS, ModType.NAVIGATION_SYSTEM));
 
-			Car car2 = new Car("Weight: 1,680 kg" +
+			Car car2 = new Car("Weight: 1,680kg" +
 					"Fuel Capacity: 60 liters" +
 					"Acceleration: 0 to 100 km/h in 5.1 seconds" +
 					"Final Speed: 250 km/h","BMW M340i", LocalDate.of(2023, 2, 10), CarColor.BLUE, 50000.0,"The BMW M340i is a high-performance variant of the popular 3 Series sedan. As part of BMW's M Performance lineup, the M340i focuses on delivering sportier driving dynamics and increased power.",

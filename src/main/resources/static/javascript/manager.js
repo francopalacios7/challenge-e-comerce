@@ -6,11 +6,7 @@ createApp({
       //Propiedades Reactivas
       model: "",
       date: null,
-<<<<<<< HEAD
-      allColors: ["BLACK", "WHITE", "BLUE"],
-=======
       allColors: [],
->>>>>>> cd42151eef4bf8910bbfca607ce7bcadf4247b05
       color: null,
       price: 0,
       paymentsInput: '',
@@ -18,23 +14,15 @@ createApp({
       stock: 0,
       images: ["", "", ""],
       packM: false,
-<<<<<<< HEAD
-      allMods: ["SPOILER", "ALLOY_WHEELS", "TINTED_WINDOWS", "NAVIGATION_SYSTEM", "SUNROOF", "PERFORMANCE_EXHAUST", "OTHER"],
-=======
       allMods: [],
->>>>>>> cd42151eef4bf8910bbfca607ce7bcadf4247b05
       carMod: []
 
     }
   },
 
   created() {
-<<<<<<< HEAD
-
-=======
     this.getCarColors()
     this.getAllMods()
->>>>>>> cd42151eef4bf8910bbfca607ce7bcadf4247b05
   },
   methods: {
     updateCarModArray(event, mod) {
@@ -61,8 +49,6 @@ createApp({
         console.log(error);
       })
     },
-<<<<<<< HEAD
-=======
     getCarColors(){
       axios.get('/api/car/color')
       .then(response => {
@@ -85,7 +71,6 @@ createApp({
         console.log(error);
       })
     },
->>>>>>> cd42151eef4bf8910bbfca607ce7bcadf4247b05
     convertToNumbers() {
       this.payments = this.paymentsInput.split(',').map(Number);
     },

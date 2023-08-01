@@ -6,22 +6,19 @@ import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
 import com.challengeecomerce.BMW.Automotors.services.ModService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-
 @Service
 public class ModServiceImplement implements ModService {
 
     @Autowired
     private ModRepository modRepository;
 
-
     @Override
     public Mod findById(Long id) {
         return modRepository.findById(id).orElse(null);
+
+
     }
 
     @Override
@@ -29,9 +26,9 @@ public class ModServiceImplement implements ModService {
         return modRepository.findAll().stream().map(ModDTO::new).collect(Collectors.toSet());
     }
 
-
     @Override
     public void saveMod(Mod mod) {
         modRepository.save((mod));
     }
+
 }

@@ -31,6 +31,13 @@ public class CarController {
     }
     @PostMapping("/admin/cars")
     public ResponseEntity<Object> addCar(@RequestBody CarDTO carDTO, Authentication authentication){
+// Client client = clientService.findByEmail(authentication.getName());
+
+
+//        if(!client.getEmail().contains("admin")){
+//            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
+//        }
+
 
         if(carDTO.getDetails().isBlank()){
             return new ResponseEntity<>("Please add the vehicle details", HttpStatus.FORBIDDEN);
@@ -71,8 +78,6 @@ public class CarController {
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
     }
 
-
-
     @PatchMapping(path = "/admin/car/update")
     public ResponseEntity<Object> updateCar(Authentication authentication, @RequestBody CarDTO carDTO){
 //        Client client = clientService.findByEmail(authentication.getName());
@@ -93,7 +98,7 @@ public class CarController {
             return new ResponseEntity<>("Color is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
 
-        if(carDTO.getPrice() == 0 || carDTO.getPrice() < 70000){
+        if(carDTO.getPrice() == 0 || carDTO.getPrice() <= 70000){
 
             return new ResponseEntity<>("Price invalid, please try again.", HttpStatus.FORBIDDEN);
         }
@@ -132,4 +137,4 @@ public class CarController {
 //            return new ResponseEntity<>("Only the admin can Delete cars.", HttpStatus.FORBIDDEN);
 //        }
 //Eliminar auto, cliente asociado, modificaciones,la compra que realizo.
-//}
+
