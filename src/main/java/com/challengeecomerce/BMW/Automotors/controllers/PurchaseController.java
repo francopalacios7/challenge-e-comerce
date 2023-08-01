@@ -21,11 +21,9 @@ public class PurchaseController {
     private DuesPlanService duesPlanService;
     @Autowired
     private ClientService clientService;
-
-
     @PostMapping("/admin/duesPlan")
     public ResponseEntity<Object> createDuesPlan(Authentication authentication, @RequestBody DuesPlanDTO duesPlanDTO) {
-        Client client = clientService.findByEmail(authentication.getName());
+        //Client client = clientService.findByEmail(authentication.getName());
         if (duesPlanDTO.getDues().isBlank()) {
             return new ResponseEntity<>("A dues plan must be selected", HttpStatus.FORBIDDEN);
         }
@@ -36,15 +34,36 @@ public class PurchaseController {
             return new ResponseEntity<>("An interest must be selected", HttpStatus.FORBIDDEN);
         }
 
-        DuesPlan duesPlan = new DuesPlan(duesPlanDTO.getPlanDescription(), duesPlanDTO.getDues(), duesPlanDTO.getInterest());
+        DuesPlan duesPlan = new DuesPlan(duesPlanDTO.getPlanDescription(), duesPlanDTO.getDues(), duesPlanDTO.getInterest(), true);
         duesPlanService.save(duesPlan);
         return new ResponseEntity<>("Purchase successful", HttpStatus.ACCEPTED);
     }
-    @DeleteMapping("/admin/duesPlan")
+    @PatchMapping("/admin/duesPlan")
     public ResponseEntity<Object> deleteDuesPlan(Authentication authentication, DuesPlanDTO duesPlanDTO){
-        Client client = clientService.findByEmail(authentication.getName());
+        //Client client = clientService.findByEmail(authentication.getName());
         DuesPlan duesPlan = duesPlanService.findById(duesPlanDTO.getId());
-        duesPlanService.delete(duesPlan);
+        duesPlan.setActive(false);
+        duesPlanService.save(duesPlan);
         return new ResponseEntity<>("Dues plan deleted with success", HttpStatus.ACCEPTED);
+    }
+    @PutMapping("/admin/duesPlan")
+    public ResponseEntity<Object> updateDuesPlan(Authentication authentication, DuesPlanDTO duesPlanDTO){
+        //Client client = clientService.findByEmail(authentication.getName());
+        DuesPlan duesPlan = duesPlanService.findById(duesPlanDTO.getId());
+        if(duesPlanDTO.getDues().isBlank()){
+            return new ResponseEntity<>("Dues is blank, please fill the field.", HttpStatus.FORBIDDEN);
+        }
+        if(duesPlanDTO.getPlanDescription().isBlank()){
+            return new ResponseEntity<>("Description is blank, please fill the field.", HttpStatus.FORBIDDEN);
+        }
+        if(duesPlanDTO.getInterest().isNaN()){
+            return new ResponseEntity<>("Interest is blank, please fill the field.", HttpStatus.FORBIDDEN);
+        }
+        duesPlan.setDues(duesPlan.getDues());
+        duesPlan.setPlanDescription(duesPlan.getPlanDescription());
+        duesPlan.setInterest(duesPlan.getInterest());
+        duesPlan.setActive(duesPlan.isActive());
+        duesPlanService.save(duesPlan);
+        return new ResponseEntity<>("Dues plan updated successfully.", HttpStatus.OK);
     }
 }

@@ -146,8 +146,6 @@ public class BmwAutomotorsApplication {
 					Arrays.asList(ModType.NONE));
 
 
-
-
 			carRepository.saveAll(Arrays.asList(car1, car2, car3, car4,car5, moto1,moto2,moto3));
 
 			com.challengeecomerce.BMW.Automotors.models.ModType navigationSystem1 = new com.challengeecomerce.BMW.Automotors.models.ModType("Navigation System");
@@ -178,15 +176,7 @@ public class BmwAutomotorsApplication {
 			Mod performanceExhaustBlack = new Mod("Performance Exhaust", "Enhances the car's exhaust system for better performance", 250.0, CarColor.BLACK, 10,Arrays.asList("https://i.postimg.cc/1XKsPpMJ/performance-exhaust.webp"), performanceExhaustBlack1);
 
 			modRepository.saveAll(Arrays.asList(navigationSystem,sunroof,tintedWindows,alloyWheel3,alloyWheel4,alloyWheel2,alloyWheels1,alloyWheels,spoilerWhite,spoilerBlue,spoilerBlack,performanceExhaustBlack));
-			Random random = new Random();
-			Long ticketNumber;
 
-
-			do {
-				ticketNumber = random.nextLong();
-			} while (purchaseService.findByTicketNumber(ticketNumber) != null);
-
-			System.out.println("ticketNumber = " + ticketNumber);
 		});
 	}
 }
