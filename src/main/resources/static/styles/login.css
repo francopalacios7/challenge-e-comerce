@@ -32,3 +32,15 @@ body, html {
 } 
 
 
+.form-group {
+    display: flex;
+    align-items: center;
+   
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  .input-icon {
+    margin-right: 10px;
+    color: #666;
+  }

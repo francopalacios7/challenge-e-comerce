@@ -36,7 +36,7 @@ createApp({
         email: this.email
       };
 
-      axios.post('/api/client/sendemail',transferData)
+      axios.post('/api/client/sendEmail',transferData)
         .then((res) => {
           if (res.status === 200) {
             this.showNotification('Requested shift', 'success');
