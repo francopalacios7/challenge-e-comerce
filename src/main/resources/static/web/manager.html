@@ -15,13 +15,37 @@
 <body>
     <div id="app">
 
-    <header>        
-        <div class="d-flex justify-content-center mt-5">
-            <img id="logo" src="../images/logoBMW2.png" alt="logoBMW">
-        </div>
+      <header>        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand ml-3" href="#">
+                <img src="../images/logoBMW2.png" alt="Logo" id="logo">
+            </a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Create</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./infoAdmin.html">Information</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./mail.html">Mail</a>
+                </li>
+<!--                 <li class="nav-item">
+                    <a class="nav-link" href="./deleteAdmin.html">Delete</a>
+                </li> -->
+            </ul>
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#Logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </header>
     <main>
-        <section class="d-flex justify-content-evenly mt-5  flex-wrap">
+        <section class="d-flex justify-content-evenly mt-5 flex-wrap gap-2">
           <!-- FORM PARA AGREGAR AUTOS -->
             <div class="card mb-3  col-md-8 col-lg-4 shadow">
               <div class="row g-0 d-flex align-items-center shadow">
@@ -157,6 +181,52 @@
                      <!--  {{modType}} -->
                       <div class="form-outline d-flex flex-column mb-4 mt-3 gap-2">
                         <input type="text" v-model="modType" class="form-control shadow" placeholder="Mod Type">                      
+                      </div>
+                      
+                      <div class="row mb-4">
+                        <div class="col d-flex justify-content-center">
+                          <button type="submit" class="button-primary" >Add</button>
+                        </div>
+                      </div>
+          
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <!-- FORM PARA AGREGAR PLAN DE AHORROS -->
+            <div class="card mb-3  col-md-8 col-lg-4 shadow d-flex flex-column justify-content-evenly">
+              <div class="row g-0 d-flex align-items-center shadow"  style="height: 100%;">
+                <div  style="height: 100%;">
+                  <div class="card-body py-5 px-md-5 shadow"  style="height: 100%;"> 
+                    <form @submit.prevent="addDuesPlan">
+                      <h1 class="d-flex justify-content-center">Add Dues Plan</h1>                     
+                    
+                      <!-- DESCRIPTION -->
+                      {{dueDescription}}
+                      <div class="form-outline mb-4 mt-3">
+                        <input v-model="dueDescription" type="text" id="dueDescription" class="form-control shadow" placeholder="Description" />
+                      </div>
+
+                      <!-- DUES -->
+                      {{dues}}
+                      <div class="form-outline mb-4 mt-3">
+                        <input v-model="dues" type="text" id="dues" class="form-control shadow" placeholder="Dues, separated with comma" />
+                      </div>
+
+                      <!-- INTERESTS -->
+                      {{dueInterest}}
+                      <div class="form-outline mb-4 mt-3 d-flex flex-column">
+                        <label for="dueInterest" class="fw-bold">Interests:</label>
+                        <input v-model="dueInterest" type="number" name="dueInterest" class="form-control shadow" id="dueInterest">
+                      </div>                                     
+
+                      <!-- ACTIVE -->
+                      {{dueActive}}
+                      <div class="form-outline d-flex  mb-4 mt-3 gap-2">
+                        <label for="dueActive" class="fw-bold">Activate</label>            
+                        <input v-model="dueActive" type="checkbox" name="dueActive" id="dueActive">         
                       </div>
                       
                       <div class="row mb-4">

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Random;
 
 @RestController
@@ -21,6 +22,11 @@ public class PurchaseController {
     private DuesPlanService duesPlanService;
     @Autowired
     private ClientService clientService;
+
+    @GetMapping("/duesPlan")
+    public List<DuesPlanDTO> getAllDuesDTO(){
+        return duesPlanService.findAll();
+    }
     @PostMapping("/admin/duesPlan")
     public ResponseEntity<Object> createDuesPlan(Authentication authentication, @RequestBody DuesPlanDTO duesPlanDTO) {
         //Client client = clientService.findByEmail(authentication.getName());
