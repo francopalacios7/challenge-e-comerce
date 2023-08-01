@@ -37,13 +37,13 @@ public class BmwAutomotorsApplication {
 	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository, ModTypeRepository modTypeRepository) {
 		return (args -> {
+
 			Client Pepe = new Client("Pepe", "Honguito","micagpili@gmail.com", passwordEncoder.encode("melba456"),"direccion","23456");
 			clientRepository.save(Pepe);
 			Client Lucas = new Client("Pepe", "Honguito","correalucasmatias98@gmail.com", passwordEncoder.encode("melba456"),"direccion","23456");
 			clientRepository.save(Lucas);
 			//Client admin = new Client());
-			Client pepe = new Client("Pepe", "Honguito", "pepe@gmail.com", passwordEncoder.encode("melba456"), "direccion", "23456");
-			clientRepository.save(pepe);
+
 
 			Car car1 = new Car("Weight: 2,310 kg" +
 					"Fuel Capacity: 80 liters" +
