@@ -110,7 +110,6 @@ public class CarController {
         carService.saveCar(carToUpdate);
         return new ResponseEntity<>("Car Updated successfully.", HttpStatus.OK);
     }
-}
 
     @PatchMapping("/admin/car/delete/{id}")
     public ResponseEntity<Object> deleteCard(@PathVariable Long id, Authentication authentication) {
