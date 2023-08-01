@@ -37,9 +37,9 @@ public class ClientController {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private JavaMailSender javaMailSender;
-    @Autowired
     private ClientPurchaseService clientPurchaseService;
+    @Autowired
+    private JavaMailSender javaMailSender;
     @GetMapping("/clients/current")
     public ClientDTO getAuthenticatedClient(Authentication authentication) {
         return new ClientDTO(clientService.findByEmail(authentication.getName()));

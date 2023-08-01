@@ -14,6 +14,8 @@ public class ClientPurchase {
     private LocalDate creationDate;
     private Double totalAmount;
 
+    private LocalDate creationDate;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Client client;
 
@@ -49,5 +51,13 @@ public class ClientPurchase {
     public void setCreationDate(LocalDate creationDate) {this.creationDate = creationDate;}
     public void setPurchaseSet(Set<Purchase> purchaseSet) {
         this.purchaseSet = purchaseSet;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 }

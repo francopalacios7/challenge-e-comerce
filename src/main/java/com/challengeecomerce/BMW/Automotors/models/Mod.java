@@ -13,6 +13,7 @@ public class Mod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Boolean isActive;
     private String name, description;
     private Double price;
     private CarColor carColor;
@@ -28,7 +29,8 @@ public class Mod {
     private ModType modType;
     public Mod() {
     }
-    public Mod(String name, String description, Double price, CarColor carColor, Integer stock, List <String> images, ModType modType) {
+    public Mod( String name, String description, Double price, CarColor carColor, Integer stock, List <String> images, ModType modType) {
+        this.isActive = true;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -39,6 +41,14 @@ public class Mod {
     }
     public Long getId() {
         return id;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
     public String getName() {
         return name;

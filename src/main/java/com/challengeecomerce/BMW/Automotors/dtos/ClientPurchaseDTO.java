@@ -14,10 +14,7 @@ public class ClientPurchaseDTO {
 
     private Double totalAmount;
 
-    private Client client;
     private LocalDate creationDate;
-
-    private Set<Purchase> purchaseSet = new HashSet<>();
 
     public ClientPurchaseDTO() {
     }
@@ -36,11 +33,5 @@ public class ClientPurchaseDTO {
         return totalAmount;
     }
 
-    public Client getClient() {
-        return client;
-    }
 
-    public Set<Purchase> getPurchaseSet() {
-        return purchaseSet;
-    }
 }

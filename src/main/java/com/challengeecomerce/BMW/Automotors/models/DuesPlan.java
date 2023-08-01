@@ -41,4 +41,9 @@ public class DuesPlan {
         planDuesCar.setDuesPlan(this);
         this.planDuesCarSet.add(planDuesCar);
     }
+
+    public void setPlanDuesCarSet(Set<PlanDuesCar> planDuesCarSet) {
+        this.planDuesCarSet = planDuesCarSet;
+    }
+
 }

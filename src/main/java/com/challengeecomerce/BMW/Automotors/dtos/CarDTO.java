@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CarDTO {
     private Long id;
-    private String details;
+    private List<String> details;
     private CarType carType;
     private String model;
     private Year date;
@@ -40,7 +40,7 @@ public class CarDTO {
 
     public Long getId() {return id;}
 
-    public String getDetails() {
+    public List<String> getDetails() {
         return details;
     }
 

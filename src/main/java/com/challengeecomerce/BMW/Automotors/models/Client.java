@@ -72,6 +72,7 @@ public class Client {
         clientPurchase.setClient(this);
         this.clientPurchaseSet.add(clientPurchase);
     }
+
     public Set<MeetingReservation> getMeetingReservationSet() {return meetingReservationSet;}
     public void addMeetingReservation(MeetingReservation meetingReservation) {
         meetingReservation.setClient(this);
