@@ -37,16 +37,13 @@ public class CarController {
 //        if(!client.getEmail().contains("admin")){
 //            return new ResponseEntity<>("Only the admin can add cars.", HttpStatus.FORBIDDEN);
 //        }
-        if(carDTO.getDetails().isBlank()){
+        if(carDTO.getDetails().toString().isBlank()){
             return new ResponseEntity<>("Please add the vehicle details", HttpStatus.FORBIDDEN);
         }
-
         if(carDTO.getImages().isEmpty()){
             return new ResponseEntity<>("Please add images to the vehicle", HttpStatus.FORBIDDEN);
         }
-
         if(carDTO.getModel().isBlank()){
-
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
         if(carDTO.getDate().toString().isBlank()){
@@ -71,7 +68,6 @@ public class CarController {
         carService.saveCar(car1);
         return new ResponseEntity<>("Car added successfully.", HttpStatus.CREATED);
     }
-
     @PatchMapping(path = "/admin/car/update")
     public ResponseEntity<Object> updateCar(Authentication authentication, @RequestBody CarDTO carDTO){
 //        Client client = clientService.findByEmail(authentication.getName());
@@ -80,8 +76,6 @@ public class CarController {
 //            return new ResponseEntity<>("Only the admin can Update cars.", HttpStatus.FORBIDDEN);
 //        }
         Car carToUpdate = carService.findById(carDTO.getId());
-
-
         if(carDTO.getModel().isBlank()){
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
@@ -103,7 +97,6 @@ public class CarController {
         if(carDTO.getPackM().toString().isBlank()){
             return new ResponseEntity<>("PackM must be selected, please try again.", HttpStatus.FORBIDDEN);
         }
-
         carToUpdate.setModel(carDTO.getModel());
         carToUpdate.setDate(carDTO.getDate());
         carToUpdate.setCarColor(carDTO.getCarColor());
@@ -112,11 +105,8 @@ public class CarController {
         carToUpdate.setStock(carDTO.getStock());
         carToUpdate.setPackM(carDTO.getPackM());
         carService.saveCar(carToUpdate);
-
-
         return new ResponseEntity<>("Car Updated successfully.", HttpStatus.OK);
     }
-
 }
 
 //    @PostMapping(path = "/admin/car/delete")
