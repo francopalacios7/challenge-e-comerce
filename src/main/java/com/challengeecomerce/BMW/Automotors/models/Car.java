@@ -25,10 +25,16 @@ public class Car {
     private Boolean packM;
     private CarType carType;
     private Integer stock;
+    private Boolean active;
+
     @ElementCollection
     @CollectionTable(name = "car_images", joinColumns = @JoinColumn(name = "car_id"))
     @Column(name = "image")
     private List<String> images;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5339db8755d300024da4206e88eef18b0ee3072a
     @ElementCollection
     @CollectionTable(name = "carMod", joinColumns = @JoinColumn(name = "mod_id"))
     @Column(name = "mod")
@@ -54,6 +60,7 @@ public class Car {
         this.stock = stock;
         this.images = images;
         this.modType = modType;
+        this.active = true;
     }
     public Long getId() {
         return id;
@@ -138,5 +145,13 @@ public class Car {
     public void addPlanDuesCar(PlanDuesCar planDuesCar) {
         planDuesCar.setCar(this);
         this.planDuesCarSet.add(planDuesCar);
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }
