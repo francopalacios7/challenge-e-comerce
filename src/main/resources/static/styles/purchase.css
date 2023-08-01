@@ -1,38 +1,35 @@
 /*  Scrollbar  */
-  /* Firefox */
+/* Firefox */
 
-  /* Chrome, Edge, and Safari */
-  .car-container--description::-webkit-scrollbar {
-    width: 7px;
-  }
-
-  .car-container--description::-webkit-scrollbar-thumb {
-    background: var(--color-primario);
-    border-radius: 5px;
-  }
-
-a.navbar-brand{
-    width: 3rem!important;
-    content: url("./../images/BMW_Grey-Colour_RGB.SVG.asset.1605107718514.SVG");
+/* Chrome, Edge, and Safari */
+.car-container--description::-webkit-scrollbar {
+  width: 7px;
 }
 
-.filter-container{
-    position: sticky!important;
-    top: 0!important;
+.car-container--description::-webkit-scrollbar-thumb {
+  background: var(--color-primario);
+  border-radius: 5px;
 }
 
-.car-container{
-    height: 20rem;
-}
-.car-container--img{
-    height: 100%;
-}
-.car-container--img img{
-    width: 100%;
-    height: 100%; 
-    object-fit: contain;
-}
-.car-container--description{
-    height: 9.5rem;
+.filter-container {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 20;
 }
 
+.car-container {
+  height: 20rem;
+}
+
+.car-container--img {
+  height: 100%;
+}
+
+.car-container--img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.car-container--description {
+}

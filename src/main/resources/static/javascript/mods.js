@@ -13,8 +13,8 @@ createApp({
     getMods(){
         axios.get("/api/mods")
         .then(response => {
-            this.mods = response.data
-            console.log(this.mods)
+            this.mods = response.data.sort((a, b) => b.id - a.id);
+            console.log("mods: ", this.mods)
         })
     }
   },
