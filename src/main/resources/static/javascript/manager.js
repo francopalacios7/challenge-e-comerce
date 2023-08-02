@@ -21,7 +21,11 @@ createApp({
       modPrice: 0,
       modStock: 0,
       images2: ["", "", ""],
-      modType: null
+      modType: null,
+      dueDescription: "",
+      dues: "",
+      dueInterest: 0,
+      dueActive: false
     }
   },
 
@@ -31,7 +35,7 @@ createApp({
   },
   methods: {
     updateCarModArray(event, mod) {
-      if(event.target.checked) {
+      if (event.target.checked) {
         // Si el checkbox está marcado, añade el mod al array
         this.carMod.push(mod);
       } else {
@@ -41,52 +45,54 @@ createApp({
           this.carMod.splice(index, 1);
         }
       }
-    },    
+    },
     updateCarColorArray(event, color) {
       this.color = color;
     },
-    getData(){
+    getData() {
       axios.get('/rest/cars')
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error =>{
-        console.log(error);
-      })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        })
     },
-    getCarColors(){
+    getCarColors() {
       axios.get('/api/car/color')
-      .then(response => {
-       // console.log(response.data);
-        this.allColors = response.data
-        console.log(this.allColors);
-      })
-      .catch(error => {
-        console.log(error);
-      })
+        .then(response => {
+          // console.log(response.data);
+          this.allColors = response.data
+          console.log(this.allColors);
+        })
+        .catch(error => {
+          console.log(error);
+        })
     },
-    getAllMods(){
+    getAllMods() {
       axios.get('/api/mods')
-      .then(response => {
-        console.log(response.data);
-        //this.allMods = response.data
-        this.allMods = response.data.map(mod => mod.name)
-        console.log(this.allMods);
-        
-      })
-      .catch(error => {
-        console.log(error);
-      })
+        .then(response => {
+          console.log(response.data);
+          //this.allMods = response.data
+          this.allMods = response.data.map(mod => mod.name)
+          console.log(this.allMods);
+
+        })
+        .catch(error => {
+          console.log(error);
+        })
     },
     convertToNumbers() {
       this.payments = this.paymentsInput.split(',').map(Number);
     },
     addCar() {
-      axios.post('/api/admin/cars', { 'model': this.model, 'date': this.date, 'carColor': this.color, 
-      'price': this.price, 'payments': this.payments, 'packM': this.packM, 'stock': this.stock, 'images': this.images, 'modType': this.carMod })
+      axios.post('/api/admin/cars', {
+        'model': this.model, 'date': this.date, 'carColor': this.color,
+        'price': this.price, 'payments': this.payments, 'packM': this.packM, 'stock': this.stock, 'images': this.images, 'modType': this.carMod
+      })
         .then(response => {
           console.log("Car added!!");
-       
+
         })
         .catch(
           error => {
@@ -98,12 +104,33 @@ createApp({
             )
           })
     },
-    addMod(){
-      axios.post('/api/admin/addMods', { 'name': this.modName, 'description': this.modDescription, 'price': this.modPrice, 
-      'carColor': this.color, 'stock': this.modStock, 'images': this.images2, 'modType': this.modType})
+    addMod() {
+      axios.post('/api/admin/addMods', {
+        'name': this.modName, 'description': this.modDescription, 'price': this.modPrice,
+        'carColor': this.color, 'stock': this.modStock, 'images': this.images2, 'modType': this.modType
+      })
         .then(response => {
           console.log("Mod added!!");
-       
+
+        })
+        .catch(
+          error => {
+            console.log(error);
+            Swal.fire(
+              'Oops..',
+              `${error.response.data} Please try again.`,
+              'error'
+            )
+          })
+    },
+    addDuesPlan() {
+      axios.post('/api/admin/duesPlan', {
+        'planDescription': this.dueDescription, 'dues': this.dues, 'interest': this.dueInterest,
+        'isActive': this.dueActive
+      })
+        .then(response => {
+          console.log("Dues plan added!!");
+
         })
         .catch(
           error => {

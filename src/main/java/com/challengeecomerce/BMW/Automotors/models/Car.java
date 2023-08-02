@@ -15,6 +15,7 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ElementCollection
+    @Column(name = "details")
     private List<String> details;
     private String model;
     private Year date;
@@ -32,10 +33,9 @@ public class Car {
     @CollectionTable(name = "car_images", joinColumns = @JoinColumn(name = "car_id"))
     @Column(name = "image")
     private List<String> images;
-
     @ElementCollection
-    @CollectionTable(name = "carMod", joinColumns = @JoinColumn(name = "mod_id"))
-    @Column(name = "mod")
+    @CollectionTable(name = "carMod", joinColumns = @JoinColumn(name = "car_id"))
+    @Column(name = "modType")
     private List<ModType> modType;
     @ManyToOne(fetch = FetchType.EAGER)
     private MeetingReservation meetingReservation;
@@ -144,6 +144,7 @@ public class Car {
         planDuesCar.setCar(this);
         this.planDuesCarSet.add(planDuesCar);
     }
+    public void setPlanDuesCarSet(Set<PlanDuesCar> planDuesCarSet) {this.planDuesCarSet = planDuesCarSet;}
 
     public Boolean getActive() {
         return active;
@@ -153,3 +154,4 @@ public class Car {
         this.active = active;
     }
 }
+
