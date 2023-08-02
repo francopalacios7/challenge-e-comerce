@@ -10,5 +10,7 @@ public interface PurchaseService {
 
     Purchase findByTicketNumber(Long ticketNumber);
 
+    Purchase findById(Long id);
+
 
 }

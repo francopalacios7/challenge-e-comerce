@@ -26,6 +26,11 @@ public class PurchaseImplement implements PurchaseService {
         return purchaseRepository.findByTicketNumber(ticketNumber);
     }
 
+    @Override
+    public Purchase findById(Long id) {
+        return purchaseRepository.findById(id).orElse(null);
+    }
+
 
 
 

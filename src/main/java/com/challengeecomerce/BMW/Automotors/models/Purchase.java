@@ -16,7 +16,6 @@ public class Purchase {
     private Long id;
     private Long ticketNumber;
     private LocalDate date;
-
     private Double totalAmount;
     private PurchaseType purchaseType;
     private Integer payments;
@@ -30,10 +29,13 @@ public class Purchase {
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
     @OneToOne(mappedBy = "purchase",fetch = FetchType.EAGER)
     private DuesPlan duesPlan;
+    @OneToMany(mappedBy = "purchase", fetch = FetchType.EAGER)
+    private Set<PurchaseDuesPlan> purchaseDuesPlans = new HashSet<>();
 
     public Purchase() {
     }
-    public Purchase(Long ticketNumber,LocalDate date, Double totalAmount, Integer payments, PurchaseType type, DuesPlan duesPlan) {
+
+    public Purchase(Long ticketNumber,LocalDate date, Double totalAmount, Integer payments, PurchaseType type) {
         this.ticketNumber = ticketNumber;
         this.date = date;
         this.totalAmount = totalAmount;
@@ -74,14 +76,23 @@ public class Purchase {
     }
     public PurchaseType getPurchaseType() {return purchaseType;}
     public void setPurchaseType(PurchaseType purchaseType) {this.purchaseType = purchaseType;}
-    public DuesPlan getDuesPlan() {return duesPlan;}
-    public void setDuesPlan(DuesPlan duesPlan) {this.duesPlan = duesPlan;}
     public ClientPurchase getClientPurchase() {return clientPurchase;}
     public void setClientPurchase(ClientPurchase clientPurchase) {this.clientPurchase = clientPurchase;}
     public Set<ModPurchase> getModPurchaseSet() {return modPurchaseSet;}
     public void setModPurchaseSet(Set<ModPurchase> modPurchaseSet) {this.modPurchaseSet = modPurchaseSet;}
+
+    public Set<PurchaseDuesPlan> getPurchaseDuesPlans() { return purchaseDuesPlans; }
+
+    public void setPurchaseDuesPlans(Set<PurchaseDuesPlan> purchaseDuesPlans) { this.purchaseDuesPlans = purchaseDuesPlans; }
+
     public void addModPurchaseSet(ModPurchase modPurchase){
         modPurchase.setPurchase(this);
         this.modPurchaseSet.add(modPurchase);
     }
+
+    public void addPurchaseDuesPlan(PurchaseDuesPlan purchaseDuesPlan){
+        purchaseDuesPlan.setPurchase(this);
+        this.purchaseDuesPlans.add(purchaseDuesPlan);
+    }
 }
+

@@ -8,7 +8,9 @@ public class DuesPlanDTO {
     private String dues;
     private Double interest;
     private boolean isActive;
+
     public DuesPlanDTO(){}
+
     public DuesPlanDTO(DuesPlan duesPlan) {
         this.id = duesPlan.getId();
         this.planDescription = duesPlan.getPlanDescription();

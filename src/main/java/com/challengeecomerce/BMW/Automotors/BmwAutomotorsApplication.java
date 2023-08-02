@@ -2,22 +2,19 @@ package com.challengeecomerce.BMW.Automotors;
 
 import com.challengeecomerce.BMW.Automotors.models.Car;
 import com.challengeecomerce.BMW.Automotors.models.Client;
+import com.challengeecomerce.BMW.Automotors.models.DuesPlan;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarType;
 import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
-import com.challengeecomerce.BMW.Automotors.repositories.CarRepository;
-import com.challengeecomerce.BMW.Automotors.repositories.ClientRepository;
-import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
+import com.challengeecomerce.BMW.Automotors.repositories.*;
 import com.challengeecomerce.BMW.Automotors.services.PurchaseService;
-import com.challengeecomerce.BMW.Automotors.repositories.ModTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.Year;
@@ -37,7 +34,7 @@ public class BmwAutomotorsApplication {
 	PurchaseService purchaseService;
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository, ModTypeRepository modTypeRepository) {
+	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository, ModTypeRepository modTypeRepository, DuesPlanRepository duesPlanRepository) {
 		return (args -> {
 
 			Client Pepe = new Client("Pepe", "Honguito","micagpili@gmail.com", passwordEncoder.encode("melba456"),"direccion","23456");
@@ -76,7 +73,7 @@ public class BmwAutomotorsApplication {
 					Arrays.asList(12, 24, 36, 60), true, CarType.CAR,
 					3,
 					Arrays.asList("https://i.postimg.cc/c4FKt4Kk/BMW-M1-PNG-Photo.png", "https://i.postimg.cc/Fs9yDvq3/2.webp",
-							"https://i.postimg.cc/TwVbJNJt/3.webp", "https://i.postimg.cc/hPPmVrz0/4.webp",
+							"https://i.postimg.cc/q7QTcgFq/9ciq4t.webp", "https://i.postimg.cc/hPPmVrz0/4.webp",
 							"https://i.postimg.cc/D0cqnpWS/5.webp"),
 					Arrays.asList(ModType.NONE));
 
@@ -125,7 +122,7 @@ public class BmwAutomotorsApplication {
 			Car moto2 = new Car(Arrays.asList("Weight: 268 kg",
 					"Fuel Capacity: 20 liters",
 					"Acceleration: 0 to 100 km/h in around 4 seconds",
-					"Final Speed: Over 200 km/h"), "BMW R1250GS", Year.of(2020), CarColor.BLUE, 23000.0,
+					"Final Speed: Over 200 km/h"), "BMW R1250GS", Year.of(2020), CarColor.BLACK, 23000.0,
 					"The BMW R1250GS is a premium adventure motorcycle designed for long-distance touring and off-road adventures.",
 					Arrays.asList(6, 12, 24, 36), true, CarType.MOTORCYCLE,23,
 					Arrays.asList("https://i.postimg.cc/ZKdbkPq3/r1250-0-removebg-preview.png",
@@ -138,7 +135,7 @@ public class BmwAutomotorsApplication {
 			Car moto3 = new Car(Arrays.asList("Weight: 169.5kg",
 					"Fuel Capacity: 11 liters",
 					"Acceleration: 0 to 100 km/h in around 4 seconds",
-					"Final Speed: Up to 150 km/h"), "BMW G310GS", Year.of(2024), CarColor.WHITE, 9000.0,
+					"Final Speed: Up to 150 km/h"), "BMW G310GS", Year.of(2024), CarColor.BLACK, 9000.0,
 					"The BMW G310GS is an entry-level adventure motorcycle perfect for urban commuting and light off-road use.",
 					Arrays.asList(6, 12, 18, 24), true, CarType.MOTORCYCLE, 17,
 					Arrays.asList("https://i.postimg.cc/VkPYzSSh/g310-0-removebg-preview.png",
@@ -178,12 +175,13 @@ public class BmwAutomotorsApplication {
 			Mod performanceExhaustBlack = new Mod("Performance Exhaust", "Enhances the car's exhaust system for better performance", 250.0, CarColor.BLACK, 10,Arrays.asList("https://i.postimg.cc/1XKsPpMJ/performance-exhaust.webp"), performanceExhaustBlack1);
 
 			modRepository.saveAll(Arrays.asList(navigationSystem,sunroof,tintedWindows,alloyWheel3,alloyWheel4,alloyWheel2,alloyWheels1,alloyWheels,spoilerWhite,spoilerBlue,spoilerBlack,performanceExhaustBlack));
-			Random random = new Random();
-			Long ticketNumber;
 
-			do {
-				ticketNumber = random.nextLong() +10000;
-			} while (purchaseService.findByTicketNumber(ticketNumber) != null);
+			DuesPlan duesPlan1 = new DuesPlan("Plan A", "36", 0.3, true );
+			DuesPlan duesPlan2 = new DuesPlan("Plan A", "48", 0.4, true );
+			DuesPlan duesPlan3 = new DuesPlan("Plan A", "60", 0.5, true );
+
+			duesPlanRepository.saveAll(Arrays.asList(duesPlan1,duesPlan2,duesPlan3));
+
 		});
 	}
 }
