@@ -75,7 +75,9 @@ public class ClientController {
     }
     @PostMapping("/clients/purchase")
     public ResponseEntity<Object> purchase(@RequestBody PurchaseDTO purchaseDTO, Authentication authentication) {
+
         Client client = clientService.findByEmail(authentication.getName());
+
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
         }
@@ -85,7 +87,11 @@ public class ClientController {
         if (purchaseDTO.getPayments().toString().isBlank()) {
             return new ResponseEntity<>("The payments cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if (purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)) {
+
+
+        if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)) {
+
+
             Random random = new Random();
             Long ticketNumber;
             do {
@@ -101,7 +107,7 @@ public class ClientController {
         return new ResponseEntity<>(purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }
     @PostMapping("/client/sendEmail")
-    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO meetingReservationDTO, @RequestBody CarDTO carDTO) {
+    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO meetingReservationDTO) {
         Client client = clientService.findByEmail(authentication.getName());
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
@@ -114,7 +120,7 @@ public class ClientController {
         email.setTo(emailToSend);
         email.setFrom("bmwcohortfs047@hotmail.com");
         email.setSubject("Meeting reservation");
-        email.setText("You have a meeting reservation for the day" + formattedDateTime + ".\\n" + " " + "Car details:" + " " + carDTO.getModel() + " " + carDTO.getDate());
+        email.setText("You have a meeting reservation for the day " + formattedDateTime + ".\n" + "Car details: " + meetingReservationDTO.getModel() + " " + meetingReservationDTO.getDate());
         javaMailSender.send(email);
         return new ResponseEntity<>(true,HttpStatus.OK);
     }

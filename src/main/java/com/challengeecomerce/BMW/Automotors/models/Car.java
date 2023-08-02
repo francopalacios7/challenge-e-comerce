@@ -145,6 +145,7 @@ public class Car {
         this.planDuesCarSet.add(planDuesCar);
     }
     public void setPlanDuesCarSet(Set<PlanDuesCar> planDuesCarSet) {this.planDuesCarSet = planDuesCarSet;}
+
     public Boolean getActive() {
         return active;
     }
@@ -153,3 +154,4 @@ public class Car {
         this.active = active;
     }
 }
+
