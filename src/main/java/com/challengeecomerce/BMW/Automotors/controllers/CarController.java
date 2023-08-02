@@ -43,10 +43,10 @@ public class CarController {
         if(carDTO.getDetails().toString().isBlank()){
             return new ResponseEntity<>("Please add the vehicle details", HttpStatus.FORBIDDEN);
         }
-        if (carDTO.getImages().isEmpty()) {
+        if(carDTO.getImages().isEmpty()){
             return new ResponseEntity<>("Please add images to the vehicle", HttpStatus.FORBIDDEN);
         }
-        if (carDTO.getModel().isBlank()) {
+        if(carDTO.getModel().isBlank()){
             return new ResponseEntity<>("Model is blank, please fill the field.", HttpStatus.FORBIDDEN);
         }
         if (carDTO.getDate().toString().isBlank()) {

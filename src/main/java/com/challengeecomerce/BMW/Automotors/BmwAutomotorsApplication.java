@@ -114,8 +114,8 @@ public class BmwAutomotorsApplication {
 					Arrays.asList(6, 12, 18, 24), true, CarType.MOTORCYCLE, 15,
 					Arrays.asList("https://i.postimg.cc/dtbSXr7h/1000rr-0-2.png",
 							"https://i.postimg.cc/1tN3324v/1000rr-1.webp",
-			"https://i.postimg.cc/rsXF0jrM/1000rr-2.webp",
-			"https://i.postimg.cc/FKCYR0pH/1000rr-3.webp"),
+							"https://i.postimg.cc/rsXF0jrM/1000rr-2.webp",
+							"https://i.postimg.cc/FKCYR0pH/1000rr-3.webp"),
 					Arrays.asList(ModType.NONE));
 
 // Crear moto2 (BMW R1250GS)
@@ -126,9 +126,9 @@ public class BmwAutomotorsApplication {
 					"The BMW R1250GS is a premium adventure motorcycle designed for long-distance touring and off-road adventures.",
 					Arrays.asList(6, 12, 24, 36), true, CarType.MOTORCYCLE,23,
 					Arrays.asList("https://i.postimg.cc/ZKdbkPq3/r1250-0-removebg-preview.png",
-									"https://i.postimg.cc/8PvzSqxc/r1250-1.webp",
-									"https://i.postimg.cc/vBjGRzz5/r1250-2.webp",
-									"https://i.postimg.cc/DwKyyxKg/r1250-3.webp"),
+							"https://i.postimg.cc/8PvzSqxc/r1250-1.webp",
+							"https://i.postimg.cc/vBjGRzz5/r1250-2.webp",
+							"https://i.postimg.cc/DwKyyxKg/r1250-3.webp"),
 					Arrays.asList(ModType.NONE));
 
 // Crear moto3 (BMW G310GS)
@@ -139,9 +139,9 @@ public class BmwAutomotorsApplication {
 					"The BMW G310GS is an entry-level adventure motorcycle perfect for urban commuting and light off-road use.",
 					Arrays.asList(6, 12, 18, 24), true, CarType.MOTORCYCLE, 17,
 					Arrays.asList("https://i.postimg.cc/VkPYzSSh/g310-0-removebg-preview.png",
-									"https://i.postimg.cc/85qsdDq8/g310-1.webp",
-									"https://i.postimg.cc/4xCnHJpp/g310-2.webp",
-									"https://i.postimg.cc/8cJPs35y/g310-3.webp"),
+							"https://i.postimg.cc/85qsdDq8/g310-1.webp",
+							"https://i.postimg.cc/4xCnHJpp/g310-2.webp",
+							"https://i.postimg.cc/8cJPs35y/g310-3.webp"),
 					Arrays.asList(ModType.NONE));
 
 

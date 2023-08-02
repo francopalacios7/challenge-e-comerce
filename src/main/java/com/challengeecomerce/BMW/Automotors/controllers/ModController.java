@@ -126,7 +126,6 @@ public class ModController {
 
         return new ResponseEntity<>("Modified successfully", HttpStatus.OK);
 
-
         }
 
         @PatchMapping("/admin/deleteMods/{id}")
@@ -155,6 +154,7 @@ public class ModController {
     @GetMapping("/modstype")
     public List<ModType> getAllModsType(){
         return modTypeRepository.findAll();
+
     }
     @GetMapping("/mods")
     public List<Mod> getAllMods(){

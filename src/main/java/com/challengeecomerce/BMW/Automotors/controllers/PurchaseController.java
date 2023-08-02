@@ -1,7 +1,15 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.DuesPlanDTO;
-import com.challengeecomerce.BMW.Automotors.dtos.ModPurchasePDFExporterDTO;
+import com.challengeecomerce.BMW.Automotors.dtos.DuesPlanPDFExporterDTO;
+import com.challengeecomerce.BMW.Automotors.models.Client;
+import com.challengeecomerce.BMW.Automotors.models.DuesPlan;
+import com.challengeecomerce.BMW.Automotors.models.MeetingReservation;
+import com.challengeecomerce.BMW.Automotors.repositories.DuesPlanRepository;
+import com.challengeecomerce.BMW.Automotors.services.ClientService;
+import com.challengeecomerce.BMW.Automotors.services.DuesPlanService;
+import com.challengeecomerce.BMW.Automotors.services.PurchaseService;
+import com.challengeecomerce.BMW.Automotors.utils.DuesPlanPDFExporter;
 import com.challengeecomerce.BMW.Automotors.models.*;
 import com.challengeecomerce.BMW.Automotors.services.*;
 import com.challengeecomerce.BMW.Automotors.utils.ModPDFExporter;
@@ -92,17 +100,35 @@ public class PurchaseController {
     }
 
 
+
+
+    @PostMapping(path = "/purchase/duesPlanPDF")
+    public void transactionsPDF(HttpServletResponse response, @RequestBody DuesPlanPDFExporterDTO duesPlan) throws DocumentException, IOException {
+//        Client client = clientService.findByEmail(authentication.getName());
+//        if (client == null){
+//            return new ResponseEntity<>("The Client does not exist", HttpStatus.FORBIDDEN);
+//        }
+
+        DuesPlan duesPlanToPrint = duesPlanService.findById(duesPlan.getId());
+
+// Crea una lista de DuesPlan y agrega el objeto duesPlanToPrint a la lista
+        List<DuesPlan> listDuesPlan = new ArrayList<>();
+        listDuesPlan.add(duesPlanToPrint);
+
+//        Client clientOwnTransactions = accountToPrint.getClient();
+        response.setContentType("application/pdf");
+      
+       List<Transaction> listTransactions = this.transactionService.getTransactionsByDate(date.getLocalDateTimeStart(),date.getLocalDateTimeEnd(),accountToPrint);
+        DuesPlanPDFExporter exporter = new DuesPlanPDFExporter(listDuesPlan );
+      return new ResponseEntity<>("Printing completed transactions", HttpStatus.OK);
+    }
     @PostMapping(path = "/modPurchase/PDF")
     public void transactionsPDF(Authentication authentication, HttpServletResponse response, @RequestBody List<ModPurchasePDFExporterDTO> modPurchasePDFExporterDTO) throws DocumentException, IOException {
 
         Client client = clientService.findByEmail(authentication.getName());
 
-
-
-
         List<Mod> mods = new ArrayList<>();
         modPurchasePDFExporterDTO.forEach(a -> mods.add(modService.findById(a.getModId())));
-
 
         double finalPrice = 0;
         for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO) {
@@ -112,12 +138,9 @@ public class PurchaseController {
             }
         }
 
-
         Set<ClientPurchase> clientPurchase = new HashSet<>();
         ClientPurchase clientPurchase1 = new ClientPurchase(finalPrice);
         clientPurchase.add(clientPurchase1);
-
-
 
                 response.setContentType("application/pdf");
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
@@ -125,11 +148,14 @@ public class PurchaseController {
 //        String headerKey = "Content-Disposition";
 //        String headerValue = "attachment; filename=transactions"+currentDateTime + ".pdf";
 
+//       
 //        List<Mod> listTransactions = this.modService.getTransactionsByDate (date.getLocalDateTimeStart(),date.getLocalDateTimeEnd());
         ModPDFExporter exporter = new ModPDFExporter(mods, client,finalPrice, clientPurchase1.getTotalAmount());
         exporter.export(response);
-
-//        return new ResponseEntity<>("Printing completed transactions", HttpStatus.OK);
+        return new ResponseEntity<>("Printing completed transactions", HttpStatus.OK);
+//        
     }
 
+
 }
+

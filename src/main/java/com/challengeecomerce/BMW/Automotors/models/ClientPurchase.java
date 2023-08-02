@@ -47,5 +47,5 @@ public class ClientPurchase {
     public void setPurchaseSet(Set<Purchase> purchaseSet) {
         this.purchaseSet = purchaseSet;
     }
-
 }
+

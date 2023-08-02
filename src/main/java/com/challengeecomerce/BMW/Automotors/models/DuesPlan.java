@@ -21,7 +21,6 @@ public class DuesPlan {
     @OneToMany(mappedBy = "duesPlan", fetch = FetchType.EAGER)
     private Set<PurchaseDuesPlan> purchaseDuesPlans = new HashSet<>();
 
-
     public DuesPlan() {
     }
 

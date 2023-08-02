@@ -96,7 +96,6 @@ public class ClientController {
             do {
                 ticketNumber = random.nextLong();
             } while (purchaseService.findByTicketNumber(ticketNumber) != null);
-
             Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
             ClientPurchase clientPurchase = new ClientPurchase(purchaseDTO.getTotalAmount());
 
@@ -108,7 +107,7 @@ public class ClientController {
         return new ResponseEntity<>(purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }
     @PostMapping("/client/sendEmail")
-    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO meetingReservationDTO, @RequestBody CarDTO carDTO) {
+    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO meetingReservationDTO) {
         Client client = clientService.findByEmail(authentication.getName());
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
@@ -121,7 +120,7 @@ public class ClientController {
         email.setTo(emailToSend);
         email.setFrom("bmwcohortfs047@hotmail.com");
         email.setSubject("Meeting reservation");
-        email.setText("You have a meeting reservation for the day " + formattedDateTime + ".\\n" + " " + "Car details:" + " " + carDTO.getModel() + " " + carDTO.getDate());
+        email.setText("You have a meeting reservation for the day " + formattedDateTime + ".\n" + "Car details: " + meetingReservationDTO.getModel() + " " + meetingReservationDTO.getDate());
         javaMailSender.send(email);
         return new ResponseEntity<>(true,HttpStatus.OK);
     }

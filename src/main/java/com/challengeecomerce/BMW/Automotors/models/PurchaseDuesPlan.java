@@ -47,6 +47,5 @@ public class PurchaseDuesPlan {
     public DuesPlan getDuesPlan() { return duesPlan; }
 
     public void setDuesPlan(DuesPlan duesPlan) { this.duesPlan = duesPlan; }
-
-
 }
+

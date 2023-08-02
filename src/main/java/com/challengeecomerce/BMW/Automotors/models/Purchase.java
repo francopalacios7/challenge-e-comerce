@@ -95,4 +95,3 @@ public class Purchase {
         this.purchaseDuesPlans.add(purchaseDuesPlan);
     }
 }
-
