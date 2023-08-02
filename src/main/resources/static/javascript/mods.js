@@ -89,7 +89,7 @@ createApp({
     },
     sendCarritoBack(array) {
       const newArray = array.reduce((result, item) => {
-        result.push({ id: item.article.id, cantidad: item.amount });
+        result.push({ modId: item.article.id, amount: item.amount });
 
         return result;
       }, []);

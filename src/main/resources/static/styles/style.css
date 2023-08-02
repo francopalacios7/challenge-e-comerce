@@ -19,6 +19,10 @@ a.navbar-brand{
   content: url("./../images/BMW_Grey-Colour_RGB.SVG.asset.1605107718514.SVG");
 }
 
+nav ul>li.nav-item a.nav-link.active{
+  color: var(--color-primario)!important;
+}
+
 .bgc{
     background-color: var(--color-bg);
 }
