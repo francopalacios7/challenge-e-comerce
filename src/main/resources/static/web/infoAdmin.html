@@ -106,9 +106,12 @@
                             </a>
                         </td>
                         <td>
-                            <a :href="'./deleteCard.html?id='+car.id">
+                            <button @click="deleteCar(car.id)" class="btn">
+                               <a href="#">
                                 <i class="fas fa-trash-alt fa-lg" style="cursor: pointer; color: red;"></i>
-                            </a>
+                            </a> 
+                            </button>
+                            
                         </td>
                     </tr>
                 </tbody>
@@ -123,16 +126,8 @@
 
             </table>
         </div>
-<!--         <div class="d-flex justify-content-center mt-3">
-            <button class="btn btn-primary me-2" @click="changePage(currentPage - 1)">Previous</button>
-            <button class="btn btn-primary" @click="changePage(currentPage + 1)">Next</button>
-        </div> -->
 
-
-
-
-
-                            <!-- TABLA MOD -->
+        <!-- TABLA MOD -->
 
 
         <h1 class="d-flex justify-content-center mb-4 mt-5">Mods</h1>
@@ -162,7 +157,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="mod of mods" :key="mod.id">
+                    <tr v-for="mod of modsActive" :key="mod.id">
                         
                         <td>{{mod.id}}</td>
                         <td>{{ mod.name }}</td>
@@ -171,10 +166,6 @@
                         <td>${{mod.price.toFixed(2)}}</td>
                         <td>{{mod.stock}}</td>
                         
-                       <!--  <td>{{ mod.description }}</td>
-                        <td>{{ mod.carColor }}</td>
-                        <td>{{ mod.price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
-                        <td>{{ mod.stock }}</td> -->
 
                         <td>
                             <a :href="'./updateMod.html?id='+mod.id">
@@ -182,9 +173,12 @@
                             </a>
                         </td>
                         <td>
-                            <a :href="'./deleteMod.html?id='+mod.id">
+                            <button class="btn" @click="deleteMod(mod.id)">
+                                 <a href="#">
                                 <i class="fas fa-trash-alt fa-lg" style="cursor: pointer; color: red;"></i>
                             </a>
+                            </button>
+                           
                         </td>
                     </tr>
                 </tbody>

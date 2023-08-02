@@ -137,9 +137,14 @@ public class ModController {
 //            if(!client.getEmail().contains("admin")){
 //                return new ResponseEntity<>("Only admins can delete mods", HttpStatus.FORBIDDEN);
 //            }
+            if (mod == null) {
+                return new ResponseEntity<>("Mod invalid, please try again.", HttpStatus.FORBIDDEN);
+            }
+            if(mod.getActive()){
+                mod.setActive(false);
+                modService.saveMod(mod);
+            }
 
-            mod.setActive(false);
-            modService.saveMod(mod);
             return  new ResponseEntity<>("Mod Deleted", HttpStatus.OK);
 
         }

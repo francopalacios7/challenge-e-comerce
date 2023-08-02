@@ -27,6 +27,8 @@ public class Car {
     private Boolean packM;
     private CarType carType;
     private Integer stock;
+    private Boolean active;
+
     @ElementCollection
     @CollectionTable(name = "car_images", joinColumns = @JoinColumn(name = "car_id"))
     @Column(name = "image")
@@ -56,6 +58,7 @@ public class Car {
         this.stock = stock;
         this.images = images;
         this.modType = modType;
+        this.active = true;
     }
     public Long getId() {
         return id;
@@ -142,4 +145,13 @@ public class Car {
         this.planDuesCarSet.add(planDuesCar);
     }
     public void setPlanDuesCarSet(Set<PlanDuesCar> planDuesCarSet) {this.planDuesCarSet = planDuesCarSet;}
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }
+
