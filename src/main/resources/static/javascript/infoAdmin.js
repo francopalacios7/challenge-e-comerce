@@ -67,7 +67,8 @@ createApp({
 
     filtroMods: function() {
       return this.mods.filter((mod) => mod.name.toLowerCase().includes(this.inputMods.toLowerCase()));
-    }
+    },
+
   },
 
   watch: {

@@ -45,8 +45,6 @@ public class ClientPurchase {
     public Set<Purchase> getPurchaseSet() {
         return purchaseSet;
     }
-    public LocalDate getCreationDate() {return creationDate;}
-    public void setCreationDate(LocalDate creationDate) {this.creationDate = creationDate;}
     public void setPurchaseSet(Set<Purchase> purchaseSet) {
         this.purchaseSet = purchaseSet;
     }
