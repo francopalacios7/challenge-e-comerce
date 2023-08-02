@@ -11,3 +11,33 @@
     height: 100%;
     object-fit: contain;
 }
+
+/* carrito */
+.offcanvas{
+    width: 35rem !important;
+}
+
+.shop-cart{
+    cursor: pointer;
+}
+
+.imagen-carrito{
+    height: 4.5rem;
+    object-fit: cover;
+}
+.bi-trash{
+    color: green;
+}
+
+.button-minus, .button-plus, .form-input{
+    border: 1px solid #ecf0ef !important;
+    width: 1.8rem !important;
+}
+.form-input{
+    text-align: center;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

@@ -69,4 +69,5 @@ public class DuesPlan {
         purchaseDuesPlan.setDuesPlan(this);
         this.purchaseDuesPlans.add(purchaseDuesPlan);
     }
+
 }

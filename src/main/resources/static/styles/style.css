@@ -19,6 +19,10 @@ a.navbar-brand{
   content: url("./../images/BMW_Grey-Colour_RGB.SVG.asset.1605107718514.SVG");
 }
 
+nav ul>li.nav-item a.nav-link.active{
+  color: var(--color-primario)!important;
+}
+
 .bgc{
     background-color: var(--color-bg);
 }
@@ -50,11 +54,12 @@ a.navbar-brand{
 
 .button-primary:hover{
     background-color: var(--color-primario)!important;
-    color: #fff;
+    color: #fff!important;
 }
 
 .button-primary--active:hover{
     background-color: transparent!important;
+    color: var(--color-primario)!important;
 }
 
 .button-secondary:hover{
