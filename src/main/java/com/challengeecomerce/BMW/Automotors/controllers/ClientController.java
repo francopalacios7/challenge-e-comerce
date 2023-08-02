@@ -91,14 +91,14 @@ public class ClientController {
 
         if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)) {
 
+
             Random random = new Random();
             Long ticketNumber;
             do {
                 ticketNumber = random.nextLong();
             } while (purchaseService.findByTicketNumber(ticketNumber) != null);
             Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
-            ClientPurchase clientPurchase = new ClientPurchase(purchaseDTO.getTotalAmount());
-
+            ClientPurchase clientPurchase = new ClientPurchase(purchaseDTO.getTotalAmount(), purchaseDTO.getArticlesAmount());
             purchaseService.save(purchase);
             client.addClientPurchase(clientPurchase);
             clientService.save(client);
