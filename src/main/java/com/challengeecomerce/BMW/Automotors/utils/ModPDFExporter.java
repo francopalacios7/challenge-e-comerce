@@ -23,9 +23,9 @@ public class ModPDFExporter {
 
     private double finalPrice;
 
-    private Double amount;
+    private int amount;
 
-    public ModPDFExporter(List<Mod> mods, Client client, double finalPrice, Double amount ) {
+    public ModPDFExporter(List<Mod> mods, Client client, double finalPrice, int amount ) {
         this.mods = mods;
         this.client = client;
         this.finalPrice = finalPrice;
@@ -75,9 +75,9 @@ public class ModPDFExporter {
         font.setSize(18);
         font.setColor(BaseColor.DARK_GRAY);
 
-        Paragraph paragraphClient = new Paragraph ("Client" + client.getFirstName() + " " + client.getLastName() + " " + client.getPhone(), font);
-        Paragraph finalPriceParagraph = new Paragraph ("Final Price" + finalPrice, font);
-        Paragraph amountParagraph = new Paragraph ("Total Amount" + amount, font);
+        Paragraph paragraphClient = new Paragraph ("Client: " + client.getFirstName() + " " + client.getLastName() + " " + client.getPhone(), font);
+        Paragraph finalPriceParagraph = new Paragraph ("Final Price: " + finalPrice, font);
+        Paragraph amountParagraph = new Paragraph ("Total Amount: " + amount, font);
 
         Paragraph p = new Paragraph("Mod's list", font);
         p.setAlignment(Paragraph.ALIGN_CENTER);
