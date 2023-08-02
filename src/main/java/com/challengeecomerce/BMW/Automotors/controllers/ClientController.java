@@ -85,14 +85,14 @@ public class ClientController {
         if (purchaseDTO.getPayments().toString().isBlank()) {
             return new ResponseEntity<>("The payments cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)) {
+        if (purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)) {
             Random random = new Random();
             Long ticketNumber;
             do {
                 ticketNumber = random.nextLong();
             } while (purchaseService.findByTicketNumber(ticketNumber) != null);
             Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
-            ClientPurchase clientPurchase = new ClientPurchase(purchaseDTO.getTotalAmount());
+            ClientPurchase clientPurchase = new ClientPurchase(purchaseDTO.getTotalAmount(), purchaseDTO.getArticlesAmount());
             purchaseService.save(purchase);
             client.addClientPurchase(clientPurchase);
             clientService.save(client);
@@ -114,7 +114,7 @@ public class ClientController {
         email.setTo(emailToSend);
         email.setFrom("bmwcohortfs047@hotmail.com");
         email.setSubject("Meeting reservation");
-        email.setText("You have a meeting reservation for the day " + formattedDateTime + ".\\n" + " " + "Car details:" + " " + carDTO.getModel() + " " + carDTO.getDate());
+        email.setText("You have a meeting reservation for the day" + formattedDateTime + ".\\n" + " " + "Car details:" + " " + carDTO.getModel() + " " + carDTO.getDate());
         javaMailSender.send(email);
         return new ResponseEntity<>(true,HttpStatus.OK);
     }

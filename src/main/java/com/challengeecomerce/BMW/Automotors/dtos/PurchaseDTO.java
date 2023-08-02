@@ -14,10 +14,9 @@ public class PurchaseDTO {
     private Double totalAmount;
     private PurchaseType purchaseType;
     private Integer payments;
+    private Integer amount;
     private Set<ModPurchaseDTO> modPurchaseDTO;
-
     private ClientPurchase clientPurchase;
-
     private DuesPlan duesPlan;
     public PurchaseDTO() {
     }
@@ -53,6 +52,6 @@ public class PurchaseDTO {
     }
     public PurchaseType getPurchaseType() {return purchaseType;}
     public DuesPlan getDuesPlan() {return duesPlan;}
-
-
+    public Integer getArticlesAmount() {return amount;}
+    public ClientPurchase getClientPurchase() {return clientPurchase;}
 }
