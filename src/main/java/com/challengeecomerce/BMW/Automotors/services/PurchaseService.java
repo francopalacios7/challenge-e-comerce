@@ -6,4 +6,6 @@ public interface PurchaseService {
     void save(Purchase purchase);
 
     Purchase findByTicketNumber(Long ticketNumber);
+
+
 }

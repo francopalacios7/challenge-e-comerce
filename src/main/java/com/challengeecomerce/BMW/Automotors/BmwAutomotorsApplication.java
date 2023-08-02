@@ -2,21 +2,21 @@ package com.challengeecomerce.BMW.Automotors;
 
 import com.challengeecomerce.BMW.Automotors.models.Car;
 import com.challengeecomerce.BMW.Automotors.models.Client;
+import com.challengeecomerce.BMW.Automotors.models.DuesPlan;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarColor;
 import com.challengeecomerce.BMW.Automotors.models.enums.CarType;
 import com.challengeecomerce.BMW.Automotors.models.enums.ModType;
-import com.challengeecomerce.BMW.Automotors.repositories.CarRepository;
-import com.challengeecomerce.BMW.Automotors.repositories.ClientRepository;
-import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
+import com.challengeecomerce.BMW.Automotors.repositories.*;
 import com.challengeecomerce.BMW.Automotors.services.PurchaseService;
-import com.challengeecomerce.BMW.Automotors.repositories.ModTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.Arrays;
@@ -35,7 +35,7 @@ public class BmwAutomotorsApplication {
 	PurchaseService purchaseService;
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository, ModTypeRepository modTypeRepository) {
+	public CommandLineRunner initData(ClientRepository clientRepository, CarRepository carRepository, ModRepository modRepository, ModTypeRepository modTypeRepository, DuesPlanRepository duesPlanRepository) {
 		return (args -> {
 
 			Client Pepe = new Client("Pepe", "Honguito","micagpili@gmail.com", passwordEncoder.encode("melba456"),"direccion","23456");
@@ -45,10 +45,10 @@ public class BmwAutomotorsApplication {
 			//Client admin = new Client());
 
 
-			Car car1 = new Car("Weight: 2,310 kg" +
-					"Fuel Capacity: 80 liters" +
-					"Acceleration: 0 to 100 km/h in 6.5 seconds)\n" +
-					"Final Speed: 250 km/h","BMW X5", Year.of(2022), CarColor.BLUE, 75000.0, "The BMW X5 is a luxury mid-size SUV known for its premium features, powerful performance, and spacious interior. As part of BMW's X-series lineup, the X5 offers a blend of comfort, technology, and driving dynamics. ",
+			Car car1 = new Car(Arrays.asList("Weight: 2,310kg",
+					"Fuel Capacity: 80 liters",
+					"Acceleration: 0 to 100 km/h in 6.5 seconds)",
+					"Final Speed: 250 km/h"),"BMW X5", Year.of(2022), CarColor.BLUE, 75000.0, "The BMW X5 is a luxury mid-size SUV known for its premium features, powerful performance, and spacious interior. As part of BMW's X-series lineup, the X5 offers a blend of comfort, technology, and driving dynamics. ",
 					Arrays.asList(12, 24, 36), true, CarType.SUV,
 					50,
 					Arrays.asList("https://i.postimg.cc/KckChXJw/BMW-X5-Prior-Design-1-1130x636-removebg-preview.webp", "https://i.postimg.cc/Rh4tdxFh/358554307-693967395873744-7241302121445480103-n.webp",
@@ -56,10 +56,10 @@ public class BmwAutomotorsApplication {
 							"https://hips.hearstapps.com/hmg-prod/images/bmw-x5-m-competition-2020-1600-35-1570006295.jpg"),
 					Arrays.asList(ModType.ALLOY_WHEELS, ModType.NAVIGATION_SYSTEM));
 
-			Car car2 = new Car("Weight: 1,680kg" +
-					"Fuel Capacity: 60 liters" +
-					"Acceleration: 0 to 100 km/h in 5.1 seconds" +
-					"Final Speed: 250 km/h","BMW M340i", Year.of(2023), CarColor.BLUE, 50000.0,"The BMW M340i is a high-performance variant of the popular 3 Series sedan. As part of BMW's M Performance lineup, the M340i focuses on delivering sportier driving dynamics and increased power.",
+			Car car2 = new Car(Arrays.asList("Weight: 1,680kg",
+					"Fuel Capacity: 60 liters",
+					"Acceleration: 0 to 100 km/h in 5.1 seconds",
+					"Final Speed: 250 km/h"),"BMW M340i", Year.of(2023), CarColor.BLUE, 50000.0,"The BMW M340i is a high-performance variant of the popular 3 Series sedan. As part of BMW's M Performance lineup, the M340i focuses on delivering sportier driving dynamics and increased power.",
 					Arrays.asList(24, 36, 48), false, CarType.CAR,
 					8,
 					Arrays.asList("https://i.postimg.cc/sfNdMkj9/340.png", "https://i.postimg.cc/tTQPPGW1/1-3.webp",
@@ -67,21 +67,21 @@ public class BmwAutomotorsApplication {
 							"https://i.postimg.cc/yYvFG545/5-3.webp"),
 					Arrays.asList(ModType.SUNROOF, ModType.PERFORMANCE_EXHAUST));
 
-			Car car3 = new Car("Weight: 1,510 kg" +
-					"Fuel Capacity: 52 liters" +
-					"Acceleration: 0 to 100 km/h in 5.1 seconds" +
-					"Final Speed: 250 km/h","BMW 140i", Year.of(2023), CarColor.WHITE, 95000.0,"The BMW 140i, specifically the 1 Series (F20/F21) 140i, is a compact luxury hatchback (3-door or 5-door) or coupe manufactured by BMW. It is part of the 1 Series lineup and is recognized for its agile handling and peppy performance.",
+			Car car3 = new Car(Arrays.asList("Weight: 1,510kg",
+					"Fuel Capacity: 52 liters",
+					"Acceleration: 0 to 100 km/h in 5.1 seconds",
+					"Final Speed: 250 km/h"),"BMW 140i", Year.of(2023), CarColor.WHITE, 95000.0,"The BMW 140i, specifically the 1 Series (F20/F21) 140i, is a compact luxury hatchback (3-door or 5-door) or coupe manufactured by BMW. It is part of the 1 Series lineup and is recognized for its agile handling and peppy performance.",
 					Arrays.asList(12, 24, 36, 60), true, CarType.CAR,
 					3,
 					Arrays.asList("https://i.postimg.cc/c4FKt4Kk/BMW-M1-PNG-Photo.png", "https://i.postimg.cc/Fs9yDvq3/2.webp",
-							"https://i.postimg.cc/TwVbJNJt/3.webp", "https://i.postimg.cc/hPPmVrz0/4.webp",
+							"https://i.postimg.cc/q7QTcgFq/9ciq4t.webp", "https://i.postimg.cc/hPPmVrz0/4.webp",
 							"https://i.postimg.cc/D0cqnpWS/5.webp"),
 					Arrays.asList(ModType.NONE));
 
-			Car car4 = new Car("Weight: 2,370 kg" +
-					"Fuel Capacity: 85 liters" +
-					"Acceleration: 0 to 100 km/h in 6.5 seconds" +
-					"Final Speed: 250 km/h","BMW X6", Year.of(2022), CarColor.BLACK, 120000.0,
+			Car car4 = new Car(Arrays.asList("Weight: 2,370kg",
+					"Fuel Capacity: 85 liters",
+					"Acceleration: 0 to 100 km/h in 6.5 seconds",
+					"Final Speed: 250 km/h"),"BMW X6", Year.of(2022), CarColor.BLACK, 120000.0,
 					"The BMW M5 is a high-performance luxury sedan known for its powerful engine and precise handling.",
 					Arrays.asList(12, 24, 36, 48), true, CarType.SUV,
 					4,
@@ -93,10 +93,10 @@ public class BmwAutomotorsApplication {
 					Arrays.asList(ModType.PERFORMANCE_EXHAUST, ModType.NAVIGATION_SYSTEM));
 
 
-			Car car5 = new Car("Weight: 2,000 kg" +
-					"Fuel Capacity: 68 liters" +
-					"Acceleration: 0 to 100 km/h in 4.3 seconds" +
-					"Final Speed: 250 km/h", "BMW M5", Year.of(2021), CarColor.WHITE, 135000.0,
+			Car car5 = new Car(Arrays.asList("Weight: 2,000kg",
+					"Fuel Capacity: 68 liters",
+					"Acceleration: 0 to 100 km/h in 4.3 seconds",
+					"Final Speed: 250 km/h"), "BMW M5", Year.of(2021), CarColor.WHITE, 135000.0,
 					"The BMW i8 is a plug-in hybrid sports car known for its futuristic design and impressive performance.",
 					Arrays.asList(12, 24, 36, 60), true, CarType.CAR,
 					2,
@@ -107,45 +107,43 @@ public class BmwAutomotorsApplication {
 							"https://i.postimg.cc/Jzc7yjrW/m5-4.webp"),
 					Arrays.asList(ModType.SUNROOF, ModType.ALLOY_WHEELS));
 
-			Car moto1 = new Car ("Weight: 208 kg" +
-					"Fuel Capacity: 16.5 liters" +
-					"Acceleration: 0 to 100 km/h in around 3 seconds" +
-					"Final Speed: Exceeds 300 km/h", "BMW S1000RR", Year.of(2023), CarColor.BLACK, 18000.0,
+			Car moto1 = new Car (Arrays.asList("Weight: 208kg",
+					"Fuel Capacity: 16.5 liters",
+					"Acceleration: 0 to 100 km/h in around 3 seconds",
+					"Final Speed: Exceeds 300 km/h"), "BMW S1000RR", Year.of(2023), CarColor.BLACK, 18000.0,
 					"The BMW S1000RR is a high-performance sportbike known for its powerful engine and advanced technology.",
 					Arrays.asList(6, 12, 18, 24), true, CarType.MOTORCYCLE, 15,
 					Arrays.asList("https://i.postimg.cc/dtbSXr7h/1000rr-0-2.png",
 							"https://i.postimg.cc/1tN3324v/1000rr-1.webp",
-			"https://i.postimg.cc/rsXF0jrM/1000rr-2.webp",
-			"https://i.postimg.cc/FKCYR0pH/1000rr-3.webp"),
+							"https://i.postimg.cc/rsXF0jrM/1000rr-2.webp",
+							"https://i.postimg.cc/FKCYR0pH/1000rr-3.webp"),
 					Arrays.asList(ModType.NONE));
 
 // Crear moto2 (BMW R1250GS)
-			Car moto2 = new Car("Weight: 268 kg" +
-					"Fuel Capacity: 20 liters" +
-					"Acceleration: 0 to 100 km/h in around 4 seconds" +
-					"Final Speed: Over 200 km/h", "BMW R1250GS", Year.of(2020), CarColor.BLUE, 23000.0,
+			Car moto2 = new Car(Arrays.asList("Weight: 268 kg",
+					"Fuel Capacity: 20 liters",
+					"Acceleration: 0 to 100 km/h in around 4 seconds",
+					"Final Speed: Over 200 km/h"), "BMW R1250GS", Year.of(2020), CarColor.BLACK, 23000.0,
 					"The BMW R1250GS is a premium adventure motorcycle designed for long-distance touring and off-road adventures.",
 					Arrays.asList(6, 12, 24, 36), true, CarType.MOTORCYCLE,23,
 					Arrays.asList("https://i.postimg.cc/ZKdbkPq3/r1250-0-removebg-preview.png",
-									"https://i.postimg.cc/8PvzSqxc/r1250-1.webp",
-									"https://i.postimg.cc/vBjGRzz5/r1250-2.webp",
-									"https://i.postimg.cc/DwKyyxKg/r1250-3.webp"),
+							"https://i.postimg.cc/8PvzSqxc/r1250-1.webp",
+							"https://i.postimg.cc/vBjGRzz5/r1250-2.webp",
+							"https://i.postimg.cc/DwKyyxKg/r1250-3.webp"),
 					Arrays.asList(ModType.NONE));
 
 // Crear moto3 (BMW G310GS)
-			Car moto3 = new Car("Weight: 169.5 kg" +
-					"Fuel Capacity: 11 liters" +
-					"Acceleration: 0 to 100 km/h in around 4 seconds" +
-					"Final Speed: Up to 150 km/h", "BMW G310GS", Year.of(2024), CarColor.WHITE, 9000.0,
+			Car moto3 = new Car(Arrays.asList("Weight: 169.5kg",
+					"Fuel Capacity: 11 liters",
+					"Acceleration: 0 to 100 km/h in around 4 seconds",
+					"Final Speed: Up to 150 km/h"), "BMW G310GS", Year.of(2024), CarColor.BLACK, 9000.0,
 					"The BMW G310GS is an entry-level adventure motorcycle perfect for urban commuting and light off-road use.",
 					Arrays.asList(6, 12, 18, 24), true, CarType.MOTORCYCLE, 17,
 					Arrays.asList("https://i.postimg.cc/VkPYzSSh/g310-0-removebg-preview.png",
-									"https://i.postimg.cc/85qsdDq8/g310-1.webp",
-									"https://i.postimg.cc/4xCnHJpp/g310-2.webp",
-									"https://i.postimg.cc/8cJPs35y/g310-3.webp"),
+							"https://i.postimg.cc/85qsdDq8/g310-1.webp",
+							"https://i.postimg.cc/4xCnHJpp/g310-2.webp",
+							"https://i.postimg.cc/8cJPs35y/g310-3.webp"),
 					Arrays.asList(ModType.NONE));
-
-
 
 
 			carRepository.saveAll(Arrays.asList(car1, car2, car3, car4,car5, moto1,moto2,moto3));
@@ -178,15 +176,13 @@ public class BmwAutomotorsApplication {
 			Mod performanceExhaustBlack = new Mod("Performance Exhaust", "Enhances the car's exhaust system for better performance", 250.0, CarColor.BLACK, 10,Arrays.asList("https://i.postimg.cc/1XKsPpMJ/performance-exhaust.webp"), performanceExhaustBlack1);
 
 			modRepository.saveAll(Arrays.asList(navigationSystem,sunroof,tintedWindows,alloyWheel3,alloyWheel4,alloyWheel2,alloyWheels1,alloyWheels,spoilerWhite,spoilerBlue,spoilerBlack,performanceExhaustBlack));
-			Random random = new Random();
-			Long ticketNumber;
 
+			DuesPlan duesPlan1 = new DuesPlan("Plan A", "36", 0.3, true );
+			DuesPlan duesPlan2 = new DuesPlan("Plan A", "48", 0.4, true );
+			DuesPlan duesPlan3 = new DuesPlan("Plan A", "60", 0.5, true );
 
-			do {
-				ticketNumber = random.nextLong();
-			} while (purchaseService.findByTicketNumber(ticketNumber) != null);
+			duesPlanRepository.saveAll(Arrays.asList(duesPlan1,duesPlan2,duesPlan3));
 
-			System.out.println("ticketNumber = " + ticketNumber);
 		});
 	}
 }

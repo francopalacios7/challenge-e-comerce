@@ -1,12 +1,15 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
+import com.challengeecomerce.BMW.Automotors.dtos.CarDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.MeetingReservationDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
+import com.challengeecomerce.BMW.Automotors.models.ClientPurchase;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.PurchaseType;
 import com.challengeecomerce.BMW.Automotors.services.CarService;
+import com.challengeecomerce.BMW.Automotors.services.ClientPurchaseService;
 import com.challengeecomerce.BMW.Automotors.services.ClientService;
 import com.challengeecomerce.BMW.Automotors.services.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +26,6 @@ import java.util.List;
 import java.time.LocalDate;
 import java.util.Random;
 
-
 @RestController
 @RequestMapping("/api")
 public class ClientController {
@@ -35,13 +37,14 @@ public class ClientController {
     private PurchaseService purchaseService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private ClientPurchaseService clientPurchaseService;
+    @Autowired
+    private JavaMailSender javaMailSender;
     @GetMapping("/clients/current")
     public ClientDTO getAuthenticatedClient(Authentication authentication) {
         return new ClientDTO(clientService.findByEmail(authentication.getName()));
     }
-    @Autowired
-    private JavaMailSender javaMailSender;
-
     @PostMapping("/clients")
     public ResponseEntity<Object> register(@RequestBody ClientDTO clientDTO) {
         if (clientDTO.getEmail().isBlank()) {
@@ -85,42 +88,34 @@ public class ClientController {
         if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)) {
             Random random = new Random();
             Long ticketNumber;
-
             do {
                 ticketNumber = random.nextLong();
             } while (purchaseService.findByTicketNumber(ticketNumber) != null);
-
-
-            Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType(), purchaseDTO.getDuesPlan());
+            Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
+            ClientPurchase clientPurchase = new ClientPurchase(purchaseDTO.getTotalAmount());
             purchaseService.save(purchase);
-            client.addPurchase(purchase);
+            client.addClientPurchase(clientPurchase);
             clientService.save(client);
+            clientPurchaseService.save(clientPurchase);
         }
         return new ResponseEntity<>(purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }
     @PostMapping("/client/sendEmail")
-    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO turnReservationDTO) {
-
+    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO meetingReservationDTO) {
         Client client = clientService.findByEmail(authentication.getName());
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        String emailToSend = turnReservationDTO.getEmail();
-        LocalDateTime turn = turnReservationDTO.getMeetingReservation();
-
+        String emailToSend = meetingReservationDTO.getEmail();
+        LocalDateTime meeting = meetingReservationDTO.getMeetingReservation();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String formattedDateTime = turn.format(formatter);
-
+        String formattedDateTime = meeting.format(formatter);
         SimpleMailMessage email = new SimpleMailMessage();
-
         email.setTo(emailToSend);
         email.setFrom("bmwcohortfs047@hotmail.com");
-        email.setSubject("Turn Reservation");
-        email.setText("You have a shift reservation for the day " + formattedDateTime);
-
+        email.setSubject("Meeting reservation");
+        email.setText("You have a meeting reservation for the day " + formattedDateTime + ".\n" + "Car details: " + meetingReservationDTO.getModel() + " " + meetingReservationDTO.getDate());
         javaMailSender.send(email);
         return new ResponseEntity<>(true,HttpStatus.OK);
-
     }
-
 }

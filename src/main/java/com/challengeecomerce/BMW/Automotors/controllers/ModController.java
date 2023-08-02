@@ -1,6 +1,7 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.ModDTO;
+import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.models.ModType;
 import com.challengeecomerce.BMW.Automotors.repositories.ModRepository;
@@ -14,7 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -126,13 +126,30 @@ public class ModController {
 
         return new ResponseEntity<>("Modified successfully", HttpStatus.OK);
 
-<<<<<<< HEAD
-=======
         }
+
+        @PatchMapping("/admin/deleteMods/{id}")
+        public ResponseEntity<Object> deleteMod(Authentication authentication, @PathVariable Long id){
+
+//            Client client = clientService.findByEmail(authentication.getName());
+            Mod mod = modService.findById(id);
+
+//            if(!client.getEmail().contains("admin")){
+//                return new ResponseEntity<>("Only admins can delete mods", HttpStatus.FORBIDDEN);
+//            }
+
+            mod.setActive(false);
+            modService.saveMod(mod);
+            return  new ResponseEntity<>("Mod Deleted", HttpStatus.OK);
+
+        }
+
+
+
     @GetMapping("/modstype")
     public List<ModType> getAllModsType(){
         return modTypeRepository.findAll();
->>>>>>> f4a09827f1652a8a8ec622910b1a80fc0a9619d5
+
     }
     @GetMapping("/mods")
     public List<Mod> getAllMods(){
