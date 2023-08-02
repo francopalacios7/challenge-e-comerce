@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/purchasePayment.css">
+    <title>Card payment</title>
+</head>
+
+<body>
+    <main id="app">
+        <div class="login-box">
+            <form @submit.prevent="cardPayment">
+                <div class="user-box">
+                    <input type="text" name="" required="" value="number" v-model="number">
+                    <label>Number</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="" required="" value="cvv" v-model="cvv">
+                    <label>Cvv</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="" required="" value="amount" v-model="amount">
+                    <label>Amount</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="" required="" value="description" v-model="description">
+                    <label>Description</label>
+                </div>
+                <button>
+                    SEND
+                    <span></span>
+                </button>
+            </form>
+        </div>
+    </main>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../javascript/purchasePayment.js"></script>
+</body>
+
+</html>

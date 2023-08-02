@@ -1,5 +1,6 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
+import com.challengeecomerce.BMW.Automotors.dtos.CarDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.MeetingReservationDTO;
@@ -74,7 +75,9 @@ public class ClientController {
     }
     @PostMapping("/clients/purchase")
     public ResponseEntity<Object> purchase(@RequestBody PurchaseDTO purchaseDTO, Authentication authentication) {
+
         Client client = clientService.findByEmail(authentication.getName());
+
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
         }
@@ -84,14 +87,20 @@ public class ClientController {
         if (purchaseDTO.getPayments().toString().isBlank()) {
             return new ResponseEntity<>("The payments cannot be blank. Please, try again.", HttpStatus.FORBIDDEN);
         }
+
+
         if (purchaseDTO.getPurchaseType().equals(PurchaseType.CAR) || purchaseDTO.getPurchaseType().equals(PurchaseType.MOD)) {
+
+
             Random random = new Random();
             Long ticketNumber;
             do {
                 ticketNumber = random.nextLong();
             } while (purchaseService.findByTicketNumber(ticketNumber) != null);
             Purchase purchase = new Purchase(ticketNumber, LocalDate.now(), purchaseDTO.getTotalAmount(), purchaseDTO.getPayments(), purchaseDTO.getPurchaseType());
-            ClientPurchase clientPurchase = new ClientPurchase(purchaseDTO.getTotalAmount());
+
+            ClientPurchase clientPurchase = new ClientPurchase(purchaseDTO.getTotalAmount(), purchaseDTO.getArticlesAmount());
+
             purchaseService.save(purchase);
             client.addClientPurchase(clientPurchase);
             clientService.save(client);
@@ -100,20 +109,20 @@ public class ClientController {
         return new ResponseEntity<>(purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }
     @PostMapping("/client/sendEmail")
-    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO turnReservationDTO) {
+    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO meetingReservationDTO) {
         Client client = clientService.findByEmail(authentication.getName());
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        String emailToSend = turnReservationDTO.getEmail();
-        LocalDateTime turn = turnReservationDTO.getMeetingReservation();
+        String emailToSend = meetingReservationDTO.getEmail();
+        LocalDateTime meeting = meetingReservationDTO.getMeetingReservation();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String formattedDateTime = turn.format(formatter);
+        String formattedDateTime = meeting.format(formatter);
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(emailToSend);
         email.setFrom("bmwcohortfs047@hotmail.com");
-        email.setSubject("Turn Reservation");
-        email.setText("You have a shift reservation for the day " + formattedDateTime);
+        email.setSubject("Meeting reservation");
+        email.setText("You have a meeting reservation for the day " + formattedDateTime + ".\n" + "Car details: " + meetingReservationDTO.getModel() + " " + meetingReservationDTO.getDate());
         javaMailSender.send(email);
         return new ResponseEntity<>(true,HttpStatus.OK);
     }
