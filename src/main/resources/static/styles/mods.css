@@ -1,0 +1,13 @@
+.mod-container{
+    height: 100%
+}
+
+.mod-container--img{
+    height:13rem ;
+}
+
+.mod-container--img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

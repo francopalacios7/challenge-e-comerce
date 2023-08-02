@@ -49,11 +49,4 @@ public class ClientPurchase {
         this.purchaseSet = purchaseSet;
     }
 
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
-    }
 }

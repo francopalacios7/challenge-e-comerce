@@ -1,5 +1,6 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
+import com.challengeecomerce.BMW.Automotors.dtos.CarDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.MeetingReservationDTO;
@@ -107,20 +108,20 @@ public class ClientController {
         return new ResponseEntity<>(purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }
     @PostMapping("/client/sendEmail")
-    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO turnReservationDTO) {
+    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO meetingReservationDTO, @RequestBody CarDTO carDTO) {
         Client client = clientService.findByEmail(authentication.getName());
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
         }
-        String emailToSend = turnReservationDTO.getEmail();
-        LocalDateTime turn = turnReservationDTO.getMeetingReservation();
+        String emailToSend = meetingReservationDTO.getEmail();
+        LocalDateTime meeting = meetingReservationDTO.getMeetingReservation();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String formattedDateTime = turn.format(formatter);
+        String formattedDateTime = meeting.format(formatter);
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(emailToSend);
         email.setFrom("bmwcohortfs047@hotmail.com");
-        email.setSubject("Turn Reservation");
-        email.setText("You have a shift reservation for the day " + formattedDateTime);
+        email.setSubject("Meeting reservation");
+        email.setText("You have a meeting reservation for the day " + formattedDateTime + ".\\n" + " " + "Car details:" + " " + carDTO.getModel() + " " + carDTO.getDate());
         javaMailSender.send(email);
         return new ResponseEntity<>(true,HttpStatus.OK);
     }

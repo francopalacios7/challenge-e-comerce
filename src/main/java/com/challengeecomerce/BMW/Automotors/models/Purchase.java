@@ -16,7 +16,6 @@ public class Purchase {
     private Long id;
     private Long ticketNumber;
     private LocalDate date;
-
     private Double totalAmount;
     private PurchaseType purchaseType;
     private Integer payments;
@@ -77,8 +76,6 @@ public class Purchase {
     }
     public PurchaseType getPurchaseType() {return purchaseType;}
     public void setPurchaseType(PurchaseType purchaseType) {this.purchaseType = purchaseType;}
-    public DuesPlan getDuesPlan() {return duesPlan;}
-    public void setDuesPlan(DuesPlan duesPlan) {this.duesPlan = duesPlan;}
     public ClientPurchase getClientPurchase() {return clientPurchase;}
     public void setClientPurchase(ClientPurchase clientPurchase) {this.clientPurchase = clientPurchase;}
     public Set<ModPurchase> getModPurchaseSet() {return modPurchaseSet;}
@@ -98,3 +95,4 @@ public class Purchase {
         this.purchaseDuesPlans.add(purchaseDuesPlan);
     }
 }
+

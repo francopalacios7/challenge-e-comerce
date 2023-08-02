@@ -18,7 +18,6 @@ public class DuesPlan {
     private Purchase purchase;
     @OneToMany(mappedBy = "duesPlan", fetch = FetchType.EAGER)
     private Set<PlanDuesCar> planDuesCarSet = new HashSet<>();
-
     @OneToMany(mappedBy = "duesPlan", fetch = FetchType.EAGER)
     private Set<PurchaseDuesPlan> purchaseDuesPlans = new HashSet<>();
 
