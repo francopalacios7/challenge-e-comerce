@@ -19,11 +19,9 @@ public class ModPurchase {
     private Mod mod;
     public ModPurchase() {
     }
-    public ModPurchase(Integer quantity, LocalDateTime modPurchaseDate, Purchase purchase, Mod mod) {
-        this.quantity = quantity;
+    public ModPurchase(Integer quantity) {
         this.modPurchaseDate = LocalDateTime.now();
-        this.purchase = purchase;
-        this.mod = mod;
+        this.quantity = quantity;
     }
     public Long getId() {
         return id;
@@ -34,6 +32,15 @@ public class ModPurchase {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    public LocalDateTime getModPurchaseDate() {
+        return modPurchaseDate;
+    }
+
+    public void setModPurchaseDate(LocalDateTime modPurchaseDate) {
+        this.modPurchaseDate = modPurchaseDate;
+    }
+
     public Purchase getPurchase() {
         return purchase;
     }

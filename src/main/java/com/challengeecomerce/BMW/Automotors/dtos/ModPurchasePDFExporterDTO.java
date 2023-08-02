@@ -1,30 +1,29 @@
 package com.challengeecomerce.BMW.Automotors.dtos;
 
+import com.challengeecomerce.BMW.Automotors.models.ClientPurchase;
+import com.challengeecomerce.BMW.Automotors.models.Mod;
+import com.challengeecomerce.BMW.Automotors.models.Purchase;
+
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class ModPurchasePDFExporterDTO {
 
+        private Long modId;
+        private Double amount;
 
-
-        private long id;
-        private LocalDateTime localDateTimeStart;
-        private LocalDateTime localDateTimeEnd;
 
     public ModPurchasePDFExporterDTO() {
     }
 
-    public long getId() {
-            return id;
-        }
 
-        public LocalDateTime getLocalDateTimeStart() {
-            return localDateTimeStart;
-        }
-
-        public LocalDateTime getLocalDateTimeEnd() {
-            return localDateTimeEnd;
-        }
-
-
+    public Long getModId() {
+        return modId;
     }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+}
 

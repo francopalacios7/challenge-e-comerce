@@ -14,4 +14,9 @@ public class ClientPurchaseImplement implements ClientPurchaseService {
     public void save(ClientPurchase clientPurchase) {
         clientPurchaseRepository.save(clientPurchase);
     }
+
+    @Override
+    public ClientPurchase findById(Long id) {
+        return clientPurchaseRepository.findById(id).orElse(null);
+    }
 }
