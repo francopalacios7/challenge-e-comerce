@@ -10,6 +10,12 @@ createApp({
       priceRange: [null, null],
       yearRange: [null, null],
       packM: false,
+      icons: [
+        "bi bi-car-front-fill",
+         "bi bi-fuel-pump",
+         "bi bi-speedometer2",
+         "bi bi-lightning-charge-fill"
+      ]
     };
   },
   created() {
@@ -72,7 +78,14 @@ createApp({
     
       console.log("Filtered Cars:", this.filteredCars);
     },
-    
+    getIcon(item) {
+      console.log("item = " + item)
+      if (this.icons[item]) {
+        return this.icons[item];
+      } else {
+        return "bi bi-car-front-fill"
+      }
+    },
 
   },
   watch: {

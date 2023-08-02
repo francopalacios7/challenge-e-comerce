@@ -33,3 +33,14 @@
 
 .car-container--description {
 }
+
+
+
+ul.nav-pills li button.nav-link{
+  color: var(--color-primario)!important;
+}
+
+ul.nav-pills li button.nav-link.active{
+  background-color: var(--color-primario)!important;
+  color: #fff!important;
+}

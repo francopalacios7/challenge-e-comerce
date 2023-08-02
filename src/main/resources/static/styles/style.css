@@ -50,11 +50,12 @@ a.navbar-brand{
 
 .button-primary:hover{
     background-color: var(--color-primario)!important;
-    color: #fff;
+    color: #fff!important;
 }
 
 .button-primary--active:hover{
     background-color: transparent!important;
+    color: var(--color-primario)!important;
 }
 
 .button-secondary:hover{

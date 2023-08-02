@@ -3,18 +3,18 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      cars:[],
+      mods:[],
       showConfirmation: false,
       err: '',
-      carImages:[],
+      modImages:[],
       params: '',
       selectedImg: "",
-      icons: [
+      /* icons: [
         "bi bi-car-front-fill",
          "bi bi-fuel-pump",
          "bi bi-speedometer2",
          "bi bi-lightning-charge-fill"
-      ]
+      ] */
     }
   },
 
@@ -27,13 +27,13 @@ createApp({
   },
   methods: {
     getCars(){
-        axios.get("/api/car")
+        axios.get("/api/mods")
         .then(response => {
-                  
-          this.cars = response.data.filter(car => car.model === this.params);
-          console.log("this cars: ", this.cars);
-          this.carImages = this.cars[0].images.slice(1, this.cars[0].images.length);
-          console.log("filtered Images:",this.carImages );
+            
+          this.mods = response.data.filter(mod => mod.id == this.params);
+          console.log("this mods:  ", this.mods);
+          this.modImages = this.mods[0].images /* .slice(1, this.cars[0].images.length); */
+          console.log("filtered Images:",this.modImages );
         }).catch(err => console.error(err))
     },
     chooseImg(img){
