@@ -13,7 +13,6 @@ public class ClientPurchase {
     private Long id;
     private LocalDate creationDate;
     private Double totalAmount;
-
     @ManyToOne(fetch = FetchType.EAGER)
     private Client client;
 

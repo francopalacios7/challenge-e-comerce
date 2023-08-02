@@ -16,7 +16,8 @@ createApp({
       itemsPerPageMods: 5,
       currentPageMods: 1,
       mods:[],
-      modsFiltrados:[]
+      modsFiltrados:[],
+      modsActive: []
     }
   },
 
@@ -26,7 +27,7 @@ createApp({
                   
           this.cars = response.data;
           this.paginateCars();
-          this.carsFiltrados = this.cars.slice(0, this.itemsPerPage)
+          this.carsFiltrados = this.cars.filter(car => car.active == true)/* this.cars.slice(0, this.itemsPerPage) */
           console.log("Cars:", this.cars);
           console.log("Cars Filtrados:", this.carsFiltrados);
 
@@ -48,6 +49,8 @@ createApp({
             //this.modsFiltrados = this.mods.slice(0, this.itemsPerPageMods); // Set to first 5 elements initially
             console.log("Mods:", this.mods);
             console.log("Mods Filtrados:", this.modsFiltrados);  
+          this.modsActive = this.mods.filter(mod => mod.active == true )
+          console.log(this.modsActive);
             // ...
         }).catch(error => {
           console.error(error);
@@ -111,6 +114,27 @@ createApp({
       this.currentPage = page;
       this.paginateCars();
     },
+
+    deleteCar(id){
+      axios.patch(`/api/admin/car/delete/${id}`)
+      .then(response => {
+        console.log("car deleted!!");
+        window.location.reload();
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    },
+    deleteMod(id){
+      axios.patch(`/api/admin/deleteMods/${id}`)
+      .then(response => {
+        console.log("mod deleted!!");
+        window.location.reload();
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
 
   }
 }).mount('#app');

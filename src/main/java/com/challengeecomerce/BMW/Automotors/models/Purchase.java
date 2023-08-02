@@ -29,7 +29,6 @@ public class Purchase {
     private Set<ModPurchase> modPurchaseSet = new HashSet<>();
     @OneToOne(mappedBy = "purchase",fetch = FetchType.EAGER)
     private DuesPlan duesPlan;
-
     @OneToMany(mappedBy = "purchase", fetch = FetchType.EAGER)
     private Set<PurchaseDuesPlan> purchaseDuesPlans = new HashSet<>();
 
@@ -42,6 +41,7 @@ public class Purchase {
         this.totalAmount = totalAmount;
         this.payments = payments;
         this.purchaseType = type;
+        this.duesPlan = duesPlan;
     }
     public Long getId() {
         return id;

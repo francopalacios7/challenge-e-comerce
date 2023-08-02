@@ -12,7 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
+import java.util.Random;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
@@ -36,7 +37,11 @@ public class PurchaseController {
 
     @Autowired
     private PurchaseService purchaseService;
-
+  
+   @GetMapping("/duesPlan")
+    public List<DuesPlanDTO> getAllDuesDTO(){
+        return duesPlanService.findAll();
+    }
 
     @PostMapping("/admin/duesPlan")
     public ResponseEntity<Object> createDuesPlan(Authentication authentication, @RequestBody DuesPlanDTO duesPlanDTO) {
