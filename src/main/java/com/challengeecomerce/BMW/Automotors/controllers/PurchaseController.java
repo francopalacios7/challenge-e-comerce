@@ -2,6 +2,7 @@ package com.challengeecomerce.BMW.Automotors.controllers;
 
 import com.challengeecomerce.BMW.Automotors.dtos.DuesPlanDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.DuesPlanPDFExporterDTO;
+import com.challengeecomerce.BMW.Automotors.dtos.ModPurchasePDFExporterDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.DuesPlan;
 import com.challengeecomerce.BMW.Automotors.models.MeetingReservation;
@@ -45,9 +46,9 @@ public class PurchaseController {
 
     @Autowired
     private PurchaseService purchaseService;
-  
-   @GetMapping("/duesPlan")
-    public List<DuesPlanDTO> getAllDuesDTO(){
+
+    @GetMapping("/duesPlan")
+    public List<DuesPlanDTO> getAllDuesDTO() {
         return duesPlanService.findAll();
     }
 
@@ -100,9 +101,7 @@ public class PurchaseController {
     }
 
 
-
-
-    @PostMapping(path = "/purchase/duesPlanPDF")
+    /*@PostMapping(path = "/purchase/duesPlanPDF")
     public void transactionsPDF(HttpServletResponse response, @RequestBody DuesPlanPDFExporterDTO duesPlan) throws DocumentException, IOException {
 //        Client client = clientService.findByEmail(authentication.getName());
 //        if (client == null){
@@ -117,11 +116,13 @@ public class PurchaseController {
 
 //        Client clientOwnTransactions = accountToPrint.getClient();
         response.setContentType("application/pdf");
-      
-       List<Transaction> listTransactions = this.transactionService.getTransactionsByDate(date.getLocalDateTimeStart(),date.getLocalDateTimeEnd(),accountToPrint);
-        DuesPlanPDFExporter exporter = new DuesPlanPDFExporter(listDuesPlan );
-      return new ResponseEntity<>("Printing completed transactions", HttpStatus.OK);
-    }
+
+        List<Transaction> listTransactions = this.transactionService.getTransactionsByDate(date.getLocalDateTimeStart(), date.getLocalDateTimeEnd(), accountToPrint);
+        DuesPlanPDFExporter exporter = new DuesPlanPDFExporter(listDuesPlan);
+        return new ResponseEntity<>("Printing completed transactions", HttpStatus.OK);
+    }*/
+
+
     @PostMapping(path = "/modPurchase/PDF")
     public void transactionsPDF(Authentication authentication, HttpServletResponse response, @RequestBody List<ModPurchasePDFExporterDTO> modPurchasePDFExporterDTO) throws DocumentException, IOException {
 
@@ -137,12 +138,19 @@ public class PurchaseController {
                 finalPrice += mod.getPrice() * modPurchaseDTO.getAmount();
             }
         }
+        int finalAmount = 0;
+        for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
+            Mod mod = modService.findById(modPurchaseDTO.getModId());
+            if (mod != null){
+                finalAmount += modPurchaseDTO.getAmount();
+            }
+        }
 
         Set<ClientPurchase> clientPurchase = new HashSet<>();
-        ClientPurchase clientPurchase1 = new ClientPurchase(finalPrice);
+        ClientPurchase clientPurchase1 = new ClientPurchase(finalPrice, finalAmount);
         clientPurchase.add(clientPurchase1);
 
-                response.setContentType("application/pdf");
+        response.setContentType("application/pdf");
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 //        String currentDateTime = dateFormat.format(new Date());
 //        String headerKey = "Content-Disposition";
@@ -150,12 +158,11 @@ public class PurchaseController {
 
 //       
 //        List<Mod> listTransactions = this.modService.getTransactionsByDate (date.getLocalDateTimeStart(),date.getLocalDateTimeEnd());
-        ModPDFExporter exporter = new ModPDFExporter(mods, client,finalPrice, clientPurchase1.getTotalAmount());
+        ModPDFExporter exporter = new ModPDFExporter(mods, client, finalPrice, clientPurchase1.getTotalAmount());
         exporter.export(response);
-        return new ResponseEntity<>("Printing completed transactions", HttpStatus.OK);
+//        return new ResponseEntity<>("Printing completed transactions", HttpStatus.OK);
 //        
     }
-
 
 }
 
