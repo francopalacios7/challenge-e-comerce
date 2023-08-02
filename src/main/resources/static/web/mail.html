@@ -47,23 +47,25 @@
     </header>
     
     <main>
+        {{email.header}}{{email.message}}{{email.file}}
         <div class="container mt-5">
             <h2 class="mb-4">Create Email</h2>
-            <form @submit.prevent="sendEmail()" enctype="multipart/form-data">
+            <form @submit.prevent>
                 <div class="mb-3">
-                    <label for="header" class="form-label">Email Header:</label>
-                    <input  v-model="email.header" type="text" class="form-control" id="header" name="header" required>
+                  <label for="header" class="form-label">Email Header:</label>
+                  <input v-model="email.header" type="text" class="form-control" id="header" name="header" required>
                 </div>
                 <div class="mb-3">
-                    <label for="message" class="form-label">Email Text:</label>
-                    <textarea v-model="email.message" class="form-control" id="message" name="message" rows="4" required></textarea>
+                  <label for="message" class="form-label">Email Text:</label>
+                  <textarea v-model="email.message" class="form-control" id="message" name="message" rows="4" required></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="file" class="form-label">Email Image:</label>
-                    <input v-model="email.file" type="file" class="form-control" id="file" name="file">
+                  <label for="file" class="form-label">Email Image:</label>
+                  <input type="file" class="form-control" id="file" name="file" @change="onFileChange">
                 </div>
-                <button type="submit" class="btn btn-primary">Send Email</button>
-            </form>
+                <button @click="sendEmail()" class="btn btn-primary">Send Email</button>
+              </form>
+              
         </div>
     </main>
 
