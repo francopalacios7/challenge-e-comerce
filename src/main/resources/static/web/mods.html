@@ -265,8 +265,10 @@
         <div class="d-flex justify-content-around">
           <button class="btn btn-danger my-3" @click="vaciarStorage">Clear shopping cart</button>
           <!-- SUBMIT -->
-          <button class="button-primary button-primary--active my-3"><i class="bi bi-cart-check-fill"></i><span
-              class="ps-2"> Finish</span></button>
+          <button class="button-primary button-primary--active my-3"><i class="bi bi-cart-check-fill"> <a href="./purchasePayment.html"  style="text-decoration: none; color: white;">
+            <span
+              class="ps-2"> Finish</span>
+          </a> </i></button>
           <button class="button-primary button-primary--active my-3" @click="sendCarritoBack(arrayCarrito)">Download PDF products</button>
         </div>
       </div>
