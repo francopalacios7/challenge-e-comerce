@@ -158,7 +158,7 @@ public class ModPDFExporter {
 
         document.add(modTable);
 
-        Paragraph fp = new Paragraph("Final Price: $" + finalAmount, font);
+        Paragraph fp = new Paragraph("Final Price: $ " + finalAmount, font);
         p.setAlignment(Paragraph.ALIGN_RIGHT);
         document.add(fp);
 
