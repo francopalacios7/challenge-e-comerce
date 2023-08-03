@@ -14,7 +14,8 @@ createApp({
         model: '',
       },
     showConfirmation: false,
-    err: ''
+    err: '',
+    promotionParams: []
     }
   },
   created(){
@@ -39,6 +40,7 @@ createApp({
           console.log(this.err)
           this.showNotification(this.err, 'error');
         });
+        this.getPromotions()
     },
   methods: {
     meetingc() {
@@ -67,7 +69,6 @@ createApp({
     cancelMeeting() {
       this.showConfirmation = false;
     },
-
     showNotification(message, type) {
       const toast = document.createElement('div');
       toast.classList.add('toastify', type);
@@ -83,6 +84,16 @@ createApp({
           }, 300);
         }, 2000);
       }, 100);
-    }
+    },
+    getPromotions() {
+      promotionParams = new URLSearchParams(location.search).get("id");
+      axios
+        .get("/api/duesPlan")
+        .then((response) => {
+          this.promotionParams = response.data.filter(param => param.id == promotionParams);
+          console.log("this promotions: ", this.promotionParams);
+        })
+        .catch((err) => console.error(err));
+    },
   }
 }).mount('#app');

@@ -29,10 +29,10 @@
                 <a class="nav-link fw-bold text-body" aria-current="page" href="./index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link fw-bold text-body" href="./purchase.html">BMW</a>
+                <a class="nav-link fw-bold text-body" href="./purchase.html">BMW Vehicles</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link fw-bold text-body" href="./mods.html">BMW Mods</a>
+                <a class="nav-link fw-bold text-body" href="./mods.html">BMW Accesories</a>
               </li>
              
             </ul>
@@ -132,10 +132,10 @@
             <li class="list-group-item lh-lg" v-for="(item, index) of car.details" :key="item"><i class="fa-solid fa-road me-2" :class="getIcon(index)"></i> {{item}}</li>
           </ul>
           <div class="d-flex justify-content-between">
-            <a class="button-primary" :href="'./promotionPage.html?price=' + car.price">Get a promotion</a>
+            <a class="button-primary" :href="'./promotionPage.html?price=' + car.price">Apply for a dues plan</a>
           </div>
           <div class="d-flex justify-content-between">
-            <a class="button-primary mt-3" :href="'./contact.html?id=' + car.id">Shift reservation</a>
+            <a class="button-primary mt-3" :href="'./contact.html?id=' + car.id">Meeting reservation</a>
           </div>
         </div>
       </div>

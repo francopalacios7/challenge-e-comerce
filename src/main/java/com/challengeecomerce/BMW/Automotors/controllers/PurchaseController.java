@@ -48,7 +48,6 @@ public class PurchaseController {
     private PurchaseService purchaseService;
 
     @GetMapping("/duesPlan")
-
     public List<DuesPlanDTO> getAllDuesDTO() {
         return duesPlanService.findAll();
     }
@@ -145,8 +144,6 @@ public class PurchaseController {
                 individualPrices.add(individualPrice);
             }
         }
-
-
         int productNumber = 1;
         for (double price : individualPrices) {
             System.out.println("Producto " + productNumber + ": " + price);
@@ -158,7 +155,7 @@ public class PurchaseController {
         for(ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
             Mod mod = modService.findById(modPurchaseDTO.getModId());
             if (mod != null) {
-                Double individualAmount = modPurchaseDTO.getAmount();
+                Double individualAmount = Double.valueOf(modPurchaseDTO.getAmount());
                 individualAmounts.add(individualAmount);
             }
         }
@@ -167,11 +164,11 @@ public class PurchaseController {
         for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
             Mod mod = modService.findById(modPurchaseDTO.getModId());
             if (mod != null){
-
                 finalAmount += modPurchaseDTO.getAmount() * mod.getPrice();
                 System.out.println(" finalAmount " + finalAmount );
             }
         }
+
 
 
 //        Set<ClientPurchase> clientPurchase = new HashSet<>();
@@ -189,6 +186,7 @@ public class PurchaseController {
             }
         }
 
+
         response.setContentType("application/pdf");
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 //        String currentDateTime = dateFormat.format(new Date());
@@ -200,6 +198,9 @@ public class PurchaseController {
         ModPDFExporter exporter = new ModPDFExporter(mods, client,individualPrices, individualAmounts, finalAmount);
         exporter.export(response);
 
+//        return new ResponseEntity<>("Printing completed transactions", HttpStatus.OK);
     }
 
 }
+
+

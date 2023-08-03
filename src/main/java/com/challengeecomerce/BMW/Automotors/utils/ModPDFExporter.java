@@ -18,8 +18,8 @@ public class ModPDFExporter {
     private List<Double> individualAmounts;
 
     private int finalAmount;
-    public ModPDFExporter(List<Mod> mods, Client client, List<Double> individualPrices, List<Double> individualsAmounts, int finalAmount) {
 
+    public ModPDFExporter(List<Mod> mods, Client client, List<Double> individualPrices, List<Double> individualsAmounts, int finalAmount) {
         this.mods = mods;
         this.client = client;
         this.individualPrices = individualPrices;
