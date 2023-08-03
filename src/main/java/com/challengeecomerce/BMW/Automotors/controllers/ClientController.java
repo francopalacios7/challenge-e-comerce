@@ -5,12 +5,10 @@ import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.MeetingReservationDTO;
 import com.challengeecomerce.BMW.Automotors.models.Client;
 import com.challengeecomerce.BMW.Automotors.models.ClientPurchase;
+import com.challengeecomerce.BMW.Automotors.models.MeetingReservation;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
 import com.challengeecomerce.BMW.Automotors.models.enums.PurchaseType;
-import com.challengeecomerce.BMW.Automotors.services.CarService;
-import com.challengeecomerce.BMW.Automotors.services.ClientPurchaseService;
-import com.challengeecomerce.BMW.Automotors.services.ClientService;
-import com.challengeecomerce.BMW.Automotors.services.PurchaseService;
+import com.challengeecomerce.BMW.Automotors.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +36,9 @@ public class ClientController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private ClientPurchaseService clientPurchaseService;
+    @Autowired
+    private MeetingReservationService meetingReservationService;
+
     @Autowired
     private JavaMailSender javaMailSender;
     @GetMapping("/clients/current")
@@ -108,11 +109,15 @@ public class ClientController {
         return new ResponseEntity<>(purchaseDTO.getPurchaseType() + " " + "purchase successful", HttpStatus.ACCEPTED);
     }
     @PostMapping("/client/sendEmail")
-    public ResponseEntity<?> turnReservation(Authentication authentication, @RequestBody MeetingReservationDTO meetingReservationDTO) {
+    public ResponseEntity<?> meetingReservation(Authentication authentication, @RequestBody MeetingReservationDTO meetingReservationDTO) {
         Client client = clientService.findByEmail(authentication.getName());
         if (client == null) {
             return new ResponseEntity<>("The client is invalid. Please, try again.", HttpStatus.FORBIDDEN);
         }
+
+        MeetingReservation meetingReservation = new MeetingReservation(meetingReservationDTO.getMeetingReservation(),client.getEmail(),meetingReservationDTO.getMessage(),meetingReservationDTO.getDate(),meetingReservationDTO.getModel());
+        meetingReservationService.save(meetingReservation);
+
         String emailToSend = meetingReservationDTO.getEmail();
         LocalDateTime meeting = meetingReservationDTO.getMeetingReservation();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");

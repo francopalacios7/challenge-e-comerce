@@ -3,20 +3,27 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+      loading: true,
       cars: [],
       filteredCars: [],
       selectedType: [],
       selectedColors: [],
-      priceRange: [null, null],
-      yearRange: [null, null],
+      inputPriceFilter: "",
+      selectedYear: null,
       packM: false,
       icons: [
         "bi bi-car-front-fill",
-         "bi bi-fuel-pump",
-         "bi bi-speedometer2",
-         "bi bi-lightning-charge-fill"
-      ]
+        "bi bi-fuel-pump",
+        "bi bi-speedometer2",
+        "bi bi-lightning-charge-fill",
+      ],
     };
+  },
+  mounted() {
+    // Simula un tiempo de carga, luego oculta el loader
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000); // Cambia el valor según tus necesidades
   },
   created() {
     this.getCars();
@@ -43,56 +50,51 @@ createApp({
     },
     applyFilters() {
       if (
-        this.selectedType.length === 0 &&
-        this.selectedColors.length === 0 &&
-        (this.priceRange[0] === null || this.priceRange[1] === null) &&
-        (this.yearRange[0] === null || this.yearRange[1] === null) &&
-        !this.packM
+        (this.selectedType.length === 0 ||
+          this.selectedType.includes(car.carType)) &&
+        (this.selectedColors.length === 0 ||
+          this.selectedColors.includes(car.carColor)) &&
+        (!this.packM || car.packM === this.packM) &&
+        (!this.selectedYear || parseInt(car.date) === this.selectedYear)
       ) {
         this.filteredCars = this.cars;
       } else {
         this.filteredCars = this.cars.filter((car) => {
+          console.log(typeof car.date);
+          console.log(typeof this.selectedYear);
           let passesTypeFilter =
-            this.selectedType.length === 0 || this.selectedType.includes(car.carType);
+            this.selectedType.length === 0 ||
+            this.selectedType.includes(car.carType);
           let passesColorFilter =
-            this.selectedColors.length === 0 || this.selectedColors.includes(car.carColor);
-          let passesPriceFilter =
-            !this.priceRange[0] ||
-            !this.priceRange[1] ||
-            (car.price >= this.priceRange[0] && car.price <= this.priceRange[1]);
+            this.selectedColors.length === 0 ||
+            this.selectedColors.includes(car.carColor);
           let passesYearFilter =
-            !this.yearRange[0] ||
-            !this.yearRange[1] ||
-            (car.date >= this.yearRange[0] && car.date <= this.yearRange[1]);
+            !this.selectedYear || parseInt(car.date) === this.selectedYear;
           let passesPackMFilter = !this.packM || car.packM === this.packM;
-    
+
           return (
             passesTypeFilter &&
             passesColorFilter &&
-            passesPriceFilter &&
             passesYearFilter &&
             passesPackMFilter
           );
         });
       }
-    
       console.log("Filtered Cars:", this.filteredCars);
     },
+
     getIcon(item) {
-      console.log("item = " + item)
       if (this.icons[item]) {
         return this.icons[item];
       } else {
-        return "bi bi-car-front-fill"
+        return "bi bi-car-front-fill";
       }
     },
-
   },
   watch: {
     selectedType: "applyFilters",
     selectedColors: "applyFilters",
-    priceRange: "applyFilters",
-    yearRange: "applyFilters",
     packM: "applyFilters",
+    selectedYear: "applyFilters",
   },
 }).mount("#app");

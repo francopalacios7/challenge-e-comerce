@@ -6,40 +6,43 @@ createApp({
         email:{
             header: '',
             message: '',
-            file: '',
+            file:null,
           },
       showConfirmation: false,
       err: ''
     }
   },
   methods: {
-
+    onFileChange(event) {
+      // Capture the selected file
+      this.email.file = event.target.files[0];
+    },
 
     sendEmail() {
       this.showConfirmation = true
     },
     confirmSendEmail() {
+
+      console.log(typeof this.email.file)
         this.showConfirmation = false;
-   /*    
+  
         const formData = new FormData();
         formData.append('header', this.email.header);
         formData.append('message', this.email.message);
         formData.append('file', this.email.file);
       
-        console.log(formData);  */
-      
-        axios.post('/api/email', {
-            header: this.email.header,
-            message: this.email.message,
-            file: this.email.file
-          }, {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-          })
+     /*    console.log(formData);  */
+     
+/*      axios.post('/api/transactions', 'amount=' + this.amount + '&description=' + this.description + '&originAcc=' + this.accountSelected + '&destinAcc=' + this.accChosen, */
+
+
+
+        axios.post('/api/email',formData, {headers: {
+          'Content-Type': 'multipart/form-data'} // Set the proper content type for the file upload
+        })
           .then((res) => {
             if (res.status === 201) {
-              this.showNotification('Account Created', 'success');
+              this.showNotification('Email Created', 'success');
               setTimeout(() => {
                 window.location.href = './index.html';
               }, 700);
