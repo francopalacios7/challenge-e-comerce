@@ -28,7 +28,6 @@ public class PurchaseDTO {
         this.payments = purchase.getPayments();
         this.purchaseType = purchase.getPurchaseType();
         this.clientPurchase = purchase.getClientPurchase();
-
     }
     public Long getId() {
         return id;

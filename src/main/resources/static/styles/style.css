@@ -16,7 +16,7 @@ body, html {
 
 a.navbar-brand{
   width: 3rem!important;
-  content: url("./../images/BMW_Grey-Colour_RGB.SVG.asset.1605107718514.SVG");
+ /*  content: url("./../images/BMW_Grey-Colour_RGB.SVG.asset.1605107718514.SVG"); */
 }
 
 nav ul>li.nav-item a.nav-link.active{
