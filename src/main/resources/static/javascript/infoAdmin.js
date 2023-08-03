@@ -9,6 +9,7 @@ createApp({
       input: "",
       inputMods:"",
       carsFiltrados:[],
+      showConfirmation:false,
 /*       params: '' */
 
       itemsPerPage: 5,

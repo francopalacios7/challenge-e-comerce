@@ -41,8 +41,17 @@ public class Purchase {
         this.totalAmount = totalAmount;
         this.payments = payments;
         this.purchaseType = type;
+
+    }
+
+    public DuesPlan getDuesPlan() {
+        return duesPlan;
+    }
+
+    public void setDuesPlan(DuesPlan duesPlan) {
         this.duesPlan = duesPlan;
     }
+
     public Long getId() {
         return id;
     }
