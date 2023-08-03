@@ -4,13 +4,14 @@ import com.challengeecomerce.BMW.Automotors.models.ClientPurchase;
 import com.challengeecomerce.BMW.Automotors.models.Mod;
 import com.challengeecomerce.BMW.Automotors.models.Purchase;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDateTime;
 import java.util.Set;
 
 public class ModPurchasePDFExporterDTO {
 
         private Long modId;
-        private Double amount;
+        private Integer amount;
 
 
     public ModPurchasePDFExporterDTO() {
@@ -21,7 +22,7 @@ public class ModPurchasePDFExporterDTO {
         return modId;
     }
 
-    public Double getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 

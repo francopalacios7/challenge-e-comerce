@@ -1,6 +1,5 @@
 package com.challengeecomerce.BMW.Automotors.controllers;
 
-import com.challengeecomerce.BMW.Automotors.dtos.CarDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.ClientDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.PurchaseDTO;
 import com.challengeecomerce.BMW.Automotors.dtos.MeetingReservationDTO;
