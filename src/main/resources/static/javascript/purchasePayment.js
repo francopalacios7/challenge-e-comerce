@@ -14,7 +14,7 @@ createApp({
     methods: {
         cardPayment(){
             axios
-            .post("http://localhost:8080/api/cards/payment", {
+            .post("http://localhost:4200/api/cards/payment", {
                 "number": this.number,
                 "cvv": this.cvv,
                 "amount": this.amount,
@@ -27,6 +27,11 @@ createApp({
                 this.amount = null
                 this.description = ""
             })
+            .catch(err => console.log(err))
+        },
+        page(){
+            axios.post("http://localhost:4200/api/pagos")
+            .then(res => console.log(res))
             .catch(err => console.log(err))
         }
     }
