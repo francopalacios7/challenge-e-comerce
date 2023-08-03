@@ -245,8 +245,8 @@
                 <form>
                   <input type="button" value="-" @click="decrementarCantidadCarrito(articuloCarrito.article.id)"
                     class="button-minus  btn  btn-sm">
-                  <input type="number" step="1" min="1" :max="articuloCarrito.article.stock"
-                    v-model="articuloCarrito.amount" name="quantity" class="input-form" readonly style="width: 2rem;">
+                  <input  type="number" step="1" min="1" :max="articuloCarrito.article.stock"
+                    v-model="articuloCarrito.amount" name="quantity" class="input-form text-center" readonly style="width: 2rem;">
                   <input type="button" value="+" @click="incrementarCantidadCarrito(articuloCarrito.article.id)"
                     class="button-plus  btn  btn-sm">
                 </form>
