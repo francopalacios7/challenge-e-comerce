@@ -4,13 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Purchase</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="./../styles/style.css" />
   <link rel="stylesheet" href="./../styles/purchase.css" />
+  <link rel="shortcut icon" href="../images/BMW_Grey-Colour_RGB.SVG.asset.1605107718514.SVG" type="image/x-icon">
 </head>
 
 <body class="bg-body">
@@ -32,9 +33,9 @@
           <li class="nav-item">
             <a class="nav-link fw-bold text-body" href="./mods.html">BMW Mods</a>
           </li>
-          
+
         </ul>
-       
+
         <div>
           <a href="./login.html"><i class="bi bi-box-arrow-in-right fs-3 text-body"></i></a>
         </div>
@@ -42,7 +43,8 @@
     </div>
   </nav>
   <main id="app" class="container-fluid">
-    <h1 class="bi-text-paragraph fs-3 me-5 pe-5 py-4">Models BMW</h1>
+    
+    <h1 class="fs-3 ms-4 me-5 pe-5 py-4">Models BMW</h1>
     <!-- filter mobile -->
 
     <div class="d-flex align-items-center justify-content-between d-lg-none filter-container bg-body p-2">
@@ -50,7 +52,7 @@
       <a class="button-primary button-primary--active" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i
           class="bi bi-sliders2-vertical me-2"></i>Filter</a>
     </div>
-    <div class="row bgc">
+    <div class="row  bgc">
       <!-- filter desktop -->
 
       <div class="col-lg-3 col-xl-2 d-none d-lg-block py-3 rounded-3">
@@ -67,17 +69,15 @@
               <label class="form-check-label" for="suv">Suv</label>
             </div>
           </div>
-      
+          
           <div class="pb-3 mb-2">
             <h5 class="fw-bold">Price</h5>
-            <div class="d-flex  mb-2">
-              <input class="rounded-3 px-2" min="1990" max="2023" type="number" style="width: 12rem;" v-model.number="priceRange[0]">
-            </div>
             <div class="form-check ms-2">
               <input class="form-check-input" type="checkbox" value="true" id="packm" v-model="packM">
               <label class="form-check-label" for="packm">Pack-M</label>
             </div>
           </div>
+          
           <div class="pb-3 mb-2 ">
             <h5 class="fw-bold">Color</h5>
             <div class="form-check ms-2">
@@ -96,11 +96,21 @@
           <div class="pb-3 mb-2">
             <h5 class="fw-bold">Year</h5>
             <div class="d-flex justify-content-between">
-              <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="date"  v-model.number="yearRange[0]">
-              <span class="mx-2">-</span>
-              <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="date"  v-model.number="yearRange[1]">
+              <select class="form-select w-100 form-select" v-model="selectedYear">
+                <option :value="null" selected>Select Year</option>
+                <option :value="2023">2023</option>
+                <option :value="2022">2022</option>
+                <option :value="2021">2021</option>
+                <option :value="2020">2020</option>
+                <option :value="2019">2019</option>
+                <option :value="2018">2018</option>
+                <option :value="2017">2017</option>
+                <option :value="2016">2016</option>
+                <option :value="2015">2015</option>
+              </select>
             </div>
           </div>
+          
         </div>
 
       </div>
@@ -111,20 +121,26 @@
           <div class="">
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><i class="bi bi-list"></i></button>
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                  type="button" role="tab" aria-controls="pills-home" aria-selected="true"><i
+                    class="bi bi-list"></i></button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="bi bi-grid"></i></button>
-              </li>             
+                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                  type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><i
+                    class="bi bi-grid"></i></button>
+              </li>
             </ul>
           </div>
         </div>
-        
-        <div class="row" >
-           <!-- Car List  -->
+
+        <div class="row w-100">
+          <!-- Car List  -->
           <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-              <div class="d-flex w-100 justify-content-center flex-wrap rounded-3 bg-body py-2 mb-3" v-for="car in filteredCars" :key="car.id">                
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+              tabindex="0">
+              <div class="d-flex w-100 justify-content-center flex-wrap rounded-3 bg-body py-2 mb-3"
+                v-for="car in filteredCars" :key="car.id">
                 <div class="col-12 col-lg-8">
                   <div class="car-container w-100">
                     <div class="car-container--img p-2">
@@ -136,7 +152,8 @@
                   <h3 class="ms-3 mb-3 fw-bold text-capitalize">{{car.model}}</h3>
                   <div class="car-container--description overflow-auto mb-4">
                     <ul class="p-lg-0">
-                      <li class="list-group-item lh-lg" v-for="(item, index) of car.details" :key="item"><i class="fa-solid fa-road me-2" :class="getIcon(index)"></i> {{item}}</li>
+                      <li class="list-group-item lh-lg" v-for="(item, index) of car.details" :key="item"><i
+                          class="fa-solid fa-road me-2" :class="getIcon(index)"></i> {{item}}</li>
                     </ul>
                   </div>
                   <div class="d-flex justify-content-center px-4 my-3 my-lg-0">
@@ -145,11 +162,12 @@
                 </div>
               </div>
             </div>
-           
-          <!-- Car Grid -->
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">              
-              <div class="row" >
-                <div class="col-sm-4 mb-4" v-for="car in filteredCars" :key="car.id">                  
+
+            <!-- Car Grid -->
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+              tabindex="0">
+              <div class="row">
+                <div class="col-sm-4 mb-4" v-for="car in filteredCars" :key="car.id">
                   <div class="card card-hover h-100">
                     <div class="car-container--img">
                       <img :src="car.images" class="img-fluid d-block" alt="">
@@ -158,7 +176,7 @@
                       <span class="small">{{car.date}}</span>
                       <h3 class="mb-1 fw-bold">{{car.model}}</h3>
                       <div>
-                        
+
                       </div>
                     </div>
                     <div class="card-footer d-flex justify-content-center">
@@ -172,7 +190,7 @@
 
         </div>
       </div>
-      
+
     </div>
     <!-- modal -->
 
@@ -186,54 +204,63 @@
           </div>
           <div class="modal-body ">
 
-            <div class="filter-container py-2 w-100">
+            <div class="filter-container py-2 px-5 w-100">
+            
+
               <div class="pb-3 mb-2">
-                <h5 class="fw-bold">Type</h5>
-                <div class="form-check ms-2 mb-2">
-                  <input class="form-check-input" type="checkbox" value="CAR" id="car" v-model="selectedType">
-                  <label class="form-check-label" for="car">Car</label>
+                <div class="pb-3 mb-2">
+                  <h5 class="fw-bold">Type</h5>
+                  <div class="form-check ms-2 mb-2">
+                    <input class="form-check-input" type="checkbox" value="CAR" id="car" v-model="selectedType">
+                    <label class="form-check-label" for="car">Car</label>
+                  </div>
+                  <div class="form-check ms-2">
+                    <input class="form-check-input" type="checkbox" value="SUV" id="suv" v-model="selectedType">
+                    <label class="form-check-label" for="suv">Suv</label>
+                  </div>
                 </div>
-                <div class="form-check ms-2">
-                  <input class="form-check-input" type="checkbox" value="SUV" id="suv" v-model="selectedType">
-                  <label class="form-check-label" for="suv">Suv</label>
+                
+                <div class="pb-3 mb-2">
+                  <h5 class="fw-bold">Price</h5>
+                  <div class="form-check ms-2">
+                    <input class="form-check-input" type="checkbox" value="true" id="packm" v-model="packM">
+                    <label class="form-check-label" for="packm">Pack-M</label>
+                  </div>
                 </div>
-              </div>
-          
-              <div class="pb-3 mb-2">
-                <h5 class="fw-bold">Price</h5>
-                <div class="d-flex justify-content-between mb-2">
-                  <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="number" style="width: 68px;" v-model.number="priceRange[0]">
-                  <span class="mx-2">-</span>
-                  <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="number" style="width: 68px;" v-model.number="priceRange[1]">
+                
+                <div class="pb-3 mb-2 ">
+                  <h5 class="fw-bold">Color</h5>
+                  
+                  <div class="form-check ms-2">
+                    <input class="form-check-input" type="checkbox" value="BLACK" id="black" v-model="selectedColors">
+                    <label class="form-check-label" for="black">Black</label>
+                  </div>
+                  <div class="form-check ms-2">
+                    <input class="form-check-input" type="checkbox" value="WHITE" id="white" v-model="selectedColors">
+                    <label class="form-check-label" for="white">White</label>
+                  </div>
+                  <div class="form-check ms-2">
+                    <input class="form-check-input" type="checkbox" value="BLUE" id="blue" v-model="selectedColors">
+                    <label class="form-check-label" for="blue">Blue</label>
+                  </div>
                 </div>
-                <div class="form-check ms-2">
-                  <input class="form-check-input" type="checkbox" value="true" id="packm" v-model="packM">
-                  <label class="form-check-label" for="packm">Pack-M</label>
+                <div class="pb-3 mb-2">
+                  <h5 class="fw-bold">Year</h5>
+                  <div class="d-flex justify-content-between">
+                    <select class="form-select w-100 form-select" v-model="selectedYear">
+                      <option :value="null" selected>Select Year</option>
+                      <option :value="2023">2023</option>
+                      <option :value="2022">2022</option>
+                      <option :value="2021">2021</option>
+                      <option :value="2020">2020</option>
+                      <option :value="2019">2019</option>
+                      <option :value="2018">2018</option>
+                      <option :value="2017">2017</option>
+                      <option :value="2016">2016</option>
+                      <option :value="2015">2015</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="pb-3 mb-2 ">
-                <h5 class="fw-bold">Color</h5>
-                <div class="form-check ms-2">
-                  <input class="form-check-input" type="checkbox" value="BLACK" id="black" v-model="selectedColors">
-                  <label class="form-check-label" for="black">Black</label>
-                </div>
-                <div class="form-check ms-2">
-                  <input class="form-check-input" type="checkbox" value="WHITE" id="white" v-model="selectedColors">
-                  <label class="form-check-label" for="white">White</label>
-                </div>
-                <div class="form-check ms-2">
-                  <input class="form-check-input" type="checkbox" value="BLUE" id="blue" v-model="selectedColors">
-                  <label class="form-check-label" for="blue">Blue</label>
-                </div>
-              </div>
-              <div class="pb-3 mb-2">
-                <h5 class="fw-bold">Year</h5>
-                <div class="d-flex justify-content-between ms-2">
-                  <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="date"  v-model.number="yearRange[0]">
-                  <span class="mx-2">-</span>
-                  <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="date"  v-model.number="yearRange[1]">
-                </div>
-              </div>
             </div>
 
           </div>
@@ -298,74 +325,71 @@
             <h2 class="accordion-header">
               <button class="accordion-button fw-bold text-body" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                CONTACTO
+                CONTACT
               </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
                 <div class="mb-2">
-                  <a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a>
+                  <a class="text-decoration-none fw-bold text-body small" href="./unavailable.html">BMW dealers</a>
                 </div>
                 <div class="mb-2">
-                  <a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a>
+                  <a class="text-decoration-none fw-bold text-body small" href="./unavailable.html">BMW Official Network</a>
                 </div>
                 <div class="mb-2">
-                  <a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a>
+                  <a class="text-decoration-none fw-bold text-body small" href="./contact.html">Request contact</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-  
+
         <div class="accordion" border-0 id="accordionExample2">
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button fw-bold text-body" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                CONTACTO
+                DISCOVER BMW
               </button>
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample2">
               <div class="accordion-body">
                 <div class="mb-2">
-                  <a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a>
+                  <a class="text-decoration-none fw-bold text-body small" href="./unavailable.html">Sitemap</a>
                 </div>
                 <div class="mb-2">
-                  <a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a>
+                  <a class="text-decoration-none fw-bold text-body small" href="./unavailable.html">BMW motorcycle</a>
                 </div>
                 <div class="mb-2">
-                  <a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a>
+                  <a class="text-decoration-none fw-bold text-body small" href="./unavailable.html">MINI</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-  
+
         <div class="accordion" border-0 id="accordionExample3">
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button fw-bold text-body" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                CONTACTO
+                THE COMPANY
               </button>
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample3">
               <div class="accordion-body">
                 <div class="mb-2">
-                  <a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a>
+                  <a class="text-decoration-none fw-bold text-body small" href="">BMW Group</a>
                 </div>
                 <div class="mb-2">
-                  <a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a>
-                </div>
-                <div class="mb-2">
-                  <a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a>
-                </div>
+                  <a class="text-decoration-none fw-bold text-body small" href="">BMW Group: Sustainability</a>
+                </div>            
               </div>
             </div>
           </div>
         </div>
       </div>
-  
+
       <div class="d-flex gap-2 p-5 my-2">
         <a class="me-2">
           <i class="bi bi-instagram"></i>
@@ -378,164 +402,92 @@
         </a>
       </div>
       <div class="d-flex justify-content-evenly flex-wrap gap-4 py-2 pb-3">
-        <button class="btn-linkedin">
-          <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33"
-              xmlns="http://www.w3.org/2000/svg">
-              <g clip-rule="evenodd" fill-rule="evenodd">
-                <path
-                  d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z"
-                  fill="#2867b2"></path>
-                <g fill="#fff">
-                  <path
-                    d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z">
-                  </path>
-                  <path
-                    d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z">
-                  </path>
-                  <path
-                    d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z">
-                  </path>
-                </g>
-              </g>
-            </svg></span>
-          <span class="text1">Follow me</span>
-          <span class="text2">Fede </span>
+        <button class="btn-linkedin"> 
+          <a href="https://www.linkedin.com/in/fede-paez-24b754286" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: black;">
+            <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z" fill="#2867b2"></path><g fill="#fff"><path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z"></path><path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z"></path><path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z"></path></g></g></svg></span>
+           <span class="text1">Follow me</span> 
+           <span class="text2">Fede </span>  
+          </a>
+          
         </button>
-        <button class="btn-linkedin">
-          <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33"
-              xmlns="http://www.w3.org/2000/svg">
-              <g clip-rule="evenodd" fill-rule="evenodd">
-                <path
-                  d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z"
-                  fill="#2867b2"></path>
-                <g fill="#fff">
-                  <path
-                    d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z">
-                  </path>
-                  <path
-                    d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z">
-                  </path>
-                  <path
-                    d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z">
-                  </path>
-                </g>
-              </g>
-            </svg></span>
-          <span class="text1">Follow me</span>
-          <span class="text2">Franco </span>
+        <button class="btn-linkedin"> <a href="https://www.linkedin.com/in/franco-palacios-0a45ab26a/" target="_blank" style="text-decoration: none; color: black;">
+             <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z" fill="#2867b2"></path><g fill="#fff"><path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z"></path><path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z"></path><path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z"></path></g></g></svg></span>
+           <span class="text1">Follow me</span> 
+           <span class="text2">Franco </span>  
+        </a>     
         </button>
-        <button class="btn-linkedin">
-          <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33"
-              xmlns="http://www.w3.org/2000/svg">
-              <g clip-rule="evenodd" fill-rule="evenodd">
-                <path
-                  d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z"
-                  fill="#2867b2"></path>
-                <g fill="#fff">
-                  <path
-                    d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z">
-                  </path>
-                  <path
-                    d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z">
-                  </path>
-                  <path
-                    d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z">
-                  </path>
-                </g>
-              </g>
-            </svg></span>
-          <span class="text1">Follow me</span>
-          <span class="text2">Mica </span>
+        <button class="btn-linkedin"> 
+          <a href="https://www.linkedin.com/in/micaela-gonzalez-pili-b46616202/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: black;">
+            <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z" fill="#2867b2"></path><g fill="#fff"><path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z"></path><path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z"></path><path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z"></path></g></g></svg></span>
+           <span class="text1">Follow me</span> 
+           <span class="text2">Mica </span>  
+          </a>        
         </button>
-        <button class="btn-linkedin">
-          <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33"
-              xmlns="http://www.w3.org/2000/svg">
-              <g clip-rule="evenodd" fill-rule="evenodd">
-                <path
-                  d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z"
-                  fill="#2867b2"></path>
-                <g fill="#fff">
-                  <path
-                    d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z">
-                  </path>
-                  <path
-                    d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z">
-                  </path>
-                  <path
-                    d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z">
-                  </path>
-                </g>
-              </g>
-            </svg></span>
-          <span class="text1">Follow me</span>
-          <span class="text2">Lucas </span>
+        <button class="btn-linkedin"> 
+          <a href="https://www.linkedin.com/in/lucas-mat%C3%ADas-correa-871658283/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: black;">
+            <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z" fill="#2867b2"></path><g fill="#fff"><path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z"></path><path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z"></path><path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z"></path></g></g></svg></span>
+           <span class="text1">Follow me</span> 
+           <span class="text2">Lucas </span>  
+          </a>        
         </button>
-        <button class="btn-linkedin">
-          <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33"
-              xmlns="http://www.w3.org/2000/svg">
-              <g clip-rule="evenodd" fill-rule="evenodd">
-                <path
-                  d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z"
-                  fill="#2867b2"></path>
-                <g fill="#fff">
-                  <path
-                    d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z">
-                  </path>
-                  <path
-                    d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z">
-                  </path>
-                  <path
-                    d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z">
-                  </path>
-                </g>
-              </g>
-            </svg></span>
-          <span class="text1">Follow me</span>
-          <span class="text2">Mauri </span>
+        <button class="btn-linkedin"> 
+          <a href="https://www.linkedin.com/in/mauricio-echaniz-9689ab225/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: black;">
+            <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z" fill="#2867b2"></path><g fill="#fff"><path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z"></path><path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z"></path><path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z"></path></g></g></svg></span>
+           <span class="text1">Follow me</span> 
+           <span class="text2">Mauri </span>  
+          </a>        
         </button>
       </div>
     </div>
 
 
-  <!-- offcanvas carrito -->
+    <!-- offcanvas carrito -->
 
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header border-bottom">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header border-bottom">
         <h5 class="offcanvas-title" id="offcanvasRightLabel">Shop Cart</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="d-flex justify-content-between alert alert-warning mt-3 mb-0 mx-3">
+      </div>
+      <div class="d-flex justify-content-between alert alert-warning mt-3 mb-0 mx-3">
         <span>Purchase total:</span> <span>${{funcionPrecioTotal.toLocaleString()}}</span>
       </div>
-    <div class="offcanvas-body mx-2">
-        <div class="row align-content-center py-2 border-top" v-if="arrayCarrito.length > 0" v-for="articuloCarrito of arrayCarrito">
-            <div class="col-3 col-md-2">
-                <img class="img-fluid" :src="articuloCarrito.articulo.imagen" :alt="articuloCarrito.articulo.producto" >
+      <div class="offcanvas-body mx-2">
+        <div class="row align-content-center py-2 border-top" v-if="arrayCarrito.length > 0"
+          v-for="articuloCarrito of arrayCarrito">
+          <div class="col-3 col-md-2">
+            <img class="img-fluid" :src="articuloCarrito.articulo.imagen" :alt="articuloCarrito.articulo.producto">
+          </div>
+          <div class="col-4 col-md-6 col-lg-5">
+            <p class="fw-bold small">{{articuloCarrito.articulo.producto}}</p>
+            <a class="small text-decoration-none text-dark" role="button"
+              @click="borrarCarrito(articuloCarrito.articulo._id)"><span class="me-1"><i
+                  class="bi bi-trash"></i></span><span class="text-muted">Remove</span></a>
+          </div>
+          <div class="col-3">
+            <div class="input-group input-spinner">
+              <form>
+                <input type="button" value="-" @click="decrementarCantidadCarrito(articuloCarrito.articulo._id)"
+                  class="button-minus  btn  btn-sm">
+                <input type="number" step="1" min="1" :max="articuloCarrito.articulo.disponibles"
+                  v-model="articuloCarrito.cantidad" name="quantity" class="input-form" readonly>
+                <input type="button" value="+" @click="incrementarCantidadCarrito(articuloCarrito.articulo._id)"
+                  class="button-plus  btn  btn-sm">
+              </form>
             </div>
-            <div class="col-4 col-md-6 col-lg-5">
-                <p class="fw-bold small">{{articuloCarrito.articulo.producto}}</p>
-                <a class="small text-decoration-none text-dark" role="button" @click="borrarCarrito(articuloCarrito.articulo._id)"><span class="me-1"><i class="bi bi-trash"></i></span><span class="text-muted">Remove</span></a>
-            </div>
-            <div class="col-3">
-                <div class="input-group input-spinner">
-                    <form >
-                        <input type="button" value="-" @click="decrementarCantidadCarrito(articuloCarrito.articulo._id)" class="button-minus  btn  btn-sm">
-                        <input type="number" step="1" min="1" :max="articuloCarrito.articulo.disponibles" v-model="articuloCarrito.cantidad" name="quantity" class="input-form" readonly>
-                        <input type="button" value="+" @click="incrementarCantidadCarrito(articuloCarrito.articulo._id)" class="button-plus  btn  btn-sm">
-                    </form>
-                </div>
-            </div>
-            <div class="col-2 text-end"><span class="fw-bold">${{(articuloCarrito.articulo.precio * articuloCarrito.cantidad).toLocaleString()}}</span></div>
+          </div>
+          <div class="col-2 text-end"><span class="fw-bold">${{(articuloCarrito.articulo.precio *
+              articuloCarrito.cantidad).toLocaleString()}}</span></div>
         </div>
         <div v-if="!arrayCarrito.length">
-            <h3 class="text-center fw-bold opacity-25 my-5">There is no elements in your shop carts, add some!</h3>
+          <h3 class="text-center fw-bold opacity-25 my-5">There is no elements in your shop carts, add some!</h3>
         </div>
-    </div>
-    <div class="d-flex justify-content-around">
+      </div>
+      <div class="d-flex justify-content-around">
         <button class="btn btn-danger my-3" @click="vaciarStorage">Clear shopping cart</button>
-        <button class="btn btn-success my-3"><i class="bi bi-cart-check-fill"></i><span class="ps-2"> Finish</span></button>
+        <button class="btn btn-success my-3"><i class="bi bi-cart-check-fill"></i><span class="ps-2">
+            Finish</span></button>
+      </div>
     </div>
-</div>
 
 
 
@@ -543,8 +495,8 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-  crossorigin="anonymous"></script>
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
   <script src="./../javascript/purchase.js"></script>
 </body>
 

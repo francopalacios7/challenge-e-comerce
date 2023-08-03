@@ -2,6 +2,7 @@ package com.challengeecomerce.BMW.Automotors.models;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.Year;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,9 @@ public class MeetingReservation {
     private Long id;
     private LocalDateTime meetingReservation;
     private String email;
+    private String message;
+    private Year date; //año del auto
+    private String model;  //modelo del auto
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
@@ -19,10 +23,23 @@ public class MeetingReservation {
     private Set<Car> carSet = new HashSet<>();
     public MeetingReservation() {
     }
-    public MeetingReservation(LocalDateTime meetingReservation, String email) {
+    public MeetingReservation(LocalDateTime meetingReservation, String email, String message, Year date, String model) {
         this.meetingReservation = meetingReservation;
         this.email = email;
+        this.message = message;
+        this.date = date;
+        this.model = model;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+
     public LocalDateTime getMeetingReservation() {
         return meetingReservation;
     }

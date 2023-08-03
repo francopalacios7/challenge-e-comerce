@@ -1,25 +1,10 @@
+/* Estilos para el Navbar */
 body {
     background-color: #fff;
-    
-}
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-.navbar {
-    justify-content: space-between;
-    background-color: black;
-    color: #fff;
-}
-.nav-item {
-    margin-right: 10px;
 }
 
-ul,a,li{
-    color: #fff!important;
-}
-
-#logo{
+.navbar-brand img {
+    /* Agrega estilos para ajustar el tamaño y posición del logo */
     margin-left: 15px;
     height: 50px;
     width: 50px;
@@ -27,36 +12,30 @@ ul,a,li{
 }
 
 
-main{
-    min-height: 20rem;
+
+/* Ajuste de los estilos del enlace de logout */
+.d-flex .nav-link {
+    /* Agrega estilos para el tamaño del texto y los iconos */
+    color: #fff;
 }
 
-#logoT{
-    width: 150px;
-    height: 150px;
+/* Nuevos estilos para los enlaces en el Navbar */
+.navbar-icons ul {
+    display: flex;
+    align-items: center;
 }
 
-.shadow {
-    box-Shadow:'0px 0px 20px rgba(0, 0, 0, 0.2)';
-  }
-  
-
-  #logoFooter{
-    width: 120px;
-    height: 120px;
-}
-h1{
-    color: blueviolet;
+.navbar-icons li {
+    margin-right: 10px;
 }
 
-body, html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #262626;
-    font-family: bmwTypeNextWeb,Arial,Helvetica,Roboto,sans-serif;
-    font-size: 1pc;
-    font-weight: 300;
-    line-height: 1.5rem;
-    text-rendering: optimizeSpeed;
-} 
 
+
+/* Ajuste de los estilos de los enlaces del centro */
+/* .navbar-nav .nav-link {} */
+    /* Elimina el ancho fijo y la fuente pequeña */
+    /* width: 20px;
+    font-size: 10px; */
+
+    /* Puedes ajustar el espacio entre los enlaces */
+    /* margin-right: 10px; */
