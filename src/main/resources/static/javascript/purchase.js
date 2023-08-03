@@ -3,6 +3,7 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
+      loading: true,
       cars: [],
       filteredCars: [],
       selectedType: [],
@@ -17,6 +18,12 @@ createApp({
         "bi bi-lightning-charge-fill",
       ],
     };
+  },
+  mounted() {
+    // Simula un tiempo de carga, luego oculta el loader
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000); // Cambia el valor según tus necesidades
   },
   created() {
     this.getCars();
