@@ -136,11 +136,10 @@ public class PurchaseController {
         for(ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
             Mod mod = modService.findById(modPurchaseDTO.getModId());
             if (mod != null) {
-                Double individualAmount = modPurchaseDTO.getAmount();
+                Double individualAmount = Double.valueOf(modPurchaseDTO.getAmount());
                 individualAmounts.add(individualAmount);
             }
         }
-
         int finalAmount = 0;
         for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
             Mod mod = modService.findById(modPurchaseDTO.getModId());
@@ -150,19 +149,13 @@ public class PurchaseController {
                 System.out.println(" finalAmount " + finalAmount );
             }
         }
-      int finalAmount = 0;
-        for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
-            Mod mod = modService.findById(modPurchaseDTO.getModId());
-            if (mod != null){
-                finalAmount += modPurchaseDTO.getAmount();
-            }
-        }
 
 
-        Set<ClientPurchase> clientPurchase = new HashSet<>();
+
+        /*Set<ClientPurchase> clientPurchase = new HashSet<>();
 
         ClientPurchase clientPurchase1 = new ClientPurchase(finalPrice, finalAmount);
-        clientPurchase.add(clientPurchase1);
+        clientPurchase.add(clientPurchase1);*/
 
         response.setContentType("application/pdf");
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
