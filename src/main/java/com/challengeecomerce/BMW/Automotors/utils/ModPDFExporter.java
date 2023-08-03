@@ -14,7 +14,7 @@ public class ModPDFExporter {
 
     private List<Mod> mods;
     private Client client;
-    private List <Double> individualPrices;
+    private List<Double> individualPrices;
     private List<Double> individualAmounts;
 
     private int finalAmount;
