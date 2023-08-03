@@ -5,6 +5,9 @@ createApp({
     return {
       mods: [],
       arrayCarrito: [],
+      searchText: "", 
+      stockAvailable: false, 
+      selectedColor: "null",
     };
   },
   created() {
@@ -126,6 +129,8 @@ createApp({
         console.log(err)
       })
     },
+    
+    // ... otros métodos
   },
   computed: {
     funcionPrecioTotal() {
@@ -134,5 +139,38 @@ createApp({
         0
       );
     },
+    
+    filteredMods() {
+      if (
+        this.searchText === "" &&
+        !this.stockAvailable &&
+        this.selectedColor === "null"
+      ) {
+        return this.mods;
+      } else {
+        return this.mods.filter((mod) => {
+          let passesSearchTextFilter =
+            mod.name.toLowerCase().includes(this.searchText.toLowerCase());
+          let passesStockFilter = !this.stockAvailable || mod.stock > 0;
+          let passesColorFilter =
+            this.selectedColor == "null" || mod.carColor == this.selectedColor;
+
+            console.log(typeof mod.carColor)
+            console.log(typeof this.selectedColor)
+
+          return (
+            passesSearchTextFilter &&
+            passesStockFilter &&
+            passesColorFilter
+          );
+        });
+      }
+    },
+  
+
+
+
+
   },
+ 
 }).mount("#app");

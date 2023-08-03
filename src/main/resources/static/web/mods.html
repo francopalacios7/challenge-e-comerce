@@ -17,7 +17,7 @@
   <div id="app">
 
 
-    <nav class="navbar navbar-expand-md bg-transparent px-0 px-md-5 align-self-start">
+    <nav class="navbar navbar-expand-md bg-transparent px-0 px-md-5 align-self-start pb-0 position-sticky top-0 z-3">
       <div class="container-fluid border-bottom border-dark pb-1">
         <a class="navbar-brand"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -66,7 +66,36 @@
       </div>
     </nav>
     <main id="app" class="container-fluid">
-      <h1 class="bi-text-paragraph fs-3 me-5 pe-5 py-4">Configurá tu BMW</h1>
+      <h1 class=" ms-4 fs-3 me-5 pe-5 py-4">Configurá tu BMW</h1>
+
+
+      <!-- SEARCH BAR -->
+      <div class="row">
+        <div class="col-12 px-5 p-3">
+          <form role="search">
+            <input class="form-control me-2 w-100" type="search" v-model="searchText" placeholder="Search" aria-label="Search">
+          </form>
+        </div>
+        <div class="col-12 d-flex justify-content-center py-2">
+          <div class="d-flex justify-content-center align-items-center gap-3 gap-lg-5 flex-wrap">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="true" id="stock" v-model="stockAvailable">
+              <label class="form-check-label" for="stock">
+                Stock Available
+              </label>
+            </div>
+            <div>
+              <select class="form-select w-100 form-select" v-model="selectedColor">
+                <option value="null" selected>Select Color</option>
+                <option value="BLACK">Black</option>
+                <option value="WHITE">White</option>
+                <option value="BLUE">Blue</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <!-- filter mobile -->
 
      <!--  <div class="d-flex align-items-center justify-content-between d-lg-none filter-container bgc py-1">
@@ -76,94 +105,43 @@
       </div> -->
       <div class="row justify-content-center px-2 px-md-4 px-lg-5 bgc">
         <!-- filter desktop -->
+        <div class="col-12 py-3">
+          <div class="d-flex mb-4 flex-wrap justify-content-center gap-4" >
+            <div class="card card-hover " v-for="mod of filteredMods" :key="mod.id" style="width: 18rem;">
+              <div class="mod-container--img mb-3">
+                <a :href="'./detailsMod.html?id=' + mod.id">
+                  <img :src="mod.images[0]" class="img-fluid">
+                </a>
+              </div>
+              <div class="card-body">
+                
+                <a class="text-decoration-none text-body" :href="'./detailsMod.html?id=' + mod.id">
+                  <h3 class="mb-1 fw-bold">{{mod.name}}</h3>
+                </a>
+                <p class="text-muted fs-6 mb-0">{{mod.modType.name}}</p>
+              </div>
+              <div class="d-flex justify-content-between align-items-center px-3 mb-3">
 
-        <!--  <div class="col-lg-3 col-xl-2 d-none d-lg-block py-3 rounded">
-        <div class="filter-container px-3 w-100">
-          <div class="col-12 mb-3 fw-bold">Filter by</div>
-          <div class="pb-3 mb-2">
-            <h5 class="fw-bold">Type</h5>
-            <div class="form-check ms-2 mb-2">
-              <input class="form-check-input" type="checkbox" value="CAR" id="car" v-model="selectedType">
-              <label class="form-check-label" for="car">Car</label>
-            </div>
-            <div class="form-check ms-2">
-              <input class="form-check-input" type="checkbox" value="SUV" id="suv" v-model="selectedType">
-              <label class="form-check-label" for="suv">Suv</label>
-            </div>
-          </div>
-      
-          <div class="pb-3 mb-2">
-            <h5 class="fw-bold">Price</h5>
-            <div class="d-flex  mb-2">
-              <input class="rounded-3 px-2" min="1990" max="2023" type="number" style="width: 12rem;" v-model.number="priceRange[0]">
-            </div>
-            <div class="form-check ms-2">
-              <input class="form-check-input" type="checkbox" value="true" id="packm" v-model="packM">
-              <label class="form-check-label" for="packm">Pack-M</label>
-            </div>
-          </div>
-          <div class="pb-3 mb-2 ">
-            <h5 class="fw-bold">Color</h5>
-            <div class="form-check ms-2">
-              <input class="form-check-input" type="checkbox" value="BLACK" id="black" v-model="selectedColors">
-              <label class="form-check-label" for="black">Black</label>
-            </div>
-            <div class="form-check ms-2">
-              <input class="form-check-input" type="checkbox" value="WHITE" id="white" v-model="selectedColors">
-              <label class="form-check-label" for="white">White</label>
-            </div>
-            <div class="form-check ms-2">
-              <input class="form-check-input" type="checkbox" value="BLUE" id="blue" v-model="selectedColors">
-              <label class="form-check-label" for="blue">Blue</label>
-            </div>
-          </div>
-          <div class="pb-3 mb-2">
-            <h5 class="fw-bold">Year</h5>
-            <div class="d-flex justify-content-between">
-              <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="date"  v-model.number="yearRange[0]">
-              <span class="mx-2">-</span>
-              <input class="rounded-3 px-2" min="1990" max="2023" placeholder="Year" type="date"  v-model.number="yearRange[1]">
-            </div>
-          </div>
-        </div> 
+                <span class=" fw-bold">{{formatCurrency(mod.price)}}</span>
 
-      </div>-->
+                <button @click="añadirCarrito(mod.id)" class="button-primary button-primary--active"><i class="bi bi-cart-plus fs-5"></i></button>
+                <!-- <a class="w-100 button-primary" :href="'./detailsMod.html?id=' + mod.id">Lorem, ipsum.</a> -->
+              </div>
+            </div>
 
+          </div>
+
+
+
+
+
+        </div>
+        <!-- dynamic mod -->
+<!-- 
         <div class="col-12 col-lg-9 col-xl-10 d-flex flex-wrap gap-4 py-3">          
 
-          <!-- dynamic mod -->
-          <div class="row">
-            <div class="col-sm-4 mb-4" v-for="mod of mods" :key="mod.id">
-              <div class="card card-hover h-100">
-                <div class="mod-container--img mb-3">
-                  <a :href="'./detailsMod.html?id=' + mod.id">
-                    <img :src="mod.images[0]" class="img-fluid">
-                  </a>
-                </div>
-                <div class="card-body">
-                  
-                  <a class="text-decoration-none text-body" :href="'./detailsMod.html?id=' + mod.id">
-                    <h3 class="mb-1 fw-bold">{{mod.name}}</h3>
-                  </a>
-                  <p class="text-muted fs-6 mb-0">{{mod.modType.name}}</p>
-                </div>
-                <div class="d-flex justify-content-evenly align-items-center px-0 px-md-3 mb-3">
-
-                  <span class="small fw-bold">{{formatCurrency(mod.price)}}</span>
-
-                  <button @click="añadirCarrito(mod.id)" class="button-primary"><i>add</i></button>
-                  <!-- <a class="w-100 button-primary" :href="'./detailsMod.html?id=' + mod.id">Lorem, ipsum.</a> -->
-                </div>
-              </div>
-
-            </div>
-
-
-
-
-
-          </div>
-        </div>
+          
+        </div> -->
 
       </div>
       <!-- modal -->
@@ -409,7 +387,8 @@
         </div>
       </div>
 
-      <div class="d-flex gap-2 p-5 my-2">
+
+   <!--    <div class="d-flex gap-2 p-5 my-2">
         <a class="me-2">
           <i class="bi bi-instagram"></i>
         </a>
@@ -419,7 +398,7 @@
         <a class="me-2">
           <i class="bi bi-youtube"></i>
         </a>
-      </div>
+      </div> -->
       <div class="d-flex justify-content-evenly flex-wrap gap-4 py-2 pb-3">
         <button class="btn-linkedin">
           <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33"

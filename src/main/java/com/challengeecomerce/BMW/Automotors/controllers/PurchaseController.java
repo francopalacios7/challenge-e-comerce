@@ -101,6 +101,7 @@ public class PurchaseController {
         return new ResponseEntity<>("Dues plan updated successfully.", HttpStatus.OK);
     }
 
+
     /*@PostMapping(path = "/purchase/duesPlanPDF")
     public void transactionsPDF(HttpServletResponse response, @RequestBody DuesPlanPDFExporterDTO duesPlan) throws DocumentException, IOException {
 //        Client client = clientService.findByEmail(authentication.getName());
@@ -144,6 +145,7 @@ public class PurchaseController {
             }
         }
 
+
         int productNumber = 1;
         for (double price : individualPrices) {
             System.out.println("Producto " + productNumber + ": " + price);
@@ -164,6 +166,7 @@ public class PurchaseController {
         for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
             Mod mod = modService.findById(modPurchaseDTO.getModId());
             if (mod != null){
+
                 finalAmount += modPurchaseDTO.getAmount() * mod.getPrice();
                 System.out.println(" finalAmount " + finalAmount );
             }
