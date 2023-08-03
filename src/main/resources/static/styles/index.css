@@ -10,15 +10,7 @@ a.navbar-brand{
     content: url("./../images/BMW_White_Logo.svg.asset.1670245093434.svg");
 }
 
-.button-primary--active {
-    background-color: var(--color-primario) !important;
-    color: #fff !important;
-}
 
-.button-primary:hover {
-    background-color: var(--color-primario) !important;
-    color: #000 !important;
-}
 
 .display-1{
     font-size: calc(7.625rem + 4.5vw)!important;;

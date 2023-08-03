@@ -101,6 +101,7 @@ public class PurchaseController {
     }
 
 
+
     //    @PostMapping(path = "/purchase/duesPlanPDF")
 //    public void transactionsPDF(HttpServletResponse response, @RequestBody DuesPlanPDFExporterDTO duesPlan) throws DocumentException, IOException {
 ////        Client client = clientService.findByEmail(authentication.getName());
@@ -168,10 +169,22 @@ public class PurchaseController {
             }
         }
 
+
+
 //        Set<ClientPurchase> clientPurchase = new HashSet<>();
 //        ClientPurchase clientPurchase1 = new ClientPurchase(individualPrices,finalAmount);
 //        clientPurchase.add(clientPurchase1);
 
+
+
+
+      int finalAmount = 0;
+        for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
+            Mod mod = modService.findById(modPurchaseDTO.getModId());
+            if (mod != null){
+                finalAmount += modPurchaseDTO.getAmount();
+            }
+        }
 
 
         response.setContentType("application/pdf");
@@ -181,6 +194,7 @@ public class PurchaseController {
 //        String headerValue = "attachment; filename=transactions"+currentDateTime + ".pdf";
 
 //        List<Mod> listTransactions = this.modService.getTransactionsByDate (date.getLocalDateTimeStart(),date.getLocalDateTimeEnd());
+
         ModPDFExporter exporter = new ModPDFExporter(mods, client,individualPrices, individualAmounts, finalAmount);
         exporter.export(response);
 
@@ -188,4 +202,5 @@ public class PurchaseController {
     }
 
 }
+
 
