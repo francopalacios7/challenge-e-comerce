@@ -8,6 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -50,7 +53,7 @@ class WebAuthorization {
 
         http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
 
-        http.cors().disable();
+        http.cors();
 
         // turn off checking for CSRF tokens
         http.csrf().disable();
@@ -84,6 +87,4 @@ class WebAuthorization {
         }
 
     }
-
-
 }

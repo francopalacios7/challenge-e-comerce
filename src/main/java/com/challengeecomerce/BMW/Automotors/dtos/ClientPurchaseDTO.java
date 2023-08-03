@@ -16,6 +16,7 @@ public class ClientPurchaseDTO {
 
     public ClientPurchaseDTO(ClientPurchase clientPurchase) {
         this.totalAmount = clientPurchase.getTotalAmount();
+        this.creationDate = LocalDate.now();
 
     }
 

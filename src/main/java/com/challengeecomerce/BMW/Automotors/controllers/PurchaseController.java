@@ -46,9 +46,9 @@ public class PurchaseController {
 
     @Autowired
     private PurchaseService purchaseService;
-  
-   @GetMapping("/duesPlan")
-    public List<DuesPlanDTO> getAllDuesDTO(){
+
+    @GetMapping("/duesPlan")
+    public List<DuesPlanDTO> getAllDuesDTO() {
         return duesPlanService.findAll();
     }
 
@@ -129,7 +129,7 @@ public class PurchaseController {
         ClientPurchase clientPurchase1 = new ClientPurchase(finalPrice, finalAmount);
         clientPurchase.add(clientPurchase1);
 
-                response.setContentType("application/pdf");
+        response.setContentType("application/pdf");
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 //        String currentDateTime = dateFormat.format(new Date());
 //        String headerKey = "Content-Disposition";
@@ -137,12 +137,10 @@ public class PurchaseController {
 
 //       
 //        List<Mod> listTransactions = this.modService.getTransactionsByDate (date.getLocalDateTimeStart(),date.getLocalDateTimeEnd());
-        ModPDFExporter exporter = new ModPDFExporter(mods, client,finalPrice, clientPurchase1.getTotalAmount());
+        ModPDFExporter exporter = new ModPDFExporter(mods, client, finalPrice, clientPurchase1.getTotalAmount());
         exporter.export(response);
 
-//        
     }
-
 
 }
 
