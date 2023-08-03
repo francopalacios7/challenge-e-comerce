@@ -48,6 +48,7 @@ public class PurchaseController {
     private PurchaseService purchaseService;
 
     @GetMapping("/duesPlan")
+
     public List<DuesPlanDTO> getAllDuesDTO() {
         return duesPlanService.findAll();
     }
@@ -142,6 +143,7 @@ public class PurchaseController {
                 individualPrices.add(individualPrice);
             }
         }
+
         int productNumber = 1;
         for (double price : individualPrices) {
             System.out.println("Producto " + productNumber + ": " + price);
@@ -166,7 +168,7 @@ public class PurchaseController {
                 System.out.println(" finalAmount " + finalAmount );
             }
         }
-        int finalAmount = 0;
+      int finalAmount = 0;
         for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
             Mod mod = modService.findById(modPurchaseDTO.getModId());
             if (mod != null){
@@ -176,8 +178,10 @@ public class PurchaseController {
 
 
         Set<ClientPurchase> clientPurchase = new HashSet<>();
+
         ClientPurchase clientPurchase1 = new ClientPurchase(finalPrice, finalAmount);
         clientPurchase.add(clientPurchase1);
+
         response.setContentType("application/pdf");
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 //        String currentDateTime = dateFormat.format(new Date());
@@ -186,12 +190,11 @@ public class PurchaseController {
 
 //        List<Mod> listTransactions = this.modService.getTransactionsByDate (date.getLocalDateTimeStart(),date.getLocalDateTimeEnd());
 
+
         ModPDFExporter exporter = new ModPDFExporter(mods, client,individualPrices, individualAmounts, finalAmount);
         exporter.export(response);
 
-//        return new ResponseEntity<>("Printing completed transactions", HttpStatus.OK);
     }
 
 
 }
-

@@ -1,40 +1,38 @@
 body {
     background-color: #fff;
-    
-}
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-.navbar {
-    justify-content: space-between;
-    background-color: black;
-    color: #fff;
-}
-.nav-item {
-    margin-right: 10px;
 }
 
-ul,a,li{
-    color: #fff!important;
-}
-
-#logo{
-    margin-left: 15px!important;
+.navbar-brand img {
+    /* Agrega estilos para ajustar el tamaño y posición del logo */
+    margin-left: 15px;
     height: 50px;
     width: 50px;
     object-fit: contain;
 }
 
 
+
+/* Ajuste de los estilos del enlace de logout */
+.d-flex .nav-link {
+    /* Agrega estilos para el tamaño del texto y los iconos */
+    color: #fff;
+}
+
+/* Nuevos estilos para los enlaces en el Navbar */
+.navbar-icons ul {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-icons li {
+    margin-right: 10px;
+}
+
 main{
     min-height: 20rem;
 }
 
-#logoT{
-    width: 150px;
-    height: 150px;
-}
+
 
 .shadow {
     box-Shadow:'0px 0px 20px rgba(0, 0, 0, 0.2)';
@@ -49,7 +47,7 @@ h1{
     color: blueviolet;
 }
 
-body, html {
+/* body, html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #262626;
@@ -59,7 +57,7 @@ body, html {
     line-height: 1.5rem;
     text-rendering: optimizeSpeed;
 } 
-
+ */
 .table {
     font-size: 14px;
 }
@@ -145,9 +143,6 @@ footer h5 {
 
 
 /* Additional CSS for responsiveness */
-.container {
-    max-width: 600px;
-}
 
 #emailForm {
     padding: 20px;
