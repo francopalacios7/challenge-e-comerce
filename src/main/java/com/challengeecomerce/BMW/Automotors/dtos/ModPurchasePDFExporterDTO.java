@@ -11,7 +11,7 @@ import java.util.Set;
 public class ModPurchasePDFExporterDTO {
 
         private Long modId;
-        private Integer amount;
+        private Double amount;
 
 
     public ModPurchasePDFExporterDTO() {
@@ -22,7 +22,7 @@ public class ModPurchasePDFExporterDTO {
         return modId;
     }
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 

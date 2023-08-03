@@ -14,7 +14,7 @@ public class ModPDFExporter {
 
     private List<Mod> mods;
     private Client client;
-    private List <Double> individualPrices;
+    private List<Double> individualPrices;
     private List<Double> individualAmounts;
 
     private int finalAmount;
@@ -158,7 +158,7 @@ public class ModPDFExporter {
 
         document.add(modTable);
 
-        Paragraph fp = new Paragraph("Final Price: $" + finalAmount, font);
+        Paragraph fp = new Paragraph("Final Price: $ " + finalAmount, font);
         p.setAlignment(Paragraph.ALIGN_RIGHT);
         document.add(fp);
 
