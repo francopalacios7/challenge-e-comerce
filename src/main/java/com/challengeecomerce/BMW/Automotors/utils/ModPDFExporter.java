@@ -14,14 +14,17 @@ public class ModPDFExporter {
 
     private List<Mod> mods;
     private Client client;
-    private double finalPrice;
-    private int amount;
+    private List <Double> individualPrices;
+    private List<Double> individualAmounts;
 
-    public ModPDFExporter(List<Mod> mods, Client client, double finalPrice, int amount) {
+    private int finalAmount;
+
+    public ModPDFExporter(List<Mod> mods, Client client, List<Double> individualPrices, List<Double> individualsAmounts, int finalAmount) {
         this.mods = mods;
         this.client = client;
-        this.finalPrice = finalPrice;
-        this.amount = amount;
+        this.individualPrices = individualPrices;
+        this.individualAmounts = individualsAmounts;
+        this.finalAmount = finalAmount;
     }
 
     private void writeTableHeader(PdfPTable table) {
@@ -38,38 +41,54 @@ public class ModPDFExporter {
         cell.setPhrase(new Phrase("Name", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Price", font));
+        cell.setPhrase(new Phrase("Price per unit", font));
         table.addCell(cell);
 
         cell.setPhrase(new Phrase("Color", font));
         table.addCell(cell);
 
+        cell.setPhrase(new Phrase("Amount of mods purchased", font));
+        table.addCell(cell);
+
         cell.setPhrase(new Phrase("Final Price", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Purchased Mods", font));
-        table.addCell(cell);
+
     }
 
     private void writeTableData(PdfPTable table) {
         Font font = FontFactory.getFont(FontFactory.HELVETICA);
         font.setColor(BaseColor.BLACK);
 
-        for (Mod mod : mods) {
+        for (int i = 0; i < mods.size(); i++) {
+            Mod mod = mods.get(i);
+
             table.addCell(new Phrase(String.valueOf(mod.getId()), font));
             table.addCell(new Phrase(String.valueOf(mod.getName()), font));
             table.addCell(new Phrase(String.valueOf(mod.getPrice()), font));
             table.addCell(new Phrase(String.valueOf(mod.getCarColor()), font));
-            table.addCell(new Phrase(String.valueOf(finalPrice), font));
+
+            Double amount = individualAmounts.get(i);
             table.addCell(new Phrase(String.valueOf(amount), font));
+
+            Double price = individualPrices.get(i);
+            table.addCell(new Phrase(String.valueOf(price), font));
+
+
+
+
         }
     }
 
     public void export(HttpServletResponse response) throws DocumentException, IOException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
+        PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
 
         document.open();
+
+
+
 
         Image logoImage = Image.getInstance("https://1000marcas.net/wp-content/uploads/2019/12/BMW-logo.png");
         logoImage.setAlignment(Element.ALIGN_CENTER);
@@ -128,9 +147,10 @@ public class ModPDFExporter {
         p.setAlignment(Paragraph.ALIGN_CENTER);
         document.add(p);
 
+
         PdfPTable modTable = new PdfPTable(6);
         modTable.setWidthPercentage(100f);
-        modTable.setWidths(new float[]{1.5f, 3.5f, 3.0f, 3.0f, 3.0f, 3.0f});
+        modTable.setWidths(new float[]{2f, 4f, 3f, 3f, 4f, 5f});
         modTable.setSpacingBefore(10);
 
         writeTableHeader(modTable);
@@ -138,7 +158,12 @@ public class ModPDFExporter {
 
         document.add(modTable);
 
+        Paragraph fp = new Paragraph("Final Price: $" + finalAmount, font);
+        p.setAlignment(Paragraph.ALIGN_RIGHT);
+        document.add(fp);
+
 
         document.close();
+        writer.close();
     }
 }

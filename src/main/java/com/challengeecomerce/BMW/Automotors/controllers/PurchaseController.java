@@ -135,26 +135,42 @@ public class PurchaseController {
         modPurchasePDFExporterDTO.forEach(a -> mods.add(modService.findById(a.getModId())));
 
 
-        double finalPrice = 0;
+        List<Double> individualPrices = new ArrayList<>();
         for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO) {
             Mod mod = modService.findById(modPurchaseDTO.getModId());
             if (mod != null) {
-                finalPrice += mod.getPrice() * modPurchaseDTO.getAmount();
+                double individualPrice = mod.getPrice() * modPurchaseDTO.getAmount();
+                individualPrices.add(individualPrice);
             }
         }
+        int productNumber = 1;
+        for (double price : individualPrices) {
+            System.out.println("Producto " + productNumber + ": " + price);
+            productNumber++;
+        }
 
+
+        List<Double> individualAmounts = new ArrayList<>();
+        for(ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
+            Mod mod = modService.findById(modPurchaseDTO.getModId());
+            if (mod != null) {
+                Double individualAmount = modPurchaseDTO.getAmount();
+                individualAmounts.add(individualAmount);
+            }
+        }
 
         int finalAmount = 0;
         for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
             Mod mod = modService.findById(modPurchaseDTO.getModId());
             if (mod != null){
-                finalAmount += modPurchaseDTO.getAmount();
+                finalAmount += modPurchaseDTO.getAmount() * mod.getPrice();
+                System.out.println(" finalAmount " + finalAmount );
             }
         }
 
-        Set<ClientPurchase> clientPurchase = new HashSet<>();
-        ClientPurchase clientPurchase1 = new ClientPurchase(finalPrice,finalAmount);
-        clientPurchase.add(clientPurchase1);
+//        Set<ClientPurchase> clientPurchase = new HashSet<>();
+//        ClientPurchase clientPurchase1 = new ClientPurchase(individualPrices,finalAmount);
+//        clientPurchase.add(clientPurchase1);
 
 
 
@@ -165,7 +181,7 @@ public class PurchaseController {
 //        String headerValue = "attachment; filename=transactions"+currentDateTime + ".pdf";
 
 //        List<Mod> listTransactions = this.modService.getTransactionsByDate (date.getLocalDateTimeStart(),date.getLocalDateTimeEnd());
-        ModPDFExporter exporter = new ModPDFExporter(mods, client,finalPrice, finalAmount);
+        ModPDFExporter exporter = new ModPDFExporter(mods, client,individualPrices, individualAmounts, finalAmount);
         exporter.export(response);
 
 //        return new ResponseEntity<>("Printing completed transactions", HttpStatus.OK);
