@@ -5,12 +5,13 @@ createApp({
     return {
     cars:[],
     params: '',
+    carFiltrado:[],
     meeting:{
         meetingReservation: '', //LocalDateTime del turno
         email: '',
         message: '',
-        date: '2024',  //año del auto
-        model:  'FZ 100',
+        date: '',  //año del auto
+        model: '',
       },
     showConfirmation: false,
     err: ''
@@ -18,16 +19,19 @@ createApp({
   },
   created(){
 
-    /* this.params = new URLSearchParams(location.search).get("id"); */
+    this.params = new URLSearchParams(location.search).get("id");
+/*     console.log(this.params) */
     axios.get("/api/car")
         .then(response => {
                   
           this.cars = response.data;
-            console.log(this.cars)
-            console.log(this.meeting)
-          /* this.carFiltrado = this.cars.filter(car => car.id == this.params)
+ 
+            console.log("Meeting to send",this.meeting)
+          this.carFiltrado = this.cars.filter(car => car.id == this.params)
           console.log("Cars:", this.cars);
-          console.log("Cars Filtrados:", this.carFiltrado); */
+          console.log("Cars Filtrados:", this.carFiltrado);
+          this.meeting.date = this.carFiltrado[0].date;
+          this.meeting.model = this.carFiltrado[0].model;
 
         }).catch(error => {
           console.error(error);
