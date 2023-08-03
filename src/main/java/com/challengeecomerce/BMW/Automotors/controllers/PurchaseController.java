@@ -129,9 +129,6 @@ public class PurchaseController {
 
         Client client = clientService.findByEmail(authentication.getName());
 
-
-
-
         List<Mod> mods = new ArrayList<>();
         modPurchasePDFExporterDTO.forEach(a -> mods.add(modService.findById(a.getModId())));
 
@@ -178,13 +175,13 @@ public class PurchaseController {
 
 
 
-      int finalAmount = 0;
+      /*int finalAmount = 0;
         for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
             Mod mod = modService.findById(modPurchaseDTO.getModId());
             if (mod != null){
                 finalAmount += modPurchaseDTO.getAmount();
             }
-        }
+        }*/
 
 
         response.setContentType("application/pdf");
