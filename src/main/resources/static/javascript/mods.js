@@ -87,7 +87,6 @@ createApp({
         style: "currency",
         currency: "USD",
       });
-
       return format.format(currency);
     },
     sendCarritoBack(array) {
