@@ -159,7 +159,6 @@ public class PurchaseController {
                 individualAmounts.add(individualAmount);
             }
         }
-
         int finalAmount = 0;
         for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
             Mod mod = modService.findById(modPurchaseDTO.getModId());
@@ -171,20 +170,12 @@ public class PurchaseController {
 
 
 
+
 //        Set<ClientPurchase> clientPurchase = new HashSet<>();
 //        ClientPurchase clientPurchase1 = new ClientPurchase(individualPrices,finalAmount);
 //        clientPurchase.add(clientPurchase1);
 
 
-
-
-      int finalAmount = 0;
-        for (ModPurchasePDFExporterDTO modPurchaseDTO : modPurchasePDFExporterDTO){
-            Mod mod = modService.findById(modPurchaseDTO.getModId());
-            if (mod != null){
-                finalAmount += modPurchaseDTO.getAmount();
-            }
-        }
 
 
         response.setContentType("application/pdf");
