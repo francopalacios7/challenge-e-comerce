@@ -1,0 +1,41 @@
+/* Estilos para el Navbar */
+body {
+    background-color: #fcfcfc70;
+}
+
+.navbar-brand img {
+    /* Agrega estilos para ajustar el tamaño y posición del logo */
+    margin-left: 15px;
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+
+
+
+/* Ajuste de los estilos del enlace de logout */
+.d-flex .nav-link {
+    /* Agrega estilos para el tamaño del texto y los iconos */
+    color: #fff;
+}
+
+/* Nuevos estilos para los enlaces en el Navbar */
+.navbar-icons ul {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-icons li {
+    margin-right: 10px;
+}
+
+
+
+/* Ajuste de los estilos de los enlaces del centro */
+/* .navbar-nav .nav-link {} */
+    /* Elimina el ancho fijo y la fuente pequeña */
+    /* width: 20px;
+    font-size: 10px; */
+
+    /* Puedes ajustar el espacio entre los enlaces */
+    /* margin-right: 10px; */

@@ -1,0 +1,157 @@
+body {
+    background-color: #fff;
+}
+
+.navbar-brand img {
+    /* Agrega estilos para ajustar el tamaño y posición del logo */
+    margin-left: 15px;
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+
+
+
+/* Ajuste de los estilos del enlace de logout */
+.d-flex .nav-link {
+    /* Agrega estilos para el tamaño del texto y los iconos */
+    color: #fff;
+}
+
+/* Nuevos estilos para los enlaces en el Navbar */
+.navbar-icons ul {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-icons li {
+    margin-right: 10px;
+}
+
+main{
+    min-height: 20rem;
+}
+
+
+
+.shadow {
+    box-Shadow:'0px 0px 20px rgba(0, 0, 0, 0.2)';
+  }
+  
+
+  #logoFooter{
+    width: 120px;
+    height: 120px;
+}
+h1{
+    color: blueviolet;
+}
+
+/* body, html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #262626;
+    font-family: bmwTypeNextWeb,Arial,Helvetica,Roboto,sans-serif;
+    font-size: 1pc;
+    font-weight: 300;
+    line-height: 1.5rem;
+    text-rendering: optimizeSpeed;
+} 
+ */
+.table {
+    font-size: 14px;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+/* Add some space between the header and the table */
+thead th {
+    padding: 0.75rem;
+}
+
+/* Center the text in table cells */
+td,
+th {
+    text-align: center;
+}
+
+/* Add some padding to the top of the table */
+tbody tr:first-child td {
+    padding-top: 1.25rem;
+}
+
+/* Add a border radius to the pagination buttons */
+.pagination button {
+    border-radius: 0.25rem;
+}
+
+/* Add some margin to the top of the pagination */
+.pagination {
+    margin-top: 1.5rem;
+}
+
+/* Center the footer text */
+footer h5 {
+    text-align: center;
+}
+
+/* Adjust the font size for better responsive layout on smaller screens */
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .table {
+        font-size: 12px;
+    }
+
+    /* Reduce the font size for table headers on smaller screens */
+    thead th {
+        font-size: 12px;
+    }
+
+    /* Adjust padding for better spacing on smaller screens */
+    thead th,
+    tbody td {
+        padding: 0.5rem;
+    }
+
+    /* Reduce padding for the top of the table on smaller screens */
+    tbody tr:first-child td {
+        padding-top: 0.75rem;
+    }
+}
+
+  /* Alternating row colors */
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Light gray */
+  }
+  
+  /* Add a box-shadow to the table */
+  .table-bordered {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Center align table data */
+  .table td {
+    text-align: center;
+  }
+
+
+
+/* Additional CSS for responsiveness */
+
+#emailForm {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+    }
+}

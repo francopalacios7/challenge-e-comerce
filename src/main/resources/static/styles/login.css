@@ -1,0 +1,46 @@
+main{
+    min-height: 20rem;
+}
+
+#logo{
+    width: 150px;
+    height: 150px;
+}
+
+.shadow {
+    box-Shadow:'0px 0px 20px rgba(0, 0, 0, 0.2)';
+  }
+  
+
+  #logoFooter{
+    width: 120px;
+    height: 120px;
+}
+h1{
+    color: blueviolet;
+}
+
+body, html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #262626;
+    font-family: bmwTypeNextWeb,Arial,Helvetica,Roboto,sans-serif;
+    font-size: 1pc;
+    font-weight: 300;
+    line-height: 1.5rem;
+    text-rendering: optimizeSpeed;
+} 
+
+
+.form-group {
+    display: flex;
+    align-items: center;
+   
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  .input-icon {
+    margin-right: 10px;
+    color: #666;
+  }

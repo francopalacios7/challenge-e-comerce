@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="./../styles/turnReservation.css">
+  <link rel="stylesheet" href="../styles/toastify.css">
+</head>
+<body>
+<div id="app">
+    <header>
+
+        <nav class="navbar navbar-expand-md bg-transparent px-0 px-md-5 align-self-start">
+            <div class="container-fluid">
+            <a class="navbar-brand"></a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+                class="collapse d-md-flex justify-content-md-between navbar-collapse"
+                id="navbarNav"
+            >
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a
+                    class="nav-link fw-bold text-body active"
+                    aria-current="page"
+                    href="#"
+                    >Home</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-body" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-body" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a
+                    class="nav-link fw-bold text-body disabled"
+                    aria-disabled="true"
+                    >Disabled</a
+                    >
+                </li>
+                </ul>
+        
+                <div>
+                <a href="">Login</a>
+                </div>
+            </div>
+            </div>
+        </nav>
+
+    </header>
+    
+    <main>
+      <div v-cloak class="d-flex justify-content-center mt-3">
+               
+        <div class="table-responsive">
+            <h1 class="d-flex justify-content-center">Information of the reservation of your date</h1>
+           <table class="table dark-table table-hover table-bordered table-responsive mt-5" id="table">
+            <thead>
+                <tr scope="col">
+                    <th colspan="5" scope="col" style="text-align: center;">Details</th>
+                </tr>
+                <tr v-cloak >
+                    <th v-cloak  scope="col">First Name</th>
+                    <th  v-cloak scope="col">Last Name</th>
+                    <th  v-cloak  scope="col">Email</th>
+                    <th  v-cloak  scope="col">Details</th>
+                    <th v-cloak scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows for transactions -->
+                <tr v-for="transact of transaction">
+                    <td v-if="transact.type == 'CREDIT'" class="text-success">{{transact.type}}</td>
+                    <td v-if="transact.type == 'DEBIT'" class="text-danger">{{transact.type}}</td>
+                    <td>${{ (transact.amount.toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</td>
+                    <td>{{transact.description}}</td>
+                    <td>{{transact.date.slice(length, -16).replace('T',' ')}}</td>
+                    <td>{{ transact.date.slice(11, 19) }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        </div>
+    </div>
+
+
+
+
+
+        <div class="card mt-4">
+          <h2 class="d-flex justify-content-center">Request your turn</h2>
+            <div class="card-body d-flex justify-content-around">
+
+                <div class="filter-container">
+                    <input type="datetime-local" v-model="turReservation" id="tur">
+                    <button class="btn btn-success filter-btn" @click="requestTurn">Request</button>
+                </div>
+
+                <div class="filter-container">
+                  <input type="datetime-local" v-model="turReservation" id="tur">
+                  <button class="btn btn-success filter-btn" @click="requestTurn">Request</button>
+              </div>
+            </div>
+        </div>
+    </main>
+  
+
+    
+    <div v-cloak v-if="showConfirmation" class="confirmation-message mt-3">
+        <p>¿Estás seguro de que deseas continuar?</p>
+        <div class="btn-wrapper">
+            <button v-cloak @click="confirmTurn" class="btn confirm-btn">Confirmar</button>
+            <button v-cloak @click="cancelTurn" class="btn cancel-btn">Cancelar</button>
+        </div>
+    </div>
+  
+
+
+  <footer class="container pt-5 pb-2">
+    <!-- desktop -->
+    <div class="gap-5 flex-wrap d-none d-md-flex">
+      <div class="px-5">
+        <p class="fs-6">CONTACTO</p>
+        <div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          
+        </div>
+      </div>
+      <div class="px-5">
+        <p class="fs-6">CONTACTO</p>
+        <div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          
+        </div>
+      </div>
+      <div class="px-5">
+        <p class="fs-6">CONTACTO</p>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>
+          <div class="mb-2"><a class="text-decoration-none fw-bold text-body small" href="">Concesionarios BMW</a></div>                   
+      </div>
+    </div>
+    <!-- mobile -->
+    <div></div>
+    <div class="d-flex gap-2 px-5 py-4">
+      <a class="me-2">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a class="me-2">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a class="me-2">
+        <i class="bi bi-youtube"></i>
+      </a>
+    </div>
+    <div class="d-flex justify-content-evenly flex-wrap gap-4 py-2 pb-3">
+      <button class="btn-linkedin"> 
+        <a href="https://www.linkedin.com/in/fede-paez-24b754286" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: black;"></a>
+        <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z" fill="#2867b2"></path><g fill="#fff"><path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z"></path><path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z"></path><path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z"></path></g></g></svg></span>
+         <span class="text1">Follow me</span> 
+         <span class="text2">Fede </span>  
+      </button>
+      <button class="btn-linkedin"> <a href="https://www.linkedin.com/in/franco-palacios-0a45ab26a/" target="_blank" style="text-decoration: none; color: black;">
+           <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z" fill="#2867b2"></path><g fill="#fff"><path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z"></path><path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z"></path><path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z"></path></g></g></svg></span>
+         <span class="text1">Follow me</span> 
+         <span class="text2">Franco </span>  
+      </a>     
+      </button>
+      <button class="btn-linkedin"> 
+        <a href="https://www.linkedin.com/in/micaela-gonzalez-pili-b46616202/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: black;">
+          <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z" fill="#2867b2"></path><g fill="#fff"><path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z"></path><path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z"></path><path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z"></path></g></g></svg></span>
+         <span class="text1">Follow me</span> 
+         <span class="text2">Mica </span>  
+        </a>        
+      </button>
+      <button class="btn-linkedin"> 
+        <a href="https://www.linkedin.com/in/lucas-mat%C3%ADas-correa-871658283/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: black;">
+          <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z" fill="#2867b2"></path><g fill="#fff"><path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z"></path><path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z"></path><path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z"></path></g></g></svg></span>
+         <span class="text1">Follow me</span> 
+         <span class="text2">Lucas </span>  
+        </a>        
+      </button>
+      <button class="btn-linkedin"> 
+        <a href="https://www.linkedin.com/in/mauricio-echaniz-9689ab225/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: black;">
+          <span class="icon"><svg fill="none" height="33" viewBox="0 0 120 120" width="33" xmlns="http://www.w3.org/2000/svg"><g clip-rule="evenodd" fill-rule="evenodd"><path d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z" fill="#2867b2"></path><g fill="#fff"><path d="m63.8771 54.3451c.2959-.3181.411-.4154.4938-.5356 4.0325-5.884 9.7919-7.6141 16.5119-6.5811 7.7657 1.1953 12.7354 6.6312 14.004 14.949.3009 1.9723.4506 3.9525.449 5.9464-.0047 8.2817-.0177 16.563.0178 24.844.0054.9327-.2242 1.2067-1.1801 1.195-4.3386-.052-8.6787-.0514-13.0179 0-.9493.0104-1.1925-.2601-1.1874-1.1944.0352-7.7238.0228-15.4472.0152-23.1703-.0029-1.7554-.1234-3.4997-.6169-5.1996-1.5816-5.4524-7.7846-7.3664-12.2018-3.7408-2.3866 1.9581-3.3196 4.5473-3.3015 7.5947.0386 7.2858.0114 14.5713.0114 21.8571 0 .9558-.0533 1.9146.0162 2.8647.0608.8259-.2766.9848-1.0248.98-4.4194-.0298-8.8379-.033-13.2567.0019-.8017.0063-1.09-.1567-1.0808-1.038.0647-6.5672.091-13.1375.0939-19.7052.0012-8.0822-.0149-16.1637-.0714-24.2455-.006-.8848.1792-1.1465 1.0932-1.1363 4.4194.0495 8.8383.0422 13.2571.0051.7957-.0073 1.0177.2321.9923 1.0063-.0549 1.6656-.0165 3.3335-.0165 5.3026z"></path><path d="m40.1241 71.1028c0 7.2826-.0155 14.5659.0187 21.8491.0038.9045-.1785 1.2264-1.1645 1.2134-4.377-.0584-8.7549-.0447-13.1324-.0079-.8129.0066-1.0869-.1963-1.086-1.0507.0213-14.6861.0178-29.3712-.0041-44.0569-.0009-.765.1856-1.0209.9882-1.0133 4.4579.038 8.9154.0428 13.3722-.0032.8896-.0098 1.0279.3149 1.0244 1.1008-.027 7.3235-.0152 14.6458-.0165 21.9687z"></path><path d="m32.5678 25.8388c5.8726.0064 9.6878 4.6579 8.2959 10.1135-1.0517 4.1194-5.3122 6.491-10.2299 5.6924-5.2234-.8477-8.1348-5.9452-6.21-10.8714 1.2013-3.0767 4.2757-4.9392 8.144-4.9345z"></path></g></g></svg></span>
+         <span class="text1">Follow me</span> 
+         <span class="text2">Mauri </span>  
+        </a>        
+      </button>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="../javascript/turnReservation.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+</body>
+</html>

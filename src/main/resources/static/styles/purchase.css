@@ -1,0 +1,46 @@
+/*  Scrollbar  */
+/* Firefox */
+
+/* Chrome, Edge, and Safari */
+.car-container--description::-webkit-scrollbar {
+  width: 7px;
+}
+
+.car-container--description::-webkit-scrollbar-thumb {
+  background: var(--color-primario);
+  border-radius: 5px;
+}
+
+.filter-container {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 20;
+}
+
+.car-container {
+  height: 20rem;
+}
+
+.car-container--img {
+  height: 100%;
+}
+
+.car-container--img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.car-container--description {
+}
+
+
+
+ul.nav-pills li button.nav-link{
+  color: var(--color-primario)!important;
+}
+
+ul.nav-pills li button.nav-link.active{
+  background-color: var(--color-primario)!important;
+  color: #fff!important;
+}
