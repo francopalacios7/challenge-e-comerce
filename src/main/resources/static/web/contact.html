@@ -30,10 +30,10 @@
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold text-body" href="./purchase.html">BMW</a>
+                        <a class="nav-link fw-bold text-body" href="./purchase.html">BMW Vehicles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold text-body" href="./mods.html">BMW Mods</a>
+                        <a class="nav-link fw-bold text-body" href="./mods.html">BMW Accesories</a>
                     </li>
                    
                 </ul>
@@ -85,9 +85,12 @@
             </div>
          
             <div class="col-md-6 offset-lg-2 p-5">
+                <h2 class="fw-bold" v-if="promotionParams.length">Selected plan: {{promotionParams[0].planDescription}}</h2>
+                <h2 v-else=""></h2>
                 <form @submit.prevent="meetingc()" class="my-md-3 my-lg-5">
                   <div class="mb-4">
                     <!-- Add the CSS class to the datetime-local input -->
+                    <label for="" class="form-label">Required Date</label>
                     <input type="datetime-local" v-model="meeting.meetingReservation" id="meetingReservation" class="form-control form-control-lg form-control-light">
                   </div>
                   <div class="mb-4">

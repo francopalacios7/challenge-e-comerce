@@ -30,10 +30,10 @@
               <a class="nav-link fw-bold text-body" aria-current="page" href="./index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fw-bold text-body" href="./purchase.html">BMW</a>
+              <a class="nav-link fw-bold text-body" href="./purchase.html">BMW Vehicles</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link fw-bold text-body active" href="#">BMW Mods</a>
+              <a class="nav-link fw-bold text-body active" href="#">BMW Accesories</a>
             </li>
            
           </ul>
@@ -248,8 +248,8 @@
                 <form>
                   <input type="button" value="-" @click="decrementarCantidadCarrito(articuloCarrito.article.id)"
                     class="button-minus  btn  btn-sm">
-                  <input type="number" step="1" min="1" :max="articuloCarrito.article.stock"
-                    v-model="articuloCarrito.amount" name="quantity" class="input-form" readonly style="width: 2rem;">
+                  <input  type="number" step="1" min="1" :max="articuloCarrito.article.stock"
+                    v-model="articuloCarrito.amount" name="quantity" class="input-form text-center" readonly style="width: 2rem;">
                   <input type="button" value="+" @click="incrementarCantidadCarrito(articuloCarrito.article.id)"
                     class="button-plus  btn  btn-sm">
                 </form>
@@ -265,8 +265,10 @@
         <div class="d-flex justify-content-around">
           <button class="btn btn-danger my-3" @click="vaciarStorage">Clear shopping cart</button>
           <!-- SUBMIT -->
-          <button class="button-primary button-primary--active my-3"><i class="bi bi-cart-check-fill"></i><span
-              class="ps-2"> Finish</span></button>
+          <button class="button-primary button-primary--active my-3"><i class="bi bi-cart-check-fill"> <a href="./purchasePayment.html"  style="text-decoration: none; color: white;">
+            <span
+              class="ps-2"> Finish</span>
+          </a> </i></button>
           <button class="button-primary button-primary--active my-3" @click="sendCarritoBack(arrayCarrito)">Download PDF products</button>
         </div>
       </div>

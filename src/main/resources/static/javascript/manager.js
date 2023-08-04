@@ -25,7 +25,8 @@ createApp({
       dueDescription: "",
       dues: "",
       dueInterest: 0,
-      dueActive: false
+      dueActive: false,
+      formToShow: "car"
     }
   },
 
@@ -75,6 +76,10 @@ createApp({
           console.log(response.data);
           //this.allMods = response.data
           this.allMods = response.data.map(mod => mod.name)
+          const uniqueModNames = new Set(this.allMods);
+      
+      // Convertir nuevamente en Array
+      this.allMods = Array.from(uniqueModNames);
           console.log(this.allMods);
 
         })

@@ -32,7 +32,7 @@ createApp({
                   
           this.cars = response.data.filter(car => car.model === this.params);
           console.log("this cars: ", this.cars);
-          this.carImages = this.cars[0].images.slice(1, this.cars[0].images.length);
+          this.carImages = this.cars[0].images;
           console.log("filtered Images:",this.carImages );
         }).catch(err => console.error(err))
     },
